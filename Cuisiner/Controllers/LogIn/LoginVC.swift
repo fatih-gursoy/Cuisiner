@@ -46,7 +46,7 @@ class LoginVC: UIViewController {
                 print(error?.localizedDescription as Any)
             } else {
                 
-                self.loginDelegate?.userDidLogin()
+                self.loginDelegate?.didUserLogin()
                 
             }
         }
@@ -57,5 +57,5 @@ class LoginVC: UIViewController {
 
 protocol LoginDelegate: AnyObject {
     
-    func userDidLogin()
+    func didUserLogin()
 }

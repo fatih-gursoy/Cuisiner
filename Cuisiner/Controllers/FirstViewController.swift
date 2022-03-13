@@ -47,7 +47,7 @@ extension FirstViewController: SignInDelegate, LoginDelegate {
         toHomeVC()
     }
     
-    func userDidLogin() {
+    func didUserLogin() {
         
         dismiss(animated: true)
         toHomeVC()
