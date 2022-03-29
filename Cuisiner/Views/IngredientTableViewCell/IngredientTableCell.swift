@@ -7,9 +7,13 @@
 
 import UIKit
 
-class TableViewCell: UITableViewCell {
+class IngredientTableCell: UITableViewCell {
 
     @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var itemName: UITextField!
+    @IBOutlet weak var itemQuantity: UITextField!
+    
+    static let identifier = "IngredientTableCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,4 +26,7 @@ class TableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    
 }
+
+

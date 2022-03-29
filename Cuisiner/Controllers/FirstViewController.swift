@@ -14,7 +14,6 @@ class FirstViewController: UIViewController {
 
     }
     
-    
     @IBAction func signUpClicked(_ sender: Any) {
         
         let signInView = SignInVC()

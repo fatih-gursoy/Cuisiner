@@ -19,9 +19,9 @@ class TabBarVC: UITabBarController {
         
         guard let DiscoverVC = self.storyboard?.instantiateViewController(withIdentifier: "DiscoverVC") else {return}
         
-        guard let MyRecipesVC = self.storyboard?.instantiateViewController(withIdentifier: "MyRecipesVC") else {return}
+        let MyRecipesVC = self.storyboard?.instantiateViewController(withIdentifier: "MyRecipesNav") as! UINavigationController
         
-        guard let CreateNewVC = self.storyboard?.instantiateViewController(withIdentifier: "CreateNewVC") else {return}
+        let CreateNewVC = self.storyboard?.instantiateViewController(withIdentifier: "CreateNewNav") as! UINavigationController
         
         
         // Create TabBar items
@@ -32,6 +32,7 @@ class TabBarVC: UITabBarController {
         CreateNewVC.tabBarItem = UITabBarItem(title: nil, image: nil, selectedImage: nil)
         
         // Assign viewControllers to tabBarController
+        
         let viewControllers = [DiscoverVC, CreateNewVC, MyRecipesVC]
         self.setViewControllers(viewControllers, animated: false)
         
@@ -43,10 +44,10 @@ class TabBarVC: UITabBarController {
     }
     
     func routeToCreateNew() {
-        guard let createNewVC = self.storyboard?.instantiateViewController(withIdentifier: "CreateNewVC") else {return}
+        guard let createNewVC = self.storyboard?.instantiateViewController(withIdentifier: "CreateNewNav") else {return}
         
         createNewVC.modalPresentationCapturesStatusBarAppearance = true
-        createNewVC.modalPresentationStyle = .popover
+        createNewVC.modalPresentationStyle = .fullScreen
         self.present(createNewVC, animated: true)
     }
 }
