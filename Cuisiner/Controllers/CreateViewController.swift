@@ -35,6 +35,7 @@ class CreateViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboard()
         
         tableView.delegate = self
         tableView.dataSource = self

@@ -11,7 +11,8 @@ import Firebase
 class MyRecipesVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    
+
+    var userViewModel = UserViewModel()
     var recipesViewModel = RecipesViewModel()
     
     override func viewDidLoad() {
@@ -28,30 +29,20 @@ class MyRecipesVC: UIViewController {
         
         fetchData()
     }
+
+    @objc func signOut() {
+        
+        userViewModel.signOut()
+        performSegue(withIdentifier: "toFirstVC", sender: nil)
+    }
+
     
     func fetchData() {
         
         recipesViewModel.delegate = self
         recipesViewModel.getRecipes()
     }
-    
-    @objc func signOut() {
-        
-        CurrentUser.shared.delegate = self
-        didSignOut()
-    }
 
-
-}
-
-extension MyRecipesVC: AuthDelegate {
-    
-    func didSignOut() {
-        self.dismiss(animated: true)
-        
-    }
-
-    
 }
 
 extension MyRecipesVC: RecipesViewModelDelegate {
@@ -59,7 +50,6 @@ extension MyRecipesVC: RecipesViewModelDelegate {
     func updateView() {
         tableView.reloadData()
     }
-    
 }
 
 

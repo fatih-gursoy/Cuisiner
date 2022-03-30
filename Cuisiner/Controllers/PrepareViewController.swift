@@ -19,6 +19,7 @@ class PrepareViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboard()
 
         tableView.delegate = self
         tableView.dataSource = self
@@ -70,9 +71,7 @@ class PrepareViewController: UIViewController {
             instructions[i].text = cell.textView.text
 
         }
-        
         recipeViewModel?.recipe.instructions = instructions
-        
     }
     
 

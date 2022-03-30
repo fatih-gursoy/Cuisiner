@@ -8,7 +8,7 @@
 import UIKit
 
 class FirstViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -16,38 +16,34 @@ class FirstViewController: UIViewController {
     
     @IBAction func signUpClicked(_ sender: Any) {
         
-        let signInView = SignInVC()
-        signInView.signInDelegate = self
-        present(signInView, animated: true)
+        let signUpView = SignUpVC()
+        signUpView.delegate = self
+        present(signUpView, animated: true)
         
     }
     
     @IBAction func logInClicked(_ sender: Any) {
         
-        let loginView = LoginVC()
-        loginView.loginDelegate = self
-        present(loginView, animated: true)
+        let signInView = SignInVC()
+        signInView.delegate = self
+        present(signInView, animated: true)
 
     }
     
     func toHomeVC() {
-     
         performSegue(withIdentifier: "toHomeVC", sender: nil)
-        
     }
     
 }
 
-extension FirstViewController: SignInDelegate, LoginDelegate {
+extension FirstViewController: SignInDelegate, SignUpDelegate {
 
     func didUserSignIn() {
-    
         dismiss(animated: true)
         toHomeVC()
     }
     
-    func didUserLogin() {
-        
+    func didUserSignUp() {
         dismiss(animated: true)
         toHomeVC()
     }

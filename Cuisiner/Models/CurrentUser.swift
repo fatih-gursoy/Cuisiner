@@ -7,13 +7,11 @@
 
 import Foundation
 import Firebase
-
+	
 class CurrentUser {
     
     static let shared = CurrentUser()
   
-    weak var delegate: AuthDelegate?
-    
     var currentUser = Auth.auth().currentUser
     
     var userId: String? {
@@ -28,25 +26,6 @@ class CurrentUser {
         return currentUser?.email
     }
     
-    private init() {
-        
-    }
-    
-    func signOut() {
-        
-        do {
-            try Auth.auth().signOut()
-            delegate?.didSignOut()
-        } catch {
-            print("Can't signout")
-        }
-        
-    }
- 
-}
-
-protocol AuthDelegate: AnyObject {
-    
-    func didSignOut()
-
+    private init() { }
+     
 }

@@ -22,8 +22,19 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="BPe-Bo-b4h">
                                 <rect key="frame" x="30" y="653" width="354" height="179"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="heT-0O-JnG">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L9j-Y8-YTx">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="79.5"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Log In" cornerStyle="large">
+                                            <fontDescription key="titleFontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="22"/>
+                                            <color key="baseBackgroundColor" systemColor="systemRedColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="logInClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uPZ-vf-eiH"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="heT-0O-JnG">
+                                        <rect key="frame" x="0.0" y="99.5" width="354" height="79.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Sign Up" cornerStyle="large">
                                             <fontDescription key="titleFontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="22"/>
@@ -31,17 +42,6 @@
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="signUpClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PWj-6h-yky"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L9j-Y8-YTx">
-                                        <rect key="frame" x="0.0" y="99.5" width="354" height="79.5"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Log In" cornerStyle="large">
-                                            <fontDescription key="titleFontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="22"/>
-                                            <color key="baseBackgroundColor" systemColor="systemRedColor"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="logInClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gpB-YW-hrT"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -417,6 +417,7 @@
                     <navigationItem key="navigationItem" id="PFY-xN-kSS"/>
                     <connections>
                         <outlet property="tableView" destination="QA6-nD-vOf" id="Jwx-WK-zmN"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="toFirstVC" modalPresentationStyle="fullScreen" id="r5t-tl-FOu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wNP-bf-ijZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
