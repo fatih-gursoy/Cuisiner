@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="RecipeCell" customModule="Cuisiner" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="478" height="555"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="478" height="555"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="wQG-Mc-Nap">
+                        <rect key="frame" x="5" y="5" width="468" height="545"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="04F-lL-aG6" customClass="CustomImageView" customModule="Cuisiner" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="468" height="490.5"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="aQP-HN-ApM">
+                                <rect key="frame" x="0.0" y="495.5" width="468" height="49.5"/>
+                                <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="04F-lL-aG6" secondAttribute="trailing" id="8Sa-9h-yTm"/>
+                            <constraint firstItem="04F-lL-aG6" firstAttribute="top" secondItem="wQG-Mc-Nap" secondAttribute="top" id="IlT-L8-uMv"/>
+                            <constraint firstAttribute="trailing" secondItem="aQP-HN-ApM" secondAttribute="trailing" id="X7F-3I-fu8"/>
+                            <constraint firstItem="04F-lL-aG6" firstAttribute="height" secondItem="wQG-Mc-Nap" secondAttribute="height" multiplier="0.9" id="ek7-Fy-Bsj"/>
+                            <constraint firstItem="04F-lL-aG6" firstAttribute="leading" secondItem="wQG-Mc-Nap" secondAttribute="leading" id="fbB-3X-ijE"/>
+                            <constraint firstItem="aQP-HN-ApM" firstAttribute="leading" secondItem="wQG-Mc-Nap" secondAttribute="leading" id="zAu-Zb-WMQ"/>
+                        </constraints>
+                    </stackView>
+                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tZg-7O-tHb">
+                        <rect key="frame" x="14" y="14" width="70" height="34"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="filled" imagePlacement="leading" title="Stars" imagePadding="5" cornerStyle="large">
+                            <imageReference key="image" image="star.fill" catalog="system" symbolScale="small"/>
+                            <fontDescription key="titleFontDescription" name="GillSans" family="Gill Sans" pointSize="12"/>
+                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="baseBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </buttonConfiguration>
+                    </button>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="wQG-Mc-Nap" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="YWV-Nw-heF"/>
+                <constraint firstItem="wQG-Mc-Nap" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="fxS-pC-M0f"/>
+                <constraint firstAttribute="bottom" secondItem="wQG-Mc-Nap" secondAttribute="bottom" constant="5" id="kDj-Ch-6w6"/>
+                <constraint firstAttribute="trailing" secondItem="wQG-Mc-Nap" secondAttribute="trailing" constant="5" id="qRH-Dv-Ksv"/>
+            </constraints>
+            <size key="customSize" width="478" height="555"/>
+            <connections>
+                <outlet property="foodImage" destination="04F-lL-aG6" id="eLR-e1-JdQ"/>
+                <outlet property="recipeName" destination="aQP-HN-ApM" id="IpN-yJ-Vsl"/>
+                <outlet property="starButton" destination="tZg-7O-tHb" id="3SD-0p-rn0"/>
+            </connections>
+            <point key="canvasLocation" x="669.56521739130437" y="191.18303571428569"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
+    </resources>
+</document>

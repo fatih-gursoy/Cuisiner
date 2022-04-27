@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Firebase
 
 class MyRecipesVC: UIViewController {
 
@@ -40,7 +39,8 @@ class MyRecipesVC: UIViewController {
     func fetchData() {
         
         recipesViewModel.delegate = self
-        recipesViewModel.getRecipes()
+        recipesViewModel.fetchMyRecipes()
+        
     }
 
 }

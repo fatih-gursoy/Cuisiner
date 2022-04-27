@@ -14,12 +14,6 @@ class PrepareTableCell: UITableViewCell {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var rowLabel: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        
-    }
-    
     override func layoutSubviews() {
         
         rowLabel.layer.cornerRadius = rowLabel.frame.width / 2

@@ -17,7 +17,7 @@ class TabBarVC: UITabBarController {
                 
         delegate = self
         
-        guard let DiscoverVC = self.storyboard?.instantiateViewController(withIdentifier: "DiscoverVC") else {return}
+        let DiscoverVC = self.storyboard?.instantiateViewController(withIdentifier: "DiscoverNav") as! UINavigationController
         
         let MyRecipesVC = self.storyboard?.instantiateViewController(withIdentifier: "MyRecipesNav") as! UINavigationController
         

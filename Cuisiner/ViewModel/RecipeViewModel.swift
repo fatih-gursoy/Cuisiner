@@ -18,8 +18,26 @@ class RecipeViewModel {
     init(recipe: Recipe) {
         self.recipe = recipe
     }
+    
+    var recipeName: String? {
+        return recipe.name
+    }
+    
+    var star: String? {
+        guard let star = recipe.favoriteStar else { return "0" }
+        return String(describing: star)
+    }
+    
+    var ownerName: String? {
+        
+        return recipe.ownerId
+    }
+    
+    
 
-    func createNew() {
+// MARK: Functions
+    
+    func createNew() {        
         service.add(with: self.recipe)
     }
     

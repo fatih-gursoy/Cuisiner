@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -71,21 +72,127 @@
             </objects>
             <point key="canvasLocation" x="700" y="80"/>
         </scene>
-        <!--Discover-->
+        <!--Discover View Controller-->
         <scene sceneID="9Ns-Ak-mvj">
             <objects>
                 <viewController storyboardIdentifier="DiscoverVC" id="EuQ-Lz-ffe" customClass="DiscoverViewController" customModule="Cuisiner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bog-1A-Pdg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="uEv-tu-M28" userLabel="TopStack View">
+                                <rect key="frame" x="0.0" y="88" width="414" height="90"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Find delicious recipes for cooking" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfU-tG-wDE">
+                                        <rect key="frame" x="32.5" y="0.0" width="349" height="29"/>
+                                        <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <searchBar contentMode="redraw" placeholder="Search recipes" translatesAutoresizingMaskIntoConstraints="NO" id="Pvb-AZ-7mD">
+                                        <rect key="frame" x="0.0" y="39" width="414" height="51"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </searchBar>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Pvb-AZ-7mD" secondAttribute="bottom" id="5eN-do-dHI"/>
+                                    <constraint firstItem="Pvb-AZ-7mD" firstAttribute="top" secondItem="pfU-tG-wDE" secondAttribute="bottom" constant="10" id="EPt-kA-n2b"/>
+                                    <constraint firstAttribute="trailing" secondItem="Pvb-AZ-7mD" secondAttribute="trailing" id="SvM-xG-uEC"/>
+                                    <constraint firstItem="Pvb-AZ-7mD" firstAttribute="leading" secondItem="uEv-tu-M28" secondAttribute="leading" id="qHG-j0-K3c"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="gFp-Ub-goW" userLabel="BottomStack View">
+                                <rect key="frame" x="10" y="198" width="394" height="674"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="y82-6C-Alm">
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="62.5"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="10" id="DtR-zn-hRk">
+                                            <size key="itemSize" width="70" height="80"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="rh6-YA-ujn">
+                                                <rect key="frame" x="0.0" y="-9" width="70" height="80"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="nal-A9-vvO">
+                                                    <rect key="frame" x="0.0" y="0.0" width="70" height="80"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </collectionViewCellContentView>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ynv-wX-1F8">
+                                        <rect key="frame" x="0.0" y="67.5" width="394" height="606.5"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ikd-3g-odV">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="2a2-xi-VDY">
+                                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="lAZ-py-RPz">
+                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </collectionViewCellContentView>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="y82-6C-Alm" secondAttribute="trailing" id="4d5-bE-aFQ"/>
+                                    <constraint firstItem="Ynv-wX-1F8" firstAttribute="height" secondItem="gFp-Ub-goW" secondAttribute="height" multiplier="0.9" id="E4g-Xu-xkk"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ynv-wX-1F8" secondAttribute="trailing" id="QHP-vA-NST"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ynv-wX-1F8" secondAttribute="bottom" id="RoS-jn-qZz"/>
+                                    <constraint firstItem="Ynv-wX-1F8" firstAttribute="leading" secondItem="gFp-Ub-goW" secondAttribute="leading" id="mDt-Xf-mJe"/>
+                                    <constraint firstItem="y82-6C-Alm" firstAttribute="top" secondItem="gFp-Ub-goW" secondAttribute="top" id="q3d-dH-RFA"/>
+                                    <constraint firstItem="y82-6C-Alm" firstAttribute="leading" secondItem="gFp-Ub-goW" secondAttribute="leading" id="vJT-Lz-738"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="cyM-iC-ihy"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="uEv-tu-M28" firstAttribute="top" secondItem="cyM-iC-ihy" secondAttribute="top" id="3ss-On-iAl"/>
+                            <constraint firstItem="cyM-iC-ihy" firstAttribute="trailing" secondItem="gFp-Ub-goW" secondAttribute="trailing" constant="10" id="7KP-yD-FDm"/>
+                            <constraint firstItem="uEv-tu-M28" firstAttribute="leading" secondItem="cyM-iC-ihy" secondAttribute="leading" id="DJR-EA-ahc"/>
+                            <constraint firstItem="gFp-Ub-goW" firstAttribute="top" secondItem="uEv-tu-M28" secondAttribute="bottom" constant="20" id="I0Z-IA-6dz"/>
+                            <constraint firstItem="gFp-Ub-goW" firstAttribute="bottom" secondItem="cyM-iC-ihy" secondAttribute="bottom" constant="10" id="o5L-vE-4Ty"/>
+                            <constraint firstItem="uEv-tu-M28" firstAttribute="trailing" secondItem="cyM-iC-ihy" secondAttribute="trailing" id="uja-qD-Sny"/>
+                            <constraint firstItem="gFp-Ub-goW" firstAttribute="leading" secondItem="cyM-iC-ihy" secondAttribute="leading" constant="10" id="zXh-wB-QEN"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Discover" image="discover" id="KnE-dp-SaI"/>
+                    <navigationItem key="navigationItem" id="xYc-Up-N6a"/>
+                    <connections>
+                        <outlet property="categoryCollectionView" destination="y82-6C-Alm" id="Bby-Jb-XYy"/>
+                        <outlet property="recipeCollectionView" destination="Ynv-wX-1F8" id="RcR-md-CeZ"/>
+                        <outlet property="searchBar" destination="Pvb-AZ-7mD" id="Wfz-NO-oXf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sov-SJ-d8M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2696" y="271"/>
+            <point key="canvasLocation" x="3605.7971014492755" y="270.53571428571428"/>
+        </scene>
+        <!--Recipe DetailVC-->
+        <scene sceneID="rKe-4O-sLr">
+            <objects>
+                <viewController storyboardIdentifier="RecipeDetailVC" id="l3C-Jn-cMf" customClass="RecipeDetailVC" customModule="Cuisiner" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="191-UJ-S5c">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="mlO-qd-yu1"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="giB-tI-DN8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4807" y="512"/>
         </scene>
         <!--Create View Controller-->
         <scene sceneID="t9x-8u-CCS">
@@ -113,10 +220,18 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uM0-yL-W0S" userLabel="Image ContentView">
                                                         <rect key="frame" x="0.0" y="39" width="414" height="250"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="klb-ey-zAA">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="foodPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="klb-ey-zAA" customClass="CustomImageView" customModule="Cuisiner" customModuleProvider="target">
                                                                 <rect key="frame" x="10" y="10" width="394" height="230"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="20"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
                                                             </imageView>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lJM-m2-ugw">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="edit" translatesAutoresizingMaskIntoConstraints="NO" id="lJM-m2-ugw">
                                                                 <rect key="frame" x="364" y="20" width="30" height="30"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="lJM-m2-ugw" secondAttribute="height" multiplier="1:1" id="iwX-HA-2Tl"/>
@@ -135,6 +250,12 @@
                                                             <constraint firstItem="klb-ey-zAA" firstAttribute="centerY" secondItem="uM0-yL-W0S" secondAttribute="centerY" id="ngY-94-XmV"/>
                                                             <constraint firstItem="lJM-m2-ugw" firstAttribute="top" secondItem="klb-ey-zAA" secondAttribute="top" constant="10" id="rWb-oR-P8q"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Recipe Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W19-OJ-O7a">
                                                         <rect key="frame" x="10" y="299" width="394" height="50"/>
@@ -144,13 +265,13 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iTu-4m-TYq">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iTu-4m-TYq" customClass="CustomView" customModule="Cuisiner" customModuleProvider="target">
                                                         <rect key="frame" x="10" y="359" width="394" height="70"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="6hI-VF-xfa">
                                                                 <rect key="frame" x="10" y="10" width="374" height="50"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mCs-hv-HLt">
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="serve" translatesAutoresizingMaskIntoConstraints="NO" id="mCs-hv-HLt">
                                                                         <rect key="frame" x="0.0" y="9.5" width="31.5" height="31"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="mCs-hv-HLt" secondAttribute="height" multiplier="1:1" id="AVG-8B-p3Z"/>
@@ -183,14 +304,20 @@
                                                             <constraint firstAttribute="bottom" secondItem="6hI-VF-xfa" secondAttribute="bottom" constant="10" id="n0E-H4-FeQ"/>
                                                             <constraint firstItem="6hI-VF-xfa" firstAttribute="top" secondItem="iTu-4m-TYq" secondAttribute="top" constant="10" id="ye4-5X-yDP"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="15"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sor-HP-oaq">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sor-HP-oaq" customClass="CustomView" customModule="Cuisiner" customModuleProvider="target">
                                                         <rect key="frame" x="10" y="439" width="394" height="70"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="n7g-cO-vWe">
                                                                 <rect key="frame" x="10" y="10" width="374" height="50"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tag-uF-P5B">
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cook" translatesAutoresizingMaskIntoConstraints="NO" id="tag-uF-P5B">
                                                                         <rect key="frame" x="0.0" y="9.5" width="31.5" height="31"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="tag-uF-P5B" secondAttribute="height" multiplier="1:1" id="Sp1-vf-E09"/>
@@ -223,14 +350,20 @@
                                                             <constraint firstAttribute="height" constant="70" id="nV1-mw-Z9r"/>
                                                             <constraint firstItem="n7g-cO-vWe" firstAttribute="top" secondItem="sor-HP-oaq" secondAttribute="top" constant="10" id="vuw-hb-nfm"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="15"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sFp-WC-zns" userLabel="Category View">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sFp-WC-zns" userLabel="Category View" customClass="CustomView" customModule="Cuisiner" customModuleProvider="target">
                                                         <rect key="frame" x="10" y="519" width="394" height="70"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="5ON-rD-WOz">
                                                                 <rect key="frame" x="10" y="10" width="374" height="50"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xN2-Qz-U6y">
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="category" translatesAutoresizingMaskIntoConstraints="NO" id="xN2-Qz-U6y">
                                                                         <rect key="frame" x="0.0" y="9.5" width="31.5" height="31"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="xN2-Qz-U6y" secondAttribute="height" multiplier="1:1" id="5rd-BH-wzM"/>
@@ -249,9 +382,13 @@
                                                                             <fontDescription key="titleFontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="18"/>
                                                                             <color key="baseBackgroundColor" name="Dark Red"/>
                                                                         </buttonConfiguration>
+                                                                        <connections>
+                                                                            <action selector="categoryButtonClicked:" destination="FoV-FM-2Qv" eventType="touchUpInside" id="hUS-PG-W20"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                                 <constraints>
+                                                                    <constraint firstItem="tW4-Hk-Hg2" firstAttribute="height" secondItem="5ON-rD-WOz" secondAttribute="height" multiplier="0.71" id="HE8-qK-ZX8"/>
                                                                     <constraint firstItem="tW4-Hk-Hg2" firstAttribute="width" secondItem="5ON-rD-WOz" secondAttribute="width" multiplier="0.3" id="dA3-bk-qkY"/>
                                                                     <constraint firstItem="xN2-Qz-U6y" firstAttribute="height" secondItem="5ON-rD-WOz" secondAttribute="height" multiplier="0.625" id="mXy-dV-ItO"/>
                                                                 </constraints>
@@ -265,6 +402,12 @@
                                                             <constraint firstAttribute="height" constant="70" id="VCU-X8-LSO"/>
                                                             <constraint firstAttribute="bottom" secondItem="5ON-rD-WOz" secondAttribute="bottom" constant="10" id="p9p-Vx-DWq"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="15"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tK2-3X-VEb">
                                                         <rect key="frame" x="10" y="599" width="394" height="252.5"/>
@@ -356,21 +499,17 @@
                     <navigationItem key="navigationItem" id="jia-gi-mVm"/>
                     <size key="freeformSize" width="414" height="1109"/>
                     <connections>
-                        <outlet property="button" destination="tW4-Hk-Hg2" id="ZKW-my-OD0"/>
+                        <outlet property="categoryButton" destination="tW4-Hk-Hg2" id="sJp-PW-PaS"/>
                         <outlet property="categoryImage" destination="xN2-Qz-U6y" id="bCF-B0-Erx"/>
-                        <outlet property="categoryView" destination="sFp-WC-zns" id="Ku2-Cu-QsX"/>
                         <outlet property="cookTimeField" destination="UBS-Rd-EGS" id="d6a-l8-imL"/>
                         <outlet property="cookTimeImage" destination="tag-uF-P5B" id="0pj-mX-8M3"/>
-                        <outlet property="cookTimeView" destination="sor-HP-oaq" id="cY2-Sr-C43"/>
                         <outlet property="foodImage" destination="klb-ey-zAA" id="UdB-2I-GCw"/>
                         <outlet property="pickerLogo" destination="lJM-m2-ugw" id="kJw-Xd-fTU"/>
                         <outlet property="recipeNameField" destination="W19-OJ-O7a" id="dfS-I6-hM4"/>
                         <outlet property="scrollView" destination="XaV-6W-2fi" id="mp9-yn-zYU"/>
                         <outlet property="serveField" destination="vSp-1g-f4M" id="yLO-5p-ARO"/>
                         <outlet property="serveImage" destination="mCs-hv-HLt" id="sBt-pE-455"/>
-                        <outlet property="serveView" destination="iTu-4m-TYq" id="uHT-qW-AKK"/>
                         <outlet property="tableView" destination="tK2-3X-VEb" id="qOX-MD-27c"/>
-                        <segue destination="aHI-HX-fOr" kind="show" identifier="toPrepareVC" id="jfP-7q-Rso"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UvE-Bs-MS2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -401,14 +540,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="QA6-nD-vOf">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="724"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YlW-wC-9d8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="YlW-wC-9d8" firstAttribute="bottom" secondItem="QA6-nD-vOf" secondAttribute="bottom" id="8jH-X4-b7h"/>
+                            <constraint firstItem="YlW-wC-9d8" firstAttribute="bottom" secondItem="QA6-nD-vOf" secondAttribute="bottom" constant="50" id="8jH-X4-b7h"/>
                             <constraint firstItem="QA6-nD-vOf" firstAttribute="top" secondItem="YlW-wC-9d8" secondAttribute="top" id="Dva-zo-2xy"/>
                             <constraint firstItem="YlW-wC-9d8" firstAttribute="trailing" secondItem="QA6-nD-vOf" secondAttribute="trailing" id="YAU-n6-Pqa"/>
                             <constraint firstItem="QA6-nD-vOf" firstAttribute="leading" secondItem="YlW-wC-9d8" secondAttribute="leading" id="uWz-7k-BdT"/>
@@ -445,13 +584,13 @@
         <!--Prepare View Controller-->
         <scene sceneID="Z6l-0K-un6">
             <objects>
-                <viewController id="aHI-HX-fOr" customClass="PrepareViewController" customModule="Cuisiner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PrepareVC" id="aHI-HX-fOr" customClass="PrepareViewController" customModule="Cuisiner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sDH-wC-9SJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1271"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p2g-YZ-e8N">
-                                <rect key="frame" x="0.0" y="88" width="414" height="1149"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="1193"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e27-XC-twG" userLabel="ContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1150"/>
@@ -553,7 +692,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1yZ-9C-aJb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4766.666666666667" y="-469.75446428571428"/>
+            <point key="canvasLocation" x="4842" y="-495"/>
         </scene>
         <!--My Recipes-->
         <scene sceneID="FQj-kb-0ex">
@@ -574,14 +713,43 @@
             </objects>
             <point key="canvasLocation" x="2695.6521739130435" y="985.71428571428567"/>
         </scene>
+        <!--Discover-->
+        <scene sceneID="IQ8-wk-PJi">
+            <objects>
+                <navigationController storyboardIdentifier="DiscoverNav" automaticallyAdjustsScrollViewInsets="NO" id="5tD-PH-5dK" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Discover" image="discover" id="KnE-dp-SaI"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="z3A-n5-YFI">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="EuQ-Lz-ffe" kind="relationship" relationship="rootViewController" id="RnA-0E-5X1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nA3-WC-hsd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2695.6521739130435" y="270.53571428571428"/>
+        </scene>
     </scenes>
+    <designables>
+        <designable name="klb-ey-zAA">
+            <size key="intrinsicContentSize" width="694" height="390"/>
+        </designable>
+    </designables>
     <resources>
         <image name="arrow.right.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="category" width="50" height="50"/>
+        <image name="cook" width="25" height="25"/>
         <image name="discover" width="25" height="25"/>
+        <image name="edit" width="58" height="58"/>
+        <image name="foodPlaceholder" width="694" height="390"/>
         <image name="launch" width="1920" height="2880"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="preparing" width="3000" height="3000"/>
         <image name="saved" width="25" height="25"/>
+        <image name="serve" width="25" height="25"/>
         <namedColor name="Dark Red">
             <color red="0.62000000476837158" green="0.16899999976158142" blue="0.16899999976158142" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

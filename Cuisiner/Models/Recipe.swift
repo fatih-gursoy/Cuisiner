@@ -17,6 +17,8 @@ struct Recipe: Codable {
     var category: Category
     var ingredients: [Ingredient]?
     var instructions: [Instruction]?
+    var foodImageUrl: String?
+    var favoriteStar: Double?
     
     
     enum CodingKeys: String, CodingKey {
@@ -29,19 +31,29 @@ struct Recipe: Codable {
         case category
         case ingredients
         case instructions
+        case foodImageUrl
+        case favoriteStar
         
     }
         
-    enum Category: String, Codable {
+    enum Category: String, Codable, CaseIterable {
         
         case homeMeal = "Home Meal"
-        case desert
-        case pizza
-        case burger
-        case otherFastFood = "Other Fast Food"
-        case apperative
-        case soup
-        case drink
+        case steak = "Steak"
+        case chicken = "Chicken"
+        case seaFood = "Sea Food"
+        case pizza = "Pizza"
+        case burger = "Burger"
+        case pasta = "Pasta"
+        case kebap = "Kebap"
+        case toast = "Toast or Sandwich"
+        case vegan = "Vegan"
+        case salad = "Salad"
+        case apperative = "Apperative"
+        case soup = "Soup"
+        case desert = "Desert"
+        case drink = "Drink"
+        case otherFastFood = "Other Food"
         
     }
 

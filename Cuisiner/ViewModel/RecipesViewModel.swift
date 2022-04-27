@@ -17,15 +17,25 @@ class RecipesViewModel {
     
     weak var delegate: RecipesViewModelDelegate?
     
-    private var service: FirebaseServiceProtocol {
-        return FirebaseService.shared
-    }
+    private var service: FirebaseServiceProtocol
       
-    init() {}
+    init(service: FirebaseServiceProtocol = FirebaseService.shared) {
+        self.service = service
+    }
     
-    func getRecipes() {
+    func recipeAtIndex(_ index:Int) -> RecipeViewModel? {
+        
+        guard let recipe = self.recipes?[index] else { return nil }
+            
+        return RecipeViewModel(recipe: recipe)
+        
+    
+    }
+    
+    
+    func fetchAllRecipes() {
                 
-        service.fetchRecipes(completion: { [weak self] recipes in
+        service.fetchAllRecipes(completion: { [weak self] recipes in
             if let recipes = recipes {
                 self?.recipes = recipes
                 
@@ -34,7 +44,19 @@ class RecipesViewModel {
                 }
             }
         })
-        
+    }
+    
+    func fetchMyRecipes() {
+                
+        service.fetchMyRecipes(completion: { [weak self] recipes in
+            if let recipes = recipes {
+                self?.recipes = recipes
+                
+                DispatchQueue.main.async {
+                    self?.delegate?.updateView()
+                }
+            }
+        })
     }
 
     

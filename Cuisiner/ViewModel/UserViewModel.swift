@@ -15,23 +15,22 @@ class UserViewModel {
         self.authManager = authManager
     }
     
-    var userAuth = AuthManager.shared.userAuth
-    
+    private lazy var userAuth = authManager.userAuth
     var errorMessage: String?
     
     private var email = ""
     private var password = ""
-    
-    private var credentials = Credentials() {
-        didSet {
-            email = credentials.email
-            password = credentials.password
-        }
-    }
+
+//    private var credentials = Credentials() {
+//        didSet {
+//            email = credentials.email
+//            password = credentials.password
+//        }
+//    }
     
     func updateCredentials(email: String, password: String) {
-        credentials.email = email
-        credentials.password = password
+        self.email = email
+        self.password = password
     }
     
     func signIn(completion: @escaping(_ success: Bool) -> Void) {

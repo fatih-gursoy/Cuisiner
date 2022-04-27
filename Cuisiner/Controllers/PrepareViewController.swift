@@ -19,6 +19,7 @@ class PrepareViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         hideKeyboard()
 
         tableView.delegate = self
@@ -55,14 +56,14 @@ class PrepareViewController: UIViewController {
     
     @IBAction func saveButtonClicked(_ sender: Any) {
         
-        configureModel()
+        configureViewModel()
         recipeViewModel?.createNew()
         dismiss(animated: true)
         
     }
     
     
-    func configureModel() {
+    func configureViewModel() {
         
         for i in 0..<tableView.numberOfRows(inSection: 0) {
             let cell = tableView.cellForRow(at: IndexPath(row: i, section: 0)) as! PrepareTableCell

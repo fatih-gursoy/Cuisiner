@@ -6,82 +6,71 @@
 //
 
 import UIKit
-import Firebase
 
 class CreateViewController: UIViewController {
     
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var foodImage: UIImageView!
-    @IBOutlet weak var pickerLogo: UIImageView!
+    @IBOutlet private weak var scrollView: UIScrollView!
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var categoryButton: UIButton!
     
-    @IBOutlet weak var serveImage: UIImageView!
-    @IBOutlet weak var cookTimeImage: UIImageView!
-    @IBOutlet weak var categoryImage: UIImageView!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var button: UIButton!
+    @IBOutlet private weak var foodImage: UIImageView!
+    @IBOutlet private weak var pickerLogo: UIImageView!
+    @IBOutlet private weak var serveImage: UIImageView!
+    @IBOutlet private weak var cookTimeImage: UIImageView!
+    @IBOutlet private weak var categoryImage: UIImageView!
     
-    @IBOutlet weak var serveView: UIView!
-    @IBOutlet weak var cookTimeView: UIView!
-    @IBOutlet weak var categoryView: UIView!
+    @IBOutlet private weak var recipeNameField: UITextField!
+    @IBOutlet private weak var serveField: UITextField!
+    @IBOutlet private weak var cookTimeField: UITextField!
     
-    @IBOutlet weak var recipeNameField: UITextField!
-    @IBOutlet weak var serveField: UITextField!
-    @IBOutlet weak var cookTimeField: UITextField!
+    private var pickerView = UIPickerView()
+    private var toolBar = UIToolbar()
     
-    var recipeViewModel: RecipeViewModel?
+    private var storage = StorageService.shared
     
-    var heightConstraint : NSLayoutConstraint?
-    var arrayofIngredient = [Ingredient]()
+    private var heightConstraint : NSLayoutConstraint?
+    private var ingredients = [Ingredient]()
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         hideKeyboard()
+        configureNavBar()
+        configureImagePicker()
         
         tableView.delegate = self
         tableView.dataSource = self
-        
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
-        
-        foodImage.addGestureRecognizer(gesture)
-        foodImage.isUserInteractionEnabled = true
-        
-        let barButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeTapped))
-        
-        self.navigationItem.rightBarButtonItem = barButton
         
         tableView.register(UINib(nibName: "IngredientTableCell", bundle: nil), forCellReuseIdentifier: IngredientTableCell.identifier)
                 
         heightConstraint = tableView.heightAnchor.constraint(equalToConstant: tableView.contentSize.height)
         heightConstraint?.isActive = true
-        
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-                
+            
     }
     
     override func viewDidLayoutSubviews() {
 
-        customLayout(customView: serveView)
-        customLayout(customView: cookTimeView)
-        customLayout(customView: categoryView)
-        customLayout(customView: foodImage)
-        customLayout(customView: recipeNameField)
-
         recipeNameField.layer.borderColor = UIColor.red.cgColor
         recipeNameField.layer.borderWidth = 0.3
         
-        foodImage.image = UIImage(named: "launch")
-        pickerLogo.image = UIImage(named: "edit")
-        serveImage.image = UIImage(named: "serve")
-        cookTimeImage.image = UIImage(named: "cook")
-        categoryImage.image = UIImage(named: "cook")
-
     }
     
-    func customLayout(customView: UIView) {
+
+    func configureNavBar() {
         
-        customView.layer.cornerRadius = 15.0
-        customView.layer.masksToBounds = true
+        let barButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeTapped))
+        
+        self.navigationItem.rightBarButtonItem = barButton
+        
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        
+    }
+    
+    
+    @objc func closeTapped() {
+        
+        self.dismiss(animated: true, completion: nil)
         
     }
     
@@ -97,7 +86,7 @@ class CreateViewController: UIViewController {
     @IBAction func addButtonClicked(_ sender: Any) {
         
         let newIngredient = Ingredient()
-        arrayofIngredient.append(newIngredient)
+        ingredients.append(newIngredient)
         
         tableView.reloadData()
         setTableViewHeight()
@@ -107,45 +96,49 @@ class CreateViewController: UIViewController {
         
     }
 
-    @objc func closeTapped() {
-        
-        self.dismiss(animated: true, completion: nil)
-        
-    }
     
     @IBAction func continueClicked(_ sender: Any) {
        
-        performSegue(withIdentifier: "toPrepareVC", sender: nil)
+        configureViewModel()
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        configureModel()
-        
-        if segue.identifier == "toPrepareVC" {
-            let vc = segue.destination as! PrepareViewController
-            vc.recipeViewModel = recipeViewModel
-        }
-    }
-    
-    func configureModel() {
+    func configureViewModel() {
         
         getIngredientData()
         
-        let recipe = Recipe(ownerId: CurrentUser.shared.userId,
-                            id: UUID().uuidString ,
-                            name: recipeNameField.text,
-                            serve: serveField.text,
-                            cookTime: cookTimeField.text,
-                            category: .homeMeal,
-                            ingredients: arrayofIngredient,
-                            instructions: nil)
+        guard let foodImage = foodImage.image else { return }
         
-        recipeViewModel = RecipeViewModel(recipe: recipe)
-
+        storage.imageUpload(image: foodImage) { imageUrl in
+            
+            guard let imageUrl = imageUrl else { return }
+            
+            let recipe = Recipe(ownerId: CurrentUser.shared.userId,
+                                id: UUID().uuidString ,
+                                name: self.recipeNameField.text,
+                                serve: self.serveField.text,
+                                cookTime: self.cookTimeField.text,
+                                category: .homeMeal,
+                                ingredients: self.ingredients,
+                                foodImageUrl: imageUrl, favoriteStar: 0)
+            
+            let recipeViewModel = RecipeViewModel(recipe: recipe)
+            
+            DispatchQueue.main.async {
+            
+                guard let prepareVC = self.storyboard?.instantiateViewController(withIdentifier: "PrepareVC") as? PrepareViewController else { fatalError("Error")}
+                
+                prepareVC.recipeViewModel = recipeViewModel
+                self.navigationController?.pushViewController(prepareVC, animated: true)
+            
+            }
+        }
     }
     
+    func routeToVC() {
+        
+        
+    }
 
     
 }
@@ -156,7 +149,7 @@ class CreateViewController: UIViewController {
 extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrayofIngredient.count
+        return ingredients.count
     }
     
     
@@ -174,7 +167,7 @@ extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
     @objc func deleteRow(_ sender: UIButton) {
         
         let row = sender.tag
-        arrayofIngredient.remove(at: row)
+        ingredients.remove(at: row)
         tableView.reloadData()
         setTableViewHeight()
         
@@ -186,8 +179,8 @@ extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
         for i in 0..<tableView.numberOfRows(inSection: 0) {
             let cell = tableView.cellForRow(at: IndexPath(row: i, section: 0)) as! IngredientTableCell
             
-            arrayofIngredient[i].name = cell.itemName.text
-            arrayofIngredient[i].amount = cell.itemQuantity.text
+            ingredients[i].name = cell.itemName.text
+            ingredients[i].amount = cell.itemQuantity.text
 
         }
     }
@@ -208,10 +201,16 @@ extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 
- // MARK: - ImagePickerDelegate
+// MARK: - ImagePickerDelegate
         
-extension CreateViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+extension CreateViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    func configureImagePicker() {
+        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        foodImage.addGestureRecognizer(gesture)
+        foodImage.isUserInteractionEnabled = true
+    }
 
     @objc func imageTapped() {
         
@@ -229,6 +228,68 @@ extension CreateViewController: UIImagePickerControllerDelegate & UINavigationCo
         self.dismiss(animated: true, completion: nil)
 
     }
+    
+}
+
+// MARK: PickerView Delegate
+
+extension CreateViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+        
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return Recipe.Category.allCases.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return Recipe.Category.allCases[row].rawValue
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        let buttonTitle = Recipe.Category.allCases[row].rawValue
+        categoryButton.setTitle(buttonTitle, for: .normal)
+    }
+    
+    
+    @IBAction func categoryButtonClicked(_ sender: Any) {
+        
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        
+        configurePickerView()
+    }
+    
+    func configurePickerView() {
+        
+        pickerView.contentMode = .top
+        pickerView.frame = CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 200, width: UIScreen.main.bounds.size.width, height: 200)
+        
+        pickerView.backgroundColor = UIColor.systemBackground
+        
+        toolBar = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 200, width: UIScreen.main.bounds.size.width, height: 50))
+        
+        toolBar.barStyle = .default
+        toolBar.items = [UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(doneButtonTapped))]
+        
+        toolBar.sizeToFit()
+        
+        UIView.transition(with: self.view, duration: 0.5, options: [.transitionCrossDissolve] , animations: {
+            self.view.addSubview(self.pickerView)
+            self.view.addSubview(self.toolBar)
+        })
+
+    }
+    
+    @objc func doneButtonTapped() {
+        
+        pickerView.removeFromSuperview()
+        toolBar.removeFromSuperview()
+        
+    }
+    
     
 }
 
