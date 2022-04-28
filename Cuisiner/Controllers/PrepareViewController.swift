@@ -9,13 +9,15 @@ import UIKit
 
 class PrepareViewController: UIViewController {
 
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var scrollView: UIScrollView!
     
-    var instructions = [Instruction]()
-    var heightConstraint : NSLayoutConstraint?
-    
+    private var instructions = [Instruction]()
+    private var heightConstraint : NSLayoutConstraint?
+    private var storage = StorageService.shared
+
     var recipeViewModel: RecipeViewModel?
+    weak var delegate: ImagePassDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,10 +58,23 @@ class PrepareViewController: UIViewController {
     
     @IBAction func saveButtonClicked(_ sender: Any) {
         
-        configureViewModel()
-        recipeViewModel?.createNew()
+        saveRecipe()
         dismiss(animated: true)
         
+    }
+    
+    func saveRecipe() {
+        
+        configureViewModel()
+        
+        guard let foodImage = delegate?.foodImageToPass?.image else { return }
+        
+        storage.imageUpload(to: .foodImages, image: foodImage) { imageUrl in
+            
+            self.recipeViewModel?.recipe.foodImageUrl = imageUrl
+            self.recipeViewModel?.createNew()
+            
+        }
     }
     
     

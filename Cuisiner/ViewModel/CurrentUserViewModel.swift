@@ -20,13 +20,6 @@ class UserViewModel {
     
     private var email = ""
     private var password = ""
-
-//    private var credentials = Credentials() {
-//        didSet {
-//            email = credentials.email
-//            password = credentials.password
-//        }
-//    }
     
     func updateCredentials(email: String, password: String) {
         self.email = email

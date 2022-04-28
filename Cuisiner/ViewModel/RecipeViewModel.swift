@@ -37,18 +37,18 @@ class RecipeViewModel {
 
 // MARK: Functions
     
-    func createNew() {        
-        service.add(with: self.recipe)
+    func createNew() {
+        service.addNew(to: .recipes, self.recipe)
     }
     
     func updateRecipe() {
-        service.update(recipe: self.recipe)
+        guard let recipeId = self.recipe.id else {return}
+        service.update(from: .recipes, id: recipeId, self.recipe)
     }
     
     func delete() {
-        if let id = self.recipe.id {
-            service.delete(with: id)
-        }
+        guard let recipeId = self.recipe.id else {return}
+        service.delete(from: .recipes, with: recipeId)
     }
 
     

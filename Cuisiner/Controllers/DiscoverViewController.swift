@@ -37,10 +37,8 @@ class DiscoverViewController: UIViewController {
     }
     
     func fetchRecipes() {
-        
         recipesViewModel.delegate = self
         recipesViewModel.fetchAllRecipes()
-        
     }
    
 }

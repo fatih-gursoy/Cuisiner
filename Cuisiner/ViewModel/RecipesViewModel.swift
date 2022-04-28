@@ -29,34 +29,30 @@ class RecipesViewModel {
             
         return RecipeViewModel(recipe: recipe)
         
-    
     }
     
     
     func fetchAllRecipes() {
                 
-        service.fetchAllRecipes(completion: { [weak self] recipes in
-            if let recipes = recipes {
-                self?.recipes = recipes
-                
-                DispatchQueue.main.async {
-                    self?.delegate?.updateView()
-                }
-            }
-        })
+        service.fetchData(from: .recipes) { [weak self] (recipes: [Recipe]) in
+            
+            self?.recipes = recipes
+            DispatchQueue.main.async {
+               self?.delegate?.updateView()
+           }
+        }
     }
-    
+        
     func fetchMyRecipes() {
-                
-        service.fetchMyRecipes(completion: { [weak self] recipes in
-            if let recipes = recipes {
-                self?.recipes = recipes
-                
-                DispatchQueue.main.async {
-                    self?.delegate?.updateView()
-                }
-            }
-        })
+     
+        guard let userId = CurrentUser.shared.userId else {return }
+     
+        service.fetchByOwner(from: .recipes, ownerId: userId) { [weak self] (recipes: [Recipe]) in
+            self?.recipes = recipes
+            DispatchQueue.main.async {
+               self?.delegate?.updateView()
+           }
+        }
     }
 
     

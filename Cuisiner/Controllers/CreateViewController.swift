@@ -23,10 +23,12 @@ class CreateViewController: UIViewController {
     @IBOutlet private weak var serveField: UITextField!
     @IBOutlet private weak var cookTimeField: UITextField!
     
+    private var recipeViewModel: RecipeViewModel?
+    
     private var pickerView = UIPickerView()
     private var toolBar = UIToolbar()
     
-    private var storage = StorageService.shared
+//    private var storage = StorageService.shared
     
     private var heightConstraint : NSLayoutConstraint?
     private var ingredients = [Ingredient]()
@@ -101,47 +103,54 @@ class CreateViewController: UIViewController {
        
         configureViewModel()
         
+        guard let prepareVC = self.storyboard?.instantiateViewController(withIdentifier: "PrepareVC") as? PrepareViewController else { fatalError("Error")}
+      
+        prepareVC.recipeViewModel = recipeViewModel
+        prepareVC.delegate = self
+        navigationController?.pushViewController(prepareVC, animated: true)
+        
     }
     
     func configureViewModel() {
         
         getIngredientData()
         
-        guard let foodImage = foodImage.image else { return }
+        let recipe = Recipe(ownerId: CurrentUser.shared.userId,
+                                  id: UUID().uuidString ,
+                                  name: self.recipeNameField.text,
+                                  serve: self.serveField.text,
+                                  cookTime: self.cookTimeField.text,
+                                  category: .homeMeal,
+                                  ingredients: self.ingredients,
+                                  favoriteStar: 0)
+  
+        recipeViewModel = RecipeViewModel(recipe: recipe)
+
+    }
+    
+}
+
+protocol ImagePassDelegate: AnyObject {
+    
+    var foodImageToPass: UIImageView? { get }
+    
+}
+
+
+extension CreateViewController: ImagePassDelegate {
+    
+    var foodImageToPass: UIImageView? {
         
-        storage.imageUpload(image: foodImage) { imageUrl in
-            
-            guard let imageUrl = imageUrl else { return }
-            
-            let recipe = Recipe(ownerId: CurrentUser.shared.userId,
-                                id: UUID().uuidString ,
-                                name: self.recipeNameField.text,
-                                serve: self.serveField.text,
-                                cookTime: self.cookTimeField.text,
-                                category: .homeMeal,
-                                ingredients: self.ingredients,
-                                foodImageUrl: imageUrl, favoriteStar: 0)
-            
-            let recipeViewModel = RecipeViewModel(recipe: recipe)
-            
-            DispatchQueue.main.async {
-            
-                guard let prepareVC = self.storyboard?.instantiateViewController(withIdentifier: "PrepareVC") as? PrepareViewController else { fatalError("Error")}
-                
-                prepareVC.recipeViewModel = recipeViewModel
-                self.navigationController?.pushViewController(prepareVC, animated: true)
-            
-            }
+        get {
+            return self.foodImage
         }
     }
     
-    func routeToVC() {
-        
-        
-    }
-
+    
     
 }
+
+
 
 
 // MARK: - Tableview Delegate

@@ -65,7 +65,7 @@ extension MyRecipesVC: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: MyRecipeTableCell.identifier) as! MyRecipeTableCell
         
-        cell.nameLabel.text = recipesViewModel.recipes?[indexPath.row].name
+        cell.configure(viewModel: recipesViewModel.recipeAtIndex(indexPath.row))
       
         return cell
         

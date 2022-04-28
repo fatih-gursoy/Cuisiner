@@ -539,18 +539,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="QA6-nD-vOf">
-                                <rect key="frame" x="0.0" y="88" width="414" height="724"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="75" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="QA6-nD-vOf">
+                                <rect key="frame" x="0.0" y="88" width="414" height="574"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YlW-wC-9d8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="YlW-wC-9d8" firstAttribute="bottom" secondItem="QA6-nD-vOf" secondAttribute="bottom" constant="50" id="8jH-X4-b7h"/>
-                            <constraint firstItem="QA6-nD-vOf" firstAttribute="top" secondItem="YlW-wC-9d8" secondAttribute="top" id="Dva-zo-2xy"/>
-                            <constraint firstItem="YlW-wC-9d8" firstAttribute="trailing" secondItem="QA6-nD-vOf" secondAttribute="trailing" id="YAU-n6-Pqa"/>
-                            <constraint firstItem="QA6-nD-vOf" firstAttribute="leading" secondItem="YlW-wC-9d8" secondAttribute="leading" id="uWz-7k-BdT"/>
+                            <constraint firstItem="QA6-nD-vOf" firstAttribute="leading" secondItem="YlW-wC-9d8" secondAttribute="leading" id="0BP-Yc-wDt"/>
+                            <constraint firstItem="QA6-nD-vOf" firstAttribute="top" secondItem="YlW-wC-9d8" secondAttribute="top" id="eGY-Po-9iH"/>
+                            <constraint firstItem="YlW-wC-9d8" firstAttribute="bottom" secondItem="QA6-nD-vOf" secondAttribute="bottom" constant="200" id="n3e-at-yBE"/>
+                            <constraint firstItem="QA6-nD-vOf" firstAttribute="trailing" secondItem="YlW-wC-9d8" secondAttribute="trailing" id="urV-sf-u3x"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="PFY-xN-kSS"/>

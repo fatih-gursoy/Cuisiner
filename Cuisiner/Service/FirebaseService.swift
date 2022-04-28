@@ -11,12 +11,13 @@ import FirebaseFirestoreSwift
 
 protocol FirebaseServiceProtocol: AnyObject {
 
-    func add(with recipe: Recipe)
-    func update(recipe: Recipe)
-    func delete(with id: String)
-    func fetchAllRecipes(completion: @escaping ([Recipe]?) -> Void)
-    func fetchMyRecipes(completion: @escaping ([Recipe]?) -> Void)
+    func addNew<T: Encodable>(to collection: myCollection,_ model: T)
+    func update<T: Encodable>(from collection: myCollection,id: String,_ model: T)
+    func delete(from collection: myCollection, with id: String)
+    
+    func fetchData<T: Decodable>(from collection: myCollection, completion: @escaping ([T]) -> Void)
 
+    func fetchByOwner<T: Decodable>(from collection: myCollection, ownerId: String, completion: @escaping ([T]) -> Void)
 }
 
 class FirebaseService {
@@ -32,57 +33,10 @@ class FirebaseService {
 }
 
 extension FirebaseService: FirebaseServiceProtocol {
+        
+    func fetchData<T: Decodable>(from collection: myCollection, completion: @escaping ([T]) -> Void) {
 
-    func add(with recipe: Recipe) {
-                
-        do {
-            try _ = db.collection(recipeCollection).addDocument(from: recipe.self)
-        } catch {
-            print("Add document failed: \(error)")
-        }
-        
-    }
-    
-    func update(recipe: Recipe) {
-        
-        db.collection(recipeCollection).whereField("id", isEqualTo: recipe.id as Any)
-            .getDocuments { querySnapshot, error in
-                
-            if let error = error {
-                print("Document doesn't exist \(error)")
-            } else {
-                
-                if let document = querySnapshot?.documents.first {
-                    do {
-                        try document.reference.setData(from: recipe)
-                    } catch {
-                        print(error)
-                    }
-                }
-            }
-        }
-    }
-    
-    func delete(with id: String) {
-        
-        db.collection(recipeCollection).whereField("id", isEqualTo: id as Any)
-            .getDocuments { querySnapshot, error in
-                
-                if let error = error {
-                    print("Document doesn't exist \(error)")
-                } else {
-                    
-                    if let document = querySnapshot?.documents.first {
-                        document.reference.delete()
-                    }
-                }
-        }
-    }
-    
-
-    func fetchAllRecipes(completion: @escaping ([Recipe]?) -> Void) {
-        
-        db.collection(recipeCollection).addSnapshotListener { querySnapshot, error in
+        db.collection(collection.name).addSnapshotListener { querySnapshot, error in
                 
             if let error = error {
                 print("Document doesn't exist \(error)")
@@ -90,19 +44,17 @@ extension FirebaseService: FirebaseServiceProtocol {
                 
                 if let documents = querySnapshot?.documents {
                         
-                    let recipes = documents.compactMap { doc in
-                        return try? doc.data(as: Recipe.self) }
-                    completion(recipes)
+                    let result = documents.compactMap { doc in
+                        return try? doc.data(as: T.self) }
+                    completion(result)
                 }
             }
         }
     }
     
-    func fetchMyRecipes(completion: @escaping ([Recipe]?) -> Void) {
+    func fetchByOwner<T: Decodable>(from collection: myCollection, ownerId: String, completion: @escaping ([T]) -> Void) {
         
-        guard let ownerId = CurrentUser.shared.userId else {return}
-
-        db.collection(recipeCollection).whereField("ownerId", isEqualTo: ownerId as Any)
+        db.collection(collection.name).whereField("ownerId", isEqualTo: ownerId as Any)
             .addSnapshotListener { querySnapshot, error in
                 
             if let error = error {
@@ -111,15 +63,60 @@ extension FirebaseService: FirebaseServiceProtocol {
                 
                 if let documents = querySnapshot?.documents {
                         
-                    let recipes = documents.compactMap { doc in
-                        return try? doc.data(as: Recipe.self) }
-                    completion(recipes)
+                    let result = documents.compactMap { doc in
+                        return try? doc.data(as: T.self) }
+                    completion(result)
                 }
             }
         }
     }
     
-
+    
+    func addNew<T: Encodable>(to collection: myCollection,_ model: T) {
+        
+        do {
+            try _ = db.collection(collection.name).addDocument(from: model.self)
+        } catch {
+            print("Add document failed: \(error)")
+        }
+    }
+    
+    func update<T: Encodable>(from collection: myCollection,id: String,_ model: T) {
+        
+        db.collection(collection.name).whereField("id", isEqualTo: id as Any)
+            .getDocuments { querySnapshot, error in
+                
+            if let error = error {
+                print("Document doesn't exist \(error)")
+            } else {
+                
+                if let document = querySnapshot?.documents.first {
+                    do {
+                        try document.reference.setData(from: model)
+                    } catch {
+                        print(error)
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    func delete(from collection: myCollection, with id: String) {
+        
+        db.collection(collection.name).whereField("id", isEqualTo: id as Any)
+            .getDocuments { querySnapshot, error in
+                
+            if let error = error {
+                print("Document doesn't exist \(error)")
+            } else {
+                
+                if let document = querySnapshot?.documents.first {
+                    document.reference.delete()
+                }
+            }
+        }
+    }
     
 }
 

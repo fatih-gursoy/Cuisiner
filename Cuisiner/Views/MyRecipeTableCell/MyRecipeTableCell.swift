@@ -9,10 +9,19 @@ import UIKit
 
 class MyRecipeTableCell: UITableViewCell {
 
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var foodImage: UIImageView!
     
     static let identifier = "MyRecipeTableCell"
 
+    func configure(viewModel: RecipeViewModel?) {
+        
+        guard let viewModel = viewModel else { return }
+        
+        nameLabel.text = viewModel.recipeName
+        foodImage.setImage(url: viewModel.recipe.foodImageUrl)
+        
+    }
 
     
 }

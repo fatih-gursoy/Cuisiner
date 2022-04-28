@@ -59,6 +59,21 @@ struct Recipe: Codable {
 
 }
 
+struct Ingredient: Codable {
+    
+    var name: String?
+    var amount: String?
+    
+}
+
+struct Instruction: Codable {
+    
+    var step: String?
+    var text: String?
+    var time: Double?
+
+}
+
 
 
 

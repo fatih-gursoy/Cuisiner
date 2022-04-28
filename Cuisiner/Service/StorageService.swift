@@ -12,7 +12,6 @@ class StorageService {
     
     static let shared: StorageService = StorageService()
     private let storage = Storage.storage()
-    private lazy var foodStorageRef = storage.reference().child("Food_images")
     
     private init() { }
 
@@ -20,12 +19,14 @@ class StorageService {
 
 extension StorageService {
     
-    func imageUpload(image: UIImage, completion: @escaping ((String?) -> Void)) {
+    func imageUpload(to folder: myStorage, image: UIImage, completion: @escaping ((String?) -> Void)) {
      
         if let data = image.jpegData(compressionQuality: 0.5) {
             
             let uuid = UUID().uuidString
-            let imageRef = foodStorageRef.child("\(uuid).jpeg")
+            
+            let storageRef = storage.reference().child(folder.name)
+            let imageRef = storageRef.child("\(uuid).jpeg")
             
             imageRef.putData(data, metadata: nil) { data, error in
                 
