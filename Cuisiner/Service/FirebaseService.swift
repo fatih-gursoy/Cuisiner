@@ -14,9 +14,7 @@ protocol FirebaseServiceProtocol: AnyObject {
     func addNew<T: Encodable>(to collection: myCollection,_ model: T)
     func update<T: Encodable>(from collection: myCollection,id: String,_ model: T)
     func delete(from collection: myCollection, with id: String)
-    
     func fetchData<T: Decodable>(from collection: myCollection, completion: @escaping ([T]) -> Void)
-
     func fetchByOwner<T: Decodable>(from collection: myCollection, ownerId: String, completion: @escaping ([T]) -> Void)
 }
 
@@ -71,7 +69,6 @@ extension FirebaseService: FirebaseServiceProtocol {
         }
     }
     
-    
     func addNew<T: Encodable>(to collection: myCollection,_ model: T) {
         
         do {
@@ -100,7 +97,6 @@ extension FirebaseService: FirebaseServiceProtocol {
             }
         }
     }
-    
     
     func delete(from collection: myCollection, with id: String) {
         

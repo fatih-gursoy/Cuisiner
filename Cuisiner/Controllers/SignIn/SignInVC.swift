@@ -13,7 +13,8 @@ class SignInVC: UIViewController {
     @IBOutlet weak var passwordText: UITextField!
     
     weak var delegate: SignInDelegate?
-    var userViewModel = UserViewModel()
+    
+    private var authManager = AuthManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,17 +24,16 @@ class SignInVC: UIViewController {
     @IBAction func signInClicked(_ sender: Any) {
         
         if emailText.text != nil && passwordText.text != nil {
-                           
-            userViewModel.updateCredentials(email: emailText.text!,
-                                              password: passwordText.text!)
             
-            userViewModel.signIn { [weak self] success in
+            authManager.updateCredentials(email: emailText.text!,
+                                          password: passwordText.text!)
             
+            authManager.signIn { [weak self] success in
                 if (success) {
-                    self?.delegate?.didUserSignIn()
+                      self?.delegate?.didUserSignIn()
                 } else {
-                    if let errorMessage = self?.userViewModel.errorMessage {
-                        self?.presentAlert(title: "Error", message: errorMessage)
+                    if let errorMessage = self?.authManager.errorMessage {
+                          self?.presentAlert(title: "Error", message: errorMessage)
                     }
                 }
             }

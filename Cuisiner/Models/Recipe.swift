@@ -20,7 +20,6 @@ struct Recipe: Codable {
     var foodImageUrl: String?
     var favoriteStar: Double?
     
-    
     enum CodingKeys: String, CodingKey {
         
         case ownerId

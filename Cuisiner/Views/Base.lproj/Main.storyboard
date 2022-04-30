@@ -12,7 +12,7 @@
         <!--First View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="FirstViewController" customModule="Cuisiner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FirstViewController" id="BYZ-38-t0r" customClass="FirstViewController" customModule="Cuisiner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -70,7 +70,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="700" y="80"/>
+            <point key="canvasLocation" x="441" y="394"/>
         </scene>
         <!--Discover View Controller-->
         <scene sceneID="9Ns-Ak-mvj">
@@ -102,10 +102,10 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="gFp-Ub-goW" userLabel="BottomStack View">
-                                <rect key="frame" x="10" y="198" width="394" height="674"/>
+                                <rect key="frame" x="10" y="198" width="394" height="664"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="y82-6C-Alm">
-                                        <rect key="frame" x="0.0" y="0.0" width="394" height="62.5"/>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="y82-6C-Alm">
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="61.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="10" id="DtR-zn-hRk">
                                             <size key="itemSize" width="70" height="80"/>
@@ -115,7 +115,7 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="rh6-YA-ujn">
-                                                <rect key="frame" x="0.0" y="-9" width="70" height="80"/>
+                                                <rect key="frame" x="0.0" y="-9.5" width="70" height="80"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="nal-A9-vvO">
                                                     <rect key="frame" x="0.0" y="0.0" width="70" height="80"/>
@@ -124,8 +124,8 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ynv-wX-1F8">
-                                        <rect key="frame" x="0.0" y="67.5" width="394" height="606.5"/>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ynv-wX-1F8">
+                                        <rect key="frame" x="0.0" y="66.5" width="394" height="597.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ikd-3g-odV">
                                             <size key="itemSize" width="128" height="128"/>
@@ -163,7 +163,7 @@
                             <constraint firstItem="cyM-iC-ihy" firstAttribute="trailing" secondItem="gFp-Ub-goW" secondAttribute="trailing" constant="10" id="7KP-yD-FDm"/>
                             <constraint firstItem="uEv-tu-M28" firstAttribute="leading" secondItem="cyM-iC-ihy" secondAttribute="leading" id="DJR-EA-ahc"/>
                             <constraint firstItem="gFp-Ub-goW" firstAttribute="top" secondItem="uEv-tu-M28" secondAttribute="bottom" constant="20" id="I0Z-IA-6dz"/>
-                            <constraint firstItem="gFp-Ub-goW" firstAttribute="bottom" secondItem="cyM-iC-ihy" secondAttribute="bottom" constant="10" id="o5L-vE-4Ty"/>
+                            <constraint firstItem="gFp-Ub-goW" firstAttribute="bottom" secondItem="cyM-iC-ihy" secondAttribute="bottom" id="o5L-vE-4Ty"/>
                             <constraint firstItem="uEv-tu-M28" firstAttribute="trailing" secondItem="cyM-iC-ihy" secondAttribute="trailing" id="uja-qD-Sny"/>
                             <constraint firstItem="gFp-Ub-goW" firstAttribute="leading" secondItem="cyM-iC-ihy" secondAttribute="leading" constant="10" id="zXh-wB-QEN"/>
                         </constraints>
@@ -192,7 +192,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="giB-tI-DN8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4807" y="512"/>
+            <point key="canvasLocation" x="5087" y="621"/>
         </scene>
         <!--Create View Controller-->
         <scene sceneID="t9x-8u-CCS">
@@ -521,15 +521,32 @@
             <objects>
                 <tabBarController storyboardIdentifier="tabBar" automaticallyAdjustsScrollViewInsets="NO" id="0q5-fb-zxi" customClass="TabBarVC" customModule="Cuisiner" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" itemPositioning="centered" id="Etq-Pd-eFU" customClass="CustomTabBar" customModule="Cuisiner" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Etq-Pd-eFU" customClass="CustomTabBar" customModule="Cuisiner" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="83"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="selectedImageTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <tabBarAppearance key="standardAppearance" stackedItemPositioning="centered">
+                            <tabBarItemAppearance key="stackedLayoutAppearance">
+                                <tabBarItemStateAppearance key="normal">
+                                    <textAttributes key="titleTextAttributes">
+                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="13"/>
+                                        <color key="textColor" systemColor="placeholderTextColor"/>
+                                    </textAttributes>
+                                </tabBarItemStateAppearance>
+                                <tabBarItemStateAppearance key="selected">
+                                    <textAttributes key="titleTextAttributes">
+                                        <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="13"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </textAttributes>
+                                </tabBarItemStateAppearance>
+                                <tabBarItemStateAppearance key="disabled"/>
+                                <tabBarItemStateAppearance key="focused"/>
+                            </tabBarItemAppearance>
+                        </tabBarAppearance>
                     </tabBar>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DAS-65-O9g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1785.5072463768117" y="79.6875"/>
+            <point key="canvasLocation" x="1528" y="394"/>
         </scene>
         <!--My RecipesVC-->
         <scene sceneID="MaV-D5-nHJ">
@@ -540,7 +557,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="75" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="QA6-nD-vOf">
-                                <rect key="frame" x="0.0" y="88" width="414" height="574"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -549,14 +566,13 @@
                         <constraints>
                             <constraint firstItem="QA6-nD-vOf" firstAttribute="leading" secondItem="YlW-wC-9d8" secondAttribute="leading" id="0BP-Yc-wDt"/>
                             <constraint firstItem="QA6-nD-vOf" firstAttribute="top" secondItem="YlW-wC-9d8" secondAttribute="top" id="eGY-Po-9iH"/>
-                            <constraint firstItem="YlW-wC-9d8" firstAttribute="bottom" secondItem="QA6-nD-vOf" secondAttribute="bottom" constant="200" id="n3e-at-yBE"/>
+                            <constraint firstItem="YlW-wC-9d8" firstAttribute="bottom" secondItem="QA6-nD-vOf" secondAttribute="bottom" id="n3e-at-yBE"/>
                             <constraint firstItem="QA6-nD-vOf" firstAttribute="trailing" secondItem="YlW-wC-9d8" secondAttribute="trailing" id="urV-sf-u3x"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="PFY-xN-kSS"/>
                     <connections>
                         <outlet property="tableView" destination="QA6-nD-vOf" id="Jwx-WK-zmN"/>
-                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="toFirstVC" modalPresentationStyle="fullScreen" id="r5t-tl-FOu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wNP-bf-ijZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -755,6 +771,9 @@
         </namedColor>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="placeholderTextColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

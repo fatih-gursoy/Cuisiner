@@ -20,9 +20,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let currentUser = Auth.auth().currentUser
         
+        let board = UIStoryboard(name: "Main", bundle: nil)
+
         if currentUser != nil {
             
-            let board = UIStoryboard(name: "Main", bundle: nil)
             let tabBar = board.instantiateViewController(withIdentifier: "tabBar") as! UITabBarController
             window?.rootViewController = tabBar
             
@@ -58,7 +59,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
 
         // Save changes in the application's managed object context when the application transitions to the background.
-        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+       
     }
 
 

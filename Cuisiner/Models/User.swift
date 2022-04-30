@@ -13,7 +13,6 @@ struct User: Codable {
     var userName: String?
     var userNameLowercased: String?
     var email: String?
-    var password: String?
     var userImageUrl: String?
     
     enum CodingKeys: String, CodingKey {
@@ -22,7 +21,6 @@ struct User: Codable {
         case userName
         case userNameLowercased
         case email
-        case password
         case userImageUrl
         
     }

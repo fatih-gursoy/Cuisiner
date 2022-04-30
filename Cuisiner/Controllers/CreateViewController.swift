@@ -27,9 +27,7 @@ class CreateViewController: UIViewController {
     
     private var pickerView = UIPickerView()
     private var toolBar = UIToolbar()
-    
-//    private var storage = StorageService.shared
-    
+        
     private var heightConstraint : NSLayoutConstraint?
     private var ingredients = [Ingredient]()
         
@@ -115,7 +113,7 @@ class CreateViewController: UIViewController {
         
         getIngredientData()
         
-        let recipe = Recipe(ownerId: CurrentUser.shared.userId,
+        let recipe = Recipe(ownerId: AuthManager.shared.userId,
                                   id: UUID().uuidString ,
                                   name: self.recipeNameField.text,
                                   serve: self.serveField.text,

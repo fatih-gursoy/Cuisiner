@@ -14,7 +14,7 @@ class TabBarVC: UITabBarController {
         
         tabBar.isTranslucent = true
         tabBar.tintColor = #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1)
-                
+        
         delegate = self
         
         let DiscoverVC = self.storyboard?.instantiateViewController(withIdentifier: "DiscoverNav") as! UINavigationController
@@ -26,9 +26,9 @@ class TabBarVC: UITabBarController {
         
         // Create TabBar items
         DiscoverVC.tabBarItem = UITabBarItem(title: "Discover", image: UIImage(named: "discover"), selectedImage: nil)
-        
+                
         MyRecipesVC.tabBarItem = UITabBarItem(title: "My Recipes", image: UIImage(named: "saved"), selectedImage: nil)
-        
+
         CreateNewVC.tabBarItem = UITabBarItem(title: nil, image: nil, selectedImage: nil)
         
         // Assign viewControllers to tabBarController
@@ -55,6 +55,7 @@ class TabBarVC: UITabBarController {
     // MARK: - UITabBarController Delegate
 
     extension TabBarVC: UITabBarControllerDelegate {
+        
         func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
             guard let selectedIndex = tabBarController.viewControllers?.firstIndex(of: viewController) else {
                 return true
@@ -100,7 +101,7 @@ class CustomTabBar: UITabBar {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        middleButton.center = CGPoint(x: frame.width / 2, y: -10)
+        middleButton.center = CGPoint(x: frame.width / 2, y: 0.0)
     }
     
     @objc func middleButtonAction(sender: UIButton) {

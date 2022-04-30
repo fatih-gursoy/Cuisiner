@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "placeholder.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Nav Bar Menu.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

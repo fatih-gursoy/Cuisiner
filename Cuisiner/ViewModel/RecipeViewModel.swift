@@ -29,7 +29,6 @@ class RecipeViewModel {
     }
     
     var ownerName: String? {
-        
         return recipe.ownerId
     }
     

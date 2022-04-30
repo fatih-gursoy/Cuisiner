@@ -45,7 +45,7 @@ class RecipesViewModel {
         
     func fetchMyRecipes() {
      
-        guard let userId = CurrentUser.shared.userId else {return }
+        guard let userId = AuthManager.shared.userId else {return}
      
         service.fetchByOwner(from: .recipes, ownerId: userId) { [weak self] (recipes: [Recipe]) in
             self?.recipes = recipes

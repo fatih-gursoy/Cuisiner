@@ -10,19 +10,22 @@ import Firebase
 
 class SignUpVC: UIViewController {
 
-    @IBOutlet weak var emailText: UITextField!
-    @IBOutlet weak var passwordText: UITextField!
-    @IBOutlet weak var passwordAgainText: UITextField!
+    @IBOutlet weak private var emailText: UITextField!
+    @IBOutlet weak private var passwordText: UITextField!
+    @IBOutlet weak private var passwordAgainText: UITextField!
+    @IBOutlet weak private var usernameText: UITextField!
+    @IBOutlet weak private var profileImage: CustomImageView!
+    
     
     weak var delegate: SignUpDelegate?
-    var userViewModel = UserViewModel()
+    private var authManager = AuthManager.shared
+    private var storage = StorageService.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboard()
-
+        
     }
-
     
     @IBAction func signUpClicked(_ sender: Any) {
         
@@ -30,20 +33,21 @@ class SignUpVC: UIViewController {
         
             if passwordText.text == passwordAgainText.text {
                 
-                userViewModel.updateCredentials(email: emailText.text!,
-                                                  password: passwordText.text!)
+                authManager.updateCredentials(email: emailText.text!,
+                                              password: passwordText.text!)
                 
-                userViewModel.signUp { [weak self] success in
+                authManager.signUp { [weak self] success in
+                    
                     if (success) {
+                        self?.saveUser()
                         self?.delegate?.didUserSignUp()
+                        
                     } else {
-                        if let errorMessage = self?.userViewModel.errorMessage {
-                            self?.presentAlert(title: "Error", message: errorMessage)
+                        if let errorMessage = self?.authManager.errorMessage {
+                              self?.presentAlert(title: "Error", message: errorMessage)
                         }
                     }
                 }
-            } else {
-                presentAlert(title: "Couldn't Sign Up", message: "Password fields don't match")
             }
         } else {
             presentAlert(title: "Couldn't Sign Up", message: "Please fill credentials")
@@ -51,9 +55,55 @@ class SignUpVC: UIViewController {
 
     }
     
+    
+    func saveUser() {
+        
+        guard let userImage = profileImage.image else {return}
+        let newUser = authManager
+        
+        if let username = usernameText.text {
+            newUser.changeUsername(with: username)
+        }
+                
+        storage.imageUpload(to: .userImages, image: userImage) { imageUrl in
+            
+            let user = User(userId: newUser.userId,
+                            userName: newUser.userName,
+                            userNameLowercased: newUser.userName?.lowercased(),
+                            email: newUser.userEmail,
+                            userImageUrl: imageUrl)
+            
+            let userViewModel = UserViewModel(user: user)
+            userViewModel.createNew()
+
+        }
+    }
+    
 }
 
 protocol SignUpDelegate: AnyObject {
     
     func didUserSignUp()
+}
+
+extension SignUpVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    @IBAction func didTap(_ sender: UITapGestureRecognizer) {
+     
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        present(imagePicker, animated: true, completion: nil)
+        
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+
+        profileImage.image = info[.originalImage] as? UIImage
+        self.dismiss(animated: true, completion: nil)
+
+    }
+    
+    
 }

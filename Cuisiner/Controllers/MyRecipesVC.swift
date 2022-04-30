@@ -11,7 +11,6 @@ class MyRecipesVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    var userViewModel = UserViewModel()
     var recipesViewModel = RecipesViewModel()
     
     override func viewDidLoad() {
@@ -31,8 +30,13 @@ class MyRecipesVC: UIViewController {
 
     @objc func signOut() {
         
-        userViewModel.signOut()
-        performSegue(withIdentifier: "toFirstVC", sender: nil)
+        AuthManager.shared.signOut()
+        self.dismiss(animated: true)
+        
+        guard let firstVC = self.storyboard?.instantiateViewController(withIdentifier: "FirstViewController") as? FirstViewController else { fatalError("Could't load") }
+        
+        self.navigationController?.pushViewController(firstVC, animated: true)
+
     }
 
     
