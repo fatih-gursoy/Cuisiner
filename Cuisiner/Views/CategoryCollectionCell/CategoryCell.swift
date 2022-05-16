@@ -15,8 +15,14 @@ class CategoryCell: UICollectionViewCell {
     @IBOutlet private weak var categoryLabel: UILabel!
     
     func configureCell(title: String) {
-            
+        
         categoryLabel.text = title
+        
+        if self.isSelected {
+            didSelect()
+        } else {
+            didDeSelect()
+        }
         
     }
     

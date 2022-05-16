@@ -15,15 +15,24 @@ class IngredientTableCell: UITableViewCell {
     
     static let identifier = "IngredientTableCell"
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    func configure(ingredient: Ingredient?) {
+        
+        guard let ingredient = ingredient else {return}
+                
+        self.backgroundColor = .systemGray5
+        
+        itemName.text = ingredient.name
+        itemQuantity.text = ingredient.amount
+        
+        itemName.backgroundColor = .systemGray5
+        itemQuantity.backgroundColor = .systemGray5
+        
+        itemName.borderStyle = .none
+        itemQuantity.borderStyle = .none
+        
+        itemName.isUserInteractionEnabled = false
+        itemQuantity.isUserInteractionEnabled  = false
+        deleteButton.isHidden = true
     }
     
     

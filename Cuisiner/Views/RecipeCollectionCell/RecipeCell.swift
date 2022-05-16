@@ -9,7 +9,7 @@ import UIKit
 
 class RecipeCell: UICollectionViewCell {
 
-    static let identifier = "RecipeCell"
+    static let identifier = String(describing: RecipeCell.self)
     
     @IBOutlet weak var foodImage: CustomImageView!
     @IBOutlet weak var recipeName: UILabel!
@@ -24,6 +24,8 @@ class RecipeCell: UICollectionViewCell {
         
         starButton.setTitle(viewModel.star, for: .normal)
         starButton.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        starButton.layer.cornerRadius = 10.0
+        
     }
     
     

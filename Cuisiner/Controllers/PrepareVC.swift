@@ -7,15 +7,16 @@
 
 import UIKit
 
-class PrepareViewController: UIViewController {
+class PrepareVC: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var scrollView: UIScrollView!
+    @IBOutlet weak var saveButton: UIButton!
     
     private var instructions = [Instruction]()
     private var heightConstraint : NSLayoutConstraint?
     private var storage = StorageService.shared
-
+    
     var recipeViewModel: RecipeViewModel?
     weak var delegate: ImagePassDelegate?
     
@@ -28,7 +29,7 @@ class PrepareViewController: UIViewController {
         tableView.dataSource = self
         
         tableView.register(UINib(nibName: PrepareTableCell.identifier, bundle: nil), forCellReuseIdentifier: PrepareTableCell.identifier)
-
+        
         heightConstraint = tableView.heightAnchor.constraint(equalToConstant: tableView.contentSize.height)
         heightConstraint?.isActive = true
         
@@ -41,7 +42,6 @@ class PrepareViewController: UIViewController {
         tableView.layoutIfNeeded()
         
     }
-
     
     @IBAction func addButtonClicked(_ sender: Any) {
         
@@ -51,7 +51,7 @@ class PrepareViewController: UIViewController {
         tableView.reloadData()
         setTableViewHeight()
         
-        let y = tableView.bounds.height
+        let y = tableView.contentSize.height
         scrollView.setContentOffset(CGPoint(x: 0, y: y), animated: true)
         
     }
@@ -95,7 +95,7 @@ class PrepareViewController: UIViewController {
 
 
 
-extension PrepareViewController: UITableViewDelegate, UITableViewDataSource {
+extension PrepareVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PrepareTableCell.identifier, for: indexPath) as! PrepareTableCell

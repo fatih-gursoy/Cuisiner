@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class WelcomeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +36,7 @@ class FirstViewController: UIViewController {
     
 }
 
-extension FirstViewController: SignInDelegate, SignUpDelegate {
+extension WelcomeVC: SignInDelegate, SignUpDelegate {
 
     func didUserSignIn() {
         dismiss(animated: true)

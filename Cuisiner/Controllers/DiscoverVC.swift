@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DiscoverViewController: UIViewController {
+class DiscoverVC: UIViewController {
 
     @IBOutlet private weak var categoryCollectionView: UICollectionView!
     @IBOutlet private weak var recipeCollectionView: UICollectionView!
@@ -17,6 +17,8 @@ class DiscoverViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchBar.delegate = self
         
         configureCollectionView()
         fetchRecipes()
@@ -34,6 +36,8 @@ class DiscoverViewController: UIViewController {
 
         recipeCollectionView.register(UINib(nibName: "RecipeCell", bundle: nil), forCellWithReuseIdentifier: RecipeCell.identifier)
         
+        categoryCollectionView.allowsMultipleSelection = true
+        
     }
     
     func fetchRecipes() {
@@ -43,7 +47,7 @@ class DiscoverViewController: UIViewController {
    
 }
 
-extension DiscoverViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension DiscoverVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -73,7 +77,6 @@ extension DiscoverViewController: UICollectionViewDelegate, UICollectionViewData
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifier, for: indexPath) as? CategoryCell else { fatalError("Could not load") }
                                
             let title = Recipe.Category.allCases[indexPath.row].rawValue
-            
             cell.configureCell(title: title)
             
             return cell
@@ -127,14 +130,66 @@ extension DiscoverViewController: UICollectionViewDelegate, UICollectionViewData
                     
             cell.didSelect()
             
+            let category = Recipe.Category.allCases[indexPath.row]
+            recipesViewModel.filterRecipes(category)
+                        
         }
+        
+        if collectionView == recipeCollectionView {
             
+            routeToDetailVC(indexPath.row)
+        
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        
+        if collectionView == categoryCollectionView {
+            
+            guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCell else { fatalError("Could not load") }
+            
+            cell.didDeSelect()
+            
+            let category = Recipe.Category.allCases[indexPath.row]
+            recipesViewModel.filterRecipes(category)
+            
+            if collectionView.indexPathsForSelectedItems?.count == 0 {
+                recipesViewModel.fetchAllRecipes()
+            }
+        }
+    }
+    
+    func routeToDetailVC(_ index: Int) {
+        
+        guard let recipeDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "RecipeDetailVC") as? RecipeDetailVC else { fatalError("Could not load") }
+                    
+        recipeDetailVC.recipeViewModel = recipesViewModel.recipeAtIndex(index)
+        
+        let navController = UINavigationController(rootViewController: recipeDetailVC)
+        
+        let backImage = UIImage(systemName: "chevron.backward.circle.fill")
+        
+        navController.navigationBar.backIndicatorImage = backImage
+        navController.navigationBar.backIndicatorTransitionMaskImage = backImage
+        navController.modalPresentationStyle = .fullScreen
+        
+        self.present(navController, animated: true)
         
     }
     
 }
 
-extension DiscoverViewController: RecipesViewModelDelegate {
+extension DiscoverVC: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        recipesViewModel.searchRecipes(searchText)
+        
+    }
+
+}
+
+extension DiscoverVC: RecipesViewModelDelegate {
     
     func updateView() {
         self.recipeCollectionView.reloadData()

@@ -49,7 +49,7 @@
                         <rect key="frame" x="14" y="14" width="70" height="34"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="filled" imagePlacement="leading" title="Stars" imagePadding="5" cornerStyle="large">
+                        <buttonConfiguration key="configuration" style="filled" imagePlacement="leading" title="Stars" imagePadding="5" cornerStyle="capsule">
                             <imageReference key="image" image="star.fill" catalog="system" symbolScale="small"/>
                             <fontDescription key="titleFontDescription" name="GillSans" family="Gill Sans" pointSize="12"/>
                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

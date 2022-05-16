@@ -15,7 +15,8 @@ protocol FirebaseServiceProtocol: AnyObject {
     func update<T: Encodable>(from collection: myCollection,id: String,_ model: T)
     func delete(from collection: myCollection, with id: String)
     func fetchData<T: Decodable>(from collection: myCollection, completion: @escaping ([T]) -> Void)
-    func fetchByOwner<T: Decodable>(from collection: myCollection, ownerId: String, completion: @escaping ([T]) -> Void)
+    
+    func fetchByField<T: Decodable>(from collection: myCollection, queryField: String, queryParam: String, completion: @escaping ([T]) -> Void) 
 }
 
 class FirebaseService {
@@ -50,9 +51,9 @@ extension FirebaseService: FirebaseServiceProtocol {
         }
     }
     
-    func fetchByOwner<T: Decodable>(from collection: myCollection, ownerId: String, completion: @escaping ([T]) -> Void) {
+    func fetchByField<T: Decodable>(from collection: myCollection, queryField: String, queryParam: String, completion: @escaping ([T]) -> Void) {
         
-        db.collection(collection.name).whereField("ownerId", isEqualTo: ownerId as Any)
+        db.collection(collection.name).whereField(queryField, isEqualTo: queryParam as Any)
             .addSnapshotListener { querySnapshot, error in
                 
             if let error = error {

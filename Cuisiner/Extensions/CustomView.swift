@@ -88,5 +88,30 @@ class CustomView: UIView {
          }
     }
 
+}
+
+@IBDesignable
+class CustomTextField: UITextField {
     
+    @IBInspectable var borderWidth: CGFloat {
+         get {
+             return self.layer.borderWidth
+         } set {
+             self.layer.borderWidth = newValue
+         }
+    }
+    
+    @IBInspectable var borderColor: UIColor? {
+        get {
+            if let color = layer.borderColor {
+                return UIColor(cgColor: color)
+            }
+            return nil
+        }
+        set {
+            if let color = newValue {
+                self.layer.borderColor = color.cgColor
+            }
+         }
+    }
 }

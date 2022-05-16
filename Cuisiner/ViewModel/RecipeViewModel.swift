@@ -7,6 +7,10 @@
 
 import Foundation
 
+protocol RecipeViewModelDelegate: AnyObject {
+    func updateView()
+}
+
 class RecipeViewModel {
            
     private var service: FirebaseServiceProtocol {
@@ -14,9 +18,13 @@ class RecipeViewModel {
     }
     
     var recipe: Recipe
+    var user: User?
+    
+    weak var delegate: RecipeViewModelDelegate? 
     
     init(recipe: Recipe) {
         self.recipe = recipe
+        self.fetchUser()
     }
     
     var recipeName: String? {
@@ -28,11 +36,13 @@ class RecipeViewModel {
         return String(describing: star)
     }
     
-    var ownerName: String? {
-        return recipe.ownerId
+    var ingredients: [Ingredient]? {
+        return recipe.ingredients
     }
     
-    
+    var instructions: [Instruction]? {
+        return recipe.instructions
+    }
 
 // MARK: Functions
     
@@ -49,6 +59,19 @@ class RecipeViewModel {
         guard let recipeId = self.recipe.id else {return}
         service.delete(from: .recipes, with: recipeId)
     }
-
     
+    func fetchUser() {
+        
+        service.fetchByField(from: .users, queryField: "userId",
+                             queryParam: recipe.ownerId!) { [weak self] (users: [User]) in
+            
+            guard let user = users.first else {return}
+            self?.user = user
+            
+            DispatchQueue.main.async {
+                self?.delegate?.updateView()
+            }
+        }
+    }
+
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CreateViewController: UIViewController {
+class CreateNewVC: UIViewController {
     
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var tableView: UITableView!
@@ -24,6 +24,7 @@ class CreateViewController: UIViewController {
     @IBOutlet private weak var cookTimeField: UITextField!
     
     private var recipeViewModel: RecipeViewModel?
+    private var selectedCategory: Recipe.Category?
     
     private var pickerView = UIPickerView()
     private var toolBar = UIToolbar()
@@ -37,6 +38,14 @@ class CreateViewController: UIViewController {
         hideKeyboard()
         configureNavBar()
         configureImagePicker()
+        configureTableView()
+        
+        serveField.delegate = self
+        cookTimeField.delegate = self
+            
+    }
+    
+    func configureTableView() {
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -45,13 +54,6 @@ class CreateViewController: UIViewController {
                 
         heightConstraint = tableView.heightAnchor.constraint(equalToConstant: tableView.contentSize.height)
         heightConstraint?.isActive = true
-            
-    }
-    
-    override func viewDidLayoutSubviews() {
-
-        recipeNameField.layer.borderColor = UIColor.red.cgColor
-        recipeNameField.layer.borderWidth = 0.3
         
     }
     
@@ -101,10 +103,11 @@ class CreateViewController: UIViewController {
        
         configureViewModel()
         
-        guard let prepareVC = self.storyboard?.instantiateViewController(withIdentifier: "PrepareVC") as? PrepareViewController else { fatalError("Error")}
+        guard let prepareVC = self.storyboard?.instantiateViewController(withIdentifier: "PrepareVC") as? PrepareVC else { fatalError("Error")}
       
         prepareVC.recipeViewModel = recipeViewModel
         prepareVC.delegate = self
+        
         navigationController?.pushViewController(prepareVC, animated: true)
         
     }
@@ -113,17 +116,20 @@ class CreateViewController: UIViewController {
         
         getIngredientData()
         
+        guard let selectedCategory = selectedCategory else {
+            return presentAlert(title: "Can not continue", message: "Please select a category!") }
+
         let recipe = Recipe(ownerId: AuthManager.shared.userId,
                                   id: UUID().uuidString ,
                                   name: self.recipeNameField.text,
                                   serve: self.serveField.text,
                                   cookTime: self.cookTimeField.text,
-                                  category: .homeMeal,
+                                  category: selectedCategory,
                                   ingredients: self.ingredients,
                                   favoriteStar: 0)
   
         recipeViewModel = RecipeViewModel(recipe: recipe)
-
+                
     }
     
 }
@@ -135,7 +141,7 @@ protocol ImagePassDelegate: AnyObject {
 }
 
 
-extension CreateViewController: ImagePassDelegate {
+extension CreateNewVC: ImagePassDelegate {
     
     var foodImageToPass: UIImageView? {
         
@@ -153,7 +159,7 @@ extension CreateViewController: ImagePassDelegate {
 
 // MARK: - Tableview Delegate
 
-extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
+extension CreateNewVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ingredients.count
@@ -184,6 +190,7 @@ extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
     func getIngredientData() {
         
         for i in 0..<tableView.numberOfRows(inSection: 0) {
+            
             let cell = tableView.cellForRow(at: IndexPath(row: i, section: 0)) as! IngredientTableCell
             
             ingredients[i].name = cell.itemName.text
@@ -210,7 +217,7 @@ extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
 
 // MARK: - ImagePickerDelegate
         
-extension CreateViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension CreateNewVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func configureImagePicker() {
         
@@ -240,7 +247,7 @@ extension CreateViewController: UIImagePickerControllerDelegate, UINavigationCon
 
 // MARK: PickerView Delegate
 
-extension CreateViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+extension CreateNewVC: UIPickerViewDelegate, UIPickerViewDataSource {
         
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -256,7 +263,8 @@ extension CreateViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        let buttonTitle = Recipe.Category.allCases[row].rawValue
+        selectedCategory = Recipe.Category.allCases[row]
+        let buttonTitle = selectedCategory?.rawValue
         categoryButton.setTitle(buttonTitle, for: .normal)
     }
     
@@ -297,6 +305,19 @@ extension CreateViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         
     }
     
+    
+}
+
+// MARK: TextField number restriction
+
+extension CreateNewVC: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let onlyNumbers = CharacterSet.decimalDigits
+        let characterSet = CharacterSet(charactersIn: string)
+        return onlyNumbers.isSuperset(of: characterSet)
+    }
     
 }
 

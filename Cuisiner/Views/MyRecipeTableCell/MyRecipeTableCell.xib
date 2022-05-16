@@ -21,6 +21,7 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qJX-oh-ovJ" customClass="CustomImageView" customModule="Cuisiner" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="23" width="50" height="50"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="qJX-oh-ovJ" secondAttribute="height" multiplier="1:1" id="87j-tg-18Q"/>
                                 </constraints>

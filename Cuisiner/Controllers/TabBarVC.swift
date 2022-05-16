@@ -44,6 +44,7 @@ class TabBarVC: UITabBarController {
     }
     
     func routeToCreateNew() {
+        
         guard let createNewVC = self.storyboard?.instantiateViewController(withIdentifier: "CreateNewNav") else {return}
         
         createNewVC.modalPresentationCapturesStatusBarAppearance = true

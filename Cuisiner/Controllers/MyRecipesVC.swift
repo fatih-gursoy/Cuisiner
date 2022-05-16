@@ -11,7 +11,7 @@ class MyRecipesVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    var recipesViewModel = RecipesViewModel()
+    private var recipesViewModel = RecipesViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,24 +21,43 @@ class MyRecipesVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
 
-        let barButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), style: .plain, target: self, action: #selector(signOut))
-        
-        self.navigationItem.rightBarButtonItem = barButton
-        
+        configureNavBar()
         fetchData()
     }
 
     @objc func signOut() {
         
         AuthManager.shared.signOut()
+        
         self.dismiss(animated: true)
+        self.tabBarController?.hidesBottomBarWhenPushed = true
         
-        guard let firstVC = self.storyboard?.instantiateViewController(withIdentifier: "FirstViewController") as? FirstViewController else { fatalError("Could't load") }
+        guard let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC") as? WelcomeVC else { fatalError("Could't load") }
         
-        self.navigationController?.pushViewController(firstVC, animated: true)
-
+        welcomeVC.modalPresentationStyle = .fullScreen
+        self.present(welcomeVC, animated: true)
+                
     }
 
+    
+    func configureNavBar() {
+        
+        let logoutUser = UIAction(title: "Log out", image: UIImage(systemName: "power.circle.fill")) { _ in
+            self.signOut()
+        }
+        
+        let myProfile = UIAction(title: "Profile Settings", image: UIImage(systemName: "person.circle.fill")) { _ in
+            
+        }
+        
+        let menu = UIMenu(options: .displayInline,
+                          children: [myProfile, logoutUser])
+        
+        let barButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), menu: menu)
+        self.navigationItem.rightBarButtonItem = barButton
+        
+        
+    }
     
     func fetchData() {
         
