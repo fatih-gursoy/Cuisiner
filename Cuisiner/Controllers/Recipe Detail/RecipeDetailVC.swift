@@ -16,7 +16,9 @@ class RecipeDetailVC: UIViewController {
     @IBOutlet private weak var userName: UILabel!
     @IBOutlet private weak var ingredientTable: UITableView!
     @IBOutlet private weak var starButton: UIButton!
-    @IBOutlet weak var reviewCountLabel: UILabel!
+    @IBOutlet private weak var reviewCountLabel: UILabel!
+    
+    @IBOutlet weak var scrollView: UIScrollView!
     
     var recipeViewModel: RecipeViewModel?
     
@@ -44,7 +46,7 @@ class RecipeDetailVC: UIViewController {
         recipeName.text = recipeViewModel?.recipeName
         recipeImage.setImage(url: recipeViewModel?.recipe.foodImageUrl)
         starButton.setTitle(recipeViewModel?.star, for: .normal)
-        
+                
     }
     	
     func configureNavBar() {
@@ -100,6 +102,7 @@ extension RecipeDetailVC: UITableViewDelegate, UITableViewDataSource {
             return title
         }()
         return headerTitle
+        
     }
     
     

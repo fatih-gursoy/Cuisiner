@@ -87,6 +87,7 @@
             <connections>
                 <outlet property="rowLabel" destination="9rM-vf-1Zz" id="FRY-Kq-RoI"/>
                 <outlet property="textView" destination="Zek-tW-U2R" id="XOJ-g2-V61"/>
+                <outlet property="timeTextField" destination="H0y-ow-dYg" id="WwZ-dO-reG"/>
             </connections>
             <point key="canvasLocation" x="163" y="-22"/>
         </tableViewCell>

@@ -13,6 +13,7 @@ class PrepareTableCell: UITableViewCell {
     
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var rowLabel: UILabel!
+    @IBOutlet weak var timeTextField: UITextField!
     
     override func layoutSubviews() {
         
@@ -25,12 +26,6 @@ class PrepareTableCell: UITableViewCell {
         
         textView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
         
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
 }

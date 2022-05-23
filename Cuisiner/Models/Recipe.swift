@@ -69,7 +69,7 @@ struct Instruction: Codable {
     
     var step: String?
     var text: String?
-    var time: Double?
+    var time: Int?
 
 }
 

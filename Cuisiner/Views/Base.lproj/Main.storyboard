@@ -283,7 +283,7 @@
                                                             </stackView>
                                                         </subviews>
                                                     </stackView>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="80" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="uk2-ZG-iJt">
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="80" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="uk2-ZG-iJt">
                                                         <rect key="frame" x="10" y="409" width="384" height="365"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableView>
@@ -350,6 +350,7 @@
                         <outlet property="recipeImage" destination="4I0-qc-dXU" id="ezT-XA-u4X"/>
                         <outlet property="recipeName" destination="Grw-Jr-3xa" id="XwH-Yq-HWZ"/>
                         <outlet property="reviewCountLabel" destination="Cii-vh-NNH" id="gus-1m-FWG"/>
+                        <outlet property="scrollView" destination="nzX-h4-T3P" id="ux4-Ze-1v0"/>
                         <outlet property="starButton" destination="qYs-gS-xKt" id="P77-KJ-Igd"/>
                         <outlet property="userImage" destination="jzM-hu-Itl" id="6UR-xT-MPa"/>
                         <outlet property="userName" destination="WOZ-8H-ODI" id="zsM-DM-yGK"/>
@@ -367,11 +368,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="bEA-fd-iwf">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="bEA-fd-iwf">
                                 <rect key="frame" x="0.0" y="64" width="414" height="778"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iJY-Lx-8T4">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="602"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="658"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="PBf-Tg-VEk">
                                             <size key="itemSize" width="128" height="128"/>
@@ -390,8 +391,11 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
-                                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="1R2-Vr-6sO">
-                                        <rect key="frame" x="50" y="652" width="314" height="26"/>
+                                    <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="1R2-Vr-6sO">
+                                        <rect key="frame" x="50" y="678" width="314" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="pet-85-bx3"/>
+                                        </constraints>
                                         <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="currentPageIndicatorTintColor" name="Dark Red"/>
                                     </pageControl>
@@ -443,11 +447,11 @@
             <objects>
                 <viewController storyboardIdentifier="CreateNewVC" modalPresentationStyle="fullScreen" id="FoV-FM-2Qv" customClass="CreateNewVC" customModule="Cuisiner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2ZH-cY-mm0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1109"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1104"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XaV-6W-2fi">
-                                <rect key="frame" x="0.0" y="88" width="414" height="987"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="982"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jDl-zG-ZVK" userLabel="contentView">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="991.5"/>
@@ -751,7 +755,7 @@
                     <navigationItem key="navigationItem" id="jia-gi-mVm">
                         <barButtonItem key="backBarButtonItem" title=" " id="NP8-nL-EWd"/>
                     </navigationItem>
-                    <size key="freeformSize" width="414" height="1109"/>
+                    <size key="freeformSize" width="414" height="1104"/>
                     <connections>
                         <outlet property="categoryButton" destination="tW4-Hk-Hg2" id="sJp-PW-PaS"/>
                         <outlet property="categoryImage" destination="xN2-Qz-U6y" id="bCF-B0-Erx"/>
@@ -768,7 +772,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UvE-Bs-MS2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3776.811594202899" y="-495.20089285714283"/>
+            <point key="canvasLocation" x="3776.811594202899" y="-496.875"/>
         </scene>
         <!--Tab BarVC-->
         <scene sceneID="iZd-dN-5y4">
@@ -856,17 +860,17 @@
             <objects>
                 <viewController storyboardIdentifier="PrepareVC" id="aHI-HX-fOr" customClass="PrepareVC" customModule="Cuisiner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sDH-wC-9SJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="970"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="824"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p2g-YZ-e8N">
-                                <rect key="frame" x="0.0" y="44" width="414" height="892"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="780"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e27-XC-twG" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="892.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="773.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="jEv-8e-rul">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="892.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="763.5"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="preparing" translatesAutoresizingMaskIntoConstraints="NO" id="zaW-s4-7Ye">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
@@ -881,13 +885,16 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="250" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="LAg-Dd-3a7">
-                                                        <rect key="frame" x="0.0" y="372.5" width="414" height="377"/>
+                                                        <rect key="frame" x="0.0" y="372.5" width="414" height="250"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="250" id="yGR-4Q-hC5"/>
+                                                        </constraints>
                                                     </tableView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0k2-ca-Trb">
-                                                        <rect key="frame" x="191.5" y="779.5" width="31" height="33"/>
+                                                        <rect key="frame" x="191.5" y="652.5" width="31" height="31"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" secondItem="0k2-ca-Trb" secondAttribute="height" multiplier="31:33" id="86o-Go-aFs"/>
+                                                            <constraint firstAttribute="width" secondItem="0k2-ca-Trb" secondAttribute="height" multiplier="1:1" id="86o-Go-aFs"/>
                                                         </constraints>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="filled" image="plus" catalog="system" cornerStyle="capsule">
@@ -898,7 +905,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJG-CZ-kKZ">
-                                                        <rect key="frame" x="80" y="842.5" width="254" height="50"/>
+                                                        <rect key="frame" x="80" y="713.5" width="254" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="SRV-iK-QrI"/>
                                                         </constraints>
@@ -926,7 +933,7 @@
                                         <constraints>
                                             <constraint firstItem="jEv-8e-rul" firstAttribute="leading" secondItem="e27-XC-twG" secondAttribute="leading" id="A0R-Yt-q80"/>
                                             <constraint firstAttribute="trailing" secondItem="jEv-8e-rul" secondAttribute="trailing" id="CAj-3s-UdE"/>
-                                            <constraint firstAttribute="bottom" secondItem="jEv-8e-rul" secondAttribute="bottom" id="Nd4-EJ-NDp"/>
+                                            <constraint firstAttribute="bottom" secondItem="jEv-8e-rul" secondAttribute="bottom" constant="10" id="Nd4-EJ-NDp"/>
                                             <constraint firstItem="jEv-8e-rul" firstAttribute="top" secondItem="e27-XC-twG" secondAttribute="top" id="haa-i5-8lT"/>
                                         </constraints>
                                     </view>
@@ -956,16 +963,17 @@
                     <navigationItem key="navigationItem" id="IhF-pm-u5w">
                         <barButtonItem key="backBarButtonItem" title=" " id="70Q-C4-ZnB"/>
                     </navigationItem>
-                    <size key="freeformSize" width="414" height="970"/>
+                    <size key="freeformSize" width="414" height="824"/>
                     <connections>
                         <outlet property="saveButton" destination="RJG-CZ-kKZ" id="kJr-jr-fmp"/>
                         <outlet property="scrollView" destination="p2g-YZ-e8N" id="jxP-3s-d7q"/>
+                        <outlet property="tableHeightConstraint" destination="yGR-4Q-hC5" id="YIY-gv-9WQ"/>
                         <outlet property="tableView" destination="LAg-Dd-3a7" id="Sys-iR-ZT7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1yZ-9C-aJb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4823" y="-542"/>
+            <point key="canvasLocation" x="4821.739130434783" y="-590.625"/>
         </scene>
         <!--My Recipes-->
         <scene sceneID="FQj-kb-0ex">

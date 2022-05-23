@@ -53,6 +53,7 @@ class CreateNewVC: UIViewController {
         tableView.register(UINib(nibName: "IngredientTableCell", bundle: nil), forCellReuseIdentifier: IngredientTableCell.identifier)
                 
         heightConstraint = tableView.heightAnchor.constraint(equalToConstant: tableView.contentSize.height)
+        
         heightConstraint?.isActive = true
         
     }

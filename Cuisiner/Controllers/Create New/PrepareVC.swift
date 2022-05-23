@@ -6,15 +6,16 @@
 //
 
 import UIKit
+import SwiftUI
 
 class PrepareVC: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var scrollView: UIScrollView!
-    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet private weak var saveButton: UIButton!
+    @IBOutlet private weak var tableHeightConstraint: NSLayoutConstraint!
     
     private var instructions = [Instruction]()
-    private var heightConstraint : NSLayoutConstraint?
     private var storage = StorageService.shared
     
     var recipeViewModel: RecipeViewModel?
@@ -29,16 +30,13 @@ class PrepareVC: UIViewController {
         tableView.dataSource = self
         
         tableView.register(UINib(nibName: PrepareTableCell.identifier, bundle: nil), forCellReuseIdentifier: PrepareTableCell.identifier)
-        
-        heightConstraint = tableView.heightAnchor.constraint(equalToConstant: tableView.contentSize.height)
-        heightConstraint?.isActive = true
-        
+                
     }
     
     func setTableViewHeight() {
         
-        heightConstraint?.constant = tableView.contentSize.height
-        heightConstraint?.isActive = true
+        tableHeightConstraint.constant = tableView.contentSize.height
+        tableHeightConstraint.isActive = true
         tableView.layoutIfNeeded()
         
     }
@@ -50,9 +48,10 @@ class PrepareVC: UIViewController {
         
         tableView.reloadData()
         setTableViewHeight()
+        scrollView.layoutIfNeeded()
         
-        let y = tableView.contentSize.height
-        scrollView.setContentOffset(CGPoint(x: 0, y: y), animated: true)
+        let bottom = scrollView.contentSize.height - scrollView.bounds.size.height    
+        scrollView.setContentOffset(CGPoint(x: 0, y: bottom), animated: true)
         
     }
     
@@ -85,7 +84,10 @@ class PrepareVC: UIViewController {
             
             instructions[i].step = cell.rowLabel.text
             instructions[i].text = cell.textView.text
-
+            
+            if let cookTime = cell.timeTextField.text {
+                instructions[i].time = Int(cookTime)
+            }
         }
         recipeViewModel?.recipe.instructions = instructions
     }
