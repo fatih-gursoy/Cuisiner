@@ -435,6 +435,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="iJY-Lx-8T4" id="bQ5-fa-LJ9"/>
+                        <outlet property="nextButton" destination="qXb-OU-MwW" id="hoY-K6-lxd"/>
                         <outlet property="pageControl" destination="1R2-Vr-6sO" id="54A-xp-sym"/>
                     </connections>
                 </viewController>

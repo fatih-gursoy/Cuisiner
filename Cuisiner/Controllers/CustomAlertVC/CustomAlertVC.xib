@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomAlertVC" customModule="Cuisiner" customModuleProvider="target">
+            <connections>
+                <outlet property="actionButton" destination="gLj-af-Sal" id="7eO-S3-Uf7"/>
+                <outlet property="animationParentView" destination="aEt-It-a2P" id="cX3-ah-hWX"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="417" height="604"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LXj-sX-GvT" customClass="CustomView" customModule="Cuisiner" customModuleProvider="target">
+                    <rect key="frame" x="58.5" y="127" width="300" height="350"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YR9-CI-7KB">
+                            <rect key="frame" x="0.0" y="10" width="300" height="330"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aEt-It-a2P" userLabel="AnimationParentView">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="268"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLj-af-Sal">
+                                    <rect key="frame" x="109" y="268" width="82" height="62"/>
+                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="Done">
+                                        <fontDescription key="titleFontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="24"/>
+                                    </buttonConfiguration>
+                                    <connections>
+                                        <action selector="actionButtonClicked:" destination="-1" eventType="touchUpInside" id="fco-zF-rdT"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="gLj-af-Sal" firstAttribute="top" secondItem="aEt-It-a2P" secondAttribute="bottom" id="3Hs-TG-fQT"/>
+                                <constraint firstAttribute="trailing" secondItem="aEt-It-a2P" secondAttribute="trailing" id="L9s-R0-9Mw"/>
+                                <constraint firstItem="aEt-It-a2P" firstAttribute="top" secondItem="YR9-CI-7KB" secondAttribute="top" id="M0D-Rf-w21"/>
+                                <constraint firstItem="aEt-It-a2P" firstAttribute="height" secondItem="YR9-CI-7KB" secondAttribute="height" multiplier="0.812121" id="b6G-T2-H7W"/>
+                                <constraint firstItem="aEt-It-a2P" firstAttribute="centerX" secondItem="YR9-CI-7KB" secondAttribute="centerX" id="ctd-s0-tfS"/>
+                                <constraint firstItem="aEt-It-a2P" firstAttribute="leading" secondItem="YR9-CI-7KB" secondAttribute="leading" id="qVT-JR-Gm0"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="YR9-CI-7KB" secondAttribute="trailing" id="8cP-fP-YlV"/>
+                        <constraint firstAttribute="bottom" secondItem="YR9-CI-7KB" secondAttribute="bottom" constant="10" id="Hld-X1-cF4"/>
+                        <constraint firstItem="YR9-CI-7KB" firstAttribute="top" secondItem="LXj-sX-GvT" secondAttribute="top" constant="10" id="V84-jP-5nD"/>
+                        <constraint firstAttribute="height" constant="350" id="qrK-qE-Ppn"/>
+                        <constraint firstAttribute="width" constant="300" id="w3t-6s-7vO"/>
+                        <constraint firstItem="YR9-CI-7KB" firstAttribute="leading" secondItem="LXj-sX-GvT" secondAttribute="leading" id="xRh-FJ-pCO"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="Opacity35"/>
+            <constraints>
+                <constraint firstItem="LXj-sX-GvT" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="GUQ-J2-BmT"/>
+                <constraint firstItem="LXj-sX-GvT" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="p4m-18-Gyb"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="134.05797101449275" y="-16.071428571428569"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="Opacity35">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.34999999999999998" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

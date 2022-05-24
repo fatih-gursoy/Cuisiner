@@ -6,15 +6,18 @@
 //
 
 import UIKit
+import Lottie
 
 class StartCookVC: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var nextButton: UIButton!
     
+    private var animationView: AnimationView?
     var recipeViewModel: RecipeViewModel?
     
-    var currentPage = 0 {
+    private var currentPage = 0 {
         didSet {
             pageControl.currentPage = currentPage
         }
@@ -41,7 +44,6 @@ class StartCookVC: UIViewController {
     }
     
     
-    
     @IBAction func nextButtonClicked(_ sender: Any) {
         
         guard let instructions = recipeViewModel?.instructions else { return }
@@ -52,8 +54,21 @@ class StartCookVC: UIViewController {
             let indexPath = IndexPath(item: currentPage, section: 0)
             collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
 
+        } else if currentPage == instructions.count - 1 {
+            doneAlert()
         }
     }
+    
+    func doneAlert() {
+        
+        let alertVC = CustomAlertVC()
+        alertVC.modalPresentationStyle = .overCurrentContext
+        alertVC.modalTransitionStyle = .crossDissolve
+        alertVC.doneTappedCompletion = { self.dismiss(animated: true) }
+        present(alertVC, animated: true)
+        
+    }
+    
     
     
 }
