@@ -60,7 +60,7 @@ extension DiscoverVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         case recipeCollectionView:
             
             guard let count = recipesViewModel.recipes?.count else { return 0 }
-            return  count
+            return count
             
         default:
             return 0

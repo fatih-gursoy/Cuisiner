@@ -61,7 +61,9 @@ class CreateNewVC: UIViewController {
 
     func configureNavBar() {
         
-        let barButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeTapped))
+        let buttonImage =  #imageLiteral(resourceName: "XMark")
+        
+        let barButton = UIBarButtonItem(image: buttonImage, style: .plain, target: self, action: #selector(closeTapped))
         
         self.navigationItem.rightBarButtonItem = barButton
         
@@ -127,7 +129,7 @@ class CreateNewVC: UIViewController {
                                   cookTime: self.cookTimeField.text,
                                   category: selectedCategory,
                                   ingredients: self.ingredients,
-                                  favoriteStar: 0)
+                                  ratingList: [])
   
         recipeViewModel = RecipeViewModel(recipe: recipe)
                 

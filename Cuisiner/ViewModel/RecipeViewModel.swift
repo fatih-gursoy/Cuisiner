@@ -9,6 +9,7 @@ import Foundation
 
 protocol RecipeViewModelDelegate: AnyObject {
     func updateView()
+    
 }
 
 class RecipeViewModel {
@@ -31,9 +32,28 @@ class RecipeViewModel {
         return recipe.name
     }
     
-    var star: String? {
-        guard let star = recipe.favoriteStar else { return "0" }
-        return String(describing: star)
+    var averageStar: String? {
+        
+        guard let ratingList = recipe.ratingList else { return "0" }
+        let sum = ratingList.map { $0.score! }.reduce(0, +)
+        let ratinglistAverage = Double(sum) / Double(ratingList.count)
+        
+        return String(format: "%.1f", ratinglistAverage)
+    }
+    
+    var reviewCount: String? {
+        guard let starList = recipe.ratingList else { return "0" }
+        
+        return String(describing: starList.count)
+    }
+    
+    var myScore: Int {
+        
+        guard let myScore = (self.recipe.ratingList?.filter {
+            $0.userId == AuthManager.shared.userId }.first)?.score
+        else { return 0 }
+        
+        return myScore
     }
     
     var ingredients: [Ingredient]? {
@@ -43,7 +63,7 @@ class RecipeViewModel {
     var instructions: [Instruction]? {
         return recipe.instructions
     }
-
+    
 // MARK: Functions
     
     func createNew() {
@@ -51,8 +71,11 @@ class RecipeViewModel {
     }
     
     func updateRecipe() {
+        
         guard let recipeId = self.recipe.id else {return}
         service.update(from: .recipes, id: recipeId, self.recipe)
+        self.delegate?.updateView()
+        
     }
     
     func delete() {
@@ -72,6 +95,17 @@ class RecipeViewModel {
                 self?.delegate?.updateView()
             }
         }
+    }
+    
+    func updateRating(_ rating: Rating) {
+                
+        if let index = self.recipe.ratingList?.firstIndex(where: { $0.userId == AuthManager.shared.userId })
+        {
+            self.recipe.ratingList?[index].score = rating.score
+        } else {
+            self.recipe.ratingList?.append(rating)
+        }
+        updateRecipe()
     }
 
 }

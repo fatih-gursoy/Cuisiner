@@ -11,14 +11,12 @@ class RecipeDetailVC: UIViewController {
    
     @IBOutlet private weak var recipeImage: CustomImageView!
     @IBOutlet private weak var userImage: CustomImageView!
-    
     @IBOutlet private weak var recipeName: UILabel!
     @IBOutlet private weak var userName: UILabel!
     @IBOutlet private weak var ingredientTable: UITableView!
     @IBOutlet private weak var starButton: UIButton!
     @IBOutlet private weak var reviewCountLabel: UILabel!
-    
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet private weak var scrollView: UIScrollView!
     
     var recipeViewModel: RecipeViewModel?
     
@@ -45,22 +43,22 @@ class RecipeDetailVC: UIViewController {
         recipeViewModel?.delegate = self
         recipeName.text = recipeViewModel?.recipeName
         recipeImage.setImage(url: recipeViewModel?.recipe.foodImageUrl)
-        starButton.setTitle(recipeViewModel?.star, for: .normal)
+        starButton.setTitle(recipeViewModel?.averageStar, for: .normal)
                 
     }
     	
     func configureNavBar() {
         
-        let barButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeTapped))
+        let buttonImage =  #imageLiteral(resourceName: "XMark")
+        
+        let barButton = UIBarButtonItem(image: buttonImage, style: .plain, target: self, action: #selector(closeTapped))
         
         self.navigationItem.rightBarButtonItem = barButton
         
     }
     
     @objc func closeTapped() {
-        
         self.dismiss(animated: true, completion: nil)
-        
     }
     
     @IBAction func startClicked(_ sender: Any) {
@@ -72,6 +70,21 @@ class RecipeDetailVC: UIViewController {
         
     }
     
+    @IBAction func starButtonClicked(_ sender: Any) {
+        
+        guard let myScore = recipeViewModel?.myScore else {return}
+        let popupVC = CustomPopupVC(type:.star(score: myScore))
+        
+        popupVC.modalPresentationStyle = .overCurrentContext
+        popupVC.modalTransitionStyle = .crossDissolve
+        
+        popupVC.doneTappedCompletion = {
+            let score = popupVC.starView?.score
+            let myRating = Rating(userId: AuthManager.shared.userId, score: score)
+            self.recipeViewModel?.updateRating(myRating)
+        }
+        present(popupVC, animated: true)
+    }
 
 }
 
@@ -88,7 +101,6 @@ extension RecipeDetailVC: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: IngredientTableCell.identifier, for: indexPath) as? IngredientTableCell else { fatalError("Could not load") }
         
         cell.configure(ingredient: recipeViewModel?.ingredients?[indexPath.row])
-        
         return cell
     }
     
@@ -116,6 +128,10 @@ extension RecipeDetailVC: RecipeViewModelDelegate {
         
         userName.text = recipeViewModel?.user?.userName
         userImage.setImage(url: recipeViewModel?.user?.userImageUrl)
+        starButton.setTitle(recipeViewModel?.averageStar, for: .normal)
+        
+        guard let reviewCount = recipeViewModel?.reviewCount else { return }
+        reviewCountLabel.text = "(\(reviewCount) Reviews)"
 
     }
 

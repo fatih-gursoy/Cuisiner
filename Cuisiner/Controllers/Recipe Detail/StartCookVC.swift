@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Lottie
 
 class StartCookVC: UIViewController {
 
@@ -14,7 +13,6 @@ class StartCookVC: UIViewController {
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var nextButton: UIButton!
     
-    private var animationView: AnimationView?
     var recipeViewModel: RecipeViewModel?
     
     private var currentPage = 0 {
@@ -61,14 +59,13 @@ class StartCookVC: UIViewController {
     
     func doneAlert() {
         
-        let alertVC = CustomAlertVC()
+        let alertVC = CustomPopupVC(type: .cookDone)
         alertVC.modalPresentationStyle = .overCurrentContext
         alertVC.modalTransitionStyle = .crossDissolve
         alertVC.doneTappedCompletion = { self.dismiss(animated: true) }
         present(alertVC, animated: true)
         
     }
-    
     
     
 }

@@ -241,6 +241,9 @@
                                                                             <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <color key="baseBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         </buttonConfiguration>
+                                                                        <connections>
+                                                                            <action selector="starButtonClicked:" destination="l3C-Jn-cMf" eventType="touchUpInside" id="YtW-j7-ak8"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Review count)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cii-vh-NNH">
                                                                         <rect key="frame" x="89.5" y="4.5" width="111" height="21"/>
@@ -861,11 +864,11 @@
             <objects>
                 <viewController storyboardIdentifier="PrepareVC" id="aHI-HX-fOr" customClass="PrepareVC" customModule="Cuisiner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sDH-wC-9SJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="824"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p2g-YZ-e8N">
-                                <rect key="frame" x="0.0" y="44" width="414" height="780"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e27-XC-twG" userLabel="ContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="773.5"/>
@@ -964,7 +967,7 @@
                     <navigationItem key="navigationItem" id="IhF-pm-u5w">
                         <barButtonItem key="backBarButtonItem" title=" " id="70Q-C4-ZnB"/>
                     </navigationItem>
-                    <size key="freeformSize" width="414" height="824"/>
+                    <size key="freeformSize" width="414" height="818"/>
                     <connections>
                         <outlet property="saveButton" destination="RJG-CZ-kKZ" id="kJr-jr-fmp"/>
                         <outlet property="scrollView" destination="p2g-YZ-e8N" id="jxP-3s-d7q"/>
@@ -974,7 +977,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1yZ-9C-aJb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4821.739130434783" y="-590.625"/>
+            <point key="canvasLocation" x="4821.739130434783" y="-592.63392857142856"/>
         </scene>
         <!--My Recipes-->
         <scene sceneID="FQj-kb-0ex">
