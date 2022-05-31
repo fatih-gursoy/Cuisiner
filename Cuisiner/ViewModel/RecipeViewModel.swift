@@ -9,7 +9,6 @@ import Foundation
 
 protocol RecipeViewModelDelegate: AnyObject {
     func updateView()
-    
 }
 
 class RecipeViewModel {
@@ -32,28 +31,35 @@ class RecipeViewModel {
         return recipe.name
     }
     
-    var averageStar: String? {
+    var averageScore: String {
         
-        guard let ratingList = recipe.ratingList else { return "0" }
+        var averageScore = 0.0
+        guard let ratingList = recipe.ratingList else { return "0.0" }
         let sum = ratingList.map { $0.score! }.reduce(0, +)
-        let ratinglistAverage = Double(sum) / Double(ratingList.count)
         
-        return String(format: "%.1f", ratinglistAverage)
+        if sum > 0 { averageScore = Double(sum) / Double(ratingList.count) }
+        return String(format: "%.1f", averageScore)
     }
     
     var reviewCount: String? {
         guard let starList = recipe.ratingList else { return "0" }
-        
         return String(describing: starList.count)
     }
     
     var myScore: Int {
-        
-        guard let myScore = (self.recipe.ratingList?.filter {
-            $0.userId == AuthManager.shared.userId }.first)?.score
-        else { return 0 }
-        
+        guard let myScore = myRating?.score else { return 0 }
         return myScore
+    }
+    
+    var myRating: Rating? {
+        guard let index = self.ratingIndex else { return nil }
+        return self.recipe.ratingList?[index]
+    }
+    
+    private var ratingIndex: Int? {
+        guard let index = self.recipe.ratingList?.firstIndex(where: {
+            $0.userId == AuthManager.shared.userId }) else { return nil }
+        return index
     }
     
     var ingredients: [Ingredient]? {
@@ -71,7 +77,6 @@ class RecipeViewModel {
     }
     
     func updateRecipe() {
-        
         guard let recipeId = self.recipe.id else {return}
         service.update(from: .recipes, id: recipeId, self.recipe)
         self.delegate?.updateView()
@@ -98,12 +103,20 @@ class RecipeViewModel {
     }
     
     func updateRating(_ rating: Rating) {
-                
-        if let index = self.recipe.ratingList?.firstIndex(where: { $0.userId == AuthManager.shared.userId })
-        {
-            self.recipe.ratingList?[index].score = rating.score
+        
+        guard let score = rating.score else { return }
+        
+        if score > 0 {
+            if self.myRating?.userId == rating.userId {
+                guard let index = self.ratingIndex else { return }
+                self.recipe.ratingList?[index].score = score
+            } else {
+                self.recipe.ratingList?.append(rating)
+            }
+            
         } else {
-            self.recipe.ratingList?.append(rating)
+            guard let index = self.ratingIndex else { return }
+            self.recipe.ratingList?.remove(at: index)
         }
         updateRecipe()
     }

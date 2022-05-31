@@ -39,18 +39,15 @@ class RecipeDetailVC: UIViewController {
     }
     
     func configureUI() {
-        
         recipeViewModel?.delegate = self
         recipeName.text = recipeViewModel?.recipeName
         recipeImage.setImage(url: recipeViewModel?.recipe.foodImageUrl)
-        starButton.setTitle(recipeViewModel?.averageStar, for: .normal)
-                
+        starButton.setTitle(recipeViewModel?.averageScore, for: .normal)
     }
     	
     func configureNavBar() {
         
         let buttonImage =  #imageLiteral(resourceName: "XMark")
-        
         let barButton = UIBarButtonItem(image: buttonImage, style: .plain, target: self, action: #selector(closeTapped))
         
         self.navigationItem.rightBarButtonItem = barButton
@@ -74,7 +71,6 @@ class RecipeDetailVC: UIViewController {
         
         guard let myScore = recipeViewModel?.myScore else {return}
         let popupVC = CustomPopupVC(type:.star(score: myScore))
-        
         popupVC.modalPresentationStyle = .overCurrentContext
         popupVC.modalTransitionStyle = .crossDissolve
         
@@ -88,12 +84,12 @@ class RecipeDetailVC: UIViewController {
 
 }
 
+//MARK: TableView Delegate
 
 extension RecipeDetailVC: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return recipeViewModel?.ingredients?.count ?? 0
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -113,14 +109,11 @@ extension RecipeDetailVC: UITableViewDelegate, UITableViewDataSource {
             return title
         }()
         return headerTitle
-        
     }
     
-    
-    
-    
-    
 }
+
+//MARK: ViewModelDelegate
 
 extension RecipeDetailVC: RecipeViewModelDelegate {
     
@@ -128,11 +121,10 @@ extension RecipeDetailVC: RecipeViewModelDelegate {
         
         userName.text = recipeViewModel?.user?.userName
         userImage.setImage(url: recipeViewModel?.user?.userImageUrl)
-        starButton.setTitle(recipeViewModel?.averageStar, for: .normal)
+        starButton.setTitle(recipeViewModel?.averageScore, for: .normal)
         
         guard let reviewCount = recipeViewModel?.reviewCount else { return }
         reviewCountLabel.text = "(\(reviewCount) Reviews)"
-
     }
 
 }

@@ -22,7 +22,7 @@ class RecipeCell: UICollectionViewCell {
         recipeName.text = viewModel.recipe.name
         foodImage.setImage(url: viewModel.recipe.foodImageUrl)
         
-        starButton.setTitle(viewModel.averageStar, for: .normal)
+        starButton.setTitle(viewModel.averageScore, for: .normal)
         starButton.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         starButton.layer.cornerRadius = 10.0
         
