@@ -46,6 +46,17 @@ class RecipeViewModel {
         return String(describing: starList.count)
     }
     
+    var ingredients: [Ingredient]? {
+        return recipe.ingredients
+    }
+    
+    var instructions: [Instruction]? {
+        return recipe.instructions
+    }
+    
+    
+// MARK: Current User Rating
+    
     var myScore: Int {
         guard let myScore = myRating?.score else { return 0 }
         return myScore
@@ -62,13 +73,7 @@ class RecipeViewModel {
         return index
     }
     
-    var ingredients: [Ingredient]? {
-        return recipe.ingredients
-    }
-    
-    var instructions: [Instruction]? {
-        return recipe.instructions
-    }
+
     
 // MARK: Functions
     
@@ -78,9 +83,8 @@ class RecipeViewModel {
     
     func updateRecipe() {
         guard let recipeId = self.recipe.id else {return}
-        service.update(from: .recipes, id: recipeId, self.recipe)
+        service.update2(from: .recipes, id: recipeId, self.recipe)
         self.delegate?.updateView()
-        
     }
     
     func delete() {
@@ -107,9 +111,12 @@ class RecipeViewModel {
         guard let score = rating.score else { return }
         
         if score > 0 {
+            
             if self.myRating?.userId == rating.userId {
+                
                 guard let index = self.ratingIndex else { return }
                 self.recipe.ratingList?[index].score = score
+                
             } else {
                 self.recipe.ratingList?.append(rating)
             }

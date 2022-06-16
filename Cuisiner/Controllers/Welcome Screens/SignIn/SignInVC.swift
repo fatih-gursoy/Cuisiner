@@ -33,12 +33,12 @@ class SignInVC: UIViewController {
                       self?.delegate?.didUserSignIn()
                 } else {
                     if let errorMessage = self?.authManager.errorMessage {
-                          self?.presentAlert(title: "Error", message: errorMessage)
+                        self?.presentAlert(title: "Error", message: errorMessage, completion: nil)
                     }
                 }
             }
         } else {
-            presentAlert(title: "Couldn't Sign In", message: "Please fill credentials")
+            presentAlert(title: "Couldn't Sign In", message: "Please fill credentials", completion: nil)
         }
     }
     

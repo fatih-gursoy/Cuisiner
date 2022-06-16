@@ -13,6 +13,7 @@ class CreateNewVC: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var categoryButton: UIButton!
     
+    @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var foodImage: UIImageView!
     @IBOutlet private weak var pickerLogo: UIImageView!
     @IBOutlet private weak var serveImage: UIImageView!
@@ -23,26 +24,50 @@ class CreateNewVC: UIViewController {
     @IBOutlet private weak var serveField: UITextField!
     @IBOutlet private weak var cookTimeField: UITextField!
     
-    private var recipeViewModel: RecipeViewModel?
     private var selectedCategory: Recipe.Category?
-    
     private var pickerView = UIPickerView()
     private var toolBar = UIToolbar()
         
-    private var heightConstraint : NSLayoutConstraint?
     private var ingredients = [Ingredient]()
-        
+    var recipeViewModel: RecipeViewModel?
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        pickerView.delegate = self
+        pickerView.dataSource = self
         
         hideKeyboard()
         configureNavBar()
         configureImagePicker()
+        updateUI()
         configureTableView()
         
         serveField.delegate = self
         cookTimeField.delegate = self
-            
+                
+    }
+    
+    
+    func updateUI() {
+        
+        guard let recipeViewModel = recipeViewModel else { return }
+        self.headerLabel.text = "Update Recipe"
+        self.recipeNameField.text = recipeViewModel.recipeName
+        self.cookTimeField.text = recipeViewModel.recipe.cookTime
+        self.serveField.text = recipeViewModel.recipe.serve
+        self.foodImage.setImage(url: recipeViewModel.recipe.foodImageUrl)
+        
+        if let ingredients = recipeViewModel.ingredients {
+            self.ingredients = ingredients
+        }
+        
+        selectedCategory = recipeViewModel.recipe.category
+        
+        if let row = Recipe.Category.allCases.firstIndex(of: selectedCategory!) {
+            pickerView.selectRow(row, inComponent: 0, animated: false)
+            categoryButton.setTitle(selectedCategory?.rawValue, for: .normal)
+        }
     }
     
     func configureTableView() {
@@ -51,10 +76,8 @@ class CreateNewVC: UIViewController {
         tableView.dataSource = self
         
         tableView.register(UINib(nibName: "IngredientTableCell", bundle: nil), forCellReuseIdentifier: IngredientTableCell.identifier)
-                
-        heightConstraint = tableView.heightAnchor.constraint(equalToConstant: tableView.contentSize.height)
-        
-        heightConstraint?.isActive = true
+
+        tableView.reloadData()
         
     }
     
@@ -66,7 +89,6 @@ class CreateNewVC: UIViewController {
         let barButton = UIBarButtonItem(image: buttonImage, style: .plain, target: self, action: #selector(closeTapped))
         
         self.navigationItem.rightBarButtonItem = barButton
-        
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = UIImage()
         
@@ -74,30 +96,19 @@ class CreateNewVC: UIViewController {
     
     
     @objc func closeTapped() {
-        
         self.dismiss(animated: true, completion: nil)
-        
-    }
-    
-
-    func setTableViewHeight() {
-        
-        heightConstraint?.constant = tableView.contentSize.height
-        heightConstraint?.isActive = true
-        tableView.layoutIfNeeded()
-        
     }
     
     @IBAction func addButtonClicked(_ sender: Any) {
         
+        getIngredientData()
+
         let newIngredient = Ingredient()
         ingredients.append(newIngredient)
         
         tableView.reloadData()
-        setTableViewHeight()
-        
-        let y = tableView.bounds.height
-        scrollView.setContentOffset(CGPoint(x: 0, y: y), animated: true)
+        let bottom = tableView.contentSize.height
+        scrollView.setContentOffset(CGPoint(x: 0, y: bottom), animated: true)
         
     }
 
@@ -108,7 +119,7 @@ class CreateNewVC: UIViewController {
         
         guard let prepareVC = self.storyboard?.instantiateViewController(withIdentifier: "PrepareVC") as? PrepareVC else { fatalError("Error")}
       
-        prepareVC.recipeViewModel = recipeViewModel
+        prepareVC.recipeViewModel = self.recipeViewModel
         prepareVC.delegate = self
         
         navigationController?.pushViewController(prepareVC, animated: true)
@@ -116,51 +127,52 @@ class CreateNewVC: UIViewController {
     }
     
     func configureViewModel() {
-        
-        getIngredientData()
-        
-        guard let selectedCategory = selectedCategory else {
-            return presentAlert(title: "Can not continue", message: "Please select a category!") }
-
-        let recipe = Recipe(ownerId: AuthManager.shared.userId,
-                                  id: UUID().uuidString ,
-                                  name: self.recipeNameField.text,
-                                  serve: self.serveField.text,
-                                  cookTime: self.cookTimeField.text,
-                                  category: selectedCategory,
-                                  ingredients: self.ingredients,
-                                  ratingList: [])
-  
-        recipeViewModel = RecipeViewModel(recipe: recipe)
                 
+        guard let selectedCategory = selectedCategory else {
+            return presentAlert(title: "Can not continue", message: "Please select a category!", completion: nil) }
+
+        if recipeViewModel != nil {
+            
+            recipeViewModel?.recipe.name = self.recipeNameField.text
+            recipeViewModel?.recipe.serve = self.serveField.text
+            recipeViewModel?.recipe.cookTime = self.cookTimeField.text
+            recipeViewModel?.recipe.category = selectedCategory
+            recipeViewModel?.recipe.ingredients = self.ingredients
+            
+        } else {
+        
+            let recipe = Recipe(ownerId: AuthManager.shared.userId,
+                                      id: UUID().uuidString,
+                                      name: self.recipeNameField.text,
+                                      serve: self.serveField.text,
+                                      cookTime: self.cookTimeField.text,
+                                      category: selectedCategory,
+                                      ingredients: self.ingredients,
+                                      ratingList: [])
+      
+            self.recipeViewModel = RecipeViewModel(recipe: recipe)
+        }
     }
     
 }
 
-protocol ImagePassDelegate: AnyObject {
-    
-    var foodImageToPass: UIImageView? { get }
-    
-}
 
+protocol ImagePassDelegate: AnyObject {
+    var foodImageToPass: UIImageView? { get }
+}
 
 extension CreateNewVC: ImagePassDelegate {
     
     var foodImageToPass: UIImageView? {
-        
         get {
             return self.foodImage
         }
     }
     
-    
-    
 }
 
 
-
-
-// MARK: - Tableview Delegate
+// MARK: - Tableview Delegates
 
 extension CreateNewVC: UITableViewDelegate, UITableViewDataSource {
     
@@ -171,7 +183,9 @@ extension CreateNewVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: IngredientTableCell.identifier, for: indexPath) as! IngredientTableCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: IngredientTableCell.identifier, for: indexPath) as? IngredientTableCell else { fatalError("Could not Load")}
+        
+        cell.configureForUpdate(ingredient: ingredients[indexPath.row])
         
         cell.deleteButton.tag = indexPath.row
         cell.deleteButton.addTarget(self, action: #selector(deleteRow(_:)), for: .touchUpInside)
@@ -185,23 +199,20 @@ extension CreateNewVC: UITableViewDelegate, UITableViewDataSource {
         let row = sender.tag
         ingredients.remove(at: row)
         tableView.reloadData()
-        setTableViewHeight()
         
     }
-
     
     func getIngredientData() {
         
         for i in 0..<tableView.numberOfRows(inSection: 0) {
             
-            let cell = tableView.cellForRow(at: IndexPath(row: i, section: 0)) as! IngredientTableCell
+            guard let cell = tableView.cellForRow(at: IndexPath(row: i, section: 0)) as? IngredientTableCell else {return}
             
             ingredients[i].name = cell.itemName.text
             ingredients[i].amount = cell.itemQuantity.text
 
         }
     }
-
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
@@ -214,6 +225,7 @@ extension CreateNewVC: UITableViewDelegate, UITableViewDataSource {
         
         return headerTitle
     }
+    
     
 }
 
@@ -248,7 +260,7 @@ extension CreateNewVC: UIImagePickerControllerDelegate, UINavigationControllerDe
     
 }
 
-// MARK: PickerView Delegate
+// MARK: -PickerView Delegate
 
 extension CreateNewVC: UIPickerViewDelegate, UIPickerViewDataSource {
         
@@ -273,9 +285,6 @@ extension CreateNewVC: UIPickerViewDelegate, UIPickerViewDataSource {
     
     
     @IBAction func categoryButtonClicked(_ sender: Any) {
-        
-        pickerView.delegate = self
-        pickerView.dataSource = self
         
         configurePickerView()
     }
@@ -311,7 +320,7 @@ extension CreateNewVC: UIPickerViewDelegate, UIPickerViewDataSource {
     
 }
 
-// MARK: TextField number restriction
+// MARK: -TextField number restriction
 
 extension CreateNewVC: UITextFieldDelegate {
     

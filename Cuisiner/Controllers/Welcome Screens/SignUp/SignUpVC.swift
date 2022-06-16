@@ -44,13 +44,13 @@ class SignUpVC: UIViewController {
                         
                     } else {
                         if let errorMessage = self?.authManager.errorMessage {
-                              self?.presentAlert(title: "Error", message: errorMessage)
+                            self?.presentAlert(title: "Error", message: errorMessage, completion: nil)
                         }
                     }
                 }
             }
         } else {
-            presentAlert(title: "Couldn't Sign Up", message: "Please fill credentials")
+            presentAlert(title: "Couldn't Sign Up", message: "Please fill credentials", completion: nil)
         }
 
     }
@@ -58,14 +58,15 @@ class SignUpVC: UIViewController {
     
     func saveUser() {
         
-        guard let userImage = profileImage.image else {return}
         let newUser = authManager
         
         if let username = usernameText.text {
             newUser.changeUsername(with: username)
         }
                 
-        storage.imageUpload(to: .userImages, image: userImage) { imageUrl in
+        guard let userImage = profileImage.image, let uid = newUser.userId else {return}
+        
+        storage.imageUpload(to: .userImages,id: uid, image: userImage) { imageUrl in
             
             let user = User(userId: newUser.userId,
                             userName: newUser.userName,

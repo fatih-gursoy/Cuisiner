@@ -18,21 +18,21 @@ class IngredientTableCell: UITableViewCell {
     func configure(ingredient: Ingredient?) {
         
         guard let ingredient = ingredient else {return}
-                
-        self.backgroundColor = .systemGray5
         
         itemName.text = ingredient.name
         itemQuantity.text = ingredient.amount
         
-        itemName.backgroundColor = .systemGray5
-        itemQuantity.backgroundColor = .systemGray5
-        
-        itemName.borderStyle = .none
-        itemQuantity.borderStyle = .none
-        
         itemName.isUserInteractionEnabled = false
         itemQuantity.isUserInteractionEnabled  = false
         deleteButton.isHidden = true
+    }
+    
+    func configureForUpdate(ingredient: Ingredient?) {
+        
+        guard let ingredient = ingredient else {return}
+        itemName.text = ingredient.name
+        itemQuantity.text = ingredient.amount
+
     }
     
     

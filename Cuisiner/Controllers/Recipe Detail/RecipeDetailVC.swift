@@ -60,7 +60,8 @@ class RecipeDetailVC: UIViewController {
     
     @IBAction func startClicked(_ sender: Any) {
         
-        guard let startCookVC = self.storyboard?.instantiateViewController(withIdentifier: "StartCookVC") as? StartCookVC else {return}
+        guard let startCookVC = self.storyboard?.instantiateViewController(
+            withIdentifier: "StartCookVC") as? StartCookVC else {return}
         
         startCookVC.recipeViewModel = self.recipeViewModel
         self.navigationController?.pushViewController(startCookVC, animated: true)

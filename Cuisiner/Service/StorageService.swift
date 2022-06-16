@@ -19,14 +19,12 @@ class StorageService {
 
 extension StorageService {
     
-    func imageUpload(to folder: myStorage, image: UIImage, completion: @escaping ((String?) -> Void)) {
+    func imageUpload(to folder: myStorage, id: String, image: UIImage, completion: @escaping ((String?) -> Void)) {
      
         if let data = image.jpegData(compressionQuality: 0.5) {
-            
-            let uuid = UUID().uuidString
-            
+                        
             let storageRef = storage.reference().child(folder.name)
-            let imageRef = storageRef.child("\(uuid).jpeg")
+            let imageRef = storageRef.child("\(id).jpeg")
             
             imageRef.putData(data, metadata: nil) { data, error in
                 
@@ -40,6 +38,19 @@ extension StorageService {
                         }
                     }
                 }
+            }
+        }
+    }
+    
+    func deleteImage(imageUrl: String) {
+        
+        let ref = storage.reference(forURL: imageUrl)
+        
+        ref.delete { error in
+            if error != nil {
+                print("Delete error")
+            } else {
+                
             }
         }
     }

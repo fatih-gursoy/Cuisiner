@@ -286,9 +286,9 @@
                                                             </stackView>
                                                         </subviews>
                                                     </stackView>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="80" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="uk2-ZG-iJt">
-                                                        <rect key="frame" x="10" y="409" width="384" height="365"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="uk2-ZG-iJt">
+                                                        <rect key="frame" x="30" y="409" width="344" height="365"/>
+                                                        <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i7y-gx-DTH">
                                                         <rect key="frame" x="122.5" y="784" width="159" height="50"/>
@@ -307,13 +307,13 @@
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="i7y-gx-DTH" firstAttribute="centerX" secondItem="VcV-Is-uYB" secondAttribute="centerX" id="76E-yG-QEh"/>
-                                                    <constraint firstItem="uk2-ZG-iJt" firstAttribute="leading" secondItem="VcV-Is-uYB" secondAttribute="leading" constant="10" id="FQr-WB-Vx1"/>
+                                                    <constraint firstItem="uk2-ZG-iJt" firstAttribute="leading" secondItem="VcV-Is-uYB" secondAttribute="leading" constant="30" id="FQr-WB-Vx1"/>
                                                     <constraint firstAttribute="trailing" secondItem="ZiG-22-HzE" secondAttribute="trailing" id="SFA-5g-1UZ"/>
                                                     <constraint firstAttribute="trailing" secondItem="4I0-qc-dXU" secondAttribute="trailing" id="T9v-ar-jLt"/>
                                                     <constraint firstAttribute="bottom" secondItem="i7y-gx-DTH" secondAttribute="bottom" id="c5c-Jl-y0D"/>
                                                     <constraint firstItem="ZiG-22-HzE" firstAttribute="leading" secondItem="VcV-Is-uYB" secondAttribute="leading" id="dQ3-p5-8sq"/>
                                                     <constraint firstAttribute="trailing" secondItem="Grw-Jr-3xa" secondAttribute="trailing" id="thd-Cj-rmO"/>
-                                                    <constraint firstAttribute="trailing" secondItem="uk2-ZG-iJt" secondAttribute="trailing" constant="10" id="uWB-4a-wvv"/>
+                                                    <constraint firstAttribute="trailing" secondItem="uk2-ZG-iJt" secondAttribute="trailing" constant="30" id="uWB-4a-wvv"/>
                                                 </constraints>
                                             </stackView>
                                         </subviews>
@@ -361,7 +361,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="giB-tI-DN8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4822" y="627"/>
+            <point key="canvasLocation" x="4961" y="279"/>
         </scene>
         <!--Start CookVC-->
         <scene sceneID="f1d-X8-mdR">
@@ -444,7 +444,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k50-Zn-TTz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5648" y="619"/>
+            <point key="canvasLocation" x="5838" y="271"/>
         </scene>
         <!--Create NewVC-->
         <scene sceneID="t9x-8u-CCS">
@@ -454,7 +454,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1104"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XaV-6W-2fi">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XaV-6W-2fi">
                                 <rect key="frame" x="0.0" y="88" width="414" height="982"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jDl-zG-ZVK" userLabel="contentView">
@@ -669,9 +669,8 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tK2-3X-VEb">
-                                                        <rect key="frame" x="10" y="599" width="394" height="252.5"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tK2-3X-VEb" customClass="CustomTableView" customModule="Cuisiner" customModuleProvider="target">
+                                                        <rect key="frame" x="30" y="599" width="354" height="252.5"/>
                                                         <color key="sectionIndexColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xyj-cs-6N4">
@@ -708,11 +707,11 @@
                                                     <constraint firstAttribute="trailing" secondItem="bBu-pd-eCX" secondAttribute="trailing" constant="10" id="4x9-LV-miD"/>
                                                     <constraint firstItem="W19-OJ-O7a" firstAttribute="leading" secondItem="Vso-vb-E0j" secondAttribute="leading" constant="10" id="6AW-xR-92n"/>
                                                     <constraint firstItem="sor-HP-oaq" firstAttribute="leading" secondItem="Vso-vb-E0j" secondAttribute="leading" constant="10" id="6dP-Ty-s9x"/>
-                                                    <constraint firstItem="tK2-3X-VEb" firstAttribute="leading" secondItem="Vso-vb-E0j" secondAttribute="leading" constant="10" id="FDV-mi-dMx"/>
+                                                    <constraint firstItem="tK2-3X-VEb" firstAttribute="leading" secondItem="Vso-vb-E0j" secondAttribute="leading" constant="30" id="FDV-mi-dMx"/>
                                                     <constraint firstItem="uM0-yL-W0S" firstAttribute="top" secondItem="bBu-pd-eCX" secondAttribute="bottom" constant="10" id="Gvz-Sf-DaJ"/>
                                                     <constraint firstAttribute="trailing" secondItem="sFp-WC-zns" secondAttribute="trailing" constant="10" id="H0X-JX-AIK"/>
                                                     <constraint firstItem="iTu-4m-TYq" firstAttribute="leading" secondItem="Vso-vb-E0j" secondAttribute="leading" constant="10" id="Qf0-3b-6KQ"/>
-                                                    <constraint firstAttribute="trailing" secondItem="tK2-3X-VEb" secondAttribute="trailing" constant="10" id="Wf5-of-bUg"/>
+                                                    <constraint firstAttribute="trailing" secondItem="tK2-3X-VEb" secondAttribute="trailing" constant="30" id="Wf5-of-bUg"/>
                                                     <constraint firstAttribute="trailing" secondItem="sor-HP-oaq" secondAttribute="trailing" constant="10" id="aU7-v5-c33"/>
                                                     <constraint firstAttribute="trailing" secondItem="iTu-4m-TYq" secondAttribute="trailing" constant="10" id="eHg-9O-ndR"/>
                                                     <constraint firstAttribute="trailing" secondItem="Xyj-cs-6N4" secondAttribute="trailing" constant="10" id="eIy-uX-FSw"/>
@@ -757,7 +756,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="jia-gi-mVm">
-                        <barButtonItem key="backBarButtonItem" title=" " id="NP8-nL-EWd"/>
+                        <barButtonItem key="backBarButtonItem" title="   " id="NP8-nL-EWd"/>
                     </navigationItem>
                     <size key="freeformSize" width="414" height="1104"/>
                     <connections>
@@ -766,6 +765,7 @@
                         <outlet property="cookTimeField" destination="UBS-Rd-EGS" id="d6a-l8-imL"/>
                         <outlet property="cookTimeImage" destination="tag-uF-P5B" id="0pj-mX-8M3"/>
                         <outlet property="foodImage" destination="klb-ey-zAA" id="UdB-2I-GCw"/>
+                        <outlet property="headerLabel" destination="bBu-pd-eCX" id="Zle-1y-oNg"/>
                         <outlet property="pickerLogo" destination="lJM-m2-ugw" id="kJw-Xd-fTU"/>
                         <outlet property="recipeNameField" destination="W19-OJ-O7a" id="dfS-I6-hM4"/>
                         <outlet property="scrollView" destination="XaV-6W-2fi" id="mp9-yn-zYU"/>
@@ -818,18 +818,56 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="75" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="QA6-nD-vOf">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ghe-PN-c9h">
+                                <rect key="frame" x="0.0" y="118" width="414" height="778"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Gpf-GN-0X4">
+                                        <rect key="frame" x="20" y="0.0" width="374" height="39"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tYV-m5-ina">
+                                                <rect key="frame" x="0.0" y="0.0" width="39" height="39"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="tYV-m5-ina" secondAttribute="height" multiplier="1:1" id="rZZ-ln-xua"/>
+                                                </constraints>
+                                                <imageReference key="image" image="recipeBook" renderingMode="hierarchical">
+                                                    <hierarchicalColors>
+                                                        <color name="Dark Red"/>
+                                                        <color systemColor="secondaryLabelColor"/>
+                                                        <color systemColor="tertiaryLabelColor"/>
+                                                    </hierarchicalColors>
+                                                </imageReference>
+                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Recipe Book" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m7y-SI-Pwz">
+                                                <rect key="frame" x="69" y="4" width="305" height="30.5"/>
+                                                <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="26"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="75" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="QA6-nD-vOf">
+                                        <rect key="frame" x="0.0" y="59" width="414" height="719"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </tableView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="QA6-nD-vOf" firstAttribute="leading" secondItem="ghe-PN-c9h" secondAttribute="leading" id="89z-A0-UbR"/>
+                                    <constraint firstAttribute="trailing" secondItem="Gpf-GN-0X4" secondAttribute="trailing" constant="20" id="Cr6-iH-9Xe"/>
+                                    <constraint firstItem="Gpf-GN-0X4" firstAttribute="height" secondItem="ghe-PN-c9h" secondAttribute="height" multiplier="0.05" id="MXD-OO-Vek"/>
+                                    <constraint firstItem="Gpf-GN-0X4" firstAttribute="leading" secondItem="ghe-PN-c9h" secondAttribute="leading" constant="20" id="aZ6-d1-50C"/>
+                                    <constraint firstAttribute="bottom" secondItem="QA6-nD-vOf" secondAttribute="bottom" id="lEs-Xo-WIA"/>
+                                    <constraint firstAttribute="trailing" secondItem="QA6-nD-vOf" secondAttribute="trailing" id="lxT-WF-43q"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YlW-wC-9d8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="QA6-nD-vOf" firstAttribute="leading" secondItem="YlW-wC-9d8" secondAttribute="leading" id="0BP-Yc-wDt"/>
-                            <constraint firstItem="QA6-nD-vOf" firstAttribute="top" secondItem="YlW-wC-9d8" secondAttribute="top" id="eGY-Po-9iH"/>
-                            <constraint firstItem="YlW-wC-9d8" firstAttribute="bottom" secondItem="QA6-nD-vOf" secondAttribute="bottom" id="n3e-at-yBE"/>
-                            <constraint firstItem="QA6-nD-vOf" firstAttribute="trailing" secondItem="YlW-wC-9d8" secondAttribute="trailing" id="urV-sf-u3x"/>
+                            <constraint firstAttribute="bottom" secondItem="ghe-PN-c9h" secondAttribute="bottom" id="7sf-0u-wVe"/>
+                            <constraint firstItem="ghe-PN-c9h" firstAttribute="trailing" secondItem="YlW-wC-9d8" secondAttribute="trailing" id="ghq-f1-otD"/>
+                            <constraint firstItem="ghe-PN-c9h" firstAttribute="leading" secondItem="YlW-wC-9d8" secondAttribute="leading" id="s8j-KK-15r"/>
+                            <constraint firstItem="ghe-PN-c9h" firstAttribute="top" secondItem="YlW-wC-9d8" secondAttribute="top" constant="30" id="zc4-86-KhR"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="PFY-xN-kSS"/>
@@ -846,9 +884,16 @@
             <objects>
                 <navigationController storyboardIdentifier="CreateNewNav" automaticallyAdjustsScrollViewInsets="NO" id="kg0-ej-Niv" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" backIndicatorImage="chevron.backward.circle.fill" catalog="system" backIndicatorTransitionMaskImage="chevron.backward.circle.fill" id="Q8f-Hw-KVI">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" backIndicatorTransitionMaskImage="chevron.backward.circle.fill" catalog="system" id="Q8f-Hw-KVI">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <imageReference key="backIndicatorImage" image="chevron.backward.circle.fill" catalog="system" renderingMode="hierarchical">
+                            <hierarchicalColors>
+                                <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color name="Dark Red"/>
+                                <color name="Dark Red"/>
+                            </hierarchicalColors>
+                        </imageReference>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -888,12 +933,9 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="250" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="LAg-Dd-3a7">
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="250" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="LAg-Dd-3a7" customClass="CustomTableView" customModule="Cuisiner" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="372.5" width="414" height="250"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="250" id="yGR-4Q-hC5"/>
-                                                        </constraints>
                                                     </tableView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0k2-ca-Trb">
                                                         <rect key="frame" x="191.5" y="652.5" width="31" height="31"/>
@@ -971,7 +1013,6 @@
                     <connections>
                         <outlet property="saveButton" destination="RJG-CZ-kKZ" id="kJr-jr-fmp"/>
                         <outlet property="scrollView" destination="p2g-YZ-e8N" id="jxP-3s-d7q"/>
-                        <outlet property="tableHeightConstraint" destination="yGR-4Q-hC5" id="YIY-gv-9WQ"/>
                         <outlet property="tableView" destination="LAg-Dd-3a7" id="Sys-iR-ZT7"/>
                     </connections>
                 </viewController>
@@ -1028,7 +1069,7 @@
     </designables>
     <resources>
         <image name="arrow.right.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="category" width="50" height="50"/>
+        <image name="category" width="25" height="25"/>
         <image name="chevron.backward.circle.fill" catalog="system" width="128" height="121"/>
         <image name="cook" width="25" height="25"/>
         <image name="discover" width="25" height="25"/>
@@ -1037,6 +1078,7 @@
         <image name="launch" width="1920" height="2880"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="preparing" width="3000" height="3000"/>
+        <image name="recipeBook" width="117.5" height="150"/>
         <image name="saved" width="25" height="25"/>
         <image name="serve" width="25" height="25"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
@@ -1052,6 +1094,9 @@
         <systemColor name="placeholderTextColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="secondarySystemGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
@@ -1060,6 +1105,9 @@
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tertiaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

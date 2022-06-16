@@ -13,6 +13,7 @@ protocol FirebaseServiceProtocol: AnyObject {
 
     func addNew<T: Encodable>(to collection: myCollection,_ model: T)
     func update<T: Encodable>(from collection: myCollection,id: String,_ model: T)
+    func update2<T: Encodable>(from collection: myCollection,id: String,_ model: T) 
     func delete(from collection: myCollection, with id: String)
     func fetchData<T: Decodable>(from collection: myCollection, completion: @escaping ([T]) -> Void)
     
@@ -80,14 +81,14 @@ extension FirebaseService: FirebaseServiceProtocol {
     }
     
     func update<T: Encodable>(from collection: myCollection,id: String,_ model: T) {
-        
+                  
         db.collection(collection.name).whereField("id", isEqualTo: id as Any)
             .getDocuments { querySnapshot, error in
-                
+
             if let error = error {
                 print("Document doesn't exist \(error)")
             } else {
-                
+
                 if let document = querySnapshot?.documents.first {
                     do {
                         try document.reference.setData(from: model)
@@ -96,6 +97,15 @@ extension FirebaseService: FirebaseServiceProtocol {
                     }
                 }
             }
+        }
+    }
+    
+    func update2<T: Encodable>(from collection: myCollection,id: String,_ model: T) {
+        
+        do {
+            try db.collection(collection.name).document(id).setData(from: model)
+        } catch {
+            print("\(error)")
         }
     }
     

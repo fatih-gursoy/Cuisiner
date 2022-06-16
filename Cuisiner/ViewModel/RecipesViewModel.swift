@@ -90,6 +90,13 @@ class RecipesViewModel {
         
         delegate?.updateView()
     }
+    
+    func deleteRecipe(id: String) {
+        
+        service.delete(from: .recipes, with: id)
+        delegate?.updateView()
+        
+    }
 
     
 }

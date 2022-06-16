@@ -58,6 +58,7 @@ class TabBarVC: UITabBarController {
     extension TabBarVC: UITabBarControllerDelegate {
         
         func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+            
             guard let selectedIndex = tabBarController.viewControllers?.firstIndex(of: viewController) else {
                 return true
             }

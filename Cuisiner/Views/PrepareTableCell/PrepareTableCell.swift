@@ -28,4 +28,15 @@ class PrepareTableCell: UITableViewCell {
         
     }
     
+    func configure(instruction: Instruction?) {
+        
+        guard let instruction = instruction else {return}
+        textView.text = instruction.text
+        rowLabel.text = instruction.step
+        
+        if let time = instruction.time {
+            timeTextField.text = String(describing: time)
+        }
+    }
+    
 }

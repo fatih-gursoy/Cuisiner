@@ -6,14 +6,12 @@
 //
 
 import UIKit
-import SwiftUI
 
 class PrepareVC: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var saveButton: UIButton!
-    @IBOutlet private weak var tableHeightConstraint: NSLayoutConstraint!
     
     private var instructions = [Instruction]()
     private var storage = StorageService.shared
@@ -25,6 +23,7 @@ class PrepareVC: UIViewController {
         super.viewDidLoad()
         
         hideKeyboard()
+        updateUI()
 
         tableView.delegate = self
         tableView.dataSource = self
@@ -33,11 +32,8 @@ class PrepareVC: UIViewController {
                 
     }
     
-    func setTableViewHeight() {
-        
-        tableHeightConstraint.constant = tableView.contentSize.height
-        tableHeightConstraint.isActive = true
-        tableView.layoutIfNeeded()
+    override func viewWillDisappear(_ animated: Bool) {
+        configureViewModel()
         
     }
     
@@ -47,18 +43,18 @@ class PrepareVC: UIViewController {
         instructions.append(newInstruction)
         
         tableView.reloadData()
-        setTableViewHeight()
         scrollView.layoutIfNeeded()
-        
-        let bottom = scrollView.contentSize.height - scrollView.bounds.size.height    
+        let bottom = scrollView.contentSize.height - scrollView.bounds.height
         scrollView.setContentOffset(CGPoint(x: 0, y: bottom), animated: true)
         
     }
     
     @IBAction func saveButtonClicked(_ sender: Any) {
         
-        saveRecipe()
-        dismiss(animated: true)
+        presentAlert(title: "Updating Recipe", message: "Are you sure?") { _ in
+            self.saveRecipe()
+            self.dismiss(animated: true)
+        }
         
     }
     
@@ -66,20 +62,31 @@ class PrepareVC: UIViewController {
         
         configureViewModel()
         
-        guard let foodImage = delegate?.foodImageToPass?.image else { return }
+        guard let foodImage = delegate?.foodImageToPass,
+                let uid = self.recipeViewModel?.recipe.id,
+                let oldUrl = self.recipeViewModel?.recipe.foodImageUrl else { return }
         
-        storage.imageUpload(to: .foodImages, image: foodImage) { imageUrl in
-            
-            self.recipeViewModel?.recipe.foodImageUrl = imageUrl
-            self.recipeViewModel?.createNew()
-            
+        if foodImage.isSame(with: oldUrl) {
+            self.recipeViewModel?.updateRecipe()
+        } else {
+            storage.imageUpload(to: .foodImages, id: uid , image: foodImage.image!) { imageUrl in
+                self.recipeViewModel?.recipe.foodImageUrl = imageUrl
+                self.recipeViewModel?.updateRecipe()
+            }
         }
+        
+    }
+    
+    func updateUI() {
+        guard let instructions = recipeViewModel?.instructions else {return}
+        self.instructions = instructions
     }
     
     
     func configureViewModel() {
         
         for i in 0..<tableView.numberOfRows(inSection: 0) {
+            
             let cell = tableView.cellForRow(at: IndexPath(row: i, section: 0)) as! PrepareTableCell
             
             instructions[i].step = cell.rowLabel.text
@@ -95,15 +102,15 @@ class PrepareVC: UIViewController {
 
 }
 
-
+//MARK: -TableViewDelegates
 
 extension PrepareVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: PrepareTableCell.identifier, for: indexPath) as! PrepareTableCell
         
-        cell.rowLabel.text = String(indexPath.row + 1)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: PrepareTableCell.identifier, for: indexPath) as? PrepareTableCell else {fatalError("Could not Load")}
         
+        cell.configure(instruction: instructions[indexPath.row])
         return cell
         
     }

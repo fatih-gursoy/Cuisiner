@@ -168,7 +168,6 @@ extension DiscoverVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         let navController = UINavigationController(rootViewController: recipeDetailVC)
         
         let backImage = UIImage(systemName: "chevron.backward.circle.fill")
-        
         navController.navigationBar.backIndicatorImage = backImage
         navController.navigationBar.backIndicatorTransitionMaskImage = backImage
         navController.modalPresentationStyle = .fullScreen

@@ -10,17 +10,12 @@ import UIKit
 class MyRecipesVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-
     private var recipesViewModel = RecipesViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.register(UINib(nibName: "MyRecipeTableCell", bundle: nil), forCellReuseIdentifier: MyRecipeTableCell.identifier)
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-
+        configureTableView()
         configureNavBar()
         fetchData()
     }
@@ -38,6 +33,15 @@ class MyRecipesVC: UIViewController {
         self.present(welcomeVC, animated: true)
                 
     }
+    
+    func configureTableView() {
+        
+        tableView.register(UINib(nibName: "MyRecipeTableCell", bundle: nil), forCellReuseIdentifier: MyRecipeTableCell.identifier)
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+    }
 
     
     func configureNavBar() {
@@ -50,12 +54,9 @@ class MyRecipesVC: UIViewController {
             
         }
         
-        let menu = UIMenu(options: .displayInline,
-                          children: [myProfile, logoutUser])
-        
+        let menu = UIMenu(options: .displayInline, children: [myProfile, logoutUser])
         let barButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), menu: menu)
         self.navigationItem.rightBarButtonItem = barButton
-        
         
     }
     
@@ -63,7 +64,6 @@ class MyRecipesVC: UIViewController {
         
         recipesViewModel.delegate = self
         recipesViewModel.fetchMyRecipes()
-        
     }
 
 }
@@ -75,6 +75,8 @@ extension MyRecipesVC: RecipesViewModelDelegate {
     }
 }
 
+
+//MARK: Tableview Delegates
 
 extension MyRecipesVC: UITableViewDelegate, UITableViewDataSource {
     
@@ -89,9 +91,32 @@ extension MyRecipesVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: MyRecipeTableCell.identifier) as! MyRecipeTableCell
         
         cell.configure(viewModel: recipesViewModel.recipeAtIndex(indexPath.row))
-      
         return cell
         
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            guard let recipeId = recipesViewModel.recipes?[indexPath.row].id else {return}
+            recipesViewModel.deleteRecipe(id: recipeId)
+            
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        guard let createNewNav = self.storyboard?.instantiateViewController(withIdentifier:         "CreateNewNav") as? UINavigationController,
+                let createNewVC = createNewNav.viewControllers.first as? CreateNewVC
+        
+        else {fatalError("Could not Load")}
+        
+        createNewNav.modalPresentationStyle = .fullScreen
+        createNewNav.modalPresentationCapturesStatusBarAppearance = true
+        
+        createNewVC.recipeViewModel = recipesViewModel.recipeAtIndex(indexPath.row)
+        self.present(createNewNav, animated: true)
+
     }
 
 }

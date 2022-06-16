@@ -17,4 +17,12 @@ extension UIImageView {
         }
     }
     
+    func isSame(with oldUrl: String) -> Bool {
+        
+        let urlImage = UIImageView()
+        urlImage.setImage(url: oldUrl)
+        return self.image == urlImage.image
+        
+    }
+    
 }
