@@ -83,7 +83,7 @@ class RecipeViewModel {
     
     func updateRecipe() {
         guard let recipeId = self.recipe.id else {return}
-        service.update2(from: .recipes, id: recipeId, self.recipe)
+        service.update(from: .recipes, id: recipeId, self.recipe)
         self.delegate?.updateView()
     }
     

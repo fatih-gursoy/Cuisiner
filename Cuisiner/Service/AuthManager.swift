@@ -13,6 +13,7 @@ class AuthManager {
     static let shared: AuthManager = AuthManager()
     
     private var userAuth = Auth.auth()
+    
     private var email = ""
     private var password = ""
     
@@ -54,18 +55,18 @@ extension AuthManager {
         }
     }
     
+    
     func signUp(completion: @escaping(_ success: Bool) -> Void) {
             
         userAuth.createUser(withEmail: email, password: password) { authData, error in
             
             if error != nil {
-                 print(error?.localizedDescription ?? "")
+                self.errorMessage = error?.localizedDescription
                 completion(false)
             } else {
                 completion(true)
             }
         }
-    
     }
     
     func changeUsername(with newUsername: String) {
@@ -73,6 +74,32 @@ extension AuthManager {
         let changeRequest = userAuth.currentUser?.createProfileChangeRequest()
         changeRequest?.displayName = newUsername
         changeRequest?.commitChanges()
+    }
+    
+    func updatePassword(currentPassword: String, newPassword: String, completion: @escaping(_ success: Bool) -> Void) {
+        
+        guard let userEmail = self.userEmail else { return }
+        let credentials = Firebase.EmailAuthProvider.credential(withEmail: userEmail, password: currentPassword)
+
+        userAuth.currentUser?.reauthenticate(with: credentials, completion: { authData, error in
+            
+            if let error = error {
+                self.errorMessage = error.localizedDescription
+                completion(false)
+                
+            } else {
+                
+                authData?.user.updatePassword(to: newPassword, completion: { error in
+                    
+                    if let error = error {
+                        self.errorMessage = error.localizedDescription
+                        completion(false)
+                    } else {
+                        completion(true)
+                    }
+                })
+            }
+        })
     }
     
     func signOut() {

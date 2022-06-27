@@ -14,7 +14,7 @@ extension UIViewController {
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let alertButton = UIAlertAction(title: "Yes", style: .default, handler: completion)
+        let alertButton = UIAlertAction(title: "Ok", style: .default, handler: completion)
         
         alert.addAction(alertButton)
         self.present(alert, animated: true, completion: nil)

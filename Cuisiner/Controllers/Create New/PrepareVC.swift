@@ -63,8 +63,9 @@ class PrepareVC: UIViewController {
         configureViewModel()
         
         guard let foodImage = delegate?.foodImageToPass,
-                let uid = self.recipeViewModel?.recipe.id,
-                let oldUrl = self.recipeViewModel?.recipe.foodImageUrl else { return }
+              let uid = recipeViewModel?.recipe.id else {return}
+                
+        let oldUrl = self.recipeViewModel?.recipe.foodImageUrl ?? ""
         
         if foodImage.isSame(with: oldUrl) {
             self.recipeViewModel?.updateRecipe()

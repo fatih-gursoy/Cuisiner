@@ -16,7 +16,6 @@ class SignUpVC: UIViewController {
     @IBOutlet weak private var usernameText: UITextField!
     @IBOutlet weak private var profileImage: CustomImageView!
     
-    
     weak var delegate: SignUpDelegate?
     private var authManager = AuthManager.shared
     private var storage = StorageService.shared
@@ -74,7 +73,8 @@ class SignUpVC: UIViewController {
                             email: newUser.userEmail,
                             userImageUrl: imageUrl)
             
-            let userViewModel = UserViewModel(user: user)
+            let userViewModel = UserViewModel()
+            userViewModel.user = user
             userViewModel.createNew()
 
         }

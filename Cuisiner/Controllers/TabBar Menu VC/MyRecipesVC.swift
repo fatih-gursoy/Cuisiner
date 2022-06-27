@@ -51,7 +51,7 @@ class MyRecipesVC: UIViewController {
         }
         
         let myProfile = UIAction(title: "Profile Settings", image: UIImage(systemName: "person.circle.fill")) { _ in
-            
+            self.routeToProfileVC()
         }
         
         let menu = UIMenu(options: .displayInline, children: [myProfile, logoutUser])
@@ -64,6 +64,16 @@ class MyRecipesVC: UIViewController {
         
         recipesViewModel.delegate = self
         recipesViewModel.fetchMyRecipes()
+    }
+    
+    func routeToProfileVC() {
+        
+        guard let profileNav = self.storyboard?.instantiateViewController(withIdentifier: "ProfileNav") else {return}
+        
+        profileNav.modalPresentationCapturesStatusBarAppearance = true
+        profileNav.modalPresentationStyle = .fullScreen
+        self.present(profileNav, animated: true)
+        
     }
 
 }
@@ -83,7 +93,6 @@ extension MyRecipesVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         recipesViewModel.recipes?.count ?? 0
-    
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
