@@ -8,7 +8,7 @@
 import UIKit
 
 class RecipeDetailVC: UIViewController {
-   
+    
     @IBOutlet private weak var recipeImage: CustomImageView!
     @IBOutlet private weak var userImage: CustomImageView!
     @IBOutlet private weak var recipeName: UILabel!
@@ -17,16 +17,18 @@ class RecipeDetailVC: UIViewController {
     @IBOutlet private weak var starButton: UIButton!
     @IBOutlet private weak var reviewCountLabel: UILabel!
     @IBOutlet private weak var scrollView: UIScrollView!
+    @IBOutlet private weak var bookmarkButton: UIButton!
     
-    var recipeViewModel: RecipeViewModel?
+    var recipeViewModel: RecipeViewModel!
+    var notificationCenter = NotificationCenter.default
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureTableView()
         configureUI()
         configureNavBar()
-
+        
     }
     
     func configureTableView() {
@@ -39,12 +41,22 @@ class RecipeDetailVC: UIViewController {
     }
     
     func configureUI() {
-        recipeViewModel?.delegate = self
+        
+        recipeViewModel.delegate = self
         recipeName.text = recipeViewModel?.recipeName
-        recipeImage.setImage(url: recipeViewModel?.recipe.foodImageUrl)
+        recipeImage.setImage(url: recipeViewModel.recipe.foodImageUrl)
+        
         starButton.setTitle(recipeViewModel?.averageScore, for: .normal)
+        
+        if recipeViewModel.recipe.ownerId == AuthManager.shared.userId {
+            bookmarkButton.isHidden = true
+        } else {
+            bookmarkButton.isSelected = recipeViewModel.isSaved
+            bookmarkButton.setImage(UIImage(systemName: "bookmark"), for: .normal)
+            bookmarkButton.setImage(UIImage(systemName: "bookmark.fill"), for: .selected)
+        }
     }
-    	
+    
     func configureNavBar() {
         
         let buttonImage =  #imageLiteral(resourceName: "XMark")
@@ -82,7 +94,28 @@ class RecipeDetailVC: UIViewController {
         }
         present(popupVC, animated: true)
     }
+    
+    
+    @IBAction func bookmarkTapped(_ sender: Any) {
+        
+        bookmarkButton.isSelected.toggle()
+        
+        switch recipeViewModel.isSaved {
+            
+        case true:
+            recipeViewModel.deleteFromSaveList()
+            presentQuickAlert(title: "❎", message: "Removed from Saved Recipes")
+            
+        case false:
+            recipeViewModel.addToSaveList()
+            presentQuickAlert(title: "✅", message: "Added to Saved Recipes")
+        }
+        
+        notificationCenter.post(name: NSNotification.Name(rawValue: "RefreshSavedList"), object: nil)
 
+    }
+    
+    
 }
 
 //MARK: TableView Delegate
@@ -120,12 +153,12 @@ extension RecipeDetailVC: RecipeViewModelDelegate {
     
     func updateView() {
         
-        userName.text = recipeViewModel?.user?.userName
-        userImage.setImage(url: recipeViewModel?.user?.userImageUrl)
-        starButton.setTitle(recipeViewModel?.averageScore, for: .normal)
+        userName.text = recipeViewModel.user?.userName
+        userImage.setImage(url: recipeViewModel.user?.userImageUrl)
+        starButton.setTitle(recipeViewModel.averageScore, for: .normal)
         
-        guard let reviewCount = recipeViewModel?.reviewCount else { return }
+        guard let reviewCount = recipeViewModel.reviewCount else { return }
         reviewCountLabel.text = "(\(reviewCount) Reviews)"
     }
-
+    
 }

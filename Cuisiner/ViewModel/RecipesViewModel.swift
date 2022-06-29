@@ -29,7 +29,6 @@ class RecipesViewModel {
         
         guard let recipe = self.recipes?[index] else { return nil }
         return RecipeViewModel(recipe: recipe)
-        
     }
     
     func fetchAllRecipes() {
@@ -62,7 +61,7 @@ class RecipesViewModel {
     
     func filterRecipes(_ category: Recipe.Category) {
         
-        if selectedCategories.contains(category) == false {
+        if !selectedCategories.contains(category) {
             selectedCategories.append(category)
         } else {
             selectedCategories = selectedCategories.filter { $0 != category }

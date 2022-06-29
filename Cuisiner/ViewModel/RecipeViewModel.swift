@@ -17,6 +17,8 @@ class RecipeViewModel {
         return FirebaseService.shared
     }
     
+    private var coredataManager = CoreDataManager()
+    
     var recipe: Recipe
     var user: User?
     
@@ -29,6 +31,11 @@ class RecipeViewModel {
     
     var recipeName: String? {
         return recipe.name
+    }
+    
+    var recipeID: String {
+        guard let recipeID = self.recipe.id else { return ""}
+        return recipeID
     }
     
     var averageScore: String {
@@ -54,6 +61,10 @@ class RecipeViewModel {
         return recipe.instructions
     }
     
+    var isSaved: Bool {        
+        return (coredataManager.fetchRecipe(recipeID) != nil)
+    }
+    
     
 // MARK: Current User Rating
     
@@ -75,7 +86,7 @@ class RecipeViewModel {
     
 
     
-// MARK: Functions
+// MARK: Firebase Functions
     
     func createNew() {
         service.addNew(to: .recipes, self.recipe)
@@ -127,5 +138,24 @@ class RecipeViewModel {
         }
         updateRecipe()
     }
+    
 
+// MARK: CoreData Functions
+    
+    func addToSaveList() {
+        
+        coredataManager.addNewRecipe(self.recipeID)
+        
+    }
+    
+    func deleteFromSaveList() {
+        
+        coredataManager.deleteRecipe(with: self.recipeID)
+        
+    }
+    
+    
+    
+    
+    
 }

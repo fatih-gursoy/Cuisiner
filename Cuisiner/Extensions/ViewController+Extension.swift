@@ -21,6 +21,17 @@ extension UIViewController {
         
     }
     
+    func presentQuickAlert(title: String, message: String) {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        self.present(alert, animated: true, completion: nil)
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+            self.dismiss(animated: true)
+        }
+        
+    }
+    
     func hideKeyboard() {
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))

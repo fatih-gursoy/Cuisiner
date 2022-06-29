@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -186,17 +187,17 @@
             <objects>
                 <viewController storyboardIdentifier="RecipeDetailVC" id="l3C-Jn-cMf" customClass="RecipeDetailVC" customModule="Cuisiner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="191-UJ-S5c">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="922"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nzX-h4-T3P">
-                                <rect key="frame" x="0.0" y="44" width="414" height="844"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="882"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OIb-BQ-jqI" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="844"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="882"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="VcV-Is-uYB">
-                                                <rect key="frame" x="5" y="5" width="404" height="834"/>
+                                                <rect key="frame" x="5" y="5" width="404" height="872"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Grw-Jr-3xa">
                                                         <rect key="frame" x="0.0" y="0.0" width="404" height="29"/>
@@ -223,13 +224,13 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ZiG-22-HzE">
-                                                        <rect key="frame" x="0.0" y="299" width="404" height="100"/>
+                                                        <rect key="frame" x="0.0" y="299" width="404" height="138"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="32l-1J-8aP">
-                                                                <rect key="frame" x="0.0" y="0.0" width="404" height="30"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="404" height="68"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qYs-gS-xKt">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="65.5" height="30"/>
+                                                                        <rect key="frame" x="0.0" y="19" width="65.5" height="30"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="30" id="ixa-9Z-Tab"/>
                                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="wOf-iI-CDy"/>
@@ -245,16 +246,37 @@
                                                                             <action selector="starButtonClicked:" destination="l3C-Jn-cMf" eventType="touchUpInside" id="YtW-j7-ak8"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="(Review count)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cii-vh-NNH">
-                                                                        <rect key="frame" x="75.5" y="4.5" width="328.5" height="21"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="(Review count)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cii-vh-NNH">
+                                                                        <rect key="frame" x="75.5" y="23.5" width="268.5" height="21"/>
                                                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
                                                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sOL-tM-LQa">
+                                                                        <rect key="frame" x="354" y="9" width="50" height="50"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="50" id="Vb5-PC-l0B"/>
+                                                                            <constraint firstAttribute="width" secondItem="sOL-tM-LQa" secondAttribute="height" multiplier="1:1" id="XEt-J2-8wt"/>
+                                                                        </constraints>
+                                                                        <color key="tintColor" name="Dark Red"/>
+                                                                        <state key="normal">
+                                                                            <color key="titleColor" name="Dark Red"/>
+                                                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <imageReference key="image" image="bookmark" catalog="system" symbolScale="large"/>
+                                                                        </state>
+                                                                        <state key="selected">
+                                                                            <color key="titleColor" name="Dark Red"/>
+                                                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        </state>
+                                                                        <connections>
+                                                                            <action selector="bookmarkTapped:" destination="l3C-Jn-cMf" eventType="touchUpInside" id="ULJ-zy-wAg"/>
+                                                                        </connections>
+                                                                    </button>
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="0V8-u8-g9C" userLabel="User StackView">
-                                                                <rect key="frame" x="0.0" y="40" width="404" height="60"/>
+                                                                <rect key="frame" x="0.0" y="78" width="404" height="60"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jzM-hu-Itl" customClass="CustomImageView" customModule="Cuisiner" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="5" width="50" height="50"/>
@@ -293,11 +315,11 @@
                                                         </constraints>
                                                     </stackView>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="uk2-ZG-iJt">
-                                                        <rect key="frame" x="30" y="409" width="344" height="365"/>
+                                                        <rect key="frame" x="30" y="447" width="344" height="365"/>
                                                         <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i7y-gx-DTH">
-                                                        <rect key="frame" x="122.5" y="784" width="159" height="50"/>
+                                                        <rect key="frame" x="122.5" y="822" width="159" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="v0q-pF-JKX"/>
                                                         </constraints>
@@ -353,8 +375,9 @@
                             <constraint firstItem="mlO-qd-yu1" firstAttribute="bottom" secondItem="nzX-h4-T3P" secondAttribute="bottom" id="qPE-yU-Hdq"/>
                         </constraints>
                     </view>
-                    <size key="freeformSize" width="414" height="922"/>
+                    <size key="freeformSize" width="414" height="960"/>
                     <connections>
+                        <outlet property="bookmarkButton" destination="sOL-tM-LQa" id="Q8i-Hx-guj"/>
                         <outlet property="ingredientTable" destination="uk2-ZG-iJt" id="pfZ-0Y-8vi"/>
                         <outlet property="recipeImage" destination="4I0-qc-dXU" id="ezT-XA-u4X"/>
                         <outlet property="recipeName" destination="Grw-Jr-3xa" id="XwH-Yq-HWZ"/>
@@ -367,7 +390,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="giB-tI-DN8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4961" y="279"/>
+            <point key="canvasLocation" x="4960.8695652173919" y="291.29464285714283"/>
         </scene>
         <!--Start CookVC-->
         <scene sceneID="f1d-X8-mdR">
@@ -824,16 +847,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ghe-PN-c9h">
-                                <rect key="frame" x="0.0" y="118" width="414" height="778"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ghe-PN-c9h">
+                                <rect key="frame" x="0.0" y="108" width="414" height="734"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Gpf-GN-0X4">
-                                        <rect key="frame" x="20" y="0.0" width="374" height="39"/>
+                                        <rect key="frame" x="20" y="0.0" width="374" height="96"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tYV-m5-ina">
-                                                <rect key="frame" x="0.0" y="0.0" width="39" height="39"/>
+                                                <rect key="frame" x="0.0" y="18" width="60" height="60"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="tYV-m5-ina" secondAttribute="height" multiplier="1:1" id="rZZ-ln-xua"/>
+                                                    <constraint firstAttribute="width" constant="60" id="2nV-yb-JVg"/>
+                                                    <constraint firstAttribute="height" constant="60" id="Eet-kv-Byd"/>
                                                 </constraints>
                                                 <imageReference key="image" image="recipeBook" renderingMode="hierarchical">
                                                     <hierarchicalColors>
@@ -845,39 +869,58 @@
                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Recipe Book" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m7y-SI-Pwz">
-                                                <rect key="frame" x="69" y="4" width="305" height="30.5"/>
+                                                <rect key="frame" x="90" y="32.5" width="284" height="30.5"/>
                                                 <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="26"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="DUR-8K-R9w" customClass="CustomSegmented" customModule="Cuisiner" customModuleProvider="target">
+                                        <rect key="frame" x="70" y="106" width="274" height="32"/>
+                                        <segments>
+                                            <segment title="My Recipes"/>
+                                            <segment title="Saved"/>
+                                        </segments>
+                                        <color key="selectedSegmentTintColor" name="Dark Red"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="selectedTextColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="segmentChanged:" destination="eyO-lI-W1K" eventType="valueChanged" id="8pt-hW-KJI"/>
+                                        </connections>
+                                    </segmentedControl>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="75" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="QA6-nD-vOf">
-                                        <rect key="frame" x="0.0" y="59" width="414" height="719"/>
+                                        <rect key="frame" x="0.0" y="147" width="414" height="587"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="QA6-nD-vOf" firstAttribute="leading" secondItem="ghe-PN-c9h" secondAttribute="leading" id="89z-A0-UbR"/>
-                                    <constraint firstAttribute="trailing" secondItem="Gpf-GN-0X4" secondAttribute="trailing" constant="20" id="Cr6-iH-9Xe"/>
-                                    <constraint firstItem="Gpf-GN-0X4" firstAttribute="height" secondItem="ghe-PN-c9h" secondAttribute="height" multiplier="0.05" id="MXD-OO-Vek"/>
-                                    <constraint firstItem="Gpf-GN-0X4" firstAttribute="leading" secondItem="ghe-PN-c9h" secondAttribute="leading" constant="20" id="aZ6-d1-50C"/>
-                                    <constraint firstAttribute="bottom" secondItem="QA6-nD-vOf" secondAttribute="bottom" id="lEs-Xo-WIA"/>
-                                    <constraint firstAttribute="trailing" secondItem="QA6-nD-vOf" secondAttribute="trailing" id="lxT-WF-43q"/>
+                                    <constraint firstAttribute="trailing" secondItem="QA6-nD-vOf" secondAttribute="trailing" id="9Ok-9g-T7o"/>
+                                    <constraint firstItem="QA6-nD-vOf" firstAttribute="leading" secondItem="ghe-PN-c9h" secondAttribute="leading" id="BMM-Rt-q4k"/>
+                                    <constraint firstItem="QA6-nD-vOf" firstAttribute="height" secondItem="ghe-PN-c9h" secondAttribute="height" multiplier="0.8" id="EcN-Mj-mLq"/>
+                                    <constraint firstItem="Gpf-GN-0X4" firstAttribute="leading" secondItem="ghe-PN-c9h" secondAttribute="leading" constant="20" id="S8C-mD-uUl"/>
+                                    <constraint firstItem="DUR-8K-R9w" firstAttribute="leading" secondItem="ghe-PN-c9h" secondAttribute="leading" constant="70" id="oVZ-QU-FTb"/>
+                                    <constraint firstAttribute="trailing" secondItem="Gpf-GN-0X4" secondAttribute="trailing" constant="20" id="tjF-mD-TeX"/>
+                                    <constraint firstAttribute="bottom" secondItem="QA6-nD-vOf" secondAttribute="bottom" id="zfd-gu-yqG"/>
+                                    <constraint firstAttribute="trailing" secondItem="DUR-8K-R9w" secondAttribute="trailing" constant="70" id="zvO-LH-8Y0"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YlW-wC-9d8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="ghe-PN-c9h" secondAttribute="bottom" id="7sf-0u-wVe"/>
-                            <constraint firstItem="ghe-PN-c9h" firstAttribute="trailing" secondItem="YlW-wC-9d8" secondAttribute="trailing" id="ghq-f1-otD"/>
-                            <constraint firstItem="ghe-PN-c9h" firstAttribute="leading" secondItem="YlW-wC-9d8" secondAttribute="leading" id="s8j-KK-15r"/>
-                            <constraint firstItem="ghe-PN-c9h" firstAttribute="top" secondItem="YlW-wC-9d8" secondAttribute="top" constant="30" id="zc4-86-KhR"/>
+                            <constraint firstItem="ghe-PN-c9h" firstAttribute="trailing" secondItem="YlW-wC-9d8" secondAttribute="trailing" id="hSH-om-hwf"/>
+                            <constraint firstItem="YlW-wC-9d8" firstAttribute="bottom" secondItem="ghe-PN-c9h" secondAttribute="bottom" constant="20" id="rZW-q4-sXl"/>
+                            <constraint firstItem="ghe-PN-c9h" firstAttribute="leading" secondItem="YlW-wC-9d8" secondAttribute="leading" id="rbo-nq-nqC"/>
+                            <constraint firstItem="ghe-PN-c9h" firstAttribute="top" secondItem="YlW-wC-9d8" secondAttribute="top" constant="20" id="v0d-79-BJs"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="PFY-xN-kSS"/>
                     <connections>
+                        <outlet property="segmentedControl" destination="DUR-8K-R9w" id="bsC-kh-p5w"/>
                         <outlet property="tableView" destination="QA6-nD-vOf" id="Jwx-WK-zmN"/>
                     </connections>
                 </viewController>
@@ -1525,6 +1568,9 @@
         </scene>
     </scenes>
     <designables>
+        <designable name="DUR-8K-R9w">
+            <size key="intrinsicContentSize" width="181" height="31"/>
+        </designable>
         <designable name="W19-OJ-O7a">
             <size key="intrinsicContentSize" width="135" height="34"/>
         </designable>
@@ -1541,6 +1587,7 @@
     <resources>
         <image name="arrow.right.circle.fill" catalog="system" width="128" height="121"/>
         <image name="background" width="1024" height="1024"/>
+        <image name="bookmark" catalog="system" width="112" height="128"/>
         <image name="category" width="25" height="25"/>
         <image name="chevron.backward.circle.fill" catalog="system" width="128" height="121"/>
         <image name="cook" width="25" height="25"/>

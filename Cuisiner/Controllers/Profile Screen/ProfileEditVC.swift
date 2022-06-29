@@ -87,11 +87,6 @@ class ProfileEditVC: UIViewController {
         let updatePasswordVC = PasswordVC()
         updatePasswordVC.modalPresentationStyle = .overCurrentContext
         updatePasswordVC.modalTransitionStyle = .crossDissolve
-//        updatePasswordVC.doneTappedCompletion = {
-//            
-//
-//        }
-        
         present(updatePasswordVC, animated: true)
         
     }

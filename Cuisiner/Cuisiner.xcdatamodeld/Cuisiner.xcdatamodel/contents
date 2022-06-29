@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="SavedRecipe" representedClassName="SavedRecipe" syncable="YES" codeGenerationType="class">
+        <attribute name="recipeID" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="SavedRecipe" positionX="-63" positionY="-9" width="128" height="44"/>
+    </elements>
 </model>
