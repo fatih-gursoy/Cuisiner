@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -319,7 +318,7 @@
                                                         <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i7y-gx-DTH">
-                                                        <rect key="frame" x="122.5" y="822" width="159" height="50"/>
+                                                        <rect key="frame" x="50" y="822" width="304" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="v0q-pF-JKX"/>
                                                         </constraints>
@@ -336,8 +335,10 @@
                                                 <constraints>
                                                     <constraint firstItem="i7y-gx-DTH" firstAttribute="centerX" secondItem="VcV-Is-uYB" secondAttribute="centerX" id="76E-yG-QEh"/>
                                                     <constraint firstItem="uk2-ZG-iJt" firstAttribute="leading" secondItem="VcV-Is-uYB" secondAttribute="leading" constant="30" id="FQr-WB-Vx1"/>
+                                                    <constraint firstItem="i7y-gx-DTH" firstAttribute="leading" secondItem="VcV-Is-uYB" secondAttribute="leading" constant="50" id="K8H-t6-Kkz"/>
                                                     <constraint firstAttribute="trailing" secondItem="ZiG-22-HzE" secondAttribute="trailing" id="SFA-5g-1UZ"/>
                                                     <constraint firstAttribute="trailing" secondItem="4I0-qc-dXU" secondAttribute="trailing" id="T9v-ar-jLt"/>
+                                                    <constraint firstAttribute="trailing" secondItem="i7y-gx-DTH" secondAttribute="trailing" constant="50" id="WTV-kK-8b9"/>
                                                     <constraint firstAttribute="bottom" secondItem="i7y-gx-DTH" secondAttribute="bottom" id="c5c-Jl-y0D"/>
                                                     <constraint firstItem="ZiG-22-HzE" firstAttribute="leading" secondItem="VcV-Is-uYB" secondAttribute="leading" id="dQ3-p5-8sq"/>
                                                     <constraint firstAttribute="trailing" secondItem="Grw-Jr-3xa" secondAttribute="trailing" id="thd-Cj-rmO"/>
