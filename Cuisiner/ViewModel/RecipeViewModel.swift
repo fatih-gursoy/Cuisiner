@@ -13,10 +13,7 @@ protocol RecipeViewModelDelegate: AnyObject {
 
 class RecipeViewModel {
            
-    private var service: FirebaseServiceProtocol {
-        return FirebaseService.shared
-    }
-    
+    private var service: FirebaseServiceProtocol {return FirebaseService.shared}
     private var coredataManager = CoreDataManager()
     
     var recipe: Recipe
@@ -26,9 +23,10 @@ class RecipeViewModel {
     
     init(recipe: Recipe) {
         self.recipe = recipe
-        self.fetchUser()
     }
-    
+        
+    // MARK: -Properties
+
     var recipeName: String? {
         return recipe.name
     }
@@ -65,9 +63,6 @@ class RecipeViewModel {
         return (coredataManager.fetchRecipe(recipeID) != nil)
     }
     
-    
-// MARK: Current User Rating
-    
     var myScore: Int {
         guard let myScore = myRating?.score else { return 0 }
         return myScore
@@ -80,13 +75,12 @@ class RecipeViewModel {
     
     private var ratingIndex: Int? {
         guard let index = self.recipe.ratingList?.firstIndex(where: {
-            $0.userId == AuthManager.shared.userId }) else { return nil }
+            $0.userId == AuthManager.shared.userId })
+        else { return nil }
         return index
     }
     
-
-    
-// MARK: Firebase Functions
+// MARK: -Firebase Functions
     
     func createNew() {
         service.addNew(to: .recipes, self.recipe)
@@ -104,7 +98,6 @@ class RecipeViewModel {
     }
     
     func fetchUser() {
-        
         service.fetchByField(from: .users, queryField: "userId",
                              queryParam: recipe.ownerId!) { [weak self] (users: [User]) in
             
@@ -118,44 +111,29 @@ class RecipeViewModel {
     }
     
     func updateRating(_ rating: Rating) {
-        
         guard let score = rating.score else { return }
         
         if score > 0 {
-            
             if self.myRating?.userId == rating.userId {
-                
                 guard let index = self.ratingIndex else { return }
                 self.recipe.ratingList?[index].score = score
-                
             } else {
                 self.recipe.ratingList?.append(rating)
             }
-            
         } else {
             guard let index = self.ratingIndex else { return }
             self.recipe.ratingList?.remove(at: index)
         }
         updateRecipe()
     }
-    
 
-// MARK: CoreData Functions
+// MARK: -CoreData Functions
     
     func addToSaveList() {
-        
         coredataManager.addNewRecipe(self.recipeID)
-        
     }
     
     func deleteFromSaveList() {
-        
         coredataManager.deleteRecipe(with: self.recipeID)
-        
     }
-    
-    
-    
-    
-    
 }

@@ -24,8 +24,7 @@ class MyRecipesViewModel {
         self.service = service
     }
     
-    func recipeAtIndex(selectedTable: Int, index:Int) -> RecipeViewModel? {
-        
+    func recipeAtIndex(selectedTable: Int, index:Int) -> RecipeViewModel? { 
         let recipe = self.recipes[selectedTable][index]
         return RecipeViewModel(recipe: recipe)
     }
@@ -84,15 +83,7 @@ class MyRecipesViewModel {
     func deleteFromSaveList(id: String) {
         
         coredataManager.deleteRecipe(with: id)
-        delegate?.updateView()
+        fetchSavedRecipes()
     }
-
-    
-}
-
-struct RecipeList {
-    
-    var myRecipes: [Recipe]
-    var saved: [Recipe]
     
 }

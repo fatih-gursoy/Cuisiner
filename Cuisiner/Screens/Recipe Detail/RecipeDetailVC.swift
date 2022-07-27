@@ -25,45 +25,42 @@ class RecipeDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        recipeViewModel.delegate = self
         configureTableView()
         configureUI()
         configureNavBar()
-        
     }
     
     func configureTableView() {
         
         ingredientTable.delegate = self
         ingredientTable.dataSource = self
-        
-        ingredientTable.register(UINib(nibName: "IngredientTableCell", bundle: nil), forCellReuseIdentifier: IngredientTableCell.identifier)
+        ingredientTable.register(UINib(nibName: "IngredientTableCell", bundle: nil),
+                                 forCellReuseIdentifier: IngredientTableCell.identifier)
         
     }
     
     func configureUI() {
         
-        recipeViewModel.delegate = self
+        recipeViewModel.fetchUser()
         recipeName.text = recipeViewModel?.recipeName
         recipeImage.setImage(url: recipeViewModel.recipe.foodImageUrl)
-        
         starButton.setTitle(recipeViewModel?.averageScore, for: .normal)
         
         if recipeViewModel.recipe.ownerId == AuthManager.shared.userId {
             bookmarkButton.isHidden = true
         } else {
             bookmarkButton.isSelected = recipeViewModel.isSaved
-            bookmarkButton.setImage(UIImage(systemName: "bookmark"), for: .normal)
-            bookmarkButton.setImage(UIImage(systemName: "bookmark.fill"), for: .selected)
         }
     }
     
     func configureNavBar() {
         
         let buttonImage =  #imageLiteral(resourceName: "XMark")
-        let barButton = UIBarButtonItem(image: buttonImage, style: .plain, target: self, action: #selector(closeTapped))
+        let barButton = UIBarButtonItem(image: buttonImage, style: .plain,
+                                        target: self, action: #selector(closeTapped))
         
         self.navigationItem.rightBarButtonItem = barButton
-        
     }
     
     @objc func closeTapped() {
@@ -72,8 +69,7 @@ class RecipeDetailVC: UIViewController {
     
     @IBAction func startClicked(_ sender: Any) {
         
-        guard let startCookVC = self.storyboard?.instantiateViewController(
-            withIdentifier: "StartCookVC") as? StartCookVC else {return}
+        guard let startCookVC = self.storyboard?.instantiateViewController(withIdentifier: "StartCookVC") as? StartCookVC else {return}
         
         startCookVC.recipeViewModel = self.recipeViewModel
         self.navigationController?.pushViewController(startCookVC, animated: true)
@@ -110,15 +106,11 @@ class RecipeDetailVC: UIViewController {
             recipeViewModel.addToSaveList()
             presentQuickAlert(title: "✅", message: "Added to Saved Recipes")
         }
-        
         notificationCenter.post(name: NSNotification.Name(rawValue: "RefreshSavedList"), object: nil)
-
     }
-    
-    
 }
 
-//MARK: TableView Delegate
+// MARK: -TableView Delegate
 
 extension RecipeDetailVC: UITableViewDelegate, UITableViewDataSource {
     
@@ -128,7 +120,9 @@ extension RecipeDetailVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: IngredientTableCell.identifier, for: indexPath) as? IngredientTableCell else { fatalError("Could not load") }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: IngredientTableCell.identifier,
+                                                       for: indexPath) as? IngredientTableCell
+        else { fatalError("Could not load") }
         
         cell.configure(ingredient: recipeViewModel?.ingredients?[indexPath.row])
         return cell
@@ -147,16 +141,14 @@ extension RecipeDetailVC: UITableViewDelegate, UITableViewDataSource {
     
 }
 
-//MARK: ViewModelDelegate
+//MARK: -ViewModelDelegate
 
 extension RecipeDetailVC: RecipeViewModelDelegate {
     
     func updateView() {
-        
         userName.text = recipeViewModel.user?.userName
         userImage.setImage(url: recipeViewModel.user?.userImageUrl)
         starButton.setTitle(recipeViewModel.averageScore, for: .normal)
-        
         guard let reviewCount = recipeViewModel.reviewCount else { return }
         reviewCountLabel.text = "(\(reviewCount) Reviews)"
     }

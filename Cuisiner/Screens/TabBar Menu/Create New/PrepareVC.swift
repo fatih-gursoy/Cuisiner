@@ -27,14 +27,11 @@ class PrepareVC: UIViewController {
 
         tableView.delegate = self
         tableView.dataSource = self
-        
         tableView.register(UINib(nibName: PrepareTableCell.identifier, bundle: nil), forCellReuseIdentifier: PrepareTableCell.identifier)
-                
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         configureViewModel()
-        
     }
     
     @IBAction func addButtonClicked(_ sender: Any) {
@@ -46,7 +43,6 @@ class PrepareVC: UIViewController {
         scrollView.layoutIfNeeded()
         let bottom = scrollView.contentSize.height - scrollView.bounds.height
         scrollView.setContentOffset(CGPoint(x: 0, y: bottom), animated: true)
-        
     }
     
     @IBAction func saveButtonClicked(_ sender: Any) {
@@ -55,7 +51,6 @@ class PrepareVC: UIViewController {
             self.saveRecipe()
             self.dismiss(animated: true)
         }
-        
     }
     
     func saveRecipe() {
@@ -75,7 +70,6 @@ class PrepareVC: UIViewController {
                 self.recipeViewModel?.updateRecipe()
             }
         }
-        
     }
     
     func updateUI() {
@@ -83,24 +77,16 @@ class PrepareVC: UIViewController {
         self.instructions = instructions
     }
     
-    
     func configureViewModel() {
         
         for i in 0..<tableView.numberOfRows(inSection: 0) {
-            
             let cell = tableView.cellForRow(at: IndexPath(row: i, section: 0)) as! PrepareTableCell
-            
             instructions[i].step = cell.rowLabel.text
             instructions[i].text = cell.textView.text
-            
-            if let cookTime = cell.timeTextField.text {
-                instructions[i].time = Int(cookTime)
-            }
+            if let cookTime = cell.timeTextField.text { instructions[i].time = Int(cookTime) }
         }
         recipeViewModel?.recipe.instructions = instructions
     }
-    
-
 }
 
 //MARK: -TableViewDelegates

@@ -232,14 +232,13 @@
 			isa = PBXGroup;
 			children = (
 				3D0A72C527D79E4800F26608 /* AppDelegate */,
+				3D0A72C627D79E7700F26608 /* StoryBoard */,
 				3D0A72C927D79E9500F26608 /* Models */,
 				3D8F960127EC998B004DE7A2 /* Service */,
 				3D8F95FE27EC7F2C004DE7A2 /* ViewModel */,
-				3D0A72C727D79E8500F26608 /* Controllers */,
-				3D0A72C627D79E7700F26608 /* Views */,
+				3D0A72C727D79E8500F26608 /* Screens */,
 				3D0A72C427D79E2100F26608 /* Resources */,
 				3D5C32BC27F470EC0048CAC0 /* Extensions */,
-				3D0A729627D6A8C100F26608 /* Cuisiner.xcdatamodeld */,
 			);
 			path = Cuisiner;
 			sourceTree = "<group>";
@@ -281,32 +280,25 @@
 			path = AppDelegate;
 			sourceTree = "<group>";
 		};
-		3D0A72C627D79E7700F26608 /* Views */ = {
+		3D0A72C627D79E7700F26608 /* StoryBoard */ = {
 			isa = PBXGroup;
 			children = (
 				3D0A729327D6A8C100F26608 /* Main.storyboard */,
 				3D0A729B27D6A8C400F26608 /* LaunchScreen.storyboard */,
-				3D3D46332816BC55007D2D5A /* CategoryCollectionCell */,
-				3D3D46342816BC69007D2D5A /* RecipeCollectionCell */,
-				3D5C32AF27F26A540048CAC0 /* MyRecipeTableCell */,
-				3D513E8727E0DB5500B17CB6 /* PrepareTableCell */,
-				3D174E9527DE19A500D5DCB3 /* IngredientTableCell */,
-				3D9F42272832FCAD003FA3E0 /* InstructionsCollectionCell */,
 			);
-			path = Views;
+			path = StoryBoard;
 			sourceTree = "<group>";
 		};
-		3D0A72C727D79E8500F26608 /* Controllers */ = {
+		3D0A72C727D79E8500F26608 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				3DDC76C628338BFF00DBCBB7 /* Welcome Screens */,
-				3DDC76C728338D1600DBCBB7 /* TabBar Menu VC */,
-				3DDC76C428338BCA00DBCBB7 /* Create New */,
+				3DDC76C628338BFF00DBCBB7 /* Log in Screens */,
+				3DDC76C728338D1600DBCBB7 /* TabBar Menu */,
 				3D4E1F70285B63B700941045 /* Profile Screen */,
 				3DDC76C328338BBC00DBCBB7 /* Recipe Detail */,
 				3D8D6A0D2840C65E00DDEED4 /* CustomViews */,
 			);
-			path = Controllers;
+			path = Screens;
 			sourceTree = "<group>";
 		};
 		3D0A72C927D79E9500F26608 /* Models */ = {
@@ -353,6 +345,25 @@
 			path = CustomTableView;
 			sourceTree = "<group>";
 		};
+		3D1B305128916CA100166FC9 /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				3D174E8D27D8064600D5DCB3 /* DiscoverVC.swift */,
+				3D3D46342816BC69007D2D5A /* RecipeCollectionCell */,
+				3D3D46332816BC55007D2D5A /* CategoryCollectionCell */,
+			);
+			path = Discover;
+			sourceTree = "<group>";
+		};
+		3D1B305228916CE800166FC9 /* My RecipesVC */ = {
+			isa = PBXGroup;
+			children = (
+				3D174E9127DA453B00D5DCB3 /* MyRecipesVC.swift */,
+				3D5C32AF27F26A540048CAC0 /* MyRecipeTableCell */,
+			);
+			path = "My RecipesVC";
+			sourceTree = "<group>";
+		};
 		3D3D46332816BC55007D2D5A /* CategoryCollectionCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -386,6 +397,7 @@
 			isa = PBXGroup;
 			children = (
 				3D4AA44F286AFB1E008FA49D /* CoreDataManager.swift */,
+				3D0A729627D6A8C100F26608 /* Cuisiner.xcdatamodeld */,
 			);
 			path = "Data Persistance";
 			sourceTree = "<group>";
@@ -508,6 +520,7 @@
 			children = (
 				3DA92E602816066500DE0065 /* RecipeDetailVC.swift */,
 				3D9F422128328055003FA3E0 /* StartCookVC.swift */,
+				3D9F42272832FCAD003FA3E0 /* InstructionsCollectionCell */,
 			);
 			path = "Recipe Detail";
 			sourceTree = "<group>";
@@ -517,28 +530,31 @@
 			children = (
 				3D174E8F27DA451B00D5DCB3 /* CreateNewVC.swift */,
 				3D582E8327DFF10F007ED621 /* PrepareVC.swift */,
+				3D174E9527DE19A500D5DCB3 /* IngredientTableCell */,
+				3D513E8727E0DB5500B17CB6 /* PrepareTableCell */,
 			);
 			path = "Create New";
 			sourceTree = "<group>";
 		};
-		3DDC76C628338BFF00DBCBB7 /* Welcome Screens */ = {
+		3DDC76C628338BFF00DBCBB7 /* Log in Screens */ = {
 			isa = PBXGroup;
 			children = (
 				3D0A729127D6A8C100F26608 /* WelcomeVC.swift */,
 				3D174E8827D7FF4300D5DCB3 /* SignUp */,
 				3D174E8727D7FF2D00D5DCB3 /* SignIn */,
 			);
-			path = "Welcome Screens";
+			path = "Log in Screens";
 			sourceTree = "<group>";
 		};
-		3DDC76C728338D1600DBCBB7 /* TabBar Menu VC */ = {
+		3DDC76C728338D1600DBCBB7 /* TabBar Menu */ = {
 			isa = PBXGroup;
 			children = (
 				3D174E9327DB730500D5DCB3 /* TabBarVC.swift */,
-				3D174E8D27D8064600D5DCB3 /* DiscoverVC.swift */,
-				3D174E9127DA453B00D5DCB3 /* MyRecipesVC.swift */,
+				3D1B305128916CA100166FC9 /* Discover */,
+				3DDC76C428338BCA00DBCBB7 /* Create New */,
+				3D1B305228916CE800166FC9 /* My RecipesVC */,
 			);
-			path = "TabBar Menu VC";
+			path = "TabBar Menu";
 			sourceTree = "<group>";
 		};
 		3DFCC8E52869ECA500297EEA /* PasswordView */ = {

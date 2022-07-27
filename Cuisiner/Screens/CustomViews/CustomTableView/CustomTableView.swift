@@ -20,7 +20,4 @@ class CustomTableView: UITableView {
             invalidateIntrinsicContentSize()
         }
     }
-    
-    
-    
 }

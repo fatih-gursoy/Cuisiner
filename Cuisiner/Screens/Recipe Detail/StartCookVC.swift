@@ -23,24 +23,22 @@ class StartCookVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.title = recipeViewModel?.recipeName
         configureUI()
-
     }
     
     func configureUI() {
         
         guard let instructions = recipeViewModel?.instructions else { return }
-        pageControl.numberOfPages = instructions.count
+        self.title = instructions.count > 0
+        ? recipeViewModel?.recipeName
+        : "There is no instruction"
         
+        pageControl.numberOfPages = instructions.count
         collectionView.delegate = self
         collectionView.dataSource = self
         
         collectionView.register(UINib(nibName: InstructionCollectionCell.identifier, bundle: nil), forCellWithReuseIdentifier: InstructionCollectionCell.identifier)
-
     }
-    
     
     @IBAction func nextButtonClicked(_ sender: Any) {
         
@@ -58,13 +56,11 @@ class StartCookVC: UIViewController {
     }
     
     func doneAlert() {
-        
         let alertVC = CustomPopupVC(type: .cookDone)
         alertVC.modalPresentationStyle = .overCurrentContext
         alertVC.modalTransitionStyle = .crossDissolve
         alertVC.doneTappedCompletion = { self.dismiss(animated: true) }
         present(alertVC, animated: true)
-        
     }
     
     
@@ -73,9 +69,7 @@ class StartCookVC: UIViewController {
 extension StartCookVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return recipeViewModel?.recipe.instructions?.count ?? 0
-
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -90,20 +84,11 @@ extension StartCookVC: UICollectionViewDelegate, UICollectionViewDataSource, UIC
         
         let itemWidth = collectionView.frame.width
         let itemHeight = collectionView.frame.height
-        
         return CGSize(width: itemWidth, height: itemHeight)
-        
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        
         let width = scrollView.frame.width
         currentPage = Int(scrollView.contentOffset.x / width)
-        
     }
-    
-    
-    
-    
-    
 }

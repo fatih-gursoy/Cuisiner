@@ -19,14 +19,12 @@ class ProfileVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         configureNavBar()
         updateUI()
-        
+        self.view.layoutIfNeeded()
     }
     
     func updateUI() {
-        
         userViewModel.delegate = self
         userViewModel.fetchUser()
     }
@@ -70,7 +68,5 @@ extension ProfileVC: UserViewModelDelegate {
         bioLabel.text = userViewModel.userBio
         recipeCountLabel.text = userViewModel.recipeCount
         averageRatingLabel.text = userViewModel.averageRating
-        
     }
-    
 }

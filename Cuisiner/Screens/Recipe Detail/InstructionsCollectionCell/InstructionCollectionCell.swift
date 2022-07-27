@@ -33,35 +33,27 @@ class InstructionCollectionCell: UICollectionViewCell {
             totalSecond = totalMinute * 60
             runTime = totalSecond
         }
-        
         configureTimer(totalSec: totalSecond)
         configureAnimation()
-
     }
     
     func configureAnimation() {
-        
         animationView = .init(name: "cooking")
         animationView?.loopMode = .loop
         animationView?.contentMode = .scaleAspectFit
         animationView?.animationSpeed = 0.5
         bottomView.addSubview(animationView!)
-        
     }
     
     func configureTimer(totalSec: Int) {
-                
         let hour = totalSec / 3600
         let min = totalSec / 60 % 60
         let second = totalSec % 60
-        
         let timeText = NSString(format: "%0.2d:%0.2d:%0.2d", hour, min, second)
         self.timerLabel.text = String(describing: timeText)
-        
     }
     
     func runTimer() {
-        
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
         
         isTimerRunning = true
@@ -77,14 +69,12 @@ class InstructionCollectionCell: UICollectionViewCell {
         }
     }
     
-    
     @IBAction func startClicked(_ sender: Any) {
                 
         if isTimerRunning == false {
             self.runTimer()
             startButton.setTitle("Pause", for: .normal)
             animationView?.play()
-
         } else {
             timer.invalidate()
             isTimerRunning = false
@@ -106,6 +96,4 @@ class InstructionCollectionCell: UICollectionViewCell {
         runTime = totalSecond
         configureTimer(totalSec: runTime)
     }
-    
-    
 }

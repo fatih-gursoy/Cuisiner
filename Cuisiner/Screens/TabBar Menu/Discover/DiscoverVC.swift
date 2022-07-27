@@ -136,9 +136,7 @@ extension DiscoverVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         }
         
         if collectionView == recipeCollectionView {
-            
             routeToDetailVC(indexPath.row)
-        
         }
     }
     
@@ -161,19 +159,15 @@ extension DiscoverVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     
     func routeToDetailVC(_ index: Int) {
         
-        guard let recipeDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "RecipeDetailVC") as? RecipeDetailVC else { fatalError("Could not load") }
-                    
+        guard let recipeDetailNav = self.storyboard?.instantiateViewController(withIdentifier: "RecipeDetailNav") as? UINavigationController,
+              let recipeDetailVC = recipeDetailNav.viewControllers.first as? RecipeDetailVC
+                
+        else {fatalError("Could not Load")}
+        
+        recipeDetailNav.modalPresentationStyle = .fullScreen
+        recipeDetailNav.modalPresentationCapturesStatusBarAppearance = true
         recipeDetailVC.recipeViewModel = recipesViewModel.recipeAtIndex(index)
-        
-        let navController = UINavigationController(rootViewController: recipeDetailVC)
-        
-        let backImage = UIImage(systemName: "chevron.backward.circle.fill")
-        navController.navigationBar.backIndicatorImage = backImage
-        navController.navigationBar.backIndicatorTransitionMaskImage = backImage
-        navController.modalPresentationStyle = .fullScreen
-        
-        self.present(navController, animated: true)
-        
+        self.present(recipeDetailNav, animated: true)
     }
     
 }

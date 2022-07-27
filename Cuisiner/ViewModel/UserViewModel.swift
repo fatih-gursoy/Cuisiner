@@ -85,7 +85,6 @@ extension UserViewModel {
             
             self?.averageRating = String(format: "%.1f", avg)
             self?.recipeCount = String(recipes.count)
-            
         }
     }
     

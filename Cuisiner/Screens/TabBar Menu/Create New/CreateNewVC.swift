@@ -156,6 +156,7 @@ class CreateNewVC: UIViewController {
     
 }
 
+// MARK: - ImagePass Delegate
 
 protocol ImagePassDelegate: AnyObject {
     var foodImageToPass: UIImageView? { get }
@@ -164,13 +165,9 @@ protocol ImagePassDelegate: AnyObject {
 extension CreateNewVC: ImagePassDelegate {
     
     var foodImageToPass: UIImageView? {
-        get {
-            return self.foodImage
-        }
+        get {return self.foodImage}
     }
-    
 }
-
 
 // MARK: - Tableview Delegates
 
@@ -180,26 +177,20 @@ extension CreateNewVC: UITableViewDelegate, UITableViewDataSource {
         return ingredients.count
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: IngredientTableCell.identifier, for: indexPath) as? IngredientTableCell else { fatalError("Could not Load")}
         
         cell.configureForUpdate(ingredient: ingredients[indexPath.row])
-        
         cell.deleteButton.tag = indexPath.row
         cell.deleteButton.addTarget(self, action: #selector(deleteRow(_:)), for: .touchUpInside)
-        
         return cell
-        
     }
     
     @objc func deleteRow(_ sender: UIButton) {
-        
         let row = sender.tag
         ingredients.remove(at: row)
         tableView.reloadData()
-        
     }
     
     func getIngredientData() {
@@ -210,7 +201,6 @@ extension CreateNewVC: UITableViewDelegate, UITableViewDataSource {
             
             ingredients[i].name = cell.itemName.text
             ingredients[i].amount = cell.itemQuantity.text
-
         }
     }
     
@@ -222,42 +212,33 @@ extension CreateNewVC: UITableViewDelegate, UITableViewDataSource {
             title.font = UIFont(name: "Gill Sans SemiBold", size: 20.0)
             return title
         }()
-        
         return headerTitle
     }
-    
-    
 }
-
 
 // MARK: - ImagePickerDelegate
         
 extension CreateNewVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func configureImagePicker() {
-        
         let gesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         foodImage.addGestureRecognizer(gesture)
         foodImage.isUserInteractionEnabled = true
     }
 
     @objc func imageTapped() {
-        
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = .photoLibrary
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
         present(imagePicker, animated: true, completion: nil)
-        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 
         foodImage.image = info[.originalImage] as? UIImage
         self.dismiss(animated: true, completion: nil)
-
     }
-    
 }
 
 // MARK: -PickerView Delegate
@@ -277,7 +258,6 @@ extension CreateNewVC: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
         selectedCategory = Recipe.Category.allCases[row]
         let buttonTitle = selectedCategory?.rawValue
         categoryButton.setTitle(buttonTitle, for: .normal)
@@ -285,12 +265,10 @@ extension CreateNewVC: UIPickerViewDelegate, UIPickerViewDataSource {
     
     
     @IBAction func categoryButtonClicked(_ sender: Any) {
-        
         configurePickerView()
     }
     
     func configurePickerView() {
-        
         pickerView.contentMode = .top
         pickerView.frame = CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 200, width: UIScreen.main.bounds.size.width, height: 200)
         
@@ -307,17 +285,12 @@ extension CreateNewVC: UIPickerViewDelegate, UIPickerViewDataSource {
             self.view.addSubview(self.pickerView)
             self.view.addSubview(self.toolBar)
         })
-
     }
     
     @objc func doneButtonTapped() {
-        
         pickerView.removeFromSuperview()
         toolBar.removeFromSuperview()
-        
     }
-    
-    
 }
 
 // MARK: -TextField number restriction
@@ -330,6 +303,5 @@ extension CreateNewVC: UITextFieldDelegate {
         let characterSet = CharacterSet(charactersIn: string)
         return onlyNumbers.isSuperset(of: characterSet)
     }
-    
 }
 

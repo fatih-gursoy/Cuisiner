@@ -51,18 +51,13 @@ class MyRecipesVC: UIViewController {
         
     }
     
-    
     func fetchData() {
-        
         myRecipesViewModel.fetchMyRecipes()
         myRecipesViewModel.fetchSavedRecipes()
-        
     }
     
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
-        
         self.selectedTable = sender.selectedSegmentIndex
-        
     }
     
 }
@@ -75,14 +70,12 @@ extension MyRecipesVC: MyRecipesViewModelDelegate {
 }
 
 
-//MARK: Tableview Delegates
+//MARK: -Tableview Delegates
 
 extension MyRecipesVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return myRecipesViewModel.recipes[selectedTable].count
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -102,13 +95,10 @@ extension MyRecipesVC: UITableViewDelegate, UITableViewDataSource {
             guard let recipeId = myRecipesViewModel.recipes[selectedTable][indexPath.row].id else {return}
             
             switch selectedTable {
-                
             case 0:
                 myRecipesViewModel.deleteRecipe(id: recipeId)
-                
             case 1:
                 myRecipesViewModel.deleteFromSaveList(id: recipeId)
-                
             default:
                 break
             }
@@ -117,22 +107,42 @@ extension MyRecipesVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        guard let createNewNav = self.storyboard?.instantiateViewController(withIdentifier:         "CreateNewNav") as? UINavigationController,
-              let createNewVC = createNewNav.viewControllers.first as? CreateNewVC
-                
-        else {fatalError("Could not Load")}
-        
-        createNewNav.modalPresentationStyle = .fullScreen
-        createNewNav.modalPresentationCapturesStatusBarAppearance = true
-        
-        createNewVC.recipeViewModel = myRecipesViewModel.recipeAtIndex(selectedTable: selectedTable, index: indexPath.row)
-        self.present(createNewNav, animated: true)
-        
+        switch selectedTable {
+    
+        case 0:
+            
+            guard let createNewNav = self.storyboard?.instantiateViewController(withIdentifier:         "CreateNewNav") as? UINavigationController,
+                  let createNewVC = createNewNav.viewControllers.first as? CreateNewVC
+                    
+            else {fatalError("Could not Load")}
+            
+            createNewNav.modalPresentationStyle = .fullScreen
+            createNewNav.modalPresentationCapturesStatusBarAppearance = true
+            
+            createNewVC.recipeViewModel = myRecipesViewModel.recipeAtIndex(selectedTable: selectedTable, index: indexPath.row)
+            self.present(createNewNav, animated: true)
+            
+        case 1:
+            
+            guard let recipeDetailNav = self.storyboard?.instantiateViewController(withIdentifier: "RecipeDetailNav") as? UINavigationController,
+                  let recipeDetailVC = recipeDetailNav.viewControllers.first as? RecipeDetailVC
+                    
+            else {fatalError("Could not Load")}
+            
+            recipeDetailNav.modalPresentationStyle = .fullScreen
+            recipeDetailNav.modalPresentationCapturesStatusBarAppearance = true
+            
+            recipeDetailVC.recipeViewModel = myRecipesViewModel.recipeAtIndex(selectedTable: selectedTable, index: indexPath.row)
+            self.present(recipeDetailNav, animated: true)
+                    
+        default:
+            break
+        }
     }
     
 }
 
-//MARK: Navbar Menu Configuration
+//MARK: -Navbar Menu Configuration
 
 extension MyRecipesVC {
     
