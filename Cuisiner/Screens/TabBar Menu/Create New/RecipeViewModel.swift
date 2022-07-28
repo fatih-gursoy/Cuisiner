@@ -37,7 +37,6 @@ class RecipeViewModel {
     }
     
     var averageScore: String {
-        
         var averageScore = 0.0
         guard let ratingList = recipe.ratingList else { return "0.0" }
         let sum = ratingList.map { $0.score! }.reduce(0, +)
@@ -98,8 +97,9 @@ class RecipeViewModel {
     }
     
     func fetchUser() {
+        guard let ownerId = recipe.ownerId else {return}
         service.fetchByField(from: .users, queryField: "userId",
-                             queryParam: recipe.ownerId!) { [weak self] (users: [User]) in
+                             queryParam: ownerId) { [weak self] (users: [User]) in
             
             guard let user = users.first else {return}
             self?.user = user

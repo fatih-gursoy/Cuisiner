@@ -46,6 +46,5 @@ class SignInVC: UIViewController {
 }
 
 protocol SignInDelegate: AnyObject {
-    
     func didUserSignIn()
 }

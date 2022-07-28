@@ -30,6 +30,8 @@
 		3D174E9827DE19C800D5DCB3 /* IngredientTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D174E9627DE19C700D5DCB3 /* IngredientTableCell.swift */; };
 		3D174E9927DE19C800D5DCB3 /* IngredientTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D174E9727DE19C700D5DCB3 /* IngredientTableCell.xib */; };
 		3D19A0E4285328DC00B570A2 /* CustomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D19A0E3285328DC00B570A2 /* CustomTableView.swift */; };
+		3D1B30542891DDDF00166FC9 /* ProfileVCBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1B30532891DDDF00166FC9 /* ProfileVCBuilder.swift */; };
+		3D1B305828927E1900166FC9 /* ProfileEditVCBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1B305728927E1900166FC9 /* ProfileEditVCBuilder.swift */; };
 		3D20E268283F5D06003DD793 /* done.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D20E267283F5D06003DD793 /* done.json */; };
 		3D3D46312816BC4F007D2D5A /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3D462F2816BC4F007D2D5A /* CategoryCell.swift */; };
 		3D3D46322816BC4F007D2D5A /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D3D46302816BC4F007D2D5A /* CategoryCell.xib */; };
@@ -120,6 +122,8 @@
 		3D174E9627DE19C700D5DCB3 /* IngredientTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableCell.swift; sourceTree = "<group>"; };
 		3D174E9727DE19C700D5DCB3 /* IngredientTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IngredientTableCell.xib; sourceTree = "<group>"; };
 		3D19A0E3285328DC00B570A2 /* CustomTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableView.swift; sourceTree = "<group>"; };
+		3D1B30532891DDDF00166FC9 /* ProfileVCBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVCBuilder.swift; sourceTree = "<group>"; };
+		3D1B305728927E1900166FC9 /* ProfileEditVCBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditVCBuilder.swift; sourceTree = "<group>"; };
 		3D20E267283F5D06003DD793 /* done.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = done.json; sourceTree = "<group>"; };
 		3D3D462F2816BC4F007D2D5A /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		3D3D46302816BC4F007D2D5A /* CategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
@@ -235,7 +239,6 @@
 				3D0A72C627D79E7700F26608 /* Storyboard */,
 				3D0A72C927D79E9500F26608 /* Models */,
 				3D8F960127EC998B004DE7A2 /* Service */,
-				3D8F95FE27EC7F2C004DE7A2 /* ViewModel */,
 				3D0A72C727D79E8500F26608 /* Screens */,
 				3D0A72C427D79E2100F26608 /* Resources */,
 				3D5C32BC27F470EC0048CAC0 /* Extensions */,
@@ -294,8 +297,8 @@
 			children = (
 				3DDC76C628338BFF00DBCBB7 /* Log in Screens */,
 				3DDC76C728338D1600DBCBB7 /* TabBar Menu */,
-				3D4E1F70285B63B700941045 /* Profile Screen */,
 				3DDC76C328338BBC00DBCBB7 /* Recipe Detail */,
+				3D4E1F70285B63B700941045 /* Profile Screen */,
 				3D8D6A0D2840C65E00DDEED4 /* CustomViews */,
 			);
 			path = Screens;
@@ -349,6 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				3D174E8D27D8064600D5DCB3 /* DiscoverVC.swift */,
+				3D5C32AD27F262F40048CAC0 /* RecipesViewModel.swift */,
 				3D3D46342816BC69007D2D5A /* RecipeCollectionCell */,
 				3D3D46332816BC55007D2D5A /* CategoryCollectionCell */,
 			);
@@ -359,9 +363,28 @@
 			isa = PBXGroup;
 			children = (
 				3D174E9127DA453B00D5DCB3 /* MyRecipesVC.swift */,
+				3D4AA451286B96D6008FA49D /* MyRecipesViewModel.swift */,
 				3D5C32AF27F26A540048CAC0 /* MyRecipeTableCell */,
 			);
 			path = "My RecipesVC";
+			sourceTree = "<group>";
+		};
+		3D1B305528927DDB00166FC9 /* ProfileVC */ = {
+			isa = PBXGroup;
+			children = (
+				3D597884285B649800CD3A7C /* ProfileVC.swift */,
+				3D1B30532891DDDF00166FC9 /* ProfileVCBuilder.swift */,
+			);
+			path = ProfileVC;
+			sourceTree = "<group>";
+		};
+		3D1B305628927DEE00166FC9 /* ProfileEditVC */ = {
+			isa = PBXGroup;
+			children = (
+				3D920C2E285D34C000A8272D /* ProfileEditVC.swift */,
+				3D1B305728927E1900166FC9 /* ProfileEditVCBuilder.swift */,
+			);
+			path = ProfileEditVC;
 			sourceTree = "<group>";
 		};
 		3D3D46332816BC55007D2D5A /* CategoryCollectionCell */ = {
@@ -405,8 +428,9 @@
 		3D4E1F70285B63B700941045 /* Profile Screen */ = {
 			isa = PBXGroup;
 			children = (
-				3D597884285B649800CD3A7C /* ProfileVC.swift */,
-				3D920C2E285D34C000A8272D /* ProfileEditVC.swift */,
+				3D5C32B827F449570048CAC0 /* UserViewModel.swift */,
+				3D1B305528927DDB00166FC9 /* ProfileVC */,
+				3D1B305628927DEE00166FC9 /* ProfileEditVC */,
 			);
 			path = "Profile Screen";
 			sourceTree = "<group>";
@@ -477,17 +501,6 @@
 			path = StarView;
 			sourceTree = "<group>";
 		};
-		3D8F95FE27EC7F2C004DE7A2 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				3D5C32B827F449570048CAC0 /* UserViewModel.swift */,
-				3D8F95FF27EC7F6C004DE7A2 /* RecipeViewModel.swift */,
-				3D5C32AD27F262F40048CAC0 /* RecipesViewModel.swift */,
-				3D4AA451286B96D6008FA49D /* MyRecipesViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		3D8F960127EC998B004DE7A2 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -530,6 +543,7 @@
 			children = (
 				3D174E8F27DA451B00D5DCB3 /* CreateNewVC.swift */,
 				3D582E8327DFF10F007ED621 /* PrepareVC.swift */,
+				3D8F95FF27EC7F6C004DE7A2 /* RecipeViewModel.swift */,
 				3D174E9527DE19A500D5DCB3 /* IngredientTableCell */,
 				3D513E8727E0DB5500B17CB6 /* PrepareTableCell */,
 			);
@@ -838,6 +852,7 @@
 				3D41D35127FC83780030763C /* StorageService.swift in Sources */,
 				3D82E2CA283B9C900013032D /* CustomPopupVC.swift in Sources */,
 				3D9F42252832FCA7003FA3E0 /* InstructionCollectionCell.swift in Sources */,
+				3D1B30542891DDDF00166FC9 /* ProfileVCBuilder.swift in Sources */,
 				3D174E9027DA451B00D5DCB3 /* CreateNewVC.swift in Sources */,
 				3DA92E612816066500DE0065 /* RecipeDetailVC.swift in Sources */,
 				3D597885285B649800CD3A7C /* ProfileVC.swift in Sources */,
@@ -863,6 +878,7 @@
 				3DEBA83F281751D100E9774B /* ImageView+Extension.swift in Sources */,
 				3D920C2F285D34C000A8272D /* ProfileEditVC.swift in Sources */,
 				3D174E8E27D8064600D5DCB3 /* DiscoverVC.swift in Sources */,
+				3D1B305828927E1900166FC9 /* ProfileEditVCBuilder.swift in Sources */,
 				3D703820281991C2002A554E /* Database.swift in Sources */,
 				3D0A729827D6A8C100F26608 /* Cuisiner.xcdatamodeld in Sources */,
 				3D582E8427DFF110007ED621 /* PrepareVC.swift in Sources */,

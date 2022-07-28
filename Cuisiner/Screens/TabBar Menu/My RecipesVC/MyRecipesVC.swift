@@ -27,10 +27,9 @@ class MyRecipesVC: UIViewController {
         myRecipesViewModel.delegate = self
         configureTableView()
         configureNavBar()
-        fetchData()
+        myRecipesViewModel.load()
         
         notificationCenter.addObserver(self, selector: #selector(refreshSavedList(_:)), name: NSNotification.Name(rawValue: "RefreshSavedList"), object: nil)
-        
     }
     
     deinit {
@@ -38,7 +37,7 @@ class MyRecipesVC: UIViewController {
     }
     
     @objc func refreshSavedList(_ notification: Notification) {
-        myRecipesViewModel.fetchSavedRecipes()
+        myRecipesViewModel.load()
     }
     
     func configureTableView() {
@@ -51,11 +50,6 @@ class MyRecipesVC: UIViewController {
         
     }
     
-    func fetchData() {
-        myRecipesViewModel.fetchMyRecipes()
-        myRecipesViewModel.fetchSavedRecipes()
-    }
-    
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
         self.selectedTable = sender.selectedSegmentIndex
     }
@@ -65,7 +59,9 @@ class MyRecipesVC: UIViewController {
 extension MyRecipesVC: MyRecipesViewModelDelegate {
     
     func updateView() {
-        tableView.reloadData()
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.reloadData()
+        }
     }
 }
 
@@ -147,29 +143,34 @@ extension MyRecipesVC: UITableViewDelegate, UITableViewDataSource {
 extension MyRecipesVC {
     
     func configureNavBar() {
+                       
+        let myProfile = UIAction(title: "Profile Settings", image: UIImage(systemName: "person.circle.fill")) { _ in
+            self.routeToProfileVC()
+        }
+
+        let help = UIAction(title: "Help", image: UIImage(systemName: "info.circle.fill")) { _ in
+            //
+        }
         
         let logoutUser = UIAction(title: "Log out", image: UIImage(systemName: "power.circle.fill")) { _ in
             self.signOut()
         }
         
-        let myProfile = UIAction(title: "Profile Settings", image: UIImage(systemName: "person.circle.fill")) { _ in
-            self.routeToProfileVC()
-        }
-        
-        let menu = UIMenu(options: .displayInline, children: [myProfile, logoutUser])
-        let barButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), menu: menu)
+        let menu = UIMenu(options: .displayInline, children: [myProfile, help, logoutUser])
+        let barButton = UIBarButtonItem(image: UIImage(systemName: "gearshape.fill"), menu: menu)
         self.navigationItem.rightBarButtonItem = barButton
-        
     }
     
     func routeToProfileVC() {
         
-        guard let profileNav = self.storyboard?.instantiateViewController(withIdentifier: "ProfileNav") else {return}
+        guard let user = myRecipesViewModel.user else {return}
+        let userViewModel = UserViewModel(user: user)
         
-        profileNav.modalPresentationCapturesStatusBarAppearance = true
-        profileNav.modalPresentationStyle = .fullScreen
-        self.present(profileNav, animated: true)
+        let navController = UINavigationController(rootViewController: ProfileVCBuilder.build(viewModel: userViewModel))
         
+        navController.modalPresentationCapturesStatusBarAppearance = true
+        navController.modalPresentationStyle = .fullScreen
+        self.present(navController, animated: true)
     }
     
     @objc func signOut() {

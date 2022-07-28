@@ -73,10 +73,8 @@ class SignUpVC: UIViewController {
                             email: newUser.userEmail,
                             userImageUrl: imageUrl)
             
-            let userViewModel = UserViewModel()
-            userViewModel.user = user
+            let userViewModel = UserViewModel(user: user)
             userViewModel.createNew()
-
         }
     }
     

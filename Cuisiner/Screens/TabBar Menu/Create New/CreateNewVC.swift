@@ -45,12 +45,9 @@ class CreateNewVC: UIViewController {
         
         serveField.delegate = self
         cookTimeField.delegate = self
-                
     }
     
-    
     func updateUI() {
-        
         guard let recipeViewModel = recipeViewModel else { return }
         self.headerLabel.text = "Update Recipe"
         self.recipeNameField.text = recipeViewModel.recipeName
@@ -71,14 +68,12 @@ class CreateNewVC: UIViewController {
     }
     
     func configureTableView() {
-        
         tableView.delegate = self
         tableView.dataSource = self
         
         tableView.register(UINib(nibName: "IngredientTableCell", bundle: nil), forCellReuseIdentifier: IngredientTableCell.identifier)
 
         tableView.reloadData()
-        
     }
     
 
@@ -91,7 +86,6 @@ class CreateNewVC: UIViewController {
         self.navigationItem.rightBarButtonItem = barButton
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = UIImage()
-        
     }
     
     
@@ -102,16 +96,13 @@ class CreateNewVC: UIViewController {
     @IBAction func addButtonClicked(_ sender: Any) {
         
         getIngredientData()
-
         let newIngredient = Ingredient()
         ingredients.append(newIngredient)
         
         tableView.reloadData()
         let bottom = tableView.contentSize.height
         scrollView.setContentOffset(CGPoint(x: 0, y: bottom), animated: true)
-        
     }
-
     
     @IBAction func continueClicked(_ sender: Any) {
        
@@ -121,9 +112,7 @@ class CreateNewVC: UIViewController {
       
         prepareVC.recipeViewModel = self.recipeViewModel
         prepareVC.delegate = self
-        
         navigationController?.pushViewController(prepareVC, animated: true)
-        
     }
     
     func configureViewModel() {

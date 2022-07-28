@@ -14,6 +14,7 @@ protocol MyRecipesViewModelDelegate: AnyObject {
 class MyRecipesViewModel {
        
     var recipes: [[Recipe]] = [[], []]
+    var user: User?
     
     weak var delegate: MyRecipesViewModelDelegate?
     
@@ -24,15 +25,14 @@ class MyRecipesViewModel {
         self.service = service
     }
     
-    func recipeAtIndex(selectedTable: Int, index:Int) -> RecipeViewModel? { 
-        let recipe = self.recipes[selectedTable][index]
-        return RecipeViewModel(recipe: recipe)
+    var userId: String? {
+        return AuthManager.shared.userId
     }
-        
-    func fetchMyRecipes() {
-     
-        guard let userId = AuthManager.shared.userId else {return}
-     
+    
+//MARK: - Private Functions
+    
+    private func fetchMyRecipes() {
+        guard let userId = userId else {return}
         service.fetchByField(from: .recipes,
                              queryField: "ownerId",
                              queryParam: userId) { [weak self] (recipes: [Recipe]) in
@@ -45,15 +45,13 @@ class MyRecipesViewModel {
         }
     }
     
-    func fetchSavedRecipes() {
+    private func fetchSavedRecipes() {
      
         let dispatchGroup = DispatchGroup()
-        
         let recipeIDs = coredataManager.savedRecipes.map { $0.recipeID }
         var savedRecipes = [Recipe]()
         
         for recipeID in recipeIDs {
-                
             dispatchGroup.enter()
             guard let recipeID = recipeID else { return }
             
@@ -65,25 +63,43 @@ class MyRecipesViewModel {
                 dispatchGroup.leave()
             }
         }
-        
         dispatchGroup.notify(queue: .main) {
             self.recipes[1] = savedRecipes
             self.delegate?.updateView()
         }
+    }
+    
+//MARK: - Functions
+    
+    func load() {
+        self.fetchMyRecipes()
+        self.fetchSavedRecipes()
+        self.fetchUser()
+    }
+    
+    func fetchUser() {
+        guard let userId = userId else {return}
 
+        service.fetchByField(from: .users, queryField: "userId",
+                             queryParam: userId) { [weak self] (users: [User]) in
+            
+            guard let user = users.first else {return}
+            self?.user = user
+        }
+    }
+    
+    func recipeAtIndex(selectedTable: Int, index:Int) -> RecipeViewModel? { 
+        let recipe = self.recipes[selectedTable][index]
+        return RecipeViewModel(recipe: recipe)
     }
     
     func deleteRecipe(id: String) {
-        
         service.delete(from: .recipes, with: id)
         delegate?.updateView()
-        
     }
     
     func deleteFromSaveList(id: String) {
-        
         coredataManager.deleteRecipe(with: id)
         fetchSavedRecipes()
     }
-    
 }

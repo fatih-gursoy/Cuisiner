@@ -17,13 +17,11 @@ struct User: Codable {
     var bio: String?
     
     enum CodingKeys: String, CodingKey {
-        
         case userId
         case userName
         case userNameLowercased
         case email
         case userImageUrl
         case bio
-        
     }
 }

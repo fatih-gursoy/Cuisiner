@@ -18,30 +18,28 @@ class RecipeDetailVC: UIViewController {
     @IBOutlet private weak var reviewCountLabel: UILabel!
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var bookmarkButton: UIButton!
+    @IBOutlet private weak var userStackView: UIStackView!
     
     var recipeViewModel: RecipeViewModel!
     var notificationCenter = NotificationCenter.default
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         recipeViewModel.delegate = self
         configureTableView()
         configureUI()
         configureNavBar()
+        addTapGesture()
     }
     
     func configureTableView() {
-        
         ingredientTable.delegate = self
         ingredientTable.dataSource = self
         ingredientTable.register(UINib(nibName: "IngredientTableCell", bundle: nil),
                                  forCellReuseIdentifier: IngredientTableCell.identifier)
-        
     }
     
     func configureUI() {
-        
         recipeViewModel.fetchUser()
         recipeName.text = recipeViewModel?.recipeName
         recipeImage.setImage(url: recipeViewModel.recipe.foodImageUrl)
@@ -54,12 +52,27 @@ class RecipeDetailVC: UIViewController {
         }
     }
     
+    func addTapGesture() {
+        userStackView.isUserInteractionEnabled = true
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(toProfileVC))
+        userStackView.addGestureRecognizer(gesture)
+    }
+    
+    @objc func toProfileVC() {
+        guard let user = recipeViewModel.user else {return}
+        let userViewModel = UserViewModel(user: user)
+        
+        let navController = UINavigationController(rootViewController: ProfileVCBuilder.build(viewModel: userViewModel))
+        navController.modalPresentationCapturesStatusBarAppearance = true
+        navController.modalPresentationStyle = .fullScreen
+        self.present(navController, animated: true)
+    }
+    
     func configureNavBar() {
         
         let buttonImage =  #imageLiteral(resourceName: "XMark")
         let barButton = UIBarButtonItem(image: buttonImage, style: .plain,
                                         target: self, action: #selector(closeTapped))
-        
         self.navigationItem.rightBarButtonItem = barButton
     }
     
@@ -73,7 +86,6 @@ class RecipeDetailVC: UIViewController {
         
         startCookVC.recipeViewModel = self.recipeViewModel
         self.navigationController?.pushViewController(startCookVC, animated: true)
-        
     }
     
     @IBAction func starButtonClicked(_ sender: Any) {
@@ -91,7 +103,6 @@ class RecipeDetailVC: UIViewController {
         present(popupVC, animated: true)
     }
     
-    
     @IBAction func bookmarkTapped(_ sender: Any) {
         
         bookmarkButton.isSelected.toggle()
@@ -108,6 +119,7 @@ class RecipeDetailVC: UIViewController {
         }
         notificationCenter.post(name: NSNotification.Name(rawValue: "RefreshSavedList"), object: nil)
     }
+    
 }
 
 // MARK: -TableView Delegate
