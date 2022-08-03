@@ -44,7 +44,7 @@ class ProfileVC: UIViewController {
     
     func configureNavBar() {
         
-        let editButton = UIBarButtonItem(image: #imageLiteral(resourceName: "xmark"), style: .plain, target: self,
+        let editButton = UIBarButtonItem(image: #imageLiteral(resourceName: "editProfile"), style: .plain, target: self,
                                          action: #selector(editButtonTapped))
         
         let closeButton = UIBarButtonItem(image: #imageLiteral(resourceName: "xmark"), style: .plain, target: self,
