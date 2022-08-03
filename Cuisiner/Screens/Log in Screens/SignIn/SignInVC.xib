@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="emailText" destination="2t9-bV-lcV" id="bxA-Fn-lTg"/>
                 <outlet property="passwordText" destination="2Uu-En-fkx" id="IhS-r7-YMv"/>
+                <outlet property="rememberMeSwitch" destination="wht-xo-OVo" id="UBL-OG-bVT"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,21 +22,21 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="df8-Qx-gRv">
-                    <rect key="frame" x="20" y="253.5" width="374" height="228"/>
+                    <rect key="frame" x="20" y="212.5" width="374" height="310.5"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="aZt-GJ-nme" userLabel="FieldStack">
-                            <rect key="frame" x="0.0" y="0.0" width="374" height="118"/>
+                            <rect key="frame" x="0.0" y="0.0" width="374" height="119.5"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="csW-nN-3lq">
-                                    <rect key="frame" x="0.0" y="0.0" width="374" height="34"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="35.5"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2t9-bV-lcV">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="23"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="24.5"/>
+                                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kiH-gb-a3q">
-                                            <rect key="frame" x="0.0" y="33" width="374" height="1"/>
+                                            <rect key="frame" x="0.0" y="34.5" width="374" height="1"/>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="mP1-bf-98t"/>
@@ -44,12 +45,12 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fsA-ND-vsk">
-                                    <rect key="frame" x="0.0" y="84" width="374" height="34"/>
+                                    <rect key="frame" x="0.0" y="85.5" width="374" height="34"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Uu-En-fkx">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="23"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
+                                            <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                         </textField>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Squ-UL-TgV">
                                             <rect key="frame" x="0.0" y="33" width="374" height="1"/>
@@ -62,8 +63,25 @@
                                 </stackView>
                             </subviews>
                         </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bwJ-Bg-0NL">
+                            <rect key="frame" x="0.0" y="169.5" width="374" height="31"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remember Me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PZo-kp-Scn">
+                                    <rect key="frame" x="0.0" y="0.0" width="325" height="31"/>
+                                    <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
+                                    <color key="textColor" systemColor="placeholderTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" translatesAutoresizingMaskIntoConstraints="NO" id="wht-xo-OVo">
+                                    <rect key="frame" x="325" y="0.0" width="51" height="31"/>
+                                    <connections>
+                                        <action selector="switchTapped:" destination="-1" eventType="valueChanged" id="7Uc-mw-XKV"/>
+                                    </connections>
+                                </switch>
+                            </subviews>
+                        </stackView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pai-sV-3Ba">
-                            <rect key="frame" x="0.0" y="168" width="374" height="60"/>
+                            <rect key="frame" x="0.0" y="250.5" width="374" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="wSP-Dt-UlX"/>
                             </constraints>
@@ -84,7 +102,7 @@
                 </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="df8-Qx-gRv" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Eie-7s-pxa"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="df8-Qx-gRv" secondAttribute="trailing" constant="20" id="giJ-bh-44d"/>
@@ -96,8 +114,8 @@
         </view>
     </objects>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="placeholderTextColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

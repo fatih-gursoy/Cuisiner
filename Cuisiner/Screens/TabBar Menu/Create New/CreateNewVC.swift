@@ -38,6 +38,8 @@ class CreateNewVC: UIViewController {
         pickerView.dataSource = self
         
         hideKeyboard()
+//        configureUIwithKeyboardNotification(scrollView: self.scrollView)
+        configureUIwithKeyboardNotification()
         configureNavBar()
         configureImagePicker()
         updateUI()
@@ -47,6 +49,37 @@ class CreateNewVC: UIViewController {
         cookTimeField.delegate = self
     }
     
+    func configureUIwithKeyboardNotification() {
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardNotify),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardNotify),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+    }
+    
+    @objc private func keyboardNotify(notification: Notification) {
+        
+        guard let userInfo = notification.userInfo else {return}
+        
+        var keyboardSize = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as!  NSValue).cgRectValue
+        keyboardSize = self.view.convert(keyboardSize, from: nil)
+        
+        switch notification.name {
+        case UIResponder.keyboardWillShowNotification:
+            scrollView.contentInset.bottom = keyboardSize.size.height
+            
+        case UIResponder.keyboardWillHideNotification:
+            scrollView.contentInset = UIEdgeInsets.zero
+        default:
+            break
+        }
+    }
+
     func updateUI() {
         guard let recipeViewModel = recipeViewModel else { return }
         self.headerLabel.text = "Update Recipe"

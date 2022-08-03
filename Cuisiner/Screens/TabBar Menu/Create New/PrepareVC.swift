@@ -99,14 +99,9 @@ extension PrepareVC: UITableViewDelegate, UITableViewDataSource {
         
         cell.configure(instruction: instructions[indexPath.row])
         return cell
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return instructions.count
     }
-    
-    
-    
 }

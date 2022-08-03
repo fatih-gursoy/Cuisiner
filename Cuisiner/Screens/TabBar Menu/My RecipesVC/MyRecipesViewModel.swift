@@ -38,10 +38,7 @@ class MyRecipesViewModel {
                              queryParam: userId) { [weak self] (recipes: [Recipe]) in
             
             self?.recipes[0] = recipes
-            
-            DispatchQueue.main.async {
-               self?.delegate?.updateView()
-            }
+            self?.delegate?.updateView()
         }
     }
     
@@ -49,22 +46,22 @@ class MyRecipesViewModel {
      
         let dispatchGroup = DispatchGroup()
         let recipeIDs = coredataManager.savedRecipes.map { $0.recipeID }
-        var savedRecipes = [Recipe]()
+        
+        var mysavedRecipes = [Recipe]()
         
         for recipeID in recipeIDs {
             dispatchGroup.enter()
             guard let recipeID = recipeID else { return }
             
-            service.fetchByField(from: .recipes,
+            service.getDocumentByField(from: .recipes,
                                  queryField: "id",
                                  queryParam: recipeID) { (recipes: [Recipe]) in
-                
-                _ = recipes.map { savedRecipes.append($0) }
+                _ = recipes.compactMap { mysavedRecipes.append($0) }
                 dispatchGroup.leave()
             }
         }
         dispatchGroup.notify(queue: .main) {
-            self.recipes[1] = savedRecipes
+            self.recipes[1] = mysavedRecipes
             self.delegate?.updateView()
         }
     }

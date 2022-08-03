@@ -24,7 +24,6 @@ class StarView: UIStackView {
         self.alignment = .center
         self.axis = .horizontal
         self.distribution = .equalSpacing
-        
         configureButtons()
         updateButton()
     }
@@ -36,7 +35,6 @@ class StarView: UIStackView {
     func configureButtons() {
         
         for _ in 0..<5 {
-        
             let button = UIButton()
             let image = UIImage(systemName: "star")?.withRenderingMode(.alwaysTemplate)
             button.setImage(image, for: .normal)
@@ -49,7 +47,6 @@ class StarView: UIStackView {
             addArrangedSubview(button)
             buttons.append(button)
         }
-        
     }
     
     @objc func didTapped(sender: UIButton) {
@@ -59,17 +56,12 @@ class StarView: UIStackView {
         
         let selectedScore = index + 1
         selectedScore == score ? (score = 0) : (score = selectedScore)
-        
     }
     
     func updateButton() {
-        
         for (index, button) in buttons.enumerated() {
-            
             let imageName = index < score ? "star.fill" : "star"
             button.setImage(UIImage(systemName: imageName), for: .normal)
-            
         }
     }
-
 }

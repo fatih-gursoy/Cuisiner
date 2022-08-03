@@ -23,12 +23,10 @@ class MyRecipesVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         myRecipesViewModel.delegate = self
         configureTableView()
         configureNavBar()
         myRecipesViewModel.load()
-        
         notificationCenter.addObserver(self, selector: #selector(refreshSavedList(_:)), name: NSNotification.Name(rawValue: "RefreshSavedList"), object: nil)
     }
     
@@ -47,13 +45,11 @@ class MyRecipesVC: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        
     }
     
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
         self.selectedTable = sender.selectedSegmentIndex
     }
-    
 }
 
 extension MyRecipesVC: MyRecipesViewModelDelegate {
@@ -81,7 +77,6 @@ extension MyRecipesVC: UITableViewDelegate, UITableViewDataSource {
         cell.configure(viewModel: myRecipesViewModel.recipeAtIndex(selectedTable: selectedTable,
                                                                    index: indexPath.row))
         return cell
-        
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -104,9 +99,7 @@ extension MyRecipesVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         switch selectedTable {
-    
         case 0:
-            
             guard let createNewNav = self.storyboard?.instantiateViewController(withIdentifier:         "CreateNewNav") as? UINavigationController,
                   let createNewVC = createNewNav.viewControllers.first as? CreateNewVC
                     
@@ -114,12 +107,10 @@ extension MyRecipesVC: UITableViewDelegate, UITableViewDataSource {
             
             createNewNav.modalPresentationStyle = .fullScreen
             createNewNav.modalPresentationCapturesStatusBarAppearance = true
-            
             createNewVC.recipeViewModel = myRecipesViewModel.recipeAtIndex(selectedTable: selectedTable, index: indexPath.row)
             self.present(createNewNav, animated: true)
             
         case 1:
-            
             guard let recipeDetailNav = self.storyboard?.instantiateViewController(withIdentifier: "RecipeDetailNav") as? UINavigationController,
                   let recipeDetailVC = recipeDetailNav.viewControllers.first as? RecipeDetailVC
                     
@@ -127,7 +118,6 @@ extension MyRecipesVC: UITableViewDelegate, UITableViewDataSource {
             
             recipeDetailNav.modalPresentationStyle = .fullScreen
             recipeDetailNav.modalPresentationCapturesStatusBarAppearance = true
-            
             recipeDetailVC.recipeViewModel = myRecipesViewModel.recipeAtIndex(selectedTable: selectedTable, index: indexPath.row)
             self.present(recipeDetailNav, animated: true)
                     

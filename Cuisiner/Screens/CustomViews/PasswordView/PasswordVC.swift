@@ -9,17 +9,14 @@ import UIKit
 
 class PasswordVC: UIViewController {
     
-    @IBOutlet weak var oldPassword: UITextField!
-    @IBOutlet weak var newPassword: UITextField!
+    @IBOutlet private weak var oldPassword: UITextField!
+    @IBOutlet private weak var newPassword: UITextField!
     
     private var authManager = AuthManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
     }
-    
     
     @IBAction func OKTapped(_ sender: Any) {
         
@@ -46,9 +43,7 @@ class PasswordVC: UIViewController {
     }
     
     @IBAction func cancelTapped(_ sender: Any) {
-        
         self.dismiss(animated: true)
-        
     }
 }
 

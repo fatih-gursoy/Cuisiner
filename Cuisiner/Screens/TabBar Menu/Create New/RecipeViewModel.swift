@@ -36,6 +36,15 @@ class RecipeViewModel {
         return recipeID
     }
     
+    var category: String {
+        return self.recipe.category.rawValue
+    }
+    
+    var cookTime: String {
+        guard let cookTime = self.recipe.cookTime else { return ""}
+        return cookTime
+    }
+    
     var averageScore: String {
         var averageScore = 0.0
         guard let ratingList = recipe.ratingList else { return "0.0" }

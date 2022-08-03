@@ -15,6 +15,7 @@ class ProfileVC: UIViewController {
     @IBOutlet private weak var recipeCountLabel: UILabel!
     @IBOutlet private weak var averageRatingLabel: UILabel!
     @IBOutlet private weak var editButton: UIButton!
+    @IBOutlet private weak var bioText: UITextView!
     
     private var viewModel: UserViewModel
     
@@ -70,7 +71,7 @@ extension ProfileVC: UserViewModelDelegate {
             guard let self = self else {return}
             self.userImage.setImage(url: self.viewModel.userImageUrl)
             self.usernameLabel.text = self.viewModel.userName
-            self.bioLabel.text = self.viewModel.userBio
+            self.bioText.text = self.viewModel.userBio
             self.recipeCountLabel.text = self.viewModel.recipeCount
             self.averageRatingLabel.text = self.viewModel.averageRating
         }

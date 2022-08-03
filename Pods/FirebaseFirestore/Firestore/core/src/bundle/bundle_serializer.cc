@@ -34,6 +34,7 @@
 #include "Firestore/core/src/nanopb/message.h"
 #include "Firestore/core/src/nanopb/nanopb_util.h"
 #include "Firestore/core/src/timestamp_internal.h"
+#include "Firestore/core/src/util/no_destructor.h"
 #include "Firestore/core/src/util/statusor.h"
 #include "Firestore/core/src/util/string_format.h"
 #include "Firestore/core/src/util/string_util.h"
@@ -56,6 +57,7 @@ using core::LimitType;
 using core::OrderBy;
 using core::OrderByList;
 using core::Target;
+using model::DeepClone;
 using model::Document;
 using model::DocumentKey;
 using model::FieldPath;
@@ -71,13 +73,19 @@ using nanopb::Message;
 using nanopb::SetRepeatedField;
 using nanopb::SharedMessage;
 using nlohmann::json;
+using util::NoDestructor;
 using util::StatusOr;
 using util::StringFormat;
 using Operator = FieldFilter::Operator;
 
+namespace {
+const NoDestructor<Bound> kDefaultBound{Bound::FromValue(
+    MakeSharedMessage<google_firestore_v1_ArrayValue>({}), false)};
+}  // namespace
+
 template <typename T>
 const std::vector<T>& EmptyVector() {
-  static auto* empty = new std::vector<T>;
+  static NoDestructor<std::vector<T>> empty;
   return *empty;
 }
 
@@ -227,13 +235,14 @@ Filter DecodeUnaryFilter(JsonReader& reader, const json& filter) {
   }
 
   if (op == "IS_NAN") {
-    return FieldFilter::Create(path, Operator::Equal, NaNValue());
+    return FieldFilter::Create(path, Operator::Equal, DeepClone(NaNValue()));
   } else if (op == "IS_NULL") {
-    return FieldFilter::Create(path, Operator::Equal, NullValue());
+    return FieldFilter::Create(path, Operator::Equal, DeepClone(NullValue()));
   } else if (op == "IS_NOT_NAN") {
-    return FieldFilter::Create(path, Operator::NotEqual, NaNValue());
+    return FieldFilter::Create(path, Operator::NotEqual, DeepClone(NaNValue()));
   } else if (op == "IS_NOT_NULL") {
-    return FieldFilter::Create(path, Operator::NotEqual, NullValue());
+    return FieldFilter::Create(path, Operator::NotEqual,
+                               DeepClone(NullValue()));
   }
 
   reader.Fail("Unexpected unary filter operator: " + op);
@@ -534,13 +543,13 @@ BundledQuery BundleSerializer::DecodeBundledQuery(
   auto filters = DecodeWhere(reader, structured_query);
   auto order_bys = DecodeOrderBy(reader, structured_query);
 
-  auto start_at_bound = DecodeBound(reader, structured_query, "startAt");
+  auto start_at_bound = DecodeStartAtBound(reader, structured_query);
   absl::optional<Bound> start_at;
   if (start_at_bound.position()->values_count > 0) {
     start_at = std::move(start_at_bound);
   }
 
-  auto end_at_bound = DecodeBound(reader, structured_query, "endAt");
+  auto end_at_bound = DecodeEndAtBound(reader, structured_query);
   absl::optional<Bound> end_at;
   if (end_at_bound.position()->values_count > 0) {
     end_at = std::move(end_at_bound);
@@ -648,26 +657,42 @@ FilterList BundleSerializer::DecodeCompositeFilter(JsonReader& reader,
   return result;
 }
 
-Bound BundleSerializer::DecodeBound(JsonReader& reader,
-                                    const json& query,
-                                    const char* bound_name) const {
-  Bound default_bound = Bound::FromValue(
-      MakeSharedMessage<google_firestore_v1_ArrayValue>({}), false);
-  if (!query.contains(bound_name)) {
-    return default_bound;
+Bound BundleSerializer::DecodeStartAtBound(JsonReader& reader,
+                                           const json& query) const {
+  if (!query.contains("startAt")) {
+    return *kDefaultBound;
   }
 
-  std::vector<json> default_values;
-  const json& bound_json = reader.RequiredObject(bound_name, query);
-  std::vector<json> values =
-      reader.OptionalArray("values", bound_json, default_values);
+  auto result =
+      DecodeBoundFields(reader, reader.RequiredObject("startAt", query));
+  return Bound::FromValue(std::move(result.second), result.first);
+}
+
+Bound BundleSerializer::DecodeEndAtBound(JsonReader& reader,
+                                         const json& query) const {
+  if (!query.contains("endAt")) {
+    return *kDefaultBound;
+  }
+
+  auto result =
+      DecodeBoundFields(reader, reader.RequiredObject("endAt", query));
+  return Bound::FromValue(std::move(result.second), !result.first);
+}
+
+std::pair<bool, nanopb::SharedMessage<google_firestore_v1_ArrayValue>>
+BundleSerializer::DecodeBoundFields(JsonReader& reader,
+                                    const nlohmann::json& bound_json) const {
   bool before = reader.OptionalBool("before", bound_json);
 
+  std::vector<json> default_values;
+  std::vector<json> values =
+      reader.OptionalArray("values", bound_json, default_values);
   auto positions = MakeSharedMessage<google_firestore_v1_ArrayValue>({});
   SetRepeatedField(
       &positions->values, &positions->values_count, values,
       [&](const json& j) { return *DecodeValue(reader, j).release(); });
-  return Bound::FromValue(std::move(positions), before);
+
+  return {before, std::move(positions)};
 }
 
 Message<google_firestore_v1_Value> BundleSerializer::DecodeValue(

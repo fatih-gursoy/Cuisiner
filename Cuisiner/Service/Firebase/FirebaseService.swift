@@ -16,7 +16,10 @@ protocol FirebaseServiceProtocol: AnyObject {
     func delete(from collection: myCollection, with id: String)
     func fetchData<T: Decodable>(from collection: myCollection, completion: @escaping ([T]) -> Void)
     
-    func fetchByField<T: Decodable>(from collection: myCollection, queryField: String, queryParam: String, completion: @escaping ([T]) -> Void) 
+    func fetchByField<T: Decodable>(from collection: myCollection, queryField: String, queryParam: String, completion: @escaping ([T]) -> Void)
+    
+    func getDocumentByField<T: Decodable>(from collection: myCollection, queryField: String, queryParam: String, completion: @escaping ([T]) -> Void) 
+
 }
 
 class FirebaseService {
@@ -34,9 +37,8 @@ class FirebaseService {
 extension FirebaseService: FirebaseServiceProtocol {
         
     func fetchData<T: Decodable>(from collection: myCollection, completion: @escaping ([T]) -> Void) {
-
+    
         db.collection(collection.name).addSnapshotListener { querySnapshot, error in
-                
             if let error = error {
                 print("Document doesn't exist \(error)")
             } else {
@@ -59,9 +61,24 @@ extension FirebaseService: FirebaseServiceProtocol {
             if let error = error {
                 print("Document doesn't exist \(error)")
             } else {
-                
                 if let documents = querySnapshot?.documents {
-                        
+                    let result = documents.compactMap { doc in
+                        return try? doc.data(as: T.self) }
+                    completion(result)
+                }
+            }
+        }
+    }
+    
+    func getDocumentByField<T: Decodable>(from collection: myCollection, queryField: String, queryParam: String, completion: @escaping ([T]) -> Void) {
+        
+        db.collection(collection.name).whereField(queryField, isEqualTo: queryParam as Any)
+            .getDocuments { querySnapshot, error in
+                    
+            if let error = error {
+                print("Document doesn't exist \(error)")
+            } else {
+                if let documents = querySnapshot?.documents {
                     let result = documents.compactMap { doc in
                         return try? doc.data(as: T.self) }
                     completion(result)
@@ -71,7 +88,6 @@ extension FirebaseService: FirebaseServiceProtocol {
     }
     
     func addNew<T: Encodable>(to collection: myCollection,_ model: T) {
-        
         do {
             try _ = db.collection(collection.name).addDocument(from: model.self)
         } catch {
@@ -80,7 +96,6 @@ extension FirebaseService: FirebaseServiceProtocol {
     }
     
     func update<T: Encodable>(from collection: myCollection, id: String, _ model: T) {
-        
         do {
             try db.collection(collection.name).document(id).setData(from: model)
         } catch {
@@ -89,7 +104,6 @@ extension FirebaseService: FirebaseServiceProtocol {
     }
     
     func delete(from collection: myCollection, with id: String) {
-        
         db.collection(collection.name).whereField("id", isEqualTo: id as Any)
             .getDocuments { querySnapshot, error in
                 
@@ -103,7 +117,6 @@ extension FirebaseService: FirebaseServiceProtocol {
             }
         }
     }
-    
 }
 
 

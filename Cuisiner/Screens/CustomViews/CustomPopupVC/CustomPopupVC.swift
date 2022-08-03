@@ -15,14 +15,12 @@ class CustomPopupVC: UIViewController {
     
     var animationView: AnimationView?
     var starView: StarView?
-    
     var type: popUpType?
     var doneTappedCompletion: (() -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSubView()
-        
     }
     
     init(type: popUpType) {
@@ -35,9 +33,7 @@ class CustomPopupVC: UIViewController {
     }
     
     func configureSubView() {
-        
         switch type {
-            
         case .cookDone:
             configureAnimation()
         case .star(let score):
@@ -45,11 +41,9 @@ class CustomPopupVC: UIViewController {
         case .none:
             return 
         }
-        
     }
     
     func configureAnimation() {
-        
         animationView = .init(name: "done")
         guard let animationView = animationView else {return}
         animationView.loopMode = .playOnce
@@ -58,20 +52,16 @@ class CustomPopupVC: UIViewController {
         animationView.frame = subView.bounds
         subView.addSubview(animationView)
         animationView.play()
-        
     }
     
     func configureStarView(_ score: Int) {
-            
         starView = .init(frame: subView.frame)
         guard let starView = starView else {return}
         starView.score = score
         subView.addSubview(starView)
         starView.centerXAnchor.constraint(equalTo: subView.centerXAnchor).isActive = true
         starView.centerYAnchor.constraint(equalTo: subView.centerYAnchor).isActive = true
-        
     }
-    
      
     @IBAction func actionButtonClicked(_ sender: Any) {
         self.dismiss(animated: true, completion: doneTappedCompletion)
@@ -81,6 +71,4 @@ class CustomPopupVC: UIViewController {
         case cookDone
         case star(score: Int)
     }
-    
-
 }

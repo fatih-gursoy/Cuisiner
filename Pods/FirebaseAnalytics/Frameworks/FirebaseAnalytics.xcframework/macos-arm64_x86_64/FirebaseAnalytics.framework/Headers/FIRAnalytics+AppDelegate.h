@@ -11,10 +11,10 @@ NS_ASSUME_NONNULL_BEGIN
  * require delegation implementation from the AppDelegate. Instead this is automatically done by
  * Firebase Analytics. Should you choose instead to delegate manually, you can turn off the App
  * Delegate Proxy by adding FirebaseAppDelegateProxyEnabled into your app's Info.plist and setting
- * it to NO, and adding the methods in this category to corresponding delegation handlers.
+ * it to `NO`, and adding the methods in this category to corresponding delegation handlers.
  *
  * To handle Universal Links, you must return `true` in
- * UIApplicationDelegate.application(_:didFinishLaunchingWithOptions:).
+ * `UIApplicationDelegate.application(_:didFinishLaunchingWithOptions:)`.
  */
 @interface FIRAnalytics (AppDelegate)
 
@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
  * Handles events related to a URL session that are waiting to be processed.
  *
  * For optimal use of Firebase Analytics, call this method from the
- * UIApplicationDelegate.application(_:handleEventsForBackgroundURLSession:completionHandler:)
+ * `UIApplicationDelegate.application(_:handleEventsForBackgroundURLSession:completionHandler:)`
  * method of the app delegate in your app.
  *
  * @param identifier The identifier of the URL session requiring attention.
@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Handles the event when the app is launched by a URL.
  *
- * Call this method from UIApplicationDelegate.application(_:open:options:) in your app.
+ * Call this method from `UIApplicationDelegate.application(_:open:options:)` in your app.
  *
  * @param url The URL resource to open. This resource can be a network resource or a file.
  */
@@ -46,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
  * Handles the event when the app receives data associated with user activity that includes a
  * Universal Link.
  *
- * Call this method from UIApplication.application(_:continue:restorationHandler:) in your app
+ * Call this method from `UIApplication.application(_:continue:restorationHandler:)` in your app
  * delegate.
  *
  * @param userActivity The activity object containing the data associated with the task the user

@@ -9,15 +9,18 @@ import UIKit
 
 class SignInVC: UIViewController {
 
-    @IBOutlet weak var emailText: UITextField!
-    @IBOutlet weak var passwordText: UITextField!
+    @IBOutlet private weak var emailText: UITextField!
+    @IBOutlet private weak var passwordText: UITextField!
+    @IBOutlet private weak var rememberMeSwitch: UISwitch!
     
+    private var defaults = UserDefaults.standard
     weak var delegate: SignInDelegate?
     
     private var authManager = AuthManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureUI()
         hideKeyboard()
     }
 
@@ -42,7 +45,25 @@ class SignInVC: UIViewController {
         }
     }
     
-        
+    @IBAction func switchTapped(_ sender: Any) {
+            
+        if rememberMeSwitch.isOn {
+            defaults.setData(isRemember: true,
+                             email: emailText.text!,
+                             password: passwordText.text!)
+        } else {
+            defaults.removeUserLoginData()
+        }
+    }
+    
+    func configureUI() {
+        if defaults.isRemember {
+            rememberMeSwitch.isOn = true
+            emailText.text = defaults.username
+            passwordText.text = defaults.password
+        }
+    }
+    
 }
 
 protocol SignInDelegate: AnyObject {

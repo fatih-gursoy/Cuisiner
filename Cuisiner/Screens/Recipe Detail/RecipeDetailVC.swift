@@ -19,6 +19,9 @@ class RecipeDetailVC: UIViewController {
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var bookmarkButton: UIButton!
     @IBOutlet private weak var userStackView: UIStackView!
+    @IBOutlet private weak var categoryLabel: UILabel!
+    @IBOutlet private weak var cookTimeLabel: UILabel!
+    @IBOutlet private weak var serveLabel: UILabel!
     
     var recipeViewModel: RecipeViewModel!
     var notificationCenter = NotificationCenter.default
@@ -42,6 +45,9 @@ class RecipeDetailVC: UIViewController {
     func configureUI() {
         recipeViewModel.fetchUser()
         recipeName.text = recipeViewModel?.recipeName
+        categoryLabel.text = recipeViewModel.category
+        serveLabel.text = recipeViewModel.recipe.serve
+        cookTimeLabel.text = recipeViewModel.cookTime
         recipeImage.setImage(url: recipeViewModel.recipe.foodImageUrl)
         starButton.setTitle(recipeViewModel?.averageScore, for: .normal)
         
@@ -52,24 +58,7 @@ class RecipeDetailVC: UIViewController {
         }
     }
     
-    func addTapGesture() {
-        userStackView.isUserInteractionEnabled = true
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(toProfileVC))
-        userStackView.addGestureRecognizer(gesture)
-    }
-    
-    @objc func toProfileVC() {
-        guard let user = recipeViewModel.user else {return}
-        let userViewModel = UserViewModel(user: user)
-        
-        let navController = UINavigationController(rootViewController: ProfileVCBuilder.build(viewModel: userViewModel))
-        navController.modalPresentationCapturesStatusBarAppearance = true
-        navController.modalPresentationStyle = .fullScreen
-        self.present(navController, animated: true)
-    }
-    
     func configureNavBar() {
-        
         let buttonImage =  #imageLiteral(resourceName: "XMark")
         let barButton = UIBarButtonItem(image: buttonImage, style: .plain,
                                         target: self, action: #selector(closeTapped))
@@ -81,7 +70,6 @@ class RecipeDetailVC: UIViewController {
     }
     
     @IBAction func startClicked(_ sender: Any) {
-        
         guard let startCookVC = self.storyboard?.instantiateViewController(withIdentifier: "StartCookVC") as? StartCookVC else {return}
         
         startCookVC.recipeViewModel = self.recipeViewModel
@@ -89,7 +77,6 @@ class RecipeDetailVC: UIViewController {
     }
     
     @IBAction func starButtonClicked(_ sender: Any) {
-        
         guard let myScore = recipeViewModel?.myScore else {return}
         let popupVC = CustomPopupVC(type:.star(score: myScore))
         popupVC.modalPresentationStyle = .overCurrentContext
@@ -99,6 +86,7 @@ class RecipeDetailVC: UIViewController {
             let score = popupVC.starView?.score
             let myRating = Rating(userId: AuthManager.shared.userId, score: score)
             self.recipeViewModel?.updateRating(myRating)
+            self.notificationCenter.post(name: NSNotification.Name(rawValue: "RefreshSavedList"), object: nil)
         }
         present(popupVC, animated: true)
     }
@@ -108,21 +96,18 @@ class RecipeDetailVC: UIViewController {
         bookmarkButton.isSelected.toggle()
         
         switch recipeViewModel.isSaved {
-            
         case true:
             recipeViewModel.deleteFromSaveList()
             presentQuickAlert(title: "❎", message: "Removed from Saved Recipes")
-            
         case false:
             recipeViewModel.addToSaveList()
             presentQuickAlert(title: "✅", message: "Added to Saved Recipes")
         }
         notificationCenter.post(name: NSNotification.Name(rawValue: "RefreshSavedList"), object: nil)
     }
-    
 }
 
-// MARK: -TableView Delegate
+// MARK: - TableView Delegate
 
 extension RecipeDetailVC: UITableViewDelegate, UITableViewDataSource {
     
@@ -153,7 +138,7 @@ extension RecipeDetailVC: UITableViewDelegate, UITableViewDataSource {
     
 }
 
-//MARK: -ViewModelDelegate
+//MARK: - ViewModelDelegate
 
 extension RecipeDetailVC: RecipeViewModelDelegate {
     
@@ -164,5 +149,28 @@ extension RecipeDetailVC: RecipeViewModelDelegate {
         guard let reviewCount = recipeViewModel.reviewCount else { return }
         reviewCountLabel.text = "(\(reviewCount) Reviews)"
     }
+}
+
+//MARK: - User Tap Gesture
+
+extension RecipeDetailVC {
     
+    func addTapGesture() {
+        userStackView.isUserInteractionEnabled = true
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(toProfileVC))
+        userStackView.addGestureRecognizer(gesture)
+    }
+    
+    @objc func toProfileVC() {
+        guard let user = recipeViewModel.user else {return}
+        let userViewModel = UserViewModel(user: user)
+//        let navController = UINavigationController(rootViewController: ProfileVCBuilder.build(viewModel: userViewModel))
+        let vc = ProfileVCBuilder.build(viewModel: userViewModel)
+        guard let presentationController = vc.presentationController as? UISheetPresentationController else {return}
+        presentationController.detents = [.medium()]
+        
+//        navController.modalPresentationCapturesStatusBarAppearance = true
+//        navController.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
+    }
 }

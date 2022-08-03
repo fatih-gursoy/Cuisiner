@@ -12,6 +12,8 @@ class CoreDataManager {
 
     init() {}
     
+//MARK: - Private properties
+    
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Cuisiner")
         
@@ -21,11 +23,17 @@ class CoreDataManager {
         return container
     }()
     
-    private var mainContext: NSManagedObjectContext {
-        return persistentContainer.viewContext
+    private var mainContext: NSManagedObjectContext { return persistentContainer.viewContext }
+    private var fetchRequest: NSFetchRequest<SavedRecipe> {
+        let fetchRequest = SavedRecipe.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "userID == %@", userId)
+        return fetchRequest
     }
     
-    private var fetchRequest: NSFetchRequest<SavedRecipe> = SavedRecipe.fetchRequest()
+    var userId: String {
+        guard let userId = AuthManager.shared.userId else {return ""}
+        return userId
+    }
     
 // - MARK: Functions
     
@@ -34,26 +42,17 @@ class CoreDataManager {
         return items
     }
     
-    @objc func didChange() {
-        
-        
-    }
-    
     func fetchRecipe(_ recipeID: String) -> SavedRecipe? {
-                
         guard let request = try? mainContext.fetch(fetchRequest) else { return nil }
-        
         let recipes = request.filter { $0.recipeID == recipeID }
         return recipes.first
     }
     
     func addNewRecipe(_ recipeID: String) {
-        
         if savedRecipes.filter({ $0.recipeID == recipeID }).count < 1 {
-            
             let newRecipe = SavedRecipe(context: mainContext)
+            newRecipe.userID = self.userId
             newRecipe.recipeID = recipeID
-                
             do {
                 try self.mainContext.save()
             } catch {
@@ -64,7 +63,6 @@ class CoreDataManager {
     }
     
     func deleteRecipe(with recipeID: String) {
-        
         guard let recipe = fetchRecipe(recipeID) else { return }
         mainContext.delete(recipe)
         
@@ -75,5 +73,4 @@ class CoreDataManager {
             print("Unable to Delete: \(error)")
         }
     }
-
 }

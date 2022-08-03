@@ -129,7 +129,7 @@ NS_SWIFT_NAME(Analytics)
 /// @param parameters Parameters to be added to the dictionary of parameters added to every event.
 ///     They will be added to the dictionary of default event parameters, replacing any existing
 ///     parameter with the same name. Valid parameters are String, Int, and Double. Setting a key's
-///     value to NSNull() will clear that parameter. Passing in a `nil` dictionary will clear all
+///     value to `NSNull()` will clear that parameter. Passing in a `nil` dictionary will clear all
 ///     parameters.
 + (void)setDefaultEventParameters:(nullable NSDictionary<NSString *, id> *)parameters;
 

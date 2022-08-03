@@ -59,7 +59,7 @@ class StartCookVC: UIViewController {
         let alertVC = CustomPopupVC(type: .cookDone)
         alertVC.modalPresentationStyle = .overCurrentContext
         alertVC.modalTransitionStyle = .crossDissolve
-        alertVC.doneTappedCompletion = { self.dismiss(animated: true) }
+        alertVC.doneTappedCompletion = { [weak self] in self?.dismiss(animated: true) }
         present(alertVC, animated: true)
     }
     
