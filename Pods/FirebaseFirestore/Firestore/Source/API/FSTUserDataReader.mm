@@ -68,7 +68,6 @@ using firebase::firestore::core::ParsedUpdateData;
 using firebase::firestore::core::UserDataSource;
 using firebase::firestore::model::ArrayTransform;
 using firebase::firestore::model::DatabaseId;
-using firebase::firestore::model::DeepClone;
 using firebase::firestore::model::DocumentKey;
 using firebase::firestore::model::FieldMask;
 using firebase::firestore::model::FieldPath;
@@ -352,7 +351,7 @@ NS_ASSUME_NONNULL_BEGIN
     auto parsedEntry = [self parseData:entry context:context.ChildContext(idx)];
     if (!parsedEntry) {
       // Just include nulls in the array for fields being replaced with a sentinel.
-      parsedEntry.emplace(DeepClone(NullValue()));
+      parsedEntry = NullValue();
     }
     result->array_value.values[idx] = *parsedEntry->release();
   }];
@@ -433,7 +432,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (Message<google_firestore_v1_Value>)parseScalarValue:(nullable id)input
                                                context:(ParseContext &&)context {
   if (!input || [input isMemberOfClass:[NSNull class]]) {
-    return DeepClone(NullValue());
+    return NullValue();
 
   } else if ([input isKindOfClass:[NSNumber class]]) {
     // Recover the underlying type of the number, using the method described here:

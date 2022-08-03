@@ -30,8 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
  * A block type used to handle failable snapshot method callbacks.
  */
 typedef void (^FIRQuerySnapshotBlock)(FIRQuerySnapshot *_Nullable snapshot,
-                                      NSError *_Nullable error)
-    NS_SWIFT_UNAVAILABLE("Use Swift's closure syntax instead.");
+                                      NSError *_Nullable error);
 
 /**
  * A `Query` refers to a query which you can read or listen to. You can also construct
@@ -42,7 +41,7 @@ NS_SWIFT_NAME(Query)
 /** :nodoc: */
 - (id)init __attribute__((unavailable("FIRQuery cannot be created directly.")));
 
-/** The `Firestore` instance that created this query (useful for performing transactions, etc.). */
+/** The `Firestore` for the Firestore database (useful for performing transactions, etc.). */
 @property(nonatomic, strong, readonly) FIRFirestore *firestore;
 
 #pragma mark - Retrieving Data
@@ -57,8 +56,7 @@ NS_SWIFT_NAME(Query)
  * @param completion a block to execute once the documents have been successfully read.
  *     documentSet will be `nil` only if error is `non-nil`.
  */
-- (void)getDocumentsWithCompletion:
-    (void (^)(FIRQuerySnapshot *_Nullable snapshot, NSError *_Nullable error))completion
+- (void)getDocumentsWithCompletion:(FIRQuerySnapshotBlock)completion
     NS_SWIFT_NAME(getDocuments(completion:));
 
 /**
@@ -71,8 +69,7 @@ NS_SWIFT_NAME(Query)
  *     documentSet will be `nil` only if error is `non-nil`.
  */
 - (void)getDocumentsWithSource:(FIRFirestoreSource)source
-                    completion:(void (^)(FIRQuerySnapshot *_Nullable snapshot,
-                                         NSError *_Nullable error))completion
+                    completion:(FIRQuerySnapshotBlock)completion
     NS_SWIFT_NAME(getDocuments(source:completion:));
 
 /**
@@ -80,10 +77,9 @@ NS_SWIFT_NAME(Query)
  *
  * @param listener The listener to attach.
  *
- * @return A `ListenerRegistration` object that can be used to remove this listener.
+ * @return A `ListenerRegistration` that can be used to remove this listener.
  */
-- (id<FIRListenerRegistration>)addSnapshotListener:
-    (void (^)(FIRQuerySnapshot *_Nullable snapshot, NSError *_Nullable error))listener
+- (id<FIRListenerRegistration>)addSnapshotListener:(FIRQuerySnapshotBlock)listener
     NS_SWIFT_NAME(addSnapshotListener(_:));
 
 /**
@@ -97,8 +93,7 @@ NS_SWIFT_NAME(Query)
  */
 - (id<FIRListenerRegistration>)
     addSnapshotListenerWithIncludeMetadataChanges:(BOOL)includeMetadataChanges
-                                         listener:(void (^)(FIRQuerySnapshot *_Nullable snapshot,
-                                                            NSError *_Nullable error))listener
+                                         listener:(FIRQuerySnapshotBlock)listener
     NS_SWIFT_NAME(addSnapshotListener(includeMetadataChanges:listener:));
 
 #pragma mark - Filtering Data

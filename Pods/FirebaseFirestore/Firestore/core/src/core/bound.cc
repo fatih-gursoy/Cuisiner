@@ -40,29 +40,13 @@ using nanopb::SharedMessage;
 using util::ComparisonResult;
 
 Bound Bound::FromValue(SharedMessage<google_firestore_v1_ArrayValue> position,
-                       bool inclusive) {
+                       bool is_before) {
   model::SortFields(*position);
-  return Bound(std::move(position), inclusive);
+  return Bound(std::move(position), is_before);
 }
 
 bool Bound::SortsBeforeDocument(const OrderByList& order_by,
                                 const model::Document& document) const {
-  auto comparison = CompareToDocument(order_by, document);
-  return inclusive_ ? (comparison == ComparisonResult::Ascending ||
-                       comparison == ComparisonResult::Same)
-                    : (comparison == ComparisonResult::Ascending);
-}
-
-bool Bound::SortsAfterDocument(const OrderByList& order_by,
-                               const model::Document& document) const {
-  auto comparison = CompareToDocument(order_by, document);
-  return inclusive_ ? (comparison == ComparisonResult::Descending ||
-                       comparison == ComparisonResult::Same)
-                    : (comparison == ComparisonResult::Descending);
-}
-
-ComparisonResult Bound::CompareToDocument(
-    const OrderByList& order_by, const model::Document& document) const {
   HARD_ASSERT(position_->values_count <= order_by.size(),
               "Bound has more components than the provided order by.");
 
@@ -97,11 +81,12 @@ ComparisonResult Bound::CompareToDocument(
     }
   }
 
-  return result;
+  return before_ ? result <= ComparisonResult::Same
+                 : result < ComparisonResult::Same;
 }
 
-std::string Bound::PositionString() const {
-  std::string result;
+std::string Bound::CanonicalId() const {
+  std::string result = before_ ? "b:" : "a:";
   for (pb_size_t i = 0; i < position_->values_count; ++i) {
     result.append(model::CanonicalId(position_->values[i]));
   }
@@ -109,9 +94,9 @@ std::string Bound::PositionString() const {
 }
 
 std::string Bound::ToString() const {
-  return util::StringFormat("Bound(position=%s, inclusive=%s)",
+  return util::StringFormat("Bound(position=%s, before=%s)",
                             model::CanonicalId(*position_),
-                            util::ToString(inclusive_));
+                            util::ToString(before_));
 }
 
 std::ostream& operator<<(std::ostream& os, const Bound& bound) {
@@ -119,12 +104,11 @@ std::ostream& operator<<(std::ostream& os, const Bound& bound) {
 }
 
 bool operator==(const Bound& lhs, const Bound& rhs) {
-  return *lhs.position() == *rhs.position() &&
-         lhs.inclusive() == rhs.inclusive();
+  return *lhs.position() == *rhs.position() && lhs.before() == rhs.before();
 }
 
 size_t Bound::Hash() const {
-  return util::Hash(model::CanonicalId(*position_), inclusive_);
+  return util::Hash(model::CanonicalId(*position_), before_);
 }
 
 }  // namespace core

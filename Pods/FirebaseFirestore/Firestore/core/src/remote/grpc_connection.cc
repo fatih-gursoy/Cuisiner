@@ -32,7 +32,6 @@
 #include "Firestore/core/src/util/filesystem.h"
 #include "Firestore/core/src/util/hard_assert.h"
 #include "Firestore/core/src/util/log.h"
-#include "Firestore/core/src/util/no_destructor.h"
 #include "Firestore/core/src/util/statusor.h"
 #include "Firestore/core/src/util/string_format.h"
 #include "Firestore/core/src/util/warnings.h"
@@ -158,7 +157,7 @@ class HostConfigMap {
 };
 
 HostConfigMap& Config() {
-  static util::NoDestructor<HostConfigMap> config_by_host;
+  static auto* config_by_host = new HostConfigMap();
   return *config_by_host;
 }
 
@@ -203,7 +202,7 @@ class ClientLanguageToken {
 };
 
 ClientLanguageToken& LanguageToken() {
-  static util::NoDestructor<ClientLanguageToken> token;
+  static auto* token = new ClientLanguageToken();
   return *token;
 }
 

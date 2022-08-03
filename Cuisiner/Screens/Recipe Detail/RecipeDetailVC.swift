@@ -59,7 +59,7 @@ class RecipeDetailVC: UIViewController {
     }
     
     func configureNavBar() {
-        let buttonImage =  #imageLiteral(resourceName: "XMark")
+        let buttonImage =  #imageLiteral(resourceName: "xmark")
         let barButton = UIBarButtonItem(image: buttonImage, style: .plain,
                                         target: self, action: #selector(closeTapped))
         self.navigationItem.rightBarButtonItem = barButton
@@ -164,13 +164,9 @@ extension RecipeDetailVC {
     @objc func toProfileVC() {
         guard let user = recipeViewModel.user else {return}
         let userViewModel = UserViewModel(user: user)
-//        let navController = UINavigationController(rootViewController: ProfileVCBuilder.build(viewModel: userViewModel))
         let vc = ProfileVCBuilder.build(viewModel: userViewModel)
         guard let presentationController = vc.presentationController as? UISheetPresentationController else {return}
         presentationController.detents = [.medium()]
-        
-//        navController.modalPresentationCapturesStatusBarAppearance = true
-//        navController.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true)
+        present(vc, animated: true)
     }
 }

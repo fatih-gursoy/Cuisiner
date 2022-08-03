@@ -44,8 +44,7 @@ MemoryRemoteDocumentCache::MemoryRemoteDocumentCache(
 void MemoryRemoteDocumentCache::Add(const MutableDocument& document,
                                     const model::SnapshotVersion& read_time) {
   // Note: We create an explicit copy to prevent further modifications.
-  docs_ =
-      docs_.insert(document.key(), document.Clone().WithReadTime(read_time));
+  docs_ = docs_.insert(document.key(), std::make_pair(document, read_time));
 
   NOT_NULL(index_manager_);
   index_manager_->AddToCollectionParentIndex(document.key().path().PopLast());
@@ -59,7 +58,7 @@ MutableDocument MemoryRemoteDocumentCache::Get(const DocumentKey& key) {
   const auto& entry = docs_.get(key);
   // Note: We create an explicit copy to prevent modifications of the backing
   // data.
-  return entry ? entry->Clone() : MutableDocument::InvalidDocument(key);
+  return entry ? entry->first.Clone() : MutableDocument::InvalidDocument(key);
 }
 
 MutableDocumentMap MemoryRemoteDocumentCache::GetAll(
@@ -74,41 +73,37 @@ MutableDocumentMap MemoryRemoteDocumentCache::GetAll(
   return results;
 }
 
-// This method should only be called from the IndexBackfiller if LevelDB is
-// enabled.
-MutableDocumentMap MemoryRemoteDocumentCache::GetAll(const std::string&,
-                                                     const model::IndexOffset&,
-                                                     size_t) const {
-  util::ThrowInvalidArgument(
-      "getAll(String, IndexOffset, int) is not supported.");
-}
+MutableDocumentMap MemoryRemoteDocumentCache::GetMatching(
+    const Query& query, const SnapshotVersion& since_read_time) {
+  HARD_ASSERT(
+      !query.IsCollectionGroupQuery(),
+      "CollectionGroup queries should be handled in LocalDocumentsView");
 
-MutableDocumentMap MemoryRemoteDocumentCache::GetAll(
-    const model::ResourcePath& path, const model::IndexOffset& offset) {
   MutableDocumentMap results;
 
   // Documents are ordered by key, so we can use a prefix scan to narrow down
   // the documents we need to match the query against.
-  DocumentKey prefix{path.Append("")};
-  size_t immediate_children_path_length = path.size() + 1;
+  DocumentKey prefix{query.path().Append("")};
   for (auto it = docs_.lower_bound(prefix); it != docs_.end(); ++it) {
     const DocumentKey& key = it->first;
-    if (!path.IsPrefixOf(key.path())) {
+    if (!query.path().IsPrefixOf(key.path())) {
       break;
     }
-    const MutableDocument& document = it->second;
-    if (key.path().size() > immediate_children_path_length) {
-      // Exclude entries from subcollections.
+    const MutableDocument& document = it->second.first;
+    if (!document.is_found_document()) {
       continue;
     }
 
-    if (model::IndexOffset::FromDocument(document).CompareTo(offset) !=
-        util::ComparisonResult::Descending) {
-      // The document sorts before the offset.
+    const SnapshotVersion& read_time = it->second.second;
+    if (read_time <= since_read_time) {
       continue;
     }
 
-    // Note: We create an explicit copy to prevent modifications on the backing
+    if (!query.Matches(document)) {
+      continue;
+    }
+
+    // Note: We create an explicit copy to prevent modifications or the backing
     // data.
     results = results.insert(key, document.Clone());
   }
@@ -134,7 +129,7 @@ std::vector<DocumentKey> MemoryRemoteDocumentCache::RemoveOrphanedDocuments(
 int64_t MemoryRemoteDocumentCache::CalculateByteSize(const Sizer& sizer) {
   int64_t count = 0;
   for (const auto& kv : docs_) {
-    const MutableDocument& document = kv.second;
+    const MutableDocument& document = kv.second.first;
     count += sizer.CalculateByteSize(document);
   }
   return count;

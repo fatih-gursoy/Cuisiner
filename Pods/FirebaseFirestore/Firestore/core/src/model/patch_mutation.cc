@@ -17,7 +17,6 @@
 #include "Firestore/core/src/model/patch_mutation.h"
 
 #include <cstdlib>
-#include <set>
 #include <utility>
 
 #include "Firestore/core/src/model/field_path.h"
@@ -67,11 +66,10 @@ PatchMutation::Rep::Rep(DocumentKey&& key,
                         FieldMask&& mask,
                         Precondition&& precondition,
                         std::vector<FieldTransform>&& field_transforms)
-    : Mutation::Rep(std::move(key),
-                    std::move(precondition),
-                    std::move(field_transforms),
-                    std::move(mask)),
-      value_(std::move(value)) {
+    : Mutation::Rep(
+          std::move(key), std::move(precondition), std::move(field_transforms)),
+      value_(std::move(value)),
+      mask_(std::move(mask)) {
 }
 
 void PatchMutation::Rep::ApplyToRemoteDocument(
@@ -96,39 +94,25 @@ void PatchMutation::Rep::ApplyToRemoteDocument(
       .SetHasCommittedMutations();
 }
 
-absl::optional<FieldMask> PatchMutation::Rep::ApplyToLocalView(
-    MutableDocument& document,
-    absl::optional<FieldMask> previous_mask,
-    const Timestamp& local_write_time) const {
+void PatchMutation::Rep::ApplyToLocalView(
+    MutableDocument& document, const Timestamp& local_write_time) const {
   VerifyKeyMatches(document);
 
   if (!precondition().IsValidFor(document)) {
-    return previous_mask;
+    return;
   }
 
   ObjectValue& data = document.data();
   auto transform_results = LocalTransformResults(data, local_write_time);
   data.SetAll(GetPatch());
   data.SetAll(std::move(transform_results));
-  document.ConvertToFoundDocument(document.version()).SetHasLocalMutations();
-
-  if (!previous_mask.has_value()) {
-    return absl::nullopt;
-  }
-
-  std::set<FieldPath> merged_set(previous_mask.value().begin(),
-                                 previous_mask.value().end());
-  merged_set.insert(field_mask().value().begin(), field_mask().value().end());
-  std::vector<FieldPath> transformed;
-  for (const auto& transform : this->field_transforms()) {
-    merged_set.insert(transform.path());
-  }
-  return FieldMask{merged_set};
+  document.ConvertToFoundDocument(GetPostMutationVersion(document))
+      .SetHasLocalMutations();
 }
 
 TransformMap PatchMutation::Rep::GetPatch() const {
   TransformMap result;
-  for (const FieldPath& path : field_mask().value()) {
+  for (const FieldPath& path : mask_) {
     if (!path.empty()) {
       auto value = value_.Get(path);
       if (value) {
@@ -145,18 +129,18 @@ bool PatchMutation::Rep::Equals(const Mutation::Rep& other) const {
   if (!Mutation::Rep::Equals(other)) return false;
 
   const auto& other_rep = static_cast<const PatchMutation::Rep&>(other);
-  return value_ == other_rep.value_ && field_mask() == other_rep.field_mask();
+  return value_ == other_rep.value_ && mask_ == other_rep.mask_;
 }
 
 size_t PatchMutation::Rep::Hash() const {
-  return util::Hash(Mutation::Rep::Hash(), field_mask(), value_);
+  return util::Hash(Mutation::Rep::Hash(), mask_, value_);
 }
 
 std::string PatchMutation::Rep::ToString() const {
   return absl::StrCat("PatchMutation(key=", key().ToString(),
                       ", precondition=", precondition().ToString(),
                       ", value=", value().ToString(),
-                      ", mask=", field_mask().value().ToString(),
+                      ", mask=", mask().ToString(),
                       ", transforms=", util::ToString(field_transforms()), ")");
 }
 

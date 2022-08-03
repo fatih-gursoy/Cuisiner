@@ -45,8 +45,7 @@ class TransactionRunner
   TransactionRunner(const std::shared_ptr<util::AsyncQueue>& queue,
                     remote::RemoteStore* remote_store,
                     core::TransactionUpdateCallback update_callback,
-                    core::TransactionResultCallback result_callback,
-                    int max_attempts);
+                    core::TransactionResultCallback result_callback);
 
   /**
    * Runs the transaction and calls the result_callback_ with the result.

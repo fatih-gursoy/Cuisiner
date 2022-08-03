@@ -20,19 +20,19 @@ variant_for_slice()
   "FirebaseAnalytics.xcframework/macos-arm64_x86_64")
     echo ""
     ;;
-  "FirebaseAnalytics.xcframework/tvos-arm64")
-    echo ""
-    ;;
-  "FirebaseAnalytics.xcframework/ios-arm64_x86_64-maccatalyst")
-    echo "maccatalyst"
-    ;;
   "FirebaseAnalytics.xcframework/ios-arm64_i386_x86_64-simulator")
     echo "simulator"
+    ;;
+  "FirebaseAnalytics.xcframework/ios-arm64_armv7")
+    echo ""
     ;;
   "FirebaseAnalytics.xcframework/tvos-arm64_x86_64-simulator")
     echo "simulator"
     ;;
-  "FirebaseAnalytics.xcframework/ios-arm64_armv7")
+  "FirebaseAnalytics.xcframework/ios-arm64_x86_64-maccatalyst")
+    echo "maccatalyst"
+    ;;
+  "FirebaseAnalytics.xcframework/tvos-arm64")
     echo ""
     ;;
   esac
@@ -44,20 +44,20 @@ archs_for_slice()
   "FirebaseAnalytics.xcframework/macos-arm64_x86_64")
     echo "arm64 x86_64"
     ;;
-  "FirebaseAnalytics.xcframework/tvos-arm64")
-    echo "arm64"
-    ;;
-  "FirebaseAnalytics.xcframework/ios-arm64_x86_64-maccatalyst")
-    echo "arm64 x86_64"
-    ;;
   "FirebaseAnalytics.xcframework/ios-arm64_i386_x86_64-simulator")
     echo "arm64 i386 x86_64"
+    ;;
+  "FirebaseAnalytics.xcframework/ios-arm64_armv7")
+    echo "arm64 armv7"
     ;;
   "FirebaseAnalytics.xcframework/tvos-arm64_x86_64-simulator")
     echo "arm64 x86_64"
     ;;
-  "FirebaseAnalytics.xcframework/ios-arm64_armv7")
-    echo "arm64 armv7"
+  "FirebaseAnalytics.xcframework/ios-arm64_x86_64-maccatalyst")
+    echo "arm64 x86_64"
+    ;;
+  "FirebaseAnalytics.xcframework/tvos-arm64")
+    echo "arm64"
     ;;
   esac
 }
@@ -141,5 +141,5 @@ install_xcframework() {
   echo "Copied $source to $destination"
 }
 
-install_xcframework "${PODS_ROOT}/FirebaseAnalytics/Frameworks/FirebaseAnalytics.xcframework" "FirebaseAnalytics/AdIdSupport" "framework" "ios-arm64_x86_64-maccatalyst" "ios-arm64_i386_x86_64-simulator" "ios-arm64_armv7"
+install_xcframework "${PODS_ROOT}/FirebaseAnalytics/Frameworks/FirebaseAnalytics.xcframework" "FirebaseAnalytics/AdIdSupport" "framework" "ios-arm64_i386_x86_64-simulator" "ios-arm64_armv7" "ios-arm64_x86_64-maccatalyst"
 

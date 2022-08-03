@@ -184,29 +184,23 @@ MutableDocumentMap LevelDbRemoteDocumentCache::GetAllExisting(
   return result;
 }
 
-model::MutableDocumentMap LevelDbRemoteDocumentCache::GetAll(
-    const std::string& collection_group,
-    const model::IndexOffset& offset,
-    size_t limit) const {
-  (void)collection_group;
-  (void)offset;
-  (void)limit;
-  // TODO(cheryllin): Implement GetAll() together with backfiller
-  return model::MutableDocumentMap();
-}
+MutableDocumentMap LevelDbRemoteDocumentCache::GetMatching(
+    const Query& query, const SnapshotVersion& since_read_time) {
+  HARD_ASSERT(
+      !query.IsCollectionGroupQuery(),
+      "CollectionGroup queries should be handled in LocalDocumentsView");
 
-MutableDocumentMap LevelDbRemoteDocumentCache::GetAll(
-    const model::ResourcePath& path, const model::IndexOffset& offset) {
   // Use the query path as a prefix for testing if a document matches the query.
-  size_t immediate_children_path_length = path.size() + 1;
+  const ResourcePath& query_path = query.path();
+  size_t immediate_children_path_length = query_path.size() + 1;
 
-  if (offset.read_time() != SnapshotVersion::None()) {
+  if (since_read_time != SnapshotVersion::None()) {
     // Execute an index-free query and filter by read time. This is safe since
     // all document changes to queries that have a
     // last_limbo_free_snapshot_version (`since_read_time`) have a read time
     // set.
-    std::string start_key =
-        LevelDbRemoteDocumentReadTimeKey::KeyPrefix(path, offset.read_time());
+    std::string start_key = LevelDbRemoteDocumentReadTimeKey::KeyPrefix(
+        query_path, since_read_time);
     auto it = db_->current_transaction()->NewIterator();
     it->Seek(util::ImmediateSuccessor(start_key));
 
@@ -215,19 +209,14 @@ MutableDocumentMap LevelDbRemoteDocumentCache::GetAll(
     LevelDbRemoteDocumentReadTimeKey current_key;
     for (; it->Valid() && current_key.Decode(it->key()); it->Next()) {
       const ResourcePath& collection_path = current_key.collection_path();
-      if (collection_path != path) {
+      if (collection_path != query_path) {
         break;
       }
 
       const SnapshotVersion& read_time = current_key.read_time();
-      if (read_time > offset.read_time()) {
-        DocumentKey document_key(path.Append(current_key.document_id()));
+      if (read_time > since_read_time) {
+        DocumentKey document_key(query_path.Append(current_key.document_id()));
         remote_keys = remote_keys.insert(document_key);
-      } else if (read_time == offset.read_time()) {
-        DocumentKey document_key(path.Append(current_key.document_id()));
-        if (document_key > offset.document_key()) {
-          remote_keys = remote_keys.insert(document_key);
-        }
       }
     }
 
@@ -238,7 +227,7 @@ MutableDocumentMap LevelDbRemoteDocumentCache::GetAll(
 
     // Documents are ordered by key, so we can use a prefix scan to narrow down
     // the documents we need to match the query against.
-    std::string start_key = LevelDbRemoteDocumentKey::KeyPrefix(path);
+    std::string start_key = LevelDbRemoteDocumentKey::KeyPrefix(query_path);
     auto it = db_->current_transaction()->NewIterator();
     it->Seek(start_key);
 
@@ -254,7 +243,7 @@ MutableDocumentMap LevelDbRemoteDocumentCache::GetAll(
         continue;
       }
 
-      if (!path.IsPrefixOf(document_key.path())) {
+      if (!query_path.IsPrefixOf(document_key.path())) {
         break;
       }
 

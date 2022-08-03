@@ -37,9 +37,7 @@ namespace local {
 using credentials::User;
 using model::DocumentKey;
 using model::Mutation;
-using model::MutationByDocumentKeyMap;
 using model::Overlay;
-using model::OverlayByDocumentKeyMap;
 using model::OverlayHash;
 using model::ResourcePath;
 using nanopb::Message;
@@ -85,8 +83,9 @@ void LevelDbDocumentOverlayCache::RemoveOverlaysForBatchId(int batch_id) {
       batch_id, [&](LevelDbDocumentOverlayKey&& key) { DeleteOverlay(key); });
 }
 
-OverlayByDocumentKeyMap LevelDbDocumentOverlayCache::GetOverlays(
-    const ResourcePath& collection, int since_batch_id) const {
+DocumentOverlayCache::OverlayByDocumentKeyMap
+LevelDbDocumentOverlayCache::GetOverlays(const ResourcePath& collection,
+                                         int since_batch_id) const {
   OverlayByDocumentKeyMap result;
   ForEachKeyInCollection(
       collection, since_batch_id, [&](LevelDbDocumentOverlayKey&& key) {
@@ -97,10 +96,10 @@ OverlayByDocumentKeyMap LevelDbDocumentOverlayCache::GetOverlays(
   return result;
 }
 
-OverlayByDocumentKeyMap LevelDbDocumentOverlayCache::GetOverlays(
-    absl::string_view collection_group,
-    int since_batch_id,
-    std::size_t count) const {
+DocumentOverlayCache::OverlayByDocumentKeyMap
+LevelDbDocumentOverlayCache::GetOverlays(absl::string_view collection_group,
+                                         int since_batch_id,
+                                         std::size_t count) const {
   absl::optional<int> current_batch_id;
   OverlayByDocumentKeyMap result;
   ForEachKeyInCollectionGroup(

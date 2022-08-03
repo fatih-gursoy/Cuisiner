@@ -239,10 +239,6 @@ class Serializer {
 
   bool IsLocalDocumentKey(absl::string_view path) const;
 
-  const model::DatabaseId& database_id() const {
-    return database_id_;
-  }
-
  private:
   model::MutableDocument DecodeFoundDocument(
       util::ReadContext* context,
@@ -299,11 +295,8 @@ class Serializer {
       util::ReadContext* context,
       const google_firestore_v1_StructuredQuery_Order& order_by) const;
 
-  google_firestore_v1_Cursor EncodeCursor(
-      const nanopb::SharedMessage<_google_firestore_v1_ArrayValue>& bound,
-      bool before) const;
-  nanopb::SharedMessage<_google_firestore_v1_ArrayValue> DecodeCursorValue(
-      google_firestore_v1_Cursor& cursor) const;
+  google_firestore_v1_Cursor EncodeBound(const core::Bound& bound) const;
+  core::Bound DecodeBound(google_firestore_v1_Cursor& cursor) const;
 
   std::unique_ptr<remote::WatchChange> DecodeTargetChange(
       util::ReadContext* context,

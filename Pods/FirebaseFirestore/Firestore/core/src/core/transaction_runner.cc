@@ -31,6 +31,9 @@ using util::AsyncQueue;
 using util::Status;
 using util::TimerId;
 
+/** Maximum number of times a transaction can be attempted before failing. */
+constexpr int kMaxAttemptsCount = 5;
+
 bool IsRetryableTransactionError(const util::Status& error) {
   // In transactions, the backend will fail outdated reads with
   // FAILED_PRECONDITION and non-matching document versions with ABORTED. These
@@ -45,15 +48,13 @@ bool IsRetryableTransactionError(const util::Status& error) {
 TransactionRunner::TransactionRunner(const std::shared_ptr<AsyncQueue>& queue,
                                      RemoteStore* remote_store,
                                      TransactionUpdateCallback update_callback,
-                                     TransactionResultCallback result_callback,
-                                     int max_attempts)
+                                     TransactionResultCallback result_callback)
     : queue_{queue},
       remote_store_{remote_store},
       update_callback_{std::move(update_callback)},
       result_callback_{std::move(result_callback)},
       backoff_{queue_, TimerId::RetryTransaction},
-      attempts_remaining_{max_attempts} {
-  HARD_ASSERT(max_attempts >= 0, "invalid max_attempts: %s", max_attempts);
+      attempts_remaining_{kMaxAttemptsCount} {
 }
 
 void TransactionRunner::Run() {

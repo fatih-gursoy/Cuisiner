@@ -11,10 +11,8 @@ class ProfileVC: UIViewController {
     
     @IBOutlet private weak var userImage: CustomImageView!
     @IBOutlet private weak var usernameLabel: UILabel!
-    @IBOutlet private weak var bioLabel: UILabel!
     @IBOutlet private weak var recipeCountLabel: UILabel!
     @IBOutlet private weak var averageRatingLabel: UILabel!
-    @IBOutlet private weak var editButton: UIButton!
     @IBOutlet private weak var bioText: UITextView!
     
     private var viewModel: UserViewModel
@@ -41,15 +39,18 @@ class ProfileVC: UIViewController {
     
     func updateUI() {
         viewModel.delegate = self
-        viewModel.load()
-        if viewModel.userId != AuthManager.shared.userId {editButton.isHidden = true}
+        viewModel.fetchRecipes()
     }
     
     func configureNavBar() {
-        let buttonImage =  #imageLiteral(resourceName: "XMark")
-        let barButton = UIBarButtonItem(image: buttonImage, style: .plain, target: self, action: #selector(closeTapped))
-        self.navigationItem.rightBarButtonItem = barButton
         
+        let editButton = UIBarButtonItem(image: #imageLiteral(resourceName: "xmark"), style: .plain, target: self,
+                                         action: #selector(editButtonTapped))
+        
+        let closeButton = UIBarButtonItem(image: #imageLiteral(resourceName: "xmark"), style: .plain, target: self,
+                                          action: #selector(closeTapped))
+        
+        self.navigationItem.rightBarButtonItems = [closeButton, editButton]
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = UIImage()
     }
@@ -58,9 +59,8 @@ class ProfileVC: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func editButtonClicked(_ sender: Any) {
-        self.navigationController?.pushViewController(ProfileEditVCBuilder.build(viewModel: self.viewModel),
-                                                      animated: true)
+    @objc func editButtonTapped() {
+        self.navigationController?.pushViewController(ProfileEditVCBuilder.build(viewModel: self.viewModel), animated: true)
     }
 }
 

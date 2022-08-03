@@ -60,24 +60,7 @@ class CreateNewVC: UIViewController {
                                                selector: #selector(keyboardNotify),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
-    }
     
-    @objc private func keyboardNotify(notification: Notification) {
-        
-        guard let userInfo = notification.userInfo else {return}
-        
-        var keyboardSize = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as!  NSValue).cgRectValue
-        keyboardSize = self.view.convert(keyboardSize, from: nil)
-        
-        switch notification.name {
-        case UIResponder.keyboardWillShowNotification:
-            scrollView.contentInset.bottom = keyboardSize.size.height
-            
-        case UIResponder.keyboardWillHideNotification:
-            scrollView.contentInset = UIEdgeInsets.zero
-        default:
-            break
-        }
     }
 
     func updateUI() {
@@ -112,7 +95,7 @@ class CreateNewVC: UIViewController {
 
     func configureNavBar() {
         
-        let buttonImage =  #imageLiteral(resourceName: "XMark")
+        let buttonImage =  #imageLiteral(resourceName: "xmark")
         
         let barButton = UIBarButtonItem(image: buttonImage, style: .plain, target: self, action: #selector(closeTapped))
         

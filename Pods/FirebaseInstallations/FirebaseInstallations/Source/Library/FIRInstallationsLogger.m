@@ -16,7 +16,7 @@
 
 #import "FirebaseInstallations/Source/Library/FIRInstallationsLogger.h"
 
-FIRLoggerService kFIRLoggerInstallations = @"[FirebaseInstallations]";
+FIRLoggerService kFIRLoggerInstallations = @"[Firebase/Installations]";
 
 // FIRInstallationsAPIService.m
 NSString *const kFIRInstallationsMessageCodeSendAPIRequest = @"I-FIS001001";

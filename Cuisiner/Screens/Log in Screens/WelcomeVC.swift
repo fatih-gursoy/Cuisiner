@@ -15,19 +15,15 @@ class WelcomeVC: UIViewController {
     }
     
     @IBAction func signUpClicked(_ sender: Any) {
-        
         let signUpView = SignUpVC()
         signUpView.delegate = self
         present(signUpView, animated: true)
-        
     }
     
     @IBAction func logInClicked(_ sender: Any) {
-        
         let signInView = SignInVC()
         signInView.delegate = self
         present(signInView, animated: true)
-
     }
     
     func toHomeVC() {
@@ -47,8 +43,5 @@ extension WelcomeVC: SignInDelegate, SignUpDelegate {
         dismiss(animated: true)
         toHomeVC()
     }
-    
-    
-    
 }
 

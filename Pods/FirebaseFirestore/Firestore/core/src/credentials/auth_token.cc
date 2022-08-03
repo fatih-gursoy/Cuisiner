@@ -19,13 +19,10 @@
 #include <utility>
 
 #include "Firestore/core/src/util/hard_assert.h"
-#include "Firestore/core/src/util/no_destructor.h"
 
 namespace firebase {
 namespace firestore {
 namespace credentials {
-
-using util::NoDestructor;
 
 AuthToken::AuthToken() : token_{}, user_{User::Unauthenticated()} {
 }
@@ -40,8 +37,8 @@ const std::string& AuthToken::token() const {
 }
 
 const AuthToken& AuthToken::Unauthenticated() {
-  static const NoDestructor<AuthToken> kUnauthenticatedToken;
-  return *kUnauthenticatedToken;
+  static const AuthToken kUnauthenticatedToken{};
+  return kUnauthenticatedToken;
 }
 
 }  // namespace credentials

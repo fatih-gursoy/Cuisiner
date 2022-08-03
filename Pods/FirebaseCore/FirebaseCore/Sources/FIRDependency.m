@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#import "FirebaseCore/Extension/FIRDependency.h"
+#import "FirebaseCore/Sources/Private/FIRDependency.h"
 
 @interface FIRDependency ()
 

@@ -27,7 +27,6 @@
 #include "Firestore/core/src/bundle/named_query.h"
 #include "Firestore/core/src/core/target_id_generator.h"
 #include "Firestore/core/src/local/document_overlay_cache.h"
-#include "Firestore/core/src/local/overlay_migration_manager.h"
 #include "Firestore/core/src/local/reference_set.h"
 #include "Firestore/core/src/local/target_data.h"
 #include "Firestore/core/src/model/document.h"
@@ -276,18 +275,9 @@ class LocalStore : public bundle::BundleCallback {
       const std::string& query_name);
 
  private:
-  friend class LocalStoreTest;
-  friend class LevelDbOverlayMigrationManagerTest;
-
-  struct DocumentChangeResult {
-    model::MutableDocumentMap changed_docs;
-    model::DocumentKeySet existence_changed_keys;
-  };
+  friend class LocalStoreTest;  // for `GetTargetData()`
 
   void StartMutationQueue();
-
-  void StartIndexManager();
-
   void ApplyBatchResult(const model::MutationBatchResult& batch_result);
 
   /**
@@ -333,7 +323,7 @@ class LocalStore : public bundle::BundleCallback {
    * @param global_version A SnapshotVersion representing the read time if all
    * documents have the same read time.
    */
-  DocumentChangeResult PopulateDocumentChanges(
+  model::MutableDocumentMap PopulateDocumentChanges(
       const model::DocumentUpdateMap& documents,
       const model::DocumentVersionMap& document_versions,
       const model::SnapshotVersion& global_version);
@@ -375,11 +365,6 @@ class LocalStore : public bundle::BundleCallback {
    * Manages indexes and support indexed queries.
    */
   IndexManager* index_manager_ = nullptr;
-
-  /**
-   * Manages overlay migration.
-   */
-  OverlayMigrationManager* overlay_migration_manager_ = nullptr;
 
   /**
    * The "local" view of all documents (layering mutation queue on top of

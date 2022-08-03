@@ -53,7 +53,6 @@ class ProfileEditVC: UIViewController {
         else { return }
             
         if !profileImage.isSame(with: userImageURL) {
-            
             storage.imageUpload(to: .userImages, id: viewModel.userId, image: newImage) { imageURL in
                 self.updateUserInfo()
                 self.viewModel.user.userImageUrl = imageURL
@@ -82,7 +81,6 @@ class ProfileEditVC: UIViewController {
     }
     
     @IBAction func changePasswordTapped(_ sender: Any) {
-        
         let updatePasswordVC = PasswordVC()
         updatePasswordVC.modalPresentationStyle = .overCurrentContext
         updatePasswordVC.modalTransitionStyle = .crossDissolve

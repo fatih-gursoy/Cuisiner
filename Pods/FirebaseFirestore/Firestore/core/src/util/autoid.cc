@@ -18,7 +18,6 @@
 
 #include <random>
 #include <string>
-#include <type_traits>
 
 #include "Firestore/core/src/util/secure_random.h"
 
@@ -32,11 +31,8 @@ const char kAutoIdAlphabet[] =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
 SecureRandom& GetSharedRandom() {
-  static_assert(std::is_trivially_destructible<SecureRandom>::value,
-                "SecureRandom should be trivially-destructible; otherwise, it "
-                "should use NoDestructor below.");
-  static SecureRandom shared_random;
-  return shared_random;
+  static auto* shared_random = new SecureRandom();
+  return *shared_random;
 }
 
 }  // namespace

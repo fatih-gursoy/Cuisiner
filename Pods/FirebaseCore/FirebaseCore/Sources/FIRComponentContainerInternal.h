@@ -15,8 +15,8 @@
  */
 #import <Foundation/Foundation.h>
 
-#import "FirebaseCore/Extension/FIRComponentContainer.h"
-#import "FirebaseCore/Extension/FIRLibrary.h"
+#import "FirebaseCore/Sources/Private/FIRComponentContainer.h"
+#import "FirebaseCore/Sources/Private/FIRLibrary.h"
 
 @class FIRApp;
 
@@ -29,8 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Retrieves an instance that conforms to the specified protocol. This will return `nil` if the
 /// protocol wasn't registered, or if the instance couldn't be instantiated for the provided app.
-- (nullable id)instanceForProtocol:(Protocol *)protocol
-    NS_SWIFT_UNAVAILABLE("Use `instance(for:)` from the FirebaseCoreExtension module instead.");
+- (nullable id)instanceForProtocol:(Protocol *)protocol NS_SWIFT_NAME(instance(for:));
 
 /// Instantiates all the components that have registered as "eager" after initialization.
 - (void)instantiateEagerComponents;

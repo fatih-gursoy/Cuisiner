@@ -18,7 +18,6 @@
 #define FIRESTORE_CORE_SRC_LOCAL_PERSISTENCE_H_
 
 #include <functional>
-#include <string>
 #include <utility>
 
 #include "Firestore/core/src/model/types.h"
@@ -38,7 +37,6 @@ class BundleCache;
 class DocumentOverlayCache;
 class IndexManager;
 class MutationQueue;
-class OverlayMigrationManager;
 class ReferenceDelegate;
 class RemoteDocumentCache;
 class TargetCache;
@@ -121,13 +119,6 @@ class Persistence {
       const credentials::User& user) = 0;
 
   /**
-   * Returns the migration manager responsible for calculating and saving
-   * overlays.
-   */
-  virtual OverlayMigrationManager* GetOverlayMigrationManager(
-      const credentials::User& user) = 0;
-
-  /**
    * Returns a RemoteDocumentCache representing the persisted cache of remote
    * documents.
    */
@@ -141,16 +132,6 @@ class Persistence {
    * lifecycle.
    */
   virtual ReferenceDelegate* reference_delegate() = 0;
-
-  /**
-   * Releases components that are created for users other than `target_uid`.
-   *
-   * This should be invoked after LocalStore initialization which might create
-   * components for all users in the cache, or after LocalStore switches to
-   * a new user with `target_uid`.
-   */
-  virtual void ReleaseOtherUserSpecificComponents(
-      const std::string& target_uid) = 0;
 
   /**
    * Accepts a function and runs it within a transaction. When called, a

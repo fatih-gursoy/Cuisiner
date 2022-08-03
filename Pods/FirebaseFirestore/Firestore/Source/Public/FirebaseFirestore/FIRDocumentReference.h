@@ -29,8 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
  * A block type used to handle snapshot updates.
  */
 typedef void (^FIRDocumentSnapshotBlock)(FIRDocumentSnapshot *_Nullable snapshot,
-                                         NSError *_Nullable error)
-    NS_SWIFT_UNAVAILABLE("Use Swift's closure syntax instead.");
+                                         NSError *_Nullable error);
 
 /**
  * A `DocumentReference` refers to a document location in a Firestore database and can be
@@ -223,8 +222,7 @@ NS_SWIFT_NAME(DocumentReference)
  *
  * @param completion a block to execute once the document has been successfully read.
  */
-- (void)getDocumentWithCompletion:
-    (void (^)(FIRDocumentSnapshot *_Nullable snapshot, NSError *_Nullable error))completion
+- (void)getDocumentWithCompletion:(FIRDocumentSnapshotBlock)completion
     NS_SWIFT_NAME(getDocument(completion:));
 
 /**
@@ -237,8 +235,7 @@ NS_SWIFT_NAME(DocumentReference)
  */
 // clang-format off
 - (void)getDocumentWithSource:(FIRFirestoreSource)source
-                   completion:(void (^)(FIRDocumentSnapshot *_Nullable snapshot,
-                                        NSError *_Nullable error))completion
+                   completion:(FIRDocumentSnapshotBlock)completion
     NS_SWIFT_NAME(getDocument(source:completion:));
 // clang-format on
 
@@ -249,8 +246,7 @@ NS_SWIFT_NAME(DocumentReference)
  *
  * @return A `ListenerRegistration` that can be used to remove this listener.
  */
-- (id<FIRListenerRegistration>)addSnapshotListener:
-    (void (^)(FIRDocumentSnapshot *_Nullable snapshot, NSError *_Nullable error))listener
+- (id<FIRListenerRegistration>)addSnapshotListener:(FIRDocumentSnapshotBlock)listener
     NS_SWIFT_NAME(addSnapshotListener(_:));
 
 /**
@@ -265,8 +261,7 @@ NS_SWIFT_NAME(DocumentReference)
 // clang-format off
 - (id<FIRListenerRegistration>)
 addSnapshotListenerWithIncludeMetadataChanges:(BOOL)includeMetadataChanges
-                                     listener:(void (^)(FIRDocumentSnapshot *_Nullable snapshot,
-                                                        NSError *_Nullable error))listener
+                                     listener:(FIRDocumentSnapshotBlock)listener
     NS_SWIFT_NAME(addSnapshotListener(includeMetadataChanges:listener:));
 // clang-format on
 

@@ -56,16 +56,16 @@ class LevelDbDocumentOverlayCache final : public DocumentOverlayCache {
       const model::DocumentKey&) const override;
 
   void SaveOverlays(int largest_batch_id,
-                    const model::MutationByDocumentKeyMap& overlays) override;
+                    const MutationByDocumentKeyMap& overlays) override;
 
   void RemoveOverlaysForBatchId(int batch_id) override;
 
-  model::OverlayByDocumentKeyMap GetOverlays(
-      const model::ResourcePath& collection, int since_batch_id) const override;
+  OverlayByDocumentKeyMap GetOverlays(const model::ResourcePath& collection,
+                                      int since_batch_id) const override;
 
-  model::OverlayByDocumentKeyMap GetOverlays(absl::string_view collection_group,
-                                             int since_batch_id,
-                                             std::size_t count) const override;
+  OverlayByDocumentKeyMap GetOverlays(absl::string_view collection_group,
+                                      int since_batch_id,
+                                      std::size_t count) const override;
 
  private:
   friend class LevelDbDocumentOverlayCacheTestHelper;

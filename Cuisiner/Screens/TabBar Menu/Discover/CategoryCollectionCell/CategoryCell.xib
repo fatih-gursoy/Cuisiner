@@ -11,17 +11,17 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="gTV-IL-0wX" customClass="CategoryCell" customModule="Cuisiner" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="234" height="66"/>
+            <rect key="frame" x="0.0" y="0.0" width="185" height="47"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="234" height="66"/>
+                <rect key="frame" x="0.0" y="0.0" width="185" height="47"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BbB-cS-pdj" customClass="CustomView" customModule="Cuisiner" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="234" height="66"/>
+                        <rect key="frame" x="5" y="0.0" width="175" height="47"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uhi-Ts-zaf">
-                                <rect key="frame" x="80.5" y="22.5" width="73" height="21.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uhi-Ts-zaf">
+                                <rect key="frame" x="51" y="13" width="73" height="21.5"/>
                                 <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="18"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -43,16 +43,16 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="BbB-cS-pdj" secondAttribute="bottom" id="7oi-ha-T5w"/>
-                <constraint firstAttribute="trailing" secondItem="BbB-cS-pdj" secondAttribute="trailing" id="R3X-WS-ckE"/>
+                <constraint firstAttribute="trailing" secondItem="BbB-cS-pdj" secondAttribute="trailing" constant="5" id="R3X-WS-ckE" userLabel="trailing = Back View.trailing + 5"/>
                 <constraint firstItem="BbB-cS-pdj" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="So6-zg-QQO"/>
-                <constraint firstItem="BbB-cS-pdj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="cmm-w2-7zJ"/>
+                <constraint firstItem="BbB-cS-pdj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="cmm-w2-7zJ"/>
             </constraints>
-            <size key="customSize" width="234" height="66"/>
+            <size key="customSize" width="185" height="47"/>
             <connections>
                 <outlet property="backView" destination="BbB-cS-pdj" id="ciG-3A-ocE"/>
                 <outlet property="categoryLabel" destination="Uhi-Ts-zaf" id="OhB-dz-Y4l"/>
             </connections>
-            <point key="canvasLocation" x="118.84057971014494" y="78.348214285714278"/>
+            <point key="canvasLocation" x="83.333333333333343" y="71.316964285714278"/>
         </collectionViewCell>
     </objects>
     <resources>

@@ -23,22 +23,15 @@ class CategoryCell: UICollectionViewCell {
         } else {
             didDeSelect()
         }
-        
     }
     
     func didSelect() {
-        
         backView.backgroundColor = .red
         categoryLabel.textColor = .white
-
     }
     
     func didDeSelect() {
-        
         backView.backgroundColor = .clear
         categoryLabel.textColor = .darkGray
-
     }
-
-   
 }

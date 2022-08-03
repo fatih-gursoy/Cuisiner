@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+# platform :ios, '15.0'
 
 target 'Cuisiner' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -15,15 +15,5 @@ target 'Cuisiner' do
   pod 'FirebaseFirestoreSwift', '8.8.0-beta', :modular_headers => true
   pod 'Kingfisher', '~> 7.2'
   pod 'lottie-ios'
-
-
-  target 'CuisinerTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'CuisinerUITests' do
-    # Pods for testing
-  end
 
 end

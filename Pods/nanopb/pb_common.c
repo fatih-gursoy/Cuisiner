@@ -11,17 +11,8 @@ bool pb_field_iter_begin(pb_field_iter_t *iter, const pb_field_t *fields, void *
     iter->pos = fields;
     iter->required_field_index = 0;
     iter->dest_struct = dest_struct;
-
-    if (!dest_struct)
-    {
-        iter->pData = NULL;
-        iter->pSize = NULL;
-    }
-    else
-    {
-        iter->pData = (char*)dest_struct + iter->pos->data_offset;
-        iter->pSize = (char*)iter->pData + iter->pos->size_offset;
-    }
+    iter->pData = (char*)dest_struct + iter->pos->data_offset;
+    iter->pSize = (char*)iter->pData + iter->pos->size_offset;
     
     return (iter->pos->tag != 0);
 }

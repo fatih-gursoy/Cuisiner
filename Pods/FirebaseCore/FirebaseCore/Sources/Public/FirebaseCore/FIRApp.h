@@ -21,8 +21,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /** A block that takes a BOOL and has no return value. */
-typedef void (^FIRAppVoidBoolCallback)(BOOL success)
-    NS_SWIFT_UNAVAILABLE("Use Swift's closure syntax instead.");
+typedef void (^FIRAppVoidBoolCallback)(BOOL success) NS_SWIFT_NAME(FirebaseAppVoidBoolCallback);
 
 /**
  * The entry point of Firebase SDKs.
@@ -97,7 +96,7 @@ NS_SWIFT_NAME(FirebaseApp)
  * Cleans up the current `FirebaseApp`, freeing associated data and returning its name to the pool
  * for future use. This method is thread safe.
  */
-- (void)deleteApp:(void (^)(BOOL success))completion;
+- (void)deleteApp:(FIRAppVoidBoolCallback)completion;
 
 /**
  * `FirebaseApp` instances should not be initialized directly. Call `FirebaseApp.configure()`,

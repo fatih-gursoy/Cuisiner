@@ -491,7 +491,7 @@ void FirestoreClient::WriteMutations(std::vector<Mutation>&& mutations,
   });
 }
 
-void FirestoreClient::Transaction(int max_attempts,
+void FirestoreClient::Transaction(int retries,
                                   TransactionUpdateCallback update_callback,
                                   TransactionResultCallback result_callback) {
   VerifyNotTerminated();
@@ -503,8 +503,8 @@ void FirestoreClient::Transaction(int max_attempts,
     }
   };
 
-  worker_queue_->Enqueue([this, max_attempts, update_callback, async_callback] {
-    sync_engine_->Transaction(max_attempts, worker_queue_,
+  worker_queue_->Enqueue([this, retries, update_callback, async_callback] {
+    sync_engine_->Transaction(retries, worker_queue_,
                               std::move(update_callback),
                               std::move(async_callback));
   });

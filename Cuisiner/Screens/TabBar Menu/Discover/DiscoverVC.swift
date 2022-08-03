@@ -93,9 +93,9 @@ extension DiscoverVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
             
             let item = Recipe.Category.allCases[indexPath.row].rawValue
 
-            let itemWidth = (item.size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 18)]).width) + 30
+            let itemWidth = (item.size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 18)]).width) + 40
             
-            let itemHeight = collectionView.bounds.height * 0.70
+            let itemHeight = collectionView.bounds.height * 0.80
             return CGSize(width: itemWidth, height: itemHeight)
             
         case recipeCollectionView:

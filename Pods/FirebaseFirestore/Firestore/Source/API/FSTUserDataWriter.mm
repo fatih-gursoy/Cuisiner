@@ -105,9 +105,6 @@ NS_ASSUME_NONNULL_BEGIN
     case TypeOrder::kGeoPoint:
       return MakeFIRGeoPoint(
           GeoPoint(value.geo_point_value.latitude, value.geo_point_value.longitude));
-    case TypeOrder::kMaxValue:
-      // It is not possible for users to construct a kMaxValue manually.
-      break;
   }
 
   UNREACHABLE();

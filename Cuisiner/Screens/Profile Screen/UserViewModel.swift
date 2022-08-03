@@ -52,12 +52,10 @@ class UserViewModel {
     func updateUser() {
         guard let userId = self.user.userId else {return}
         service.update(from: .users, id: userId, self.user)
+        fetchUser()
     }
-
-//MARK: - Private Functions
     
-    func load() {
-             
+    func fetchRecipes() {
         service.fetchByField(from: .recipes,
                              queryField: "ownerId",
                              queryParam: userId) { [weak self] (recipes: [Recipe]) in
@@ -70,6 +68,17 @@ class UserViewModel {
             }
             self?.averageRating = String(format: "%.1f", avg)
             self?.recipeCount = String(recipes.count)
+            self?.delegate?.updateView()
+        }
+    }
+    
+//MARK: - Private Functions
+    private func fetchUser() {
+        service.fetchByField(from: .users,
+                             queryField: "userId",
+                             queryParam: userId) { [weak self] (users: [User]) in
+            guard let user = users.first else {return}
+            self?.user = user
             self?.delegate?.updateView()
         }
     }

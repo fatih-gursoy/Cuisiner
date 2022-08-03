@@ -1,14 +1,13 @@
-# Google Toolbox for Mac - Session Fetcher
+# Google Toolbox for Mac - Session Fetcher #
 
 **Project site** <https://github.com/google/gtm-session-fetcher><br>
 **Discussion group** <http://groups.google.com/group/google-toolbox-for-mac>
 
-[![SwiftPM](https://github.com/google/gtm-session-fetcher/actions/workflows/swiftpm.yml/badge.svg?branch=main)](https://github.com/google/gtm-session-fetcher/actions/workflows/swiftpm.yml)
-[![CocoaPods](https://github.com/google/gtm-session-fetcher/actions/workflows/cocoapods.yml/badge.svg?branch=main)](https://github.com/google/gtm-session-fetcher/actions/workflows/cocoapods.yml)
+[![Build Status](https://github.com/google/gtm-session-fetcher/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/google/gtm-session-fetcher/actions/workflows/main.yml)
 
 `GTMSessionFetcher` makes it easy for Cocoa applications to perform http
 operations. The fetcher is implemented as a wrapper on `NSURLSession`, so its
-behavior is asynchronous and uses operating-system settings.
+behavior is asynchronous and uses operating-system settings on iOS and Mac OS X.
 
 Features include:
 - Simple to build; only one source/header file pair is required
@@ -22,7 +21,3 @@ Features include:
 - Easily testable; self-mocking
 - Automatic rate limiting when created by the `GTMSessionFetcherService` factory class
 - Fully independent of other projects
-
-**To get started** please read
-[USING.md](https://github.com/google/google-api-objectivec-client-for-rest/blob/main/USING.md)
-for detailed information.

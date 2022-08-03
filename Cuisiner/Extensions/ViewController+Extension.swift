@@ -56,7 +56,7 @@ extension UIViewController {
         
     }
     
-    @objc private func keyboardNotify(notification: Notification) {
+    @objc func keyboardNotify(notification: Notification) {
         
         guard let scrollview = notification.object as? UIScrollView,
               let userInfo = notification.userInfo else {return}

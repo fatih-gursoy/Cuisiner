@@ -22,7 +22,7 @@
 #import "FBLPromises.h"
 #endif
 
-#import "FirebaseCore/Extension/FirebaseCoreInternal.h"
+#import "FirebaseCore/Sources/Private/FirebaseCoreInternal.h"
 #import "FirebaseInstallations/Source/Library/Errors/FIRInstallationsErrorUtil.h"
 #import "FirebaseInstallations/Source/Library/Errors/FIRInstallationsHTTPError.h"
 #import "FirebaseInstallations/Source/Library/FIRInstallationsLogger.h"
@@ -32,7 +32,9 @@ NSString *const kFIRInstallationsAPIBaseURL = @"https://firebaseinstallations.go
 NSString *const kFIRInstallationsAPIKey = @"X-Goog-Api-Key";
 NSString *const kFIRInstallationsBundleId = @"X-Ios-Bundle-Identifier";
 NSString *const kFIRInstallationsIIDMigrationAuthHeader = @"x-goog-fis-ios-iid-migration-auth";
-NSString *const kFIRInstallationsHeartbeatKey = @"X-firebase-client";
+NSString *const kFIRInstallationsHeartbeatKey = @"X-firebase-client-log-type";
+NSString *const kFIRInstallationsHeartbeatTag = @"fire-installations";
+NSString *const kFIRInstallationsUserAgentKey = @"X-firebase-client";
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -60,35 +62,27 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly) NSURLSession *URLSession;
 @property(nonatomic, readonly) NSString *APIKey;
 @property(nonatomic, readonly) NSString *projectID;
-@property(readonly) id<FIRHeartbeatLoggerProtocol> heartbeatLogger;
 @end
 
 NS_ASSUME_NONNULL_END
 
 @implementation FIRInstallationsAPIService
 
-- (instancetype)initWithAPIKey:(NSString *)APIKey
-                     projectID:(NSString *)projectID
-               heartbeatLogger:(id<FIRHeartbeatLoggerProtocol>)heartbeatLogger {
+- (instancetype)initWithAPIKey:(NSString *)APIKey projectID:(NSString *)projectID {
   NSURLSession *URLSession = [NSURLSession
       sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
-  return [self initWithURLSession:URLSession
-                           APIKey:APIKey
-                        projectID:projectID
-                  heartbeatLogger:heartbeatLogger];
+  return [self initWithURLSession:URLSession APIKey:APIKey projectID:projectID];
 }
 
 /// The initializer for tests.
 - (instancetype)initWithURLSession:(NSURLSession *)URLSession
                             APIKey:(NSString *)APIKey
-                         projectID:(NSString *)projectID
-                   heartbeatLogger:(id<FIRHeartbeatLoggerProtocol>)heartbeatLogger {
+                         projectID:(NSString *)projectID {
   self = [super init];
   if (self) {
     _URLSession = URLSession;
     _APIKey = [APIKey copy];
     _projectID = [projectID copy];
-    _heartbeatLogger = heartbeatLogger;
   }
   return self;
 }
@@ -277,11 +271,14 @@ NS_ASSUME_NONNULL_END
                NSString *authHeader = [NSString stringWithFormat:@"FIS_v2 %@", refreshToken];
                [request setValue:authHeader forHTTPHeaderField:@"Authorization"];
              }
+             // User agent Header.
+             [request setValue:[FIRApp firebaseUserAgent]
+                 forHTTPHeaderField:kFIRInstallationsUserAgentKey];
              // Heartbeat Header.
-             [request setValue:FIRHeaderValueFromHeartbeatsPayload(
-                                   [self.heartbeatLogger flushHeartbeatsIntoPayload])
+             [request setValue:@([FIRHeartbeatInfo
+                                     heartbeatCodeForTag:kFIRInstallationsHeartbeatTag])
+                                   .stringValue
                  forHTTPHeaderField:kFIRInstallationsHeartbeatKey];
-
              [additionalHeaders
                  enumerateKeysAndObjectsUsingBlock:^(NSString *_Nonnull key, NSString *_Nonnull obj,
                                                      BOOL *_Nonnull stop) {

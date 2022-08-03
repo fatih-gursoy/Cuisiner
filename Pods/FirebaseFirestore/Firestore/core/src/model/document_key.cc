@@ -107,13 +107,13 @@ const ResourcePath& DocumentKey::path() const {
 }
 
 /** Returns true if the document is in the specified collection_id. */
-bool DocumentKey::HasCollectionGroup(absl::string_view collection_group) const {
-  const auto collection_id_opt = GetCollectionGroup();
+bool DocumentKey::HasCollectionId(absl::string_view collection_id) const {
+  const auto collection_id_opt = GetCollectionId();
   return collection_id_opt.has_value() &&
-         collection_id_opt.value() == collection_group;
+         collection_id_opt.value() == collection_id;
 }
 
-absl::optional<std::string> DocumentKey::GetCollectionGroup() const {
+absl::optional<std::string> DocumentKey::GetCollectionId() const {
   const size_t size = path().size();
   if (size < 2) {
     return absl::nullopt;
