@@ -45,7 +45,6 @@ class StartCookVC: UIViewController {
         guard let instructions = recipeViewModel?.instructions else { return }
         
         if currentPage < instructions.count - 1    {
-            
             currentPage += 1
             let indexPath = IndexPath(item: currentPage, section: 0)
             collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
@@ -62,7 +61,6 @@ class StartCookVC: UIViewController {
         alertVC.doneTappedCompletion = { [weak self] in self?.dismiss(animated: true) }
         present(alertVC, animated: true)
     }
-    
     
 }
 
@@ -86,9 +84,10 @@ extension StartCookVC: UICollectionViewDelegate, UICollectionViewDataSource, UIC
         let itemHeight = collectionView.frame.height
         return CGSize(width: itemWidth, height: itemHeight)
     }
-    
+
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let width = scrollView.frame.width
         currentPage = Int(scrollView.contentOffset.x / width)
     }
+    
 }

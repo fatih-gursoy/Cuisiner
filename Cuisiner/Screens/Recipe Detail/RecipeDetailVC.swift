@@ -40,6 +40,9 @@ class RecipeDetailVC: UIViewController {
         ingredientTable.dataSource = self
         ingredientTable.register(UINib(nibName: "IngredientTableCell", bundle: nil),
                                  forCellReuseIdentifier: IngredientTableCell.identifier)
+        ingredientTable.layoutIfNeeded()
+        let tableHeight = ingredientTable.contentSize.height
+        ingredientTable.heightAnchor.constraint(equalToConstant: tableHeight).isActive = true
     }
     
     func configureUI() {

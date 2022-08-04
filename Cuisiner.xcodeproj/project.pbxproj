@@ -68,11 +68,11 @@
 		3DEBA83F281751D100E9774B /* ImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEBA83E281751D100E9774B /* ImageView+Extension.swift */; };
 		3DFCC8E72869ECF200297EEA /* PasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFCC8E62869ECF200297EEA /* PasswordVC.swift */; };
 		3DFCC8E92869ED2800297EEA /* PasswordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DFCC8E82869ED2800297EEA /* PasswordVC.xib */; };
-		E2273FA90A59E274D57D03FE /* Pods_Cuisiner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B5EE90B2D7D42530ACECED /* Pods_Cuisiner.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		4FEE0B4A326BF3EB126E1AF8 /* Pods_Cuisiner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F79FDA8AE708E87CA5F41101 /* Pods_Cuisiner.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		05E8D195EA6B6316964D5932 /* Pods-Cuisiner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cuisiner.debug.xcconfig"; path = "Target Support Files/Pods-Cuisiner/Pods-Cuisiner.debug.xcconfig"; sourceTree = "<group>"; };
+		2B414C617CEF5EBA36279A93 /* Pods-Cuisiner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cuisiner.debug.xcconfig"; path = "Target Support Files/Pods-Cuisiner/Pods-Cuisiner.debug.xcconfig"; sourceTree = "<group>"; };
 		3D0A728A27D6A8C100F26608 /* Cuisiner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cuisiner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D0A728D27D6A8C100F26608 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D0A728F27D6A8C100F26608 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -136,8 +136,8 @@
 		3DEBA83E281751D100E9774B /* ImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+Extension.swift"; sourceTree = "<group>"; };
 		3DFCC8E62869ECF200297EEA /* PasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordVC.swift; sourceTree = "<group>"; };
 		3DFCC8E82869ED2800297EEA /* PasswordVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PasswordVC.xib; sourceTree = "<group>"; };
-		D6D5FC3E7576E4D7030A6644 /* Pods-Cuisiner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cuisiner.release.xcconfig"; path = "Target Support Files/Pods-Cuisiner/Pods-Cuisiner.release.xcconfig"; sourceTree = "<group>"; };
-		F1B5EE90B2D7D42530ACECED /* Pods_Cuisiner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cuisiner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5985132E584E3DF6B1C7D178 /* Pods-Cuisiner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cuisiner.release.xcconfig"; path = "Target Support Files/Pods-Cuisiner/Pods-Cuisiner.release.xcconfig"; sourceTree = "<group>"; };
+		F79FDA8AE708E87CA5F41101 /* Pods_Cuisiner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cuisiner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,7 +145,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2273FA90A59E274D57D03FE /* Pods_Cuisiner.framework in Frameworks */,
+				4FEE0B4A326BF3EB126E1AF8 /* Pods_Cuisiner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,7 +158,7 @@
 				3D0A728C27D6A8C100F26608 /* Cuisiner */,
 				3D0A728B27D6A8C100F26608 /* Products */,
 				72DFA8C1B6237FCD0DD8A677 /* Pods */,
-				722356DFBFA6E5C12E88A7C7 /* Frameworks */,
+				9C1B0EC2B4FC78C790CFE4D0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -503,21 +503,21 @@
 			path = PasswordView;
 			sourceTree = "<group>";
 		};
-		722356DFBFA6E5C12E88A7C7 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				F1B5EE90B2D7D42530ACECED /* Pods_Cuisiner.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		72DFA8C1B6237FCD0DD8A677 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				05E8D195EA6B6316964D5932 /* Pods-Cuisiner.debug.xcconfig */,
-				D6D5FC3E7576E4D7030A6644 /* Pods-Cuisiner.release.xcconfig */,
+				2B414C617CEF5EBA36279A93 /* Pods-Cuisiner.debug.xcconfig */,
+				5985132E584E3DF6B1C7D178 /* Pods-Cuisiner.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		9C1B0EC2B4FC78C790CFE4D0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F79FDA8AE708E87CA5F41101 /* Pods_Cuisiner.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -527,11 +527,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D0A72B727D6A8C400F26608 /* Build configuration list for PBXNativeTarget "Cuisiner" */;
 			buildPhases = (
-				52A286323B5B7B1EB44387A9 /* [CP] Check Pods Manifest.lock */,
+				AA312EBE40226556A7D465ED /* [CP] Check Pods Manifest.lock */,
 				3D0A728627D6A8C100F26608 /* Sources */,
 				3D0A728727D6A8C100F26608 /* Frameworks */,
 				3D0A728827D6A8C100F26608 /* Resources */,
-				3AF74AC96938491370527BB4 /* [CP] Embed Pods Frameworks */,
+				9D0FC5072140C7EA0FE03FAB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -603,7 +603,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3AF74AC96938491370527BB4 /* [CP] Embed Pods Frameworks */ = {
+		9D0FC5072140C7EA0FE03FAB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -620,7 +620,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Cuisiner/Pods-Cuisiner-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		52A286323B5B7B1EB44387A9 /* [CP] Check Pods Manifest.lock */ = {
+		AA312EBE40226556A7D465ED /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -838,7 +838,7 @@
 		};
 		3D0A72B827D6A8C400F26608 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 05E8D195EA6B6316964D5932 /* Pods-Cuisiner.debug.xcconfig */;
+			baseConfigurationReference = 2B414C617CEF5EBA36279A93 /* Pods-Cuisiner.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -874,7 +874,7 @@
 		};
 		3D0A72B927D6A8C400F26608 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D6D5FC3E7576E4D7030A6644 /* Pods-Cuisiner.release.xcconfig */;
+			baseConfigurationReference = 5985132E584E3DF6B1C7D178 /* Pods-Cuisiner.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

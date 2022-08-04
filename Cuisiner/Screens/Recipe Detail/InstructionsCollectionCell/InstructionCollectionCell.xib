@@ -32,13 +32,12 @@
                                 <rect key="frame" x="30" y="290.5" width="372" height="350.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y4h-oy-Tn4" userLabel="TimerStack">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Y4h-oy-Tn4" userLabel="TimerStack">
                                 <rect key="frame" x="30" y="661" width="372" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zQ2-Qv-3jb">
-                                        <rect key="frame" x="0.0" y="0.0" width="100" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="110.5" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="HoW-rp-NvH"/>
                                             <constraint firstAttribute="height" constant="40" id="IEr-gE-syO"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
@@ -49,16 +48,15 @@
                                             <action selector="resetClicked:" destination="gTV-IL-0wX" eventType="touchUpInside" id="s3l-eQ-zSa"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBw-ZH-q4W">
-                                        <rect key="frame" x="100" y="0.0" width="172" height="40"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="KBw-ZH-q4W">
+                                        <rect key="frame" x="130.5" y="0.0" width="111" height="40"/>
                                         <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="30"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HQZ-ik-tjL">
-                                        <rect key="frame" x="272" y="0.0" width="100" height="40"/>
+                                        <rect key="frame" x="261.5" y="0.0" width="110.5" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="GBc-3K-lk8"/>
                                             <constraint firstAttribute="height" constant="40" id="fD5-Ar-hcY"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
