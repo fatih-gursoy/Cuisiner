@@ -29,11 +29,8 @@ extension UIViewController {
     }
     
     func hideKeyboard() {
-        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        
         tap.cancelsTouchesInView = false
-        
         view.addGestureRecognizer(tap)
     }
     
@@ -41,36 +38,22 @@ extension UIViewController {
         view.endEditing(true)
     }
     
-
-    func configureUIwithKeyboardNotification(scrollView: UIScrollView) {
+    func keyboardNotification(scrollView: UIScrollView) {
         
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardNotify),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: scrollView)
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardNotify),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: scrollView)
-        
-    }
-    
-    @objc func keyboardNotify(notification: Notification) {
-        
-        guard let scrollview = notification.object as? UIScrollView,
-              let userInfo = notification.userInfo else {return}
-                    
-        let keyboardSize = userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue
-        
-        switch notification.name {
-        case UIResponder.keyboardWillShowNotification:
-            scrollview.contentInset.bottom = keyboardSize.cgRectValue.size.height
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification,
+                                               object: nil, queue: nil) { notification in
             
-        case UIResponder.keyboardWillHideNotification:
-            scrollview.contentInset = UIEdgeInsets.zero
-        default:
-            break
+            guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
+                                      as? NSValue)?.cgRectValue else {return}
+            
+            let bottom = keyboardSize.height
+            scrollView.contentInset.bottom = bottom
+            scrollView.setContentOffset(CGPoint(x: 0, y: bottom), animated: true)
+        }
+        
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification,
+                                               object: nil, queue: nil) { notification in
+            scrollView.contentInset.bottom = .zero
         }
     }
     

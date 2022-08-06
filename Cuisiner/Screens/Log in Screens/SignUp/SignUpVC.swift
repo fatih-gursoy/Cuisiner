@@ -29,18 +29,14 @@ class SignUpVC: UIViewController {
     @IBAction func signUpClicked(_ sender: Any) {
         
         if emailText.text != "" && passwordText.text != "" {
-        
             if passwordText.text == passwordAgainText.text {
-                
                 authManager.updateCredentials(email: emailText.text!,
                                               password: passwordText.text!)
                 
                 authManager.signUp { [weak self] success in
-                    
                     if (success) {
                         self?.saveUser()
                         self?.delegate?.didUserSignUp()
-                        
                     } else {
                         if let errorMessage = self?.authManager.errorMessage {
                             self?.presentAlert(title: "Error", message: errorMessage, completion: nil)
@@ -51,9 +47,7 @@ class SignUpVC: UIViewController {
         } else {
             presentAlert(title: "Couldn't Sign Up", message: "Please fill credentials", completion: nil)
         }
-
     }
-    
     
     func saveUser() {
         
@@ -61,8 +55,7 @@ class SignUpVC: UIViewController {
         
         if let username = usernameText.text {
             newUser.changeUsername(with: username)
-        }
-                
+        }        
         guard let userImage = profileImage.image, let uid = newUser.userId else {return}
         
         storage.imageUpload(to: .userImages,id: uid, image: userImage) { imageUrl in

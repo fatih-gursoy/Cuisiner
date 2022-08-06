@@ -26,18 +26,14 @@ class RecipesViewModel {
     }
     
     func recipeAtIndex(_ index:Int) -> RecipeViewModel? {
-        
         guard let recipe = self.recipes?[index] else { return nil }
         return RecipeViewModel(recipe: recipe)
     }
     
     func fetchAllRecipes() {
-                
         service.fetchData(from: .recipes) { [weak self] (recipes: [Recipe]) in
-            
             self?.recipes = recipes
             self?.allRecipes = recipes
-            
             DispatchQueue.main.async {
                self?.delegate?.updateView()
             }
@@ -45,9 +41,7 @@ class RecipesViewModel {
     }
         
     func fetchMyRecipes() {
-     
         guard let userId = AuthManager.shared.userId else {return}
-     
         service.fetchByField(from: .recipes,
                              queryField: "ownerId",
                              queryParam: userId) { [weak self] (recipes: [Recipe]) in
@@ -60,43 +54,30 @@ class RecipesViewModel {
     }
     
     func filterRecipes(_ category: Recipe.Category) {
-        
         if !selectedCategories.contains(category) {
             selectedCategories.append(category)
         } else {
             selectedCategories = selectedCategories.filter { $0 != category }
         }
-                
         self.recipes = self.allRecipes?.filter({ selectedCategories.contains( $0.category) })
         delegate?.updateView()
-        
     }
     
     func searchRecipes(_ searchText: String?) {
-                
         guard let searchText = searchText?.lowercased() else {return}
-        
         switch searchText {
-            
         case "":
             self.recipes = allRecipes
-            
         default:
-            
             self.recipes = self.allRecipes?.filter { $0.name?.lowercased().hasPrefix(searchText) == true }
-
         }
-        
         delegate?.updateView()
     }
     
     func deleteRecipe(id: String) {
-        
-        service.delete(from: .recipes, with: id)
-        delegate?.updateView()
-        
+        service.delete(from: .recipes, with: id) { [weak self] success in
+            if success { self?.delegate?.updateView() }
+        }
     }
-
-    
 }
     

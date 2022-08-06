@@ -19,10 +19,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="hvv-am-h7p">
-                        <rect key="frame" x="20" y="10" width="479" height="231"/>
+                        <rect key="frame" x="20" y="10" width="469" height="231"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="never" translatesAutoresizingMaskIntoConstraints="NO" id="Zek-tW-U2R">
-                                <rect key="frame" x="0.0" y="0.0" width="407" height="231"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="231"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
@@ -33,43 +33,42 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="PfU-9R-tEf">
-                                <rect key="frame" x="412" y="81" width="67" height="69"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="PfU-9R-tEf">
+                                <rect key="frame" x="419" y="70.5" width="50" height="90"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="planning" translatesAutoresizingMaskIntoConstraints="NO" id="mBs-vu-LXq">
-                                        <rect key="frame" x="16.5" y="0.0" width="34.5" height="34.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="mBs-vu-LXq" secondAttribute="height" multiplier="1:1" id="vdl-6K-EjE"/>
+                                            <constraint firstAttribute="width" constant="50" id="Hdu-B7-mu5"/>
+                                            <constraint firstAttribute="height" constant="50" id="UBR-hM-AjG"/>
                                         </constraints>
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="mins" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H0y-ow-dYg">
-                                        <rect key="frame" x="0.0" y="39.5" width="67" height="29.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <rect key="frame" x="0.0" y="55" width="50" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="jLW-Wt-adx"/>
+                                            <constraint firstAttribute="height" constant="35" id="pc8-YG-3Ke"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="mBs-vu-LXq" firstAttribute="height" secondItem="PfU-9R-tEf" secondAttribute="height" multiplier="0.5" id="8yY-Zq-p1e"/>
-                                    <constraint firstItem="H0y-ow-dYg" firstAttribute="width" secondItem="PfU-9R-tEf" secondAttribute="width" id="Ton-vz-C23"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="PfU-9R-tEf" firstAttribute="height" secondItem="hvv-am-h7p" secondAttribute="height" multiplier="0.3" id="OR6-hH-1wj"/>
-                            <constraint firstItem="Zek-tW-U2R" firstAttribute="width" secondItem="hvv-am-h7p" secondAttribute="width" multiplier="0.85" id="Obc-9F-0ZF"/>
-                            <constraint firstItem="Zek-tW-U2R" firstAttribute="leading" secondItem="hvv-am-h7p" secondAttribute="leading" id="uJ0-ll-jwT"/>
                             <constraint firstItem="Zek-tW-U2R" firstAttribute="top" secondItem="hvv-am-h7p" secondAttribute="top" id="xQJ-O1-HwZ"/>
                             <constraint firstAttribute="bottom" secondItem="Zek-tW-U2R" secondAttribute="bottom" id="zGe-vm-vxu"/>
                         </constraints>
                     </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9rM-vf-1Zz">
-                        <rect key="frame" x="6" y="111.5" width="28.5" height="28.5"/>
+                        <rect key="frame" x="5" y="110.5" width="30" height="30"/>
                         <color key="backgroundColor" name="Dark Red"/>
                         <color key="tintColor" name="AccentColor"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="9rM-vf-1Zz" secondAttribute="height" multiplier="1:1" id="Nrn-kD-TDj"/>
+                            <constraint firstAttribute="height" constant="30" id="7bH-H8-CWN"/>
+                            <constraint firstAttribute="width" constant="30" id="b14-8j-XHJ"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="26"/>
+                        <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="24"/>
                         <color key="textColor" systemColor="opaqueSeparatorColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -77,7 +76,7 @@
                 <constraints>
                     <constraint firstItem="hvv-am-h7p" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="4eD-Ue-bBA"/>
                     <constraint firstItem="9rM-vf-1Zz" firstAttribute="centerX" secondItem="hvv-am-h7p" secondAttribute="leading" id="8MP-jI-FUw"/>
-                    <constraint firstAttribute="trailing" secondItem="hvv-am-h7p" secondAttribute="trailing" constant="10" id="GfG-SB-LoH"/>
+                    <constraint firstAttribute="trailing" secondItem="hvv-am-h7p" secondAttribute="trailing" constant="20" id="GfG-SB-LoH"/>
                     <constraint firstItem="9rM-vf-1Zz" firstAttribute="centerY" secondItem="hvv-am-h7p" secondAttribute="centerY" id="N6o-dE-PgH"/>
                     <constraint firstAttribute="bottom" secondItem="hvv-am-h7p" secondAttribute="bottom" constant="10" id="Ycj-tk-ugK"/>
                     <constraint firstItem="hvv-am-h7p" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="gNE-xE-BN2"/>

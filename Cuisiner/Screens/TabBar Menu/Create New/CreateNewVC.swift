@@ -12,14 +12,12 @@ class CreateNewVC: UIViewController {
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var categoryButton: UIButton!
-    
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var foodImage: UIImageView!
     @IBOutlet private weak var pickerLogo: UIImageView!
     @IBOutlet private weak var serveImage: UIImageView!
     @IBOutlet private weak var cookTimeImage: UIImageView!
     @IBOutlet private weak var categoryImage: UIImageView!
-    
     @IBOutlet private weak var recipeNameField: UITextField!
     @IBOutlet private weak var serveField: UITextField!
     @IBOutlet private weak var cookTimeField: UITextField!
@@ -38,8 +36,7 @@ class CreateNewVC: UIViewController {
         pickerView.dataSource = self
         
         hideKeyboard()
-//        configureUIwithKeyboardNotification(scrollView: self.scrollView)
-        configureUIwithKeyboardNotification()
+        keyboardNotification(scrollView: self.scrollView)
         configureNavBar()
         configureImagePicker()
         updateUI()
@@ -49,18 +46,8 @@ class CreateNewVC: UIViewController {
         cookTimeField.delegate = self
     }
     
-    func configureUIwithKeyboardNotification() {
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardNotify),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardNotify),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
-    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     func updateUI() {
@@ -76,7 +63,6 @@ class CreateNewVC: UIViewController {
         }
         
         selectedCategory = recipeViewModel.recipe.category
-        
         if let row = Recipe.Category.allCases.firstIndex(of: selectedCategory!) {
             pickerView.selectRow(row, inComponent: 0, animated: false)
             categoryButton.setTitle(selectedCategory?.rawValue, for: .normal)
@@ -86,44 +72,35 @@ class CreateNewVC: UIViewController {
     func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        
         tableView.register(UINib(nibName: "IngredientTableCell", bundle: nil), forCellReuseIdentifier: IngredientTableCell.identifier)
-
         tableView.reloadData()
     }
     
 
     func configureNavBar() {
         
-        let buttonImage =  #imageLiteral(resourceName: "xmark")
-        
-        let barButton = UIBarButtonItem(image: buttonImage, style: .plain, target: self, action: #selector(closeTapped))
+        let barButton = UIBarButtonItem(image: #imageLiteral(resourceName: "xmark"), style: .plain, target: self, action: #selector(closeTapped))
         
         self.navigationItem.rightBarButtonItem = barButton
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = UIImage()
     }
     
-    
     @objc func closeTapped() {
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func addButtonClicked(_ sender: Any) {
-        
         getIngredientData()
         let newIngredient = Ingredient()
         ingredients.append(newIngredient)
-        
         tableView.reloadData()
         let bottom = tableView.contentSize.height
         scrollView.setContentOffset(CGPoint(x: 0, y: bottom), animated: true)
     }
     
     @IBAction func continueClicked(_ sender: Any) {
-       
         configureViewModel()
-        
         guard let prepareVC = self.storyboard?.instantiateViewController(withIdentifier: "PrepareVC") as? PrepareVC else { fatalError("Error")}
       
         prepareVC.recipeViewModel = self.recipeViewModel
@@ -137,15 +114,12 @@ class CreateNewVC: UIViewController {
             return presentAlert(title: "Can not continue", message: "Please select a category!", completion: nil) }
 
         if recipeViewModel != nil {
-            
             recipeViewModel?.recipe.name = self.recipeNameField.text
             recipeViewModel?.recipe.serve = self.serveField.text
             recipeViewModel?.recipe.cookTime = self.cookTimeField.text
             recipeViewModel?.recipe.category = selectedCategory
             recipeViewModel?.recipe.ingredients = self.ingredients
-            
         } else {
-        
             let recipe = Recipe(ownerId: AuthManager.shared.userId,
                                       id: UUID().uuidString,
                                       name: self.recipeNameField.text,
@@ -168,7 +142,6 @@ protocol ImagePassDelegate: AnyObject {
 }
 
 extension CreateNewVC: ImagePassDelegate {
-    
     var foodImageToPass: UIImageView? {
         get {return self.foodImage}
     }
@@ -201,7 +174,6 @@ extension CreateNewVC: UITableViewDelegate, UITableViewDataSource {
     func getIngredientData() {
         
         for i in 0..<tableView.numberOfRows(inSection: 0) {
-            
             guard let cell = tableView.cellForRow(at: IndexPath(row: i, section: 0)) as? IngredientTableCell else {return}
             
             ingredients[i].name = cell.itemName.text
@@ -210,7 +182,6 @@ extension CreateNewVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
         let headerTitle: UILabel = {
             let title = UILabel()
             title.text = "Ingredients"
@@ -246,7 +217,7 @@ extension CreateNewVC: UIImagePickerControllerDelegate, UINavigationControllerDe
     }
 }
 
-// MARK: -PickerView Delegate
+// MARK: - PickerView Delegate
 
 extension CreateNewVC: UIPickerViewDelegate, UIPickerViewDataSource {
         
@@ -267,7 +238,6 @@ extension CreateNewVC: UIPickerViewDelegate, UIPickerViewDataSource {
         let buttonTitle = selectedCategory?.rawValue
         categoryButton.setTitle(buttonTitle, for: .normal)
     }
-    
     
     @IBAction func categoryButtonClicked(_ sender: Any) {
         configurePickerView()
@@ -298,7 +268,7 @@ extension CreateNewVC: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 }
 
-// MARK: -TextField number restriction
+// MARK: - TextField Delegate
 
 extension CreateNewVC: UITextFieldDelegate {
     

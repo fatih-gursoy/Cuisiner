@@ -11,9 +11,9 @@ import FirebaseFirestoreSwift
 
 protocol FirebaseServiceProtocol: AnyObject {
 
-    func addNew<T: Encodable>(to collection: myCollection,_ model: T)
+//    func addNew<T: Encodable>(to collection: myCollection,_ model: T)
     func update<T: Encodable>(from collection: myCollection, id: String, _ model: T)
-    func delete(from collection: myCollection, with id: String)
+    func delete(from collection: myCollection, with id: String, completion: @escaping (Bool) -> Void)
     func fetchData<T: Decodable>(from collection: myCollection, completion: @escaping ([T]) -> Void)
     
     func fetchByField<T: Decodable>(from collection: myCollection, queryField: String, queryParam: String, completion: @escaping ([T]) -> Void)
@@ -23,15 +23,11 @@ protocol FirebaseServiceProtocol: AnyObject {
 }
 
 class FirebaseService {
-    
     static let shared: FirebaseService = FirebaseService()
-    
     private let db = Firestore.firestore()
     private let recipeCollection = "Recipes"
     private let storageService = StorageService.shared
-    
     private init() { }
-    
 }
 
 extension FirebaseService: FirebaseServiceProtocol {
@@ -42,9 +38,7 @@ extension FirebaseService: FirebaseServiceProtocol {
             if let error = error {
                 print("Document doesn't exist \(error)")
             } else {
-                
                 if let documents = querySnapshot?.documents {
-                        
                     let result = documents.compactMap { doc in
                         return try? doc.data(as: T.self) }
                     completion(result)
@@ -87,13 +81,13 @@ extension FirebaseService: FirebaseServiceProtocol {
         }
     }
     
-    func addNew<T: Encodable>(to collection: myCollection,_ model: T) {
-        do {
-            try _ = db.collection(collection.name).addDocument(from: model.self)
-        } catch {
-            print("Add document failed: \(error)")
-        }
-    }
+//    func addNew<T: Encodable>(to collection: myCollection,_ model: T) {
+//        do {
+//            try _ = db.collection(collection.name).addDocument(from: model.self)
+//        } catch {
+//            print("Add document failed: \(error)")
+//        }
+//    }
     
     func update<T: Encodable>(from collection: myCollection, id: String, _ model: T) {
         do {
@@ -103,19 +97,29 @@ extension FirebaseService: FirebaseServiceProtocol {
         }
     }
     
-    func delete(from collection: myCollection, with id: String) {
-        db.collection(collection.name).whereField("id", isEqualTo: id as Any)
-            .getDocuments { querySnapshot, error in
-                
+    func delete(from collection: myCollection, with id: String, completion: @escaping ((Bool) -> Void) ) {
+        
+        db.collection(collection.name).document(id).delete { error in
             if let error = error {
-                print("Document doesn't exist \(error)")
+                print("Document doesn't exist: \(error)")
             } else {
-                
-                if let document = querySnapshot?.documents.first {
-                    document.reference.delete()
-                }
+                completion(true)
             }
         }
+        
+//        db.collection(collection.name).whereField("id", isEqualTo: id as Any)
+//            .getDocuments { querySnapshot, error in
+//
+//            if let error = error {
+//                print("Document doesn't exist: \(error)")
+//                completion(false)
+//            } else {
+//                if let document = querySnapshot?.documents.first {
+//                    document.reference.delete()
+//                    completion(true)
+//                }
+//            }
+//        }
     }
 }
 

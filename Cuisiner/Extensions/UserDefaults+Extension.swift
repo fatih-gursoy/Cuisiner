@@ -17,16 +17,9 @@ extension UserDefaults {
         self.string(forKey: "Username")
     }
     
-    var password: String? {
-        self.string(forKey: "Password")
-    }
-    
-    func setData(isRemember: Bool, email: String, password: String) {
-        
+    func setData(isRemember: Bool, email: String) {
         self.set(true, forKey: "isRemember")
         self.set(email, forKey: "Username")
-        self.set(password, forKey: "Password")
-        // Password silinecek
     }
     
     func removeUserLoginData() {

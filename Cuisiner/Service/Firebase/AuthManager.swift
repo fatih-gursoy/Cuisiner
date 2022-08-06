@@ -13,26 +13,14 @@ class AuthManager {
     static let shared: AuthManager = AuthManager()
     
     private var userAuth = Auth.auth()
-    
     private var email = ""
     private var password = ""
-    
-    var errorMessage: String?
-    
     private init() { }
-    
-    var userId: String? { 
-        return userAuth.currentUser?.uid
-    }
-    
-    var userName: String? {
-        return userAuth.currentUser?.displayName
-    }
-    
-    var userEmail: String? {
-        return userAuth.currentUser?.email
-    }
 
+    var errorMessage: String?
+    var userId: String? { return userAuth.currentUser?.uid }
+    var userName: String? { return userAuth.currentUser?.displayName }
+    var userEmail: String? { return userAuth.currentUser?.email }
 }
 
 extension AuthManager {
@@ -43,9 +31,7 @@ extension AuthManager {
     }
     
     func signIn(completion: @escaping(_ success: Bool) -> Void) {
-
         userAuth.signIn(withEmail: email, password: password) { authData, error in
-            
             if error != nil {
                 self.errorMessage = error?.localizedDescription
                 completion(false)
@@ -55,11 +41,8 @@ extension AuthManager {
         }
     }
     
-    
     func signUp(completion: @escaping(_ success: Bool) -> Void) {
-            
         userAuth.createUser(withEmail: email, password: password) { authData, error in
-            
             if error != nil {
                 self.errorMessage = error?.localizedDescription
                 completion(false)
@@ -70,7 +53,6 @@ extension AuthManager {
     }
     
     func changeUsername(with newUsername: String) {
-        
         let changeRequest = userAuth.currentUser?.createProfileChangeRequest()
         changeRequest?.displayName = newUsername
         changeRequest?.commitChanges()
@@ -78,19 +60,9 @@ extension AuthManager {
     
     func updatePassword(currentPassword: String, newPassword: String, completion: @escaping(_ success: Bool) -> Void) {
         
-        guard let userEmail = self.userEmail else { return }
-        let credentials = Firebase.EmailAuthProvider.credential(withEmail: userEmail, password: currentPassword)
-
-        userAuth.currentUser?.reauthenticate(with: credentials, completion: { authData, error in
-            
-            if let error = error {
-                self.errorMessage = error.localizedDescription
-                completion(false)
-                
-            } else {
-                
-                authData?.user.updatePassword(to: newPassword, completion: { error in
-                    
+        reAuthenticate(password: currentPassword) { success in
+            if success {
+                self.userAuth.currentUser?.updatePassword(to: newPassword, completion: { error in
                     if let error = error {
                         self.errorMessage = error.localizedDescription
                         completion(false)
@@ -98,21 +70,62 @@ extension AuthManager {
                         completion(true)
                     }
                 })
+            } else {
+                completion(false)
             }
-        })
+        }
+    }
+    
+    func passwordReset(completion: @escaping(_ success: Bool) -> Void) {
+        userAuth.sendPasswordReset(withEmail: self.email) { error in
+            if let error = error {
+                self.errorMessage = error.localizedDescription
+                completion(false)
+            } else {
+                completion(true)
+            }
+        }
     }
     
     func signOut() {
-        
         do {
             try userAuth.signOut()
         } catch {
             print("Can't signout")
         }
-        
     }
     
+    func deleteAccount(password: String, completion: @escaping(_ success: Bool) -> Void) {
+        
+        reAuthenticate(password: password) { success in
+            if success {
+                self.userAuth.currentUser?.delete(completion: { error in
+                    if let error = error {
+                        self.errorMessage = error.localizedDescription
+                        completion(false)
+                    } else {
+                        completion(true)
+                    }
+                })
+            } else {
+                completion(false)
+            }
+        }
+    }
     
-    
+    private func reAuthenticate(password: String, completion: @escaping(_ success: Bool) -> Void) {
+        
+        guard let userEmail = self.userEmail else { return }
+        let credentials = Firebase.EmailAuthProvider.credential(withEmail: userEmail, password: password)
+
+        userAuth.currentUser?.reauthenticate(with: credentials, completion: { authData, error in
+            if let error = error {
+                self.errorMessage = error.localizedDescription
+                completion(false)
+            } else {
+                completion(true)
+            }
+        })
+    }
 }
 

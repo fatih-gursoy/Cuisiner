@@ -49,8 +49,7 @@ class SignInVC: UIViewController {
             
         if rememberMeSwitch.isOn {
             defaults.setData(isRemember: true,
-                             email: emailText.text!,
-                             password: passwordText.text!)
+                             email: emailText.text!)
         } else {
             defaults.removeUserLoginData()
         }
@@ -60,7 +59,6 @@ class SignInVC: UIViewController {
         if defaults.isRemember {
             rememberMeSwitch.isOn = true
             emailText.text = defaults.username
-            passwordText.text = defaults.password
         }
     }
     

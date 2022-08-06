@@ -36,6 +36,11 @@ class RecipeViewModel {
         return recipeID
     }
     
+    var recipeImageUrl: String {
+        guard let url = self.recipe.foodImageUrl else { return ""}
+        return url
+    }
+    
     var category: String {
         return self.recipe.category.rawValue
     }
@@ -90,19 +95,10 @@ class RecipeViewModel {
     
 // MARK: -Firebase Functions
     
-    func createNew() {
-        service.addNew(to: .recipes, self.recipe)
-    }
-    
     func updateRecipe() {
         guard let recipeId = self.recipe.id else {return}
         service.update(from: .recipes, id: recipeId, self.recipe)
         self.delegate?.updateView()
-    }
-    
-    func delete() {
-        guard let recipeId = self.recipe.id else {return}
-        service.delete(from: .recipes, with: recipeId)
     }
     
     func fetchUser() {

@@ -90,13 +90,26 @@ class MyRecipesViewModel {
         return RecipeViewModel(recipe: recipe)
     }
     
-    func deleteRecipe(id: String) {
-        service.delete(from: .recipes, with: id)
-        delegate?.updateView()
+    func deleteRecipe(viewModel: RecipeViewModel) {
+        
+        let group = DispatchGroup()
+        
+        group.enter()
+        service.delete(from: .recipes, with: viewModel.recipeID) { success in
+            if success { group.leave()}
+        }
+        
+        group.enter()
+        StorageService.shared.deleteImage(imageUrl: viewModel.recipeImageUrl) { success in
+            if success { group.leave()}
+        }
+        group.notify(queue: .main) { [weak self] in
+            self?.delegate?.updateView()
+        }
     }
     
-    func deleteFromSaveList(id: String) {
-        coredataManager.deleteRecipe(with: id)
+    func deleteFromSaveList(viewModel: RecipeViewModel) {
+        coredataManager.deleteRecipe(with: viewModel.recipeID)
         fetchSavedRecipes()
     }
 }

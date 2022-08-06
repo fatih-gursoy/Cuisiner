@@ -13,6 +13,7 @@ class ProfileEditVC: UIViewController {
     @IBOutlet private weak var usernameField: UITextField!
     @IBOutlet private weak var emailField: UITextField!
     @IBOutlet private weak var bioField: UITextView!
+    @IBOutlet private weak var scrollView: UIScrollView!
     
     private var storage = StorageService.shared
     private var viewModel: UserViewModel
@@ -28,15 +29,22 @@ class ProfileEditVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
 //MARK: - Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureImagePicker()
         configureUI()
+        hideKeyboard()
+        keyboardNotification(scrollView: scrollView)
     }
     
     func configureUI() {
+        self.title = "Edit Profile"
         profileImage.setImage(url: viewModel.userImageUrl)
         usernameField.text = viewModel.userName
         emailField.text = viewModel.user.email
@@ -48,11 +56,8 @@ class ProfileEditVC: UIViewController {
 
     @IBAction func updateTapped(_ sender: Any) {
         
-        guard let userImageURL = viewModel.userImageUrl,
-              let newImage = profileImage.image
-        else { return }
-            
-        if !profileImage.isSame(with: userImageURL) {
+        guard let newImage = profileImage.image else { return }            
+        if !profileImage.isSame(with: viewModel.userImageUrl) {
             storage.imageUpload(to: .userImages, id: viewModel.userId, image: newImage) { imageURL in
                 self.updateUserInfo()
                 self.viewModel.user.userImageUrl = imageURL
@@ -81,12 +86,35 @@ class ProfileEditVC: UIViewController {
     }
     
     @IBAction func changePasswordTapped(_ sender: Any) {
-        let updatePasswordVC = PasswordVC()
+        let updatePasswordVC = ChangePasswordVC()
         updatePasswordVC.modalPresentationStyle = .overCurrentContext
         updatePasswordVC.modalTransitionStyle = .crossDissolve
         present(updatePasswordVC, animated: true)
     }
     
+    @IBAction func deleteAccountTapped(_ sender: Any) {
+        let deleteConfirmationVC = AccountDeleteConfirmationVC()
+        deleteConfirmationVC.viewModel = self.viewModel
+        deleteConfirmationVC.delegate = self
+        deleteConfirmationVC.modalPresentationStyle = .overCurrentContext
+        deleteConfirmationVC.modalTransitionStyle = .crossDissolve
+        present(deleteConfirmationVC, animated: true)
+    }
+    
+}
+
+protocol ProfileEditVCDelegate: AnyObject {
+    func routeToWelcome()
+}
+
+extension ProfileEditVC: ProfileEditVCDelegate {
+    func routeToWelcome() {
+        self.tabBarController?.hidesBottomBarWhenPushed = true
+        guard let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC") as? WelcomeVC else { fatalError("Could't load") }
+
+        welcomeVC.modalPresentationStyle = .fullScreen
+        self.present(welcomeVC, animated: true)
+    }  
 }
 
 // MARK: - ImagePicker Delegate

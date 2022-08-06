@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,11 +18,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="432" height="741"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="5HU-lZ-neG">
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="5HU-lZ-neG">
                         <rect key="frame" x="0.0" y="20" width="432" height="701"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, " textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="tFN-MM-NW2">
-                                <rect key="frame" x="30" y="0.0" width="372" height="270.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="432" height="270.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <inset key="scrollIndicatorInsets" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
                                 <color key="textColor" systemColor="labelColor"/>
@@ -29,40 +30,54 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="5t0-m8-zRP">
-                                <rect key="frame" x="30" y="290.5" width="372" height="350.5"/>
+                                <rect key="frame" x="0.0" y="290.5" width="432" height="350.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Y4h-oy-Tn4" userLabel="TimerStack">
-                                <rect key="frame" x="30" y="661" width="372" height="40"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Y4h-oy-Tn4" userLabel="TimerStack">
+                                <rect key="frame" x="0.0" y="661" width="432" height="40"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zQ2-Qv-3jb">
-                                        <rect key="frame" x="0.0" y="0.0" width="110.5" height="40"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zQ2-Qv-3jb" customClass="CustomButton" customModule="Cuisiner" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="137.5" height="40"/>
+                                        <color key="backgroundColor" name="Dark Red"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="IEr-gE-syO"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Reset">
-                                            <color key="baseBackgroundColor" name="Dark Red"/>
-                                        </buttonConfiguration>
+                                        <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="20"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Reset">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="resetClicked:" destination="gTV-IL-0wX" eventType="touchUpInside" id="s3l-eQ-zSa"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="KBw-ZH-q4W">
-                                        <rect key="frame" x="130.5" y="0.0" width="111" height="40"/>
+                                        <rect key="frame" x="147.5" y="0.0" width="137" height="40"/>
                                         <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="30"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HQZ-ik-tjL">
-                                        <rect key="frame" x="261.5" y="0.0" width="110.5" height="40"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HQZ-ik-tjL" customClass="CustomButton" customModule="Cuisiner" customModuleProvider="target">
+                                        <rect key="frame" x="294.5" y="0.0" width="137.5" height="40"/>
+                                        <color key="backgroundColor" name="Dark Red"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="fD5-Ar-hcY"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Start">
-                                            <color key="baseBackgroundColor" name="Dark Red"/>
-                                        </buttonConfiguration>
+                                        <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="20"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Start">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="startClicked:" destination="gTV-IL-0wX" eventType="touchUpInside" id="gWI-bd-4Sf"/>
                                         </connections>
@@ -72,12 +87,6 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="5t0-m8-zRP" firstAttribute="centerX" secondItem="5HU-lZ-neG" secondAttribute="centerX" id="03N-mM-V7Q"/>
-                            <constraint firstItem="5t0-m8-zRP" firstAttribute="leading" secondItem="5HU-lZ-neG" secondAttribute="leading" constant="30" id="Jv5-Q6-cFH"/>
-                            <constraint firstAttribute="trailing" secondItem="tFN-MM-NW2" secondAttribute="trailing" constant="30" id="Kqi-eE-DaB"/>
-                            <constraint firstItem="tFN-MM-NW2" firstAttribute="leading" secondItem="5HU-lZ-neG" secondAttribute="leading" constant="30" id="Pa5-67-qub"/>
-                            <constraint firstItem="Y4h-oy-Tn4" firstAttribute="leading" secondItem="5HU-lZ-neG" secondAttribute="leading" constant="30" id="Xhk-5T-EEM"/>
-                            <constraint firstAttribute="trailing" secondItem="Y4h-oy-Tn4" secondAttribute="trailing" constant="30" id="hXj-AR-gos"/>
-                            <constraint firstAttribute="trailing" secondItem="5t0-m8-zRP" secondAttribute="trailing" constant="30" id="iMo-EO-b3k"/>
                             <constraint firstItem="5t0-m8-zRP" firstAttribute="height" secondItem="5HU-lZ-neG" secondAttribute="height" multiplier="0.5" id="l5h-Fz-dOZ"/>
                             <constraint firstItem="tFN-MM-NW2" firstAttribute="centerX" secondItem="5HU-lZ-neG" secondAttribute="centerX" id="zgM-ok-7kj"/>
                         </constraints>

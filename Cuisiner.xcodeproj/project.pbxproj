@@ -50,6 +50,8 @@
 		3D5C32B927F449570048CAC0 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5C32B827F449570048CAC0 /* UserViewModel.swift */; };
 		3D5C32BB27F44A890048CAC0 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5C32BA27F44A890048CAC0 /* AuthManager.swift */; };
 		3D5C32BE27F4712E0048CAC0 /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5C32BD27F4712D0048CAC0 /* ViewController+Extension.swift */; };
+		3D6CDC9E289E718F00EFC01C /* AccountDeleteConfirmationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6CDC9C289E718F00EFC01C /* AccountDeleteConfirmationVC.swift */; };
+		3D6CDC9F289E718F00EFC01C /* AccountDeleteConfirmationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D6CDC9D289E718F00EFC01C /* AccountDeleteConfirmationVC.xib */; };
 		3D703820281991C2002A554E /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70381F281991C2002A554E /* Database.swift */; };
 		3D82E2CA283B9C900013032D /* CustomPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82E2C8283B9C900013032D /* CustomPopupVC.swift */; };
 		3D82E2CB283B9C910013032D /* CustomPopupVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D82E2C9283B9C900013032D /* CustomPopupVC.xib */; };
@@ -61,13 +63,14 @@
 		3D9F422228328055003FA3E0 /* StartCookVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9F422128328055003FA3E0 /* StartCookVC.swift */; };
 		3D9F42252832FCA7003FA3E0 /* InstructionCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9F42232832FCA6003FA3E0 /* InstructionCollectionCell.swift */; };
 		3D9F42262832FCA7003FA3E0 /* InstructionCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9F42242832FCA6003FA3E0 /* InstructionCollectionCell.xib */; };
+		3D9F92F5289D1DF400F02997 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9F92F4289D1DF400F02997 /* CustomButton.swift */; };
 		3DA92E612816066500DE0065 /* RecipeDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA92E602816066500DE0065 /* RecipeDetailVC.swift */; };
 		3DDC76C2283305B400DBCBB7 /* cooking.json in Resources */ = {isa = PBXBuildFile; fileRef = 3DDC76C1283305B400DBCBB7 /* cooking.json */; };
 		3DE094052896ADE900003925 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE094042896ADE900003925 /* UserDefaults+Extension.swift */; };
 		3DE452B32815FA30003F9AC6 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE452B22815FA30003F9AC6 /* CustomImageView.swift */; };
 		3DEBA83F281751D100E9774B /* ImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEBA83E281751D100E9774B /* ImageView+Extension.swift */; };
-		3DFCC8E72869ECF200297EEA /* PasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFCC8E62869ECF200297EEA /* PasswordVC.swift */; };
-		3DFCC8E92869ED2800297EEA /* PasswordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DFCC8E82869ED2800297EEA /* PasswordVC.xib */; };
+		3DFCC8E72869ECF200297EEA /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFCC8E62869ECF200297EEA /* ChangePasswordVC.swift */; };
+		3DFCC8E92869ED2800297EEA /* ChangePasswordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DFCC8E82869ED2800297EEA /* ChangePasswordVC.xib */; };
 		4FEE0B4A326BF3EB126E1AF8 /* Pods_Cuisiner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F79FDA8AE708E87CA5F41101 /* Pods_Cuisiner.framework */; };
 /* End PBXBuildFile section */
 
@@ -118,6 +121,8 @@
 		3D5C32B827F449570048CAC0 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		3D5C32BA27F44A890048CAC0 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		3D5C32BD27F4712D0048CAC0 /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
+		3D6CDC9C289E718F00EFC01C /* AccountDeleteConfirmationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDeleteConfirmationVC.swift; sourceTree = "<group>"; };
+		3D6CDC9D289E718F00EFC01C /* AccountDeleteConfirmationVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountDeleteConfirmationVC.xib; sourceTree = "<group>"; };
 		3D70381F281991C2002A554E /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		3D82E2C8283B9C900013032D /* CustomPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopupVC.swift; sourceTree = "<group>"; };
 		3D82E2C9283B9C900013032D /* CustomPopupVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomPopupVC.xib; sourceTree = "<group>"; };
@@ -129,13 +134,14 @@
 		3D9F422128328055003FA3E0 /* StartCookVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartCookVC.swift; sourceTree = "<group>"; };
 		3D9F42232832FCA6003FA3E0 /* InstructionCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionCollectionCell.swift; sourceTree = "<group>"; };
 		3D9F42242832FCA6003FA3E0 /* InstructionCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InstructionCollectionCell.xib; sourceTree = "<group>"; };
+		3D9F92F4289D1DF400F02997 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		3DA92E602816066500DE0065 /* RecipeDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailVC.swift; sourceTree = "<group>"; };
 		3DDC76C1283305B400DBCBB7 /* cooking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cooking.json; sourceTree = "<group>"; };
 		3DE094042896ADE900003925 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		3DE452B22815FA30003F9AC6 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		3DEBA83E281751D100E9774B /* ImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+Extension.swift"; sourceTree = "<group>"; };
-		3DFCC8E62869ECF200297EEA /* PasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordVC.swift; sourceTree = "<group>"; };
-		3DFCC8E82869ED2800297EEA /* PasswordVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PasswordVC.xib; sourceTree = "<group>"; };
+		3DFCC8E62869ECF200297EEA /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
+		3DFCC8E82869ED2800297EEA /* ChangePasswordVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangePasswordVC.xib; sourceTree = "<group>"; };
 		5985132E584E3DF6B1C7D178 /* Pods-Cuisiner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cuisiner.release.xcconfig"; path = "Target Support Files/Pods-Cuisiner/Pods-Cuisiner.release.xcconfig"; sourceTree = "<group>"; };
 		F79FDA8AE708E87CA5F41101 /* Pods_Cuisiner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cuisiner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -385,6 +391,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		3D6CDC9B289E715E00EFC01C /* AccountDeleteConfirmationVC */ = {
+			isa = PBXGroup;
+			children = (
+				3D6CDC9C289E718F00EFC01C /* AccountDeleteConfirmationVC.swift */,
+				3D6CDC9D289E718F00EFC01C /* AccountDeleteConfirmationVC.xib */,
+			);
+			path = AccountDeleteConfirmationVC;
+			sourceTree = "<group>";
+		};
 		3D82E2C7283B9C6D0013032D /* CustomPopupVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -397,6 +412,7 @@
 		3D8D6A0D2840C65E00DDEED4 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				3D6CDC9B289E715E00EFC01C /* AccountDeleteConfirmationVC */,
 				3DFCC8E52869ECA500297EEA /* PasswordView */,
 				3D8D6A0F2840CEC300DDEED4 /* StarView */,
 				3D82E2C7283B9C6D0013032D /* CustomPopupVC */,
@@ -411,6 +427,7 @@
 			children = (
 				3D13459B28096DC700BF9050 /* CustomView.swift */,
 				3DE452B22815FA30003F9AC6 /* CustomImageView.swift */,
+				3D9F92F4289D1DF400F02997 /* CustomButton.swift */,
 				3D4AA44B286ADF99008FA49D /* SegmentedControl.swift */,
 			);
 			path = IBDesignables;
@@ -497,8 +514,8 @@
 		3DFCC8E52869ECA500297EEA /* PasswordView */ = {
 			isa = PBXGroup;
 			children = (
-				3DFCC8E62869ECF200297EEA /* PasswordVC.swift */,
-				3DFCC8E82869ED2800297EEA /* PasswordVC.xib */,
+				3DFCC8E62869ECF200297EEA /* ChangePasswordVC.swift */,
+				3DFCC8E82869ED2800297EEA /* ChangePasswordVC.xib */,
 			);
 			path = PasswordView;
 			sourceTree = "<group>";
@@ -586,6 +603,7 @@
 				3D82E2CB283B9C910013032D /* CustomPopupVC.xib in Resources */,
 				3D3D46382816BCB6007D2D5A /* RecipeCell.xib in Resources */,
 				3D174E9927DE19C800D5DCB3 /* IngredientTableCell.xib in Resources */,
+				3D6CDC9F289E718F00EFC01C /* AccountDeleteConfirmationVC.xib in Resources */,
 				3D513E8B27E0DB7B00B17CB6 /* PrepareTableCell.xib in Resources */,
 				3D83FA67289A72B6003FAB3E /* Color.xcassets in Resources */,
 				3D20E268283F5D06003DD793 /* done.json in Resources */,
@@ -596,7 +614,7 @@
 				3D0A72C127D6AC2700F26608 /* GoogleService-Info.plist in Resources */,
 				3D0A729A27D6A8C400F26608 /* Assets.xcassets in Resources */,
 				3D0A729527D6A8C100F26608 /* Main.storyboard in Resources */,
-				3DFCC8E92869ED2800297EEA /* PasswordVC.xib in Resources */,
+				3DFCC8E92869ED2800297EEA /* ChangePasswordVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -665,7 +683,7 @@
 				3D597885285B649800CD3A7C /* ProfileVC.swift in Sources */,
 				3DE094052896ADE900003925 /* UserDefaults+Extension.swift in Sources */,
 				3D4AA452286B96D6008FA49D /* MyRecipesViewModel.swift in Sources */,
-				3DFCC8E72869ECF200297EEA /* PasswordVC.swift in Sources */,
+				3DFCC8E72869ECF200297EEA /* ChangePasswordVC.swift in Sources */,
 				3D5C32AE27F262F40048CAC0 /* RecipesViewModel.swift in Sources */,
 				3D0A729227D6A8C100F26608 /* WelcomeVC.swift in Sources */,
 				3D0A728E27D6A8C100F26608 /* AppDelegate.swift in Sources */,
@@ -678,6 +696,7 @@
 				3DE452B32815FA30003F9AC6 /* CustomImageView.swift in Sources */,
 				3D5C32B727F449050048CAC0 /* User.swift in Sources */,
 				3D0A72CC27D79F6600F26608 /* SignInVC.swift in Sources */,
+				3D9F92F5289D1DF400F02997 /* CustomButton.swift in Sources */,
 				3D5C32BE27F4712E0048CAC0 /* ViewController+Extension.swift in Sources */,
 				3D13459C28096DC700BF9050 /* CustomView.swift in Sources */,
 				3D19A0E4285328DC00B570A2 /* CustomTableView.swift in Sources */,
@@ -686,6 +705,7 @@
 				3DEBA83F281751D100E9774B /* ImageView+Extension.swift in Sources */,
 				3D920C2F285D34C000A8272D /* ProfileEditVC.swift in Sources */,
 				3D174E8E27D8064600D5DCB3 /* DiscoverVC.swift in Sources */,
+				3D6CDC9E289E718F00EFC01C /* AccountDeleteConfirmationVC.swift in Sources */,
 				3D1B305828927E1900166FC9 /* ProfileEditVCBuilder.swift in Sources */,
 				3D703820281991C2002A554E /* Database.swift in Sources */,
 				3D0A729827D6A8C100F26608 /* Cuisiner.xcdatamodeld in Sources */,
@@ -862,7 +882,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.FatihGursoy.Cuisiner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -898,7 +918,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.FatihGursoy.Cuisiner;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -21,24 +21,20 @@ class PrepareVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         hideKeyboard()
         updateUI()
-
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(UINib(nibName: PrepareTableCell.identifier, bundle: nil), forCellReuseIdentifier: PrepareTableCell.identifier)
+        configureTableView()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         configureViewModel()
     }
+
+//MARK: - Button Taps
     
     @IBAction func addButtonClicked(_ sender: Any) {
-        
         let newInstruction = Instruction()
         instructions.append(newInstruction)
-        
         tableView.reloadData()
         scrollView.layoutIfNeeded()
         let bottom = scrollView.contentSize.height - scrollView.bounds.height
@@ -46,12 +42,13 @@ class PrepareVC: UIViewController {
     }
     
     @IBAction func saveButtonClicked(_ sender: Any) {
-        
         presentAlert(title: "Updating Recipe", message: "Are you sure?") { _ in
             self.saveRecipe()
             self.dismiss(animated: true)
         }
     }
+    
+//MARK: - Functions
     
     func saveRecipe() {
         
@@ -89,19 +86,46 @@ class PrepareVC: UIViewController {
     }
 }
 
-//MARK: -TableViewDelegates
+//MARK: - TableViewDelegates
 
 extension PrepareVC: UITableViewDelegate, UITableViewDataSource {
+    
+    func configureTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UINib(nibName: PrepareTableCell.identifier, bundle: nil), forCellReuseIdentifier: PrepareTableCell.identifier)
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PrepareTableCell.identifier, for: indexPath) as? PrepareTableCell else {fatalError("Could not Load")}
         
         cell.configure(instruction: instructions[indexPath.row])
+        cell.textView.tag = indexPath.row
+        cell.textView.delegate = self
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return instructions.count
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            instructions.remove(at: indexPath.row)
+            tableView.reloadData()
+            scrollView.layoutIfNeeded()
+        }
+    }
+}
+
+//MARK: - TextView Delegate
+
+extension PrepareVC: UITextViewDelegate {
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        let tag = textView.tag
+        self.instructions[tag].text = textView.text
     }
 }

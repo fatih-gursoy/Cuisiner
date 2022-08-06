@@ -108,6 +108,14 @@ class RecipeDetailVC: UIViewController {
         }
         notificationCenter.post(name: NSNotification.Name(rawValue: "RefreshSavedList"), object: nil)
     }
+    
+    @IBAction func reportButtonTapped(_ sender: Any) {
+        
+        //TODO:  Report to Admin actions...
+        
+    }
+    
+    
 }
 
 // MARK: - TableView Delegate

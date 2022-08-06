@@ -83,13 +83,14 @@ extension MyRecipesVC: UITableViewDelegate, UITableViewDataSource {
         
         if editingStyle == .delete {
             
-            guard let recipeId = myRecipesViewModel.recipes[selectedTable][indexPath.row].id else {return}
+            guard let recipeVM = myRecipesViewModel.recipeAtIndex(selectedTable: selectedTable,
+                                                                  index: indexPath.row) else {return}
             
             switch selectedTable {
             case 0:
-                myRecipesViewModel.deleteRecipe(id: recipeId)
+                myRecipesViewModel.deleteRecipe(viewModel: recipeVM)
             case 1:
-                myRecipesViewModel.deleteFromSaveList(id: recipeId)
+                myRecipesViewModel.deleteFromSaveList(viewModel: recipeVM)
             default:
                 break
             }
@@ -163,7 +164,7 @@ extension MyRecipesVC {
         self.present(navController, animated: true)
     }
     
-    @objc func signOut() {
+    func signOut() {
         
         AuthManager.shared.signOut()
         
@@ -174,6 +175,5 @@ extension MyRecipesVC {
         
         welcomeVC.modalPresentationStyle = .fullScreen
         self.present(welcomeVC, animated: true)
-        
     }
 }
