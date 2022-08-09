@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="df8-Qx-gRv">
-                    <rect key="frame" x="20" y="212.5" width="374" height="310.5"/>
+                    <rect key="frame" x="20" y="181.5" width="374" height="372.5"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="aZt-GJ-nme" userLabel="FieldStack">
                             <rect key="frame" x="0.0" y="0.0" width="374" height="119.5"/>
@@ -80,20 +80,36 @@
                                 </switch>
                             </subviews>
                         </stackView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pai-sV-3Ba">
-                            <rect key="frame" x="0.0" y="250.5" width="374" height="60"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="60" id="wSP-Dt-UlX"/>
-                            </constraints>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="filled" title="Log In" cornerStyle="large">
-                                <fontDescription key="titleFontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="22"/>
-                                <color key="baseBackgroundColor" systemColor="systemRedColor"/>
-                            </buttonConfiguration>
-                            <connections>
-                                <action selector="signInClicked:" destination="-1" eventType="touchUpInside" id="UL4-BY-ibB"/>
-                            </connections>
-                        </button>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="yxr-L7-M4n">
+                            <rect key="frame" x="0.0" y="250.5" width="374" height="122"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pai-sV-3Ba">
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="60"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="60" id="wSP-Dt-UlX"/>
+                                    </constraints>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="filled" title="Log In" cornerStyle="large">
+                                        <fontDescription key="titleFontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="22"/>
+                                        <color key="baseBackgroundColor" systemColor="systemRedColor"/>
+                                    </buttonConfiguration>
+                                    <connections>
+                                        <action selector="signInClicked:" destination="-1" eventType="touchUpInside" id="UL4-BY-ibB"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twj-BG-K5v">
+                                    <rect key="frame" x="0.0" y="85" width="374" height="37"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="Forgot Password?">
+                                        <fontDescription key="titleFontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
+                                        <color key="baseForegroundColor" name="Dark Red"/>
+                                    </buttonConfiguration>
+                                    <connections>
+                                        <action selector="forgotPasswordTapped:" destination="-1" eventType="touchUpInside" id="o7T-HG-ac7"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
                     </subviews>
                     <constraints>
                         <constraint firstItem="aZt-GJ-nme" firstAttribute="leading" secondItem="df8-Qx-gRv" secondAttribute="leading" id="43q-G0-YIL"/>
@@ -114,6 +130,9 @@
         </view>
     </objects>
     <resources>
+        <namedColor name="Dark Red">
+            <color red="0.62000000476837158" green="0.16899999976158142" blue="0.16899999976158142" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <systemColor name="placeholderTextColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

@@ -40,7 +40,6 @@ class ProfileEditVC: UIViewController {
         configureImagePicker()
         configureUI()
         hideKeyboard()
-        keyboardNotification(scrollView: scrollView)
     }
     
     func configureUI() {
@@ -93,7 +92,7 @@ class ProfileEditVC: UIViewController {
     }
     
     @IBAction func deleteAccountTapped(_ sender: Any) {
-        let deleteConfirmationVC = AccountDeleteConfirmationVC()
+        let deleteConfirmationVC = AccountDeleteVC()
         deleteConfirmationVC.viewModel = self.viewModel
         deleteConfirmationVC.delegate = self
         deleteConfirmationVC.modalPresentationStyle = .overCurrentContext

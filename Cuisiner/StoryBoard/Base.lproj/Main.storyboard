@@ -733,20 +733,21 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vSp-1g-f4M" userLabel="personNumber">
-                                                                        <rect key="frame" x="262" y="8" width="112" height="34"/>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Person" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vSp-1g-f4M" userLabel="personNumber">
+                                                                        <rect key="frame" x="262" y="5" width="112" height="40"/>
                                                                         <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
                                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                     </textField>
                                                                 </subviews>
                                                                 <constraints>
                                                                     <constraint firstItem="mCs-hv-HLt" firstAttribute="height" secondItem="6hI-VF-xfa" secondAttribute="height" multiplier="0.625" id="Iya-0z-59b"/>
+                                                                    <constraint firstItem="vSp-1g-f4M" firstAttribute="height" secondItem="6hI-VF-xfa" secondAttribute="height" multiplier="0.8" id="kAY-mP-gVe"/>
                                                                     <constraint firstItem="vSp-1g-f4M" firstAttribute="width" secondItem="6hI-VF-xfa" secondAttribute="width" multiplier="0.3" id="rFf-eN-RZj"/>
                                                                 </constraints>
                                                             </stackView>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                                        <color key="backgroundColor" name="veryLight Gray"/>
                                                         <constraints>
                                                             <constraint firstItem="6hI-VF-xfa" firstAttribute="leading" secondItem="iTu-4m-TYq" secondAttribute="leading" constant="10" id="JK9-wd-3Ue"/>
                                                             <constraint firstAttribute="height" constant="70" id="SlO-FC-Xom"/>
@@ -759,6 +760,18 @@
                                                                 <real key="value" value="15"/>
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                                <size key="value" width="0.0" height="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                                <real key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                                <real key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sor-HP-oaq" customClass="CustomView" customModule="Cuisiner" customModuleProvider="target">
@@ -779,20 +792,21 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UBS-Rd-EGS" userLabel="personNumber">
-                                                                        <rect key="frame" x="262" y="8" width="112" height="34"/>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Minute" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UBS-Rd-EGS" userLabel="personNumber">
+                                                                        <rect key="frame" x="262" y="5" width="112" height="40"/>
                                                                         <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
                                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                     </textField>
                                                                 </subviews>
                                                                 <constraints>
                                                                     <constraint firstItem="tag-uF-P5B" firstAttribute="height" secondItem="n7g-cO-vWe" secondAttribute="height" multiplier="0.625" id="HRv-Ph-dn7"/>
+                                                                    <constraint firstItem="UBS-Rd-EGS" firstAttribute="height" secondItem="n7g-cO-vWe" secondAttribute="height" multiplier="0.8" id="S85-GC-k9R"/>
                                                                     <constraint firstItem="UBS-Rd-EGS" firstAttribute="width" secondItem="n7g-cO-vWe" secondAttribute="width" multiplier="0.3" id="iNi-nz-j0f"/>
                                                                 </constraints>
                                                             </stackView>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                                        <color key="backgroundColor" name="veryLight Gray"/>
                                                         <constraints>
                                                             <constraint firstItem="n7g-cO-vWe" firstAttribute="leading" secondItem="sor-HP-oaq" secondAttribute="leading" constant="10" id="B7I-3t-Xoj"/>
                                                             <constraint firstAttribute="trailing" secondItem="n7g-cO-vWe" secondAttribute="trailing" constant="10" id="Mre-OF-eXo"/>
@@ -805,6 +819,18 @@
                                                                 <real key="value" value="15"/>
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                                <size key="value" width="0.0" height="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                                <real key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                                <real key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sFp-WC-zns" userLabel="Category View" customClass="CustomView" customModule="Cuisiner" customModuleProvider="target">
@@ -850,7 +876,7 @@
                                                                 </constraints>
                                                             </stackView>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                                        <color key="backgroundColor" name="veryLight Gray"/>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="5ON-rD-WOz" secondAttribute="trailing" constant="10" id="FzN-3A-8lW"/>
                                                             <constraint firstItem="5ON-rD-WOz" firstAttribute="top" secondItem="sFp-WC-zns" secondAttribute="top" constant="10" id="NfJ-S6-4tt"/>
@@ -863,9 +889,21 @@
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                 <real key="value" value="15"/>
                                                             </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                                <size key="value" width="0.0" height="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                                <real key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                                <real key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tK2-3X-VEb" customClass="CustomTableView" customModule="Cuisiner" customModuleProvider="target">
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" alwaysBounceVertical="YES" scrollEnabled="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tK2-3X-VEb" customClass="CustomTableView" customModule="Cuisiner" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="599" width="394" height="252.5"/>
                                                         <color key="sectionIndexColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableView>
@@ -1395,7 +1433,7 @@
                                                                     </imageView>
                                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mGM-Yq-N2E">
                                                                         <rect key="frame" x="40" y="0.0" width="334" height="275"/>
-                                                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                                        <color key="backgroundColor" name="veryLight Gray"/>
                                                                         <attributedString key="attributedText">
                                                                             <fragment content="Bio">
                                                                                 <attributes>
@@ -1745,8 +1783,8 @@
         <image name="bookmark" catalog="system" width="112" height="128"/>
         <image name="bookmark.fill" catalog="system" width="112" height="128"/>
         <image name="category" width="50" height="50"/>
-        <image name="chevron.backward.circle.fill" catalog="system" width="128" height="121"/>
         <image name="chevron.backward.circle.fill" width="128" height="128"/>
+        <image name="chevron.backward.circle.fill" catalog="system" width="128" height="121"/>
         <image name="cook" width="50" height="50"/>
         <image name="discover" width="25" height="25"/>
         <image name="edit" width="43" height="43"/>
@@ -1770,11 +1808,11 @@
         <namedColor name="Red">
             <color red="0.79199999570846558" green="0.2199999988079071" blue="0.2199999988079071" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
+        <namedColor name="veryLight Gray">
+            <color red="1" green="0.88999998569488525" blue="0.86599999666213989" alpha="0.69999998807907104" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="placeholderTextColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1787,9 +1825,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

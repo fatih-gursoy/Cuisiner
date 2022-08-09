@@ -64,11 +64,11 @@ class RecipeViewModel {
         return String(describing: starList.count)
     }
     
-    var ingredients: [Ingredient]? {
+    var ingredients: [Ingredient] {
         return recipe.ingredients
     }
     
-    var instructions: [Instruction]? {
+    var instructions: [Instruction] {
         return recipe.instructions
     }
     

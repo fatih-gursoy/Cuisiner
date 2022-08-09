@@ -9,6 +9,8 @@ import UIKit
 
 class CreateNewVC: UIViewController {
     
+//MARK: - Properties
+    
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var categoryButton: UIButton!
@@ -26,30 +28,28 @@ class CreateNewVC: UIViewController {
     private var pickerView = UIPickerView()
     private var toolBar = UIToolbar()
         
-    private var ingredients = [Ingredient]()
+    private var ingredients = [Ingredient]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
     var recipeViewModel: RecipeViewModel?
+
+//MARK: - Functions
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        pickerView.delegate = self
-        pickerView.dataSource = self
-        
         hideKeyboard()
-        keyboardNotification(scrollView: self.scrollView)
         configureNavBar()
-        configureImagePicker()
         updateUI()
         configureTableView()
-        
+        configureImagePicker()
         serveField.delegate = self
         cookTimeField.delegate = self
     }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
 
+    // Runs if update recipe screen is appear
     func updateUI() {
         guard let recipeViewModel = recipeViewModel else { return }
         self.headerLabel.text = "Update Recipe"
@@ -57,10 +57,7 @@ class CreateNewVC: UIViewController {
         self.cookTimeField.text = recipeViewModel.recipe.cookTime
         self.serveField.text = recipeViewModel.recipe.serve
         self.foodImage.setImage(url: recipeViewModel.recipe.foodImageUrl)
-        
-        if let ingredients = recipeViewModel.ingredients {
-            self.ingredients = ingredients
-        }
+        self.ingredients = recipeViewModel.ingredients
         
         selectedCategory = recipeViewModel.recipe.category
         if let row = Recipe.Category.allCases.firstIndex(of: selectedCategory!) {
@@ -69,32 +66,57 @@ class CreateNewVC: UIViewController {
         }
     }
     
-    func configureTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(UINib(nibName: "IngredientTableCell", bundle: nil), forCellReuseIdentifier: IngredientTableCell.identifier)
-        tableView.reloadData()
+    func configureViewModel() {
+                
+        guard let checkFieldValid = checkFieldValid,
+              let selectedCategory = selectedCategory else { return }
+                
+        if checkFieldValid {
+            if recipeViewModel != nil {
+                recipeViewModel?.recipe.name = self.recipeNameField.text
+                recipeViewModel?.recipe.serve = self.serveField.text
+                recipeViewModel?.recipe.cookTime = self.cookTimeField.text
+                recipeViewModel?.recipe.category = selectedCategory
+                recipeViewModel?.recipe.ingredients = self.ingredients
+            } else {
+                let recipe = Recipe(ownerId: AuthManager.shared.userId,
+                                    id: UUID().uuidString,
+                                    name: self.recipeNameField.text,
+                                    serve: self.serveField.text,
+                                    cookTime: self.cookTimeField.text,
+                                    category: selectedCategory,
+                                    ingredients: self.ingredients,
+                                    instructions: [],
+                                    ratingList: [])
+                self.recipeViewModel = RecipeViewModel(recipe: recipe)
+            }
+        }
     }
     
-
-    func configureNavBar() {
+    var checkFieldValid: Bool? {
         
-        let barButton = UIBarButtonItem(image: #imageLiteral(resourceName: "xmark"), style: .plain, target: self, action: #selector(closeTapped))
+        guard selectedCategory != nil else {
+            presentAlert(title: "Can not continue", message: "Please select a category!", completion: nil); return false }
         
-        self.navigationItem.rightBarButtonItem = barButton
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navigationController?.navigationBar.shadowImage = UIImage()
+        guard let recipeName = recipeNameField.text, !recipeName.isEmpty else {
+            presentAlert(title: "Can not continue", message: "Please enter a Recipe name", completion: nil); return false
+        }
+        
+        guard let serve = serveField.text, !serve.isEmpty else {
+            presentAlert(title: "Can not continue", message: "Please fill serve field", completion: nil); return false
+        }
+        
+        guard let cookTime = cookTimeField.text, !cookTime.isEmpty else {
+            presentAlert(title: "Can not continue", message: "Please fill cook time field", completion: nil); return false
+        }
+        return true
     }
     
-    @objc func closeTapped() {
-        self.dismiss(animated: true, completion: nil)
-    }
+//MARK: - Button Taps
     
     @IBAction func addButtonClicked(_ sender: Any) {
-        getIngredientData()
         let newIngredient = Ingredient()
         ingredients.append(newIngredient)
-        tableView.reloadData()
         let bottom = tableView.contentSize.height
         scrollView.setContentOffset(CGPoint(x: 0, y: bottom), animated: true)
     }
@@ -107,32 +129,6 @@ class CreateNewVC: UIViewController {
         prepareVC.delegate = self
         navigationController?.pushViewController(prepareVC, animated: true)
     }
-    
-    func configureViewModel() {
-                
-        guard let selectedCategory = selectedCategory else {
-            return presentAlert(title: "Can not continue", message: "Please select a category!", completion: nil) }
-
-        if recipeViewModel != nil {
-            recipeViewModel?.recipe.name = self.recipeNameField.text
-            recipeViewModel?.recipe.serve = self.serveField.text
-            recipeViewModel?.recipe.cookTime = self.cookTimeField.text
-            recipeViewModel?.recipe.category = selectedCategory
-            recipeViewModel?.recipe.ingredients = self.ingredients
-        } else {
-            let recipe = Recipe(ownerId: AuthManager.shared.userId,
-                                      id: UUID().uuidString,
-                                      name: self.recipeNameField.text,
-                                      serve: self.serveField.text,
-                                      cookTime: self.cookTimeField.text,
-                                      category: selectedCategory,
-                                      ingredients: self.ingredients,
-                                      ratingList: [])
-      
-            self.recipeViewModel = RecipeViewModel(recipe: recipe)
-        }
-    }
-    
 }
 
 // MARK: - ImagePass Delegate
@@ -142,14 +138,18 @@ protocol ImagePassDelegate: AnyObject {
 }
 
 extension CreateNewVC: ImagePassDelegate {
-    var foodImageToPass: UIImageView? {
-        get {return self.foodImage}
-    }
+    var foodImageToPass: UIImageView? { get {return self.foodImage} }
 }
 
 // MARK: - Tableview Delegates
 
 extension CreateNewVC: UITableViewDelegate, UITableViewDataSource {
+    
+    func configureTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UINib(nibName: "IngredientTableCell", bundle: nil), forCellReuseIdentifier: IngredientTableCell.identifier)
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ingredients.count
@@ -159,26 +159,10 @@ extension CreateNewVC: UITableViewDelegate, UITableViewDataSource {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: IngredientTableCell.identifier, for: indexPath) as? IngredientTableCell else { fatalError("Could not Load")}
         
-        cell.configureForUpdate(ingredient: ingredients[indexPath.row])
-        cell.deleteButton.tag = indexPath.row
-        cell.deleteButton.addTarget(self, action: #selector(deleteRow(_:)), for: .touchUpInside)
+        cell.tag = indexPath.row
+        cell.delegate = self
+        cell.configureForEdit(ingredient: ingredients[indexPath.row])
         return cell
-    }
-    
-    @objc func deleteRow(_ sender: UIButton) {
-        let row = sender.tag
-        ingredients.remove(at: row)
-        tableView.reloadData()
-    }
-    
-    func getIngredientData() {
-        
-        for i in 0..<tableView.numberOfRows(inSection: 0) {
-            guard let cell = tableView.cellForRow(at: IndexPath(row: i, section: 0)) as? IngredientTableCell else {return}
-            
-            ingredients[i].name = cell.itemName.text
-            ingredients[i].amount = cell.itemQuantity.text
-        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -189,6 +173,39 @@ extension CreateNewVC: UITableViewDelegate, UITableViewDataSource {
             return title
         }()
         return headerTitle
+    }
+}
+
+// MARK: - TableCell Delegate
+
+extension CreateNewVC: IngredientCellDelegate {
+    func updateCell(itemName: String?, amount: String?, cell: IngredientTableCell) {
+        let row = cell.tag
+        ingredients[row].name = itemName
+        ingredients[row].amount = amount
+    }
+    
+    func deleteCell(cell: IngredientTableCell) {
+        let row = cell.tag
+        ingredients.remove(at: row)
+    }
+}
+
+// MARK: - NavigationBar Configure
+
+extension CreateNewVC {
+    
+    func configureNavBar() {
+        
+        let barButton = UIBarButtonItem(image: #imageLiteral(resourceName: "xmark"), style: .plain, target: self, action: #selector(closeTapped))
+        
+        self.navigationItem.rightBarButtonItem = barButton
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+    }
+    
+    @objc func closeTapped() {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -244,6 +261,9 @@ extension CreateNewVC: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func configurePickerView() {
+        
+        pickerView.delegate = self
+        pickerView.dataSource = self
         pickerView.contentMode = .top
         pickerView.frame = CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 200, width: UIScreen.main.bounds.size.width, height: 200)
         
@@ -271,7 +291,6 @@ extension CreateNewVC: UIPickerViewDelegate, UIPickerViewDataSource {
 // MARK: - TextField Delegate
 
 extension CreateNewVC: UITextFieldDelegate {
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         let onlyNumbers = CharacterSet.decimalDigits

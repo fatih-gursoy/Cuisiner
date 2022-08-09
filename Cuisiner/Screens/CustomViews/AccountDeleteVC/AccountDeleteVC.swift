@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AccountDeleteConfirmationVC: UIViewController {
+class AccountDeleteVC: UIViewController {
     
     @IBOutlet private weak var passwordField: UITextField!
     private var authManager = AuthManager.shared

@@ -123,16 +123,17 @@ class RecipeDetailVC: UIViewController {
 extension RecipeDetailVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recipeViewModel?.ingredients?.count ?? 0
+        guard let recipeViewModel = recipeViewModel else { return 0 }
+        return recipeViewModel.ingredients.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: IngredientTableCell.identifier,
-                                                       for: indexPath) as? IngredientTableCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: IngredientTableCell.identifier, for: indexPath) as? IngredientTableCell
         else { fatalError("Could not load") }
         
-        cell.configure(ingredient: recipeViewModel?.ingredients?[indexPath.row])
+        cell.configureForPresent(ingredient:
+                                    recipeViewModel?.ingredients[indexPath.row])
         return cell
     }
     
@@ -152,7 +153,6 @@ extension RecipeDetailVC: UITableViewDelegate, UITableViewDataSource {
 //MARK: - ViewModelDelegate
 
 extension RecipeDetailVC: RecipeViewModelDelegate {
-    
     func updateView() {
         userName.text = recipeViewModel.user?.userName
         userImage.setImage(url: recipeViewModel.user?.userImageUrl)
@@ -162,7 +162,7 @@ extension RecipeDetailVC: RecipeViewModelDelegate {
     }
 }
 
-//MARK: - User Tap Gesture
+//MARK: - UserProfile Tap Gesture
 
 extension RecipeDetailVC {
     

@@ -50,8 +50,8 @@
 		3D5C32B927F449570048CAC0 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5C32B827F449570048CAC0 /* UserViewModel.swift */; };
 		3D5C32BB27F44A890048CAC0 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5C32BA27F44A890048CAC0 /* AuthManager.swift */; };
 		3D5C32BE27F4712E0048CAC0 /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5C32BD27F4712D0048CAC0 /* ViewController+Extension.swift */; };
-		3D6CDC9E289E718F00EFC01C /* AccountDeleteConfirmationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6CDC9C289E718F00EFC01C /* AccountDeleteConfirmationVC.swift */; };
-		3D6CDC9F289E718F00EFC01C /* AccountDeleteConfirmationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D6CDC9D289E718F00EFC01C /* AccountDeleteConfirmationVC.xib */; };
+		3D6CDC9E289E718F00EFC01C /* AccountDeleteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6CDC9C289E718F00EFC01C /* AccountDeleteVC.swift */; };
+		3D6CDC9F289E718F00EFC01C /* AccountDeleteVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D6CDC9D289E718F00EFC01C /* AccountDeleteVC.xib */; };
 		3D703820281991C2002A554E /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70381F281991C2002A554E /* Database.swift */; };
 		3D82E2CA283B9C900013032D /* CustomPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82E2C8283B9C900013032D /* CustomPopupVC.swift */; };
 		3D82E2CB283B9C910013032D /* CustomPopupVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D82E2C9283B9C900013032D /* CustomPopupVC.xib */; };
@@ -121,8 +121,8 @@
 		3D5C32B827F449570048CAC0 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		3D5C32BA27F44A890048CAC0 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		3D5C32BD27F4712D0048CAC0 /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
-		3D6CDC9C289E718F00EFC01C /* AccountDeleteConfirmationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDeleteConfirmationVC.swift; sourceTree = "<group>"; };
-		3D6CDC9D289E718F00EFC01C /* AccountDeleteConfirmationVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountDeleteConfirmationVC.xib; sourceTree = "<group>"; };
+		3D6CDC9C289E718F00EFC01C /* AccountDeleteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDeleteVC.swift; sourceTree = "<group>"; };
+		3D6CDC9D289E718F00EFC01C /* AccountDeleteVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountDeleteVC.xib; sourceTree = "<group>"; };
 		3D70381F281991C2002A554E /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		3D82E2C8283B9C900013032D /* CustomPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopupVC.swift; sourceTree = "<group>"; };
 		3D82E2C9283B9C900013032D /* CustomPopupVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomPopupVC.xib; sourceTree = "<group>"; };
@@ -391,13 +391,13 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		3D6CDC9B289E715E00EFC01C /* AccountDeleteConfirmationVC */ = {
+		3D6CDC9B289E715E00EFC01C /* AccountDeleteVC */ = {
 			isa = PBXGroup;
 			children = (
-				3D6CDC9C289E718F00EFC01C /* AccountDeleteConfirmationVC.swift */,
-				3D6CDC9D289E718F00EFC01C /* AccountDeleteConfirmationVC.xib */,
+				3D6CDC9C289E718F00EFC01C /* AccountDeleteVC.swift */,
+				3D6CDC9D289E718F00EFC01C /* AccountDeleteVC.xib */,
 			);
-			path = AccountDeleteConfirmationVC;
+			path = AccountDeleteVC;
 			sourceTree = "<group>";
 		};
 		3D82E2C7283B9C6D0013032D /* CustomPopupVC */ = {
@@ -412,8 +412,8 @@
 		3D8D6A0D2840C65E00DDEED4 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				3D6CDC9B289E715E00EFC01C /* AccountDeleteConfirmationVC */,
-				3DFCC8E52869ECA500297EEA /* PasswordView */,
+				3D6CDC9B289E715E00EFC01C /* AccountDeleteVC */,
+				3DFCC8E52869ECA500297EEA /* ChangePasswordVC */,
 				3D8D6A0F2840CEC300DDEED4 /* StarView */,
 				3D82E2C7283B9C6D0013032D /* CustomPopupVC */,
 				3D19A0E528532A7700B570A2 /* CustomTableView */,
@@ -511,13 +511,13 @@
 			path = "TabBar Menu";
 			sourceTree = "<group>";
 		};
-		3DFCC8E52869ECA500297EEA /* PasswordView */ = {
+		3DFCC8E52869ECA500297EEA /* ChangePasswordVC */ = {
 			isa = PBXGroup;
 			children = (
 				3DFCC8E62869ECF200297EEA /* ChangePasswordVC.swift */,
 				3DFCC8E82869ED2800297EEA /* ChangePasswordVC.xib */,
 			);
-			path = PasswordView;
+			path = ChangePasswordVC;
 			sourceTree = "<group>";
 		};
 		72DFA8C1B6237FCD0DD8A677 /* Pods */ = {
@@ -603,7 +603,7 @@
 				3D82E2CB283B9C910013032D /* CustomPopupVC.xib in Resources */,
 				3D3D46382816BCB6007D2D5A /* RecipeCell.xib in Resources */,
 				3D174E9927DE19C800D5DCB3 /* IngredientTableCell.xib in Resources */,
-				3D6CDC9F289E718F00EFC01C /* AccountDeleteConfirmationVC.xib in Resources */,
+				3D6CDC9F289E718F00EFC01C /* AccountDeleteVC.xib in Resources */,
 				3D513E8B27E0DB7B00B17CB6 /* PrepareTableCell.xib in Resources */,
 				3D83FA67289A72B6003FAB3E /* Color.xcassets in Resources */,
 				3D20E268283F5D06003DD793 /* done.json in Resources */,
@@ -705,7 +705,7 @@
 				3DEBA83F281751D100E9774B /* ImageView+Extension.swift in Sources */,
 				3D920C2F285D34C000A8272D /* ProfileEditVC.swift in Sources */,
 				3D174E8E27D8064600D5DCB3 /* DiscoverVC.swift in Sources */,
-				3D6CDC9E289E718F00EFC01C /* AccountDeleteConfirmationVC.swift in Sources */,
+				3D6CDC9E289E718F00EFC01C /* AccountDeleteVC.swift in Sources */,
 				3D1B305828927E1900166FC9 /* ProfileEditVCBuilder.swift in Sources */,
 				3D703820281991C2002A554E /* Database.swift in Sources */,
 				3D0A729827D6A8C100F26608 /* Cuisiner.xcdatamodeld in Sources */,

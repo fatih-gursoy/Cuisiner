@@ -38,24 +38,27 @@ extension UIViewController {
         view.endEditing(true)
     }
     
-    func keyboardNotification(scrollView: UIScrollView) {
         
-        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification,
-                                               object: nil, queue: nil) { notification in
-            
-            guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
-                                      as? NSValue)?.cgRectValue else {return}
-            
-            let bottom = keyboardSize.height
-            scrollView.contentInset.bottom = bottom
-            scrollView.setContentOffset(CGPoint(x: 0, y: bottom), animated: true)
-        }
-        
-        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification,
-                                               object: nil, queue: nil) { notification in
-            scrollView.contentInset.bottom = .zero
-        }
-    }
+// MARK: - Keyboard manuel handling
+//    IQKeyboardManager library was used in project instead of..
+    
+//    func keyboardNotification(scrollView: UIScrollView) {
+//        
+//        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification,
+//                                               object: nil, queue: nil) { notification in
+//            
+//            guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
+//                                      as? NSValue)?.cgRectValue else {return}
+//            
+//            let bottom = keyboardSize.height
+//            scrollView.contentInset.bottom = bottom
+//        }
+//        
+//        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification,
+//                                               object: nil, queue: nil) { notification in
+//            scrollView.contentInset.bottom = .zero
+//        }
+//    }
     
 }
 

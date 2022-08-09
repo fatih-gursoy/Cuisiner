@@ -12,9 +12,14 @@ class PrepareVC: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var saveButton: UIButton!
-    
-    private var instructions = [Instruction]()
     private var storage = StorageService.shared
+    
+    private var instructions = [Instruction]() {
+        didSet {
+            tableView.reloadData()
+            recipeViewModel?.recipe.instructions = instructions
+        }
+    }
     
     var recipeViewModel: RecipeViewModel?
     weak var delegate: ImagePassDelegate?
@@ -26,33 +31,14 @@ class PrepareVC: UIViewController {
         configureTableView()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        configureViewModel()
-    }
-
-//MARK: - Button Taps
-    
-    @IBAction func addButtonClicked(_ sender: Any) {
-        let newInstruction = Instruction()
-        instructions.append(newInstruction)
-        tableView.reloadData()
-        scrollView.layoutIfNeeded()
-        let bottom = scrollView.contentSize.height - scrollView.bounds.height
-        scrollView.setContentOffset(CGPoint(x: 0, y: bottom), animated: true)
-    }
-    
-    @IBAction func saveButtonClicked(_ sender: Any) {
-        presentAlert(title: "Updating Recipe", message: "Are you sure?") { _ in
-            self.saveRecipe()
-            self.dismiss(animated: true)
-        }
-    }
-    
 //MARK: - Functions
     
+    func updateUI() {
+        guard let instructions = recipeViewModel?.instructions else {return}
+        self.instructions = instructions
+    }
+    
     func saveRecipe() {
-        
-        configureViewModel()
         
         guard let foodImage = delegate?.foodImageToPass,
               let uid = recipeViewModel?.recipe.id else {return}
@@ -68,21 +54,22 @@ class PrepareVC: UIViewController {
             }
         }
     }
+
+//MARK: - Button Taps
     
-    func updateUI() {
-        guard let instructions = recipeViewModel?.instructions else {return}
-        self.instructions = instructions
+    @IBAction func addButtonClicked(_ sender: Any) {
+        let newInstruction = Instruction()
+        instructions.append(newInstruction)
+        scrollView.layoutIfNeeded()
+        let bottom = scrollView.contentSize.height - scrollView.bounds.height
+        scrollView.setContentOffset(CGPoint(x: 0, y: bottom), animated: true)
     }
     
-    func configureViewModel() {
-        
-        for i in 0..<tableView.numberOfRows(inSection: 0) {
-            let cell = tableView.cellForRow(at: IndexPath(row: i, section: 0)) as! PrepareTableCell
-            instructions[i].step = cell.rowLabel.text
-            instructions[i].text = cell.textView.text
-            if let cookTime = cell.timeTextField.text { instructions[i].time = Int(cookTime) }
+    @IBAction func saveButtonClicked(_ sender: Any) {
+        presentAlert(title: "Saving your recipe", message: "Are you sure?") { _ in
+            self.saveRecipe()
+            self.dismiss(animated: true)
         }
-        recipeViewModel?.recipe.instructions = instructions
     }
 }
 
@@ -100,9 +87,9 @@ extension PrepareVC: UITableViewDelegate, UITableViewDataSource {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PrepareTableCell.identifier, for: indexPath) as? PrepareTableCell else {fatalError("Could not Load")}
         
+        cell.delegate = self
+        cell.tag = indexPath.row
         cell.configure(instruction: instructions[indexPath.row])
-        cell.textView.tag = indexPath.row
-        cell.textView.delegate = self
         return cell
     }
     
@@ -114,18 +101,16 @@ extension PrepareVC: UITableViewDelegate, UITableViewDataSource {
         
         if editingStyle == .delete {
             instructions.remove(at: indexPath.row)
-            tableView.reloadData()
             scrollView.layoutIfNeeded()
         }
     }
 }
 
-//MARK: - TextView Delegate
-
-extension PrepareVC: UITextViewDelegate {
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        let tag = textView.tag
-        self.instructions[tag].text = textView.text
+extension PrepareVC: PrepareCellDelegate {
+    func updateCell(textView: String?, timeText: String?, cell: PrepareTableCell) {
+        let row = cell.tag
+        instructions[row].text = textView
+        guard let timeText = timeText else {return}
+        instructions[row].time = Int(timeText)
     }
 }

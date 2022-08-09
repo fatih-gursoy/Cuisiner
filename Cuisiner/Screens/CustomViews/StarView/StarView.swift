@@ -19,7 +19,6 @@ class StarView: UIStackView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         self.translatesAutoresizingMaskIntoConstraints = false
         self.alignment = .center
         self.axis = .horizontal
@@ -33,7 +32,6 @@ class StarView: UIStackView {
     }
     
     func configureButtons() {
-        
         for _ in 0..<5 {
             let button = UIButton()
             let image = UIImage(systemName: "star")?.withRenderingMode(.alwaysTemplate)
@@ -50,7 +48,6 @@ class StarView: UIStackView {
     }
     
     @objc func didTapped(sender: UIButton) {
-        
         guard let index = buttons.firstIndex(of: sender) else {
             fatalError("There is no Button")}
         

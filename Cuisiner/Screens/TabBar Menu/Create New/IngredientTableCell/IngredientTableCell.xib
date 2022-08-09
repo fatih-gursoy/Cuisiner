@@ -18,28 +18,33 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D57-U2-7NE" customClass="CustomView" customModule="Cuisiner" customModuleProvider="target">
-                        <rect key="frame" x="10" y="10" width="360" height="80"/>
+                        <rect key="frame" x="30" y="10" width="320" height="80"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="AGa-ec-G8z">
-                                <rect key="frame" x="5" y="5" width="350" height="70"/>
+                                <rect key="frame" x="5" y="5" width="310" height="70"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Item name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vs9-gs-Czw">
-                                        <rect key="frame" x="0.0" y="0.0" width="140" height="70"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Item name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vs9-gs-Czw">
+                                        <rect key="frame" x="0.0" y="0.0" width="124" height="70"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Quantity" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xRk-Pk-aRc">
-                                        <rect key="frame" x="150" y="0.0" width="140" height="70"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Quantity" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xRk-Pk-aRc">
+                                        <rect key="frame" x="134" y="0.0" width="124" height="70"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="acO-4s-fB7">
-                                        <rect key="frame" x="300" y="0.0" width="50" height="70"/>
+                                        <rect key="frame" x="268" y="0.0" width="42" height="70"/>
                                         <color key="tintColor" name="Red"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="minus.circle.fill" catalog="system" imagePadding="10">
                                             <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="deleteButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="sJv-w0-bfx"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -48,7 +53,7 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="veryLight Gray"/>
                         <constraints>
                             <constraint firstItem="AGa-ec-G8z" firstAttribute="leading" secondItem="D57-U2-7NE" secondAttribute="leading" constant="5" id="HGG-LA-W49"/>
                             <constraint firstItem="AGa-ec-G8z" firstAttribute="top" secondItem="D57-U2-7NE" secondAttribute="top" constant="5" id="SYg-Yh-QJV"/>
@@ -57,7 +62,7 @@
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <real key="value" value="5"/>
+                                <real key="value" value="10"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
                                 <real key="value" value="5"/>
@@ -69,10 +74,10 @@
                                 <real key="value" value="0.0"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                <size key="value" width="5" height="5"/>
+                                <size key="value" width="0.0" height="5"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                                 <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -81,9 +86,9 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="D57-U2-7NE" secondAttribute="trailing" constant="10" id="3il-hT-xIL"/>
+                    <constraint firstAttribute="trailing" secondItem="D57-U2-7NE" secondAttribute="trailing" constant="30" id="3il-hT-xIL"/>
                     <constraint firstItem="D57-U2-7NE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="ijw-rU-3Hr"/>
-                    <constraint firstItem="D57-U2-7NE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="ssA-Ws-uMv"/>
+                    <constraint firstItem="D57-U2-7NE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="ssA-Ws-uMv"/>
                     <constraint firstAttribute="bottom" secondItem="D57-U2-7NE" secondAttribute="bottom" constant="10" id="uOk-df-m7d"/>
                 </constraints>
                 <userDefinedRuntimeAttributes>
@@ -105,6 +110,9 @@
         <image name="minus.circle.fill" catalog="system" width="128" height="121"/>
         <namedColor name="Red">
             <color red="0.79199999570846558" green="0.2199999988079071" blue="0.2199999988079071" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="veryLight Gray">
+            <color red="1" green="0.88999998569488525" blue="0.86599999666213989" alpha="0.69999998807907104" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
     </resources>
 </document>

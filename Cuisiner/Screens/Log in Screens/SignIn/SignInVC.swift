@@ -45,6 +45,11 @@ class SignInVC: UIViewController {
         }
     }
     
+    @IBAction func forgotPasswordTapped(_ sender: Any) {
+        
+        
+    }
+    
     @IBAction func switchTapped(_ sender: Any) {
             
         if rememberMeSwitch.isOn {

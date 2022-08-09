@@ -8,20 +8,18 @@
 import Foundation
 
 struct Recipe: Codable {
-      
     var ownerId: String?
     var id: String?
     var name: String?
     var serve: String?
     var cookTime: String?
     var category: Category
-    var ingredients: [Ingredient]?
-    var instructions: [Instruction]?
+    var ingredients: [Ingredient]
+    var instructions: [Instruction]
     var foodImageUrl: String?
     var ratingList: [Rating]?
     
     enum CodingKeys: String, CodingKey {
-        
         case ownerId
         case id
         case name
@@ -32,11 +30,9 @@ struct Recipe: Codable {
         case instructions
         case foodImageUrl
         case ratingList = "Rating List"
-        
     }
         
     enum Category: String, Codable, CaseIterable {
-        
         case homeMeal = "Home Meal"
         case steak = "Steak"
         case chicken = "Chicken"
@@ -53,31 +49,23 @@ struct Recipe: Codable {
         case desert = "Desert"
         case drink = "Drink"
         case otherFastFood = "Other Food"
-        
     }
 
 }
 
 struct Ingredient: Codable {
-    
     var name: String?
     var amount: String?
-    
 }
 
 struct Instruction: Codable {
-    
-    var step: String?
     var text: String?
     var time: Int?
-
 }
 
 struct Rating: Codable {
-    
     var userId: String?
     var score: Int?
-
 }
 
 

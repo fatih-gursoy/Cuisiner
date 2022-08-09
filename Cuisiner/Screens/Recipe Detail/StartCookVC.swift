@@ -67,14 +67,15 @@ class StartCookVC: UIViewController {
 extension StartCookVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return recipeViewModel?.recipe.instructions?.count ?? 0
+        guard let recipeViewModel = recipeViewModel else {return 0}
+        return recipeViewModel.instructions.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InstructionCollectionCell.identifier, for: indexPath) as? InstructionCollectionCell else { fatalError("Could not load") }
         
-        cell.configure(instruction: recipeViewModel?.instructions?[indexPath.row])
+        cell.configure(instruction: recipeViewModel?.instructions[indexPath.row])
         return cell
     }
     

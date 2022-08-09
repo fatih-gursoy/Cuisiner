@@ -15,5 +15,6 @@ target 'Cuisiner' do
   pod 'FirebaseFirestoreSwift', '~> 9.4'
   pod 'Kingfisher', '~> 7.2'
   pod 'lottie-ios'
-
+  pod 'IQKeyboardManagerSwift', '6.3.0'
+  
 end
