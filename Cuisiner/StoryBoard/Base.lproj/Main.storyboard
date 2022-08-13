@@ -30,7 +30,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Log In" cornerStyle="large">
                                             <fontDescription key="titleFontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="22"/>
-                                            <color key="baseBackgroundColor" systemColor="systemRedColor"/>
+                                            <color key="baseBackgroundColor" name="Red"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="logInClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uPZ-vf-eiH"/>
@@ -41,7 +41,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Sign Up" cornerStyle="large">
                                             <fontDescription key="titleFontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="22"/>
-                                            <color key="baseBackgroundColor" systemColor="systemRedColor"/>
+                                            <color key="baseBackgroundColor" name="Red"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="signUpClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PWj-6h-yky"/>
@@ -298,8 +298,6 @@
                                                                         <state key="selected">
                                                                             <color key="titleColor" name="Dark Red"/>
                                                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                            <imageReference key="image" image="bookmark.fill" catalog="system" symbolScale="large"/>
-                                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
                                                                         </state>
                                                                         <connections>
                                                                             <action selector="reportButtonTapped:" destination="l3C-Jn-cMf" eventType="touchUpInside" id="MZX-Vj-F47"/>
@@ -328,11 +326,36 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WOZ-8H-ODI">
-                                                                        <rect key="frame" x="70" y="19.5" width="334" height="21.5"/>
+                                                                        <rect key="frame" x="70" y="19.5" width="284" height="21.5"/>
                                                                         <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="18"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQ5-CN-UEQ" userLabel="Report Button">
+                                                                        <rect key="frame" x="374" y="15" width="30" height="30"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="30" id="VjE-Iq-3lw"/>
+                                                                            <constraint firstAttribute="height" constant="30" id="wxo-tK-zfR"/>
+                                                                        </constraints>
+                                                                        <color key="tintColor" name="Dark Red"/>
+                                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                        <state key="normal">
+                                                                            <color key="titleColor" name="Dark Red"/>
+                                                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <imageReference key="image" image="person.crop.circle.fill.badge.xmark" catalog="system" symbolScale="large"/>
+                                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
+                                                                        </state>
+                                                                        <state key="selected">
+                                                                            <color key="titleColor" name="Dark Red"/>
+                                                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <imageReference key="image" image="bookmark.fill" catalog="system" symbolScale="large"/>
+                                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
+                                                                        </state>
+                                                                        <connections>
+                                                                            <action selector="blockUserTapped:" destination="l3C-Jn-cMf" eventType="touchUpInside" id="SsM-Gk-vMP"/>
+                                                                        </connections>
+                                                                    </button>
                                                                 </subviews>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="60" id="r3V-hM-TRH"/>
@@ -542,12 +565,14 @@
                     </navigationItem>
                     <size key="freeformSize" width="414" height="942"/>
                     <connections>
+                        <outlet property="blockButton" destination="aQ5-CN-UEQ" id="hQb-uV-uO7"/>
                         <outlet property="bookmarkButton" destination="sOL-tM-LQa" id="Q8i-Hx-guj"/>
                         <outlet property="categoryLabel" destination="tAs-g3-W1O" id="hkZ-za-t1j"/>
                         <outlet property="cookTimeLabel" destination="dDs-TH-PJf" id="nTV-XU-g3z"/>
                         <outlet property="ingredientTable" destination="uk2-ZG-iJt" id="pfZ-0Y-8vi"/>
                         <outlet property="recipeImage" destination="4I0-qc-dXU" id="ezT-XA-u4X"/>
                         <outlet property="recipeName" destination="Grw-Jr-3xa" id="XwH-Yq-HWZ"/>
+                        <outlet property="reportButton" destination="FKl-jG-XaE" id="Tj1-DD-8d0"/>
                         <outlet property="reviewCountLabel" destination="Cii-vh-NNH" id="gus-1m-FWG"/>
                         <outlet property="scrollView" destination="nzX-h4-T3P" id="ux4-Ze-1v0"/>
                         <outlet property="serveLabel" destination="EHq-2D-KsB" id="IqP-ho-vYv"/>
@@ -1110,7 +1135,71 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wNP-bf-ijZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3775" y="986"/>
+            <point key="canvasLocation" x="3801" y="986"/>
+        </scene>
+        <!--Blocked UsersVC-->
+        <scene sceneID="NR6-7u-N0Z">
+            <objects>
+                <viewController storyboardIdentifier="BlockedUsersVC" id="E4v-Tt-5rP" customClass="BlockedUsersVC" customModule="Cuisiner" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="daT-VY-MH9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dCR-9U-DOi">
+                                <rect key="frame" x="0.0" y="64" width="414" height="778"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Z15-F5-v5J">
+                                        <rect key="frame" x="20" y="0.0" width="374" height="145.5"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vl8-pC-MN7">
+                                                <rect key="frame" x="-2" y="40" width="62" height="66"/>
+                                                <color key="tintColor" name="Dark Red"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="WD1-8f-4eJ"/>
+                                                    <constraint firstAttribute="width" constant="60" id="oxg-OA-O00"/>
+                                                </constraints>
+                                                <imageReference key="image" image="person.crop.circle.fill.badge.xmark" catalog="system"/>
+                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blocked User List" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6CM-Uh-nam">
+                                                <rect key="frame" x="90" y="57.5" width="284" height="30.5"/>
+                                                <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="26"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="kxN-Gc-xia">
+                                        <rect key="frame" x="0.0" y="155.5" width="414" height="622.5"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </tableView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Z15-F5-v5J" secondAttribute="trailing" constant="20" id="DLb-Is-ZGd"/>
+                                    <constraint firstItem="kxN-Gc-xia" firstAttribute="height" secondItem="dCR-9U-DOi" secondAttribute="height" multiplier="0.8" id="JAq-ne-96d"/>
+                                    <constraint firstItem="Z15-F5-v5J" firstAttribute="leading" secondItem="dCR-9U-DOi" secondAttribute="leading" constant="20" id="SIB-Ll-YFi"/>
+                                    <constraint firstAttribute="trailing" secondItem="kxN-Gc-xia" secondAttribute="trailing" id="Xv0-gr-SWV"/>
+                                    <constraint firstAttribute="bottom" secondItem="kxN-Gc-xia" secondAttribute="bottom" id="ajD-9Q-imB"/>
+                                    <constraint firstItem="kxN-Gc-xia" firstAttribute="leading" secondItem="dCR-9U-DOi" secondAttribute="leading" id="qug-JA-Sd8"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="pd0-pc-Mvr"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="dCR-9U-DOi" firstAttribute="trailing" secondItem="pd0-pc-Mvr" secondAttribute="trailing" id="FDi-2H-31Q"/>
+                            <constraint firstItem="dCR-9U-DOi" firstAttribute="leading" secondItem="pd0-pc-Mvr" secondAttribute="leading" id="OVL-An-4mH"/>
+                            <constraint firstItem="pd0-pc-Mvr" firstAttribute="bottom" secondItem="dCR-9U-DOi" secondAttribute="bottom" constant="20" id="b7a-03-ONW"/>
+                            <constraint firstItem="dCR-9U-DOi" firstAttribute="top" secondItem="pd0-pc-Mvr" secondAttribute="top" constant="20" id="mbh-GS-LYS"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="kxN-Gc-xia" id="wQh-Be-LkF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7RQ-6h-DWM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6454" y="1795"/>
         </scene>
         <!--ProfileVC-->
         <scene sceneID="srg-R7-7AS">
@@ -1825,9 +1914,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>

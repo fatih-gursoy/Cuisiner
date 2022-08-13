@@ -13,21 +13,17 @@ protocol MyRecipesViewModelDelegate: AnyObject {
 
 class MyRecipesViewModel {
        
-    var recipes: [[Recipe]] = [[], []]
-    var user: User?
-    
     weak var delegate: MyRecipesViewModelDelegate?
-    
     private var service: FirebaseServiceProtocol
-    private var coredataManager = CoreDataManager()
-          
+    private var coredataManager = CoreDataManager.shared
+    
     init(service: FirebaseServiceProtocol = FirebaseService.shared) {
         self.service = service
     }
     
-    var userId: String? {
-        return AuthManager.shared.userId
-    }
+    var recipes: [[Recipe]] = [[], []]
+    var user: User? { return AuthManager.shared.user }
+    var userId: String? { return AuthManager.shared.userId }
     
 //MARK: - Private Functions
     
@@ -45,13 +41,18 @@ class MyRecipesViewModel {
     private func fetchSavedRecipes() {
      
         let dispatchGroup = DispatchGroup()
-        let recipeIDs = coredataManager.savedRecipes.map { $0.recipeID }
+        guard let blockedUsers = user?.blockedUsers else { return }
+        
+        let savedRecipes = coredataManager.savedRecipes.filter { recipe in
+            guard let ownerId = recipe.ownerID else {return true}
+            return !blockedUsers.contains(ownerId)
+        }
         
         var mysavedRecipes = [Recipe]()
         
-        for recipeID in recipeIDs {
+        for recipe in savedRecipes {
             dispatchGroup.enter()
-            guard let recipeID = recipeID else { return }
+            guard let recipeID = recipe.recipeID else { return }
             
             service.getDocumentByField(from: .recipes,
                                  queryField: "id",
@@ -71,20 +72,8 @@ class MyRecipesViewModel {
     func load() {
         self.fetchMyRecipes()
         self.fetchSavedRecipes()
-        self.fetchUser()
     }
-    
-    func fetchUser() {
-        guard let userId = userId else {return}
 
-        service.fetchByField(from: .users, queryField: "userId",
-                             queryParam: userId) { [weak self] (users: [User]) in
-            
-            guard let user = users.first else {return}
-            self?.user = user
-        }
-    }
-    
     func recipeAtIndex(selectedTable: Int, index:Int) -> RecipeViewModel? { 
         let recipe = self.recipes[selectedTable][index]
         return RecipeViewModel(recipe: recipe)

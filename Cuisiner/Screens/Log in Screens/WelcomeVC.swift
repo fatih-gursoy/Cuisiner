@@ -11,7 +11,6 @@ class WelcomeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     
     @IBAction func signUpClicked(_ sender: Any) {
@@ -23,7 +22,8 @@ class WelcomeVC: UIViewController {
     @IBAction func logInClicked(_ sender: Any) {
         let signInView = SignInVC()
         signInView.delegate = self
-        present(signInView, animated: true)
+        let navController = UINavigationController(rootViewController: signInView)
+        present(navController, animated: true)
     }
     
     func toHomeVC() {

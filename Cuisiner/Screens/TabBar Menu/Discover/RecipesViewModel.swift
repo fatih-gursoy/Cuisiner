@@ -31,25 +31,13 @@ class RecipesViewModel {
     }
     
     func fetchAllRecipes() {
+        guard let blockedUsers = AuthManager.shared.user?.blockedUsers else { return }
+        
         service.fetchData(from: .recipes) { [weak self] (recipes: [Recipe]) in
+            let recipes = recipes.filter( { !(blockedUsers.contains($0.ownerId!)) })
             self?.recipes = recipes
             self?.allRecipes = recipes
-            DispatchQueue.main.async {
-               self?.delegate?.updateView()
-            }
-        }
-    }
-        
-    func fetchMyRecipes() {
-        guard let userId = AuthManager.shared.userId else {return}
-        service.fetchByField(from: .recipes,
-                             queryField: "ownerId",
-                             queryParam: userId) { [weak self] (recipes: [Recipe]) in
-            
-            self?.recipes = recipes
-            DispatchQueue.main.async {
-               self?.delegate?.updateView()
-            }
+            self?.delegate?.updateView()
         }
     }
     
@@ -72,12 +60,6 @@ class RecipesViewModel {
             self.recipes = self.allRecipes?.filter { $0.name?.lowercased().hasPrefix(searchText) == true }
         }
         delegate?.updateView()
-    }
-    
-    func deleteRecipe(id: String) {
-        service.delete(from: .recipes, with: id) { [weak self] success in
-            if success { self?.delegate?.updateView() }
-        }
     }
 }
     

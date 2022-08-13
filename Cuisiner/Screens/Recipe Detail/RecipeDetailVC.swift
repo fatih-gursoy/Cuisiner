@@ -18,6 +18,8 @@ class RecipeDetailVC: UIViewController {
     @IBOutlet private weak var reviewCountLabel: UILabel!
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var bookmarkButton: UIButton!
+    @IBOutlet private weak var reportButton: UIButton!
+    @IBOutlet private weak var blockButton: UIButton!
     @IBOutlet private weak var userStackView: UIStackView!
     @IBOutlet private weak var categoryLabel: UILabel!
     @IBOutlet private weak var cookTimeLabel: UILabel!
@@ -33,6 +35,10 @@ class RecipeDetailVC: UIViewController {
         configureUI()
         configureNavBar()
         addTapGesture()
+    }
+    
+    deinit {
+        notificationCenter.removeObserver(self)
     }
     
     func configureTableView() {
@@ -56,6 +62,8 @@ class RecipeDetailVC: UIViewController {
         
         if recipeViewModel.recipe.ownerId == AuthManager.shared.userId {
             bookmarkButton.isHidden = true
+            reportButton.isHidden = true
+            blockButton.isHidden = true
         } else {
             bookmarkButton.isSelected = recipeViewModel.isSaved
         }
@@ -66,6 +74,10 @@ class RecipeDetailVC: UIViewController {
         let barButton = UIBarButtonItem(image: buttonImage, style: .plain,
                                         target: self, action: #selector(closeTapped))
         self.navigationItem.rightBarButtonItem = barButton
+    }
+    
+    func notificationPost() {
+        notificationCenter.post(name: NSNotification.Name(rawValue: "RefreshSavedList"), object: nil)
     }
     
     @objc func closeTapped() {
@@ -82,14 +94,12 @@ class RecipeDetailVC: UIViewController {
     @IBAction func starButtonClicked(_ sender: Any) {
         guard let myScore = recipeViewModel?.myScore else {return}
         let popupVC = CustomPopupVC(type:.star(score: myScore))
-        popupVC.modalPresentationStyle = .overCurrentContext
-        popupVC.modalTransitionStyle = .crossDissolve
+        popupVC.presentOverContext()
         
-        popupVC.doneTappedCompletion = {
+        popupVC.doneTappedCompletion = { [weak self] in
             let score = popupVC.starView?.score
             let myRating = Rating(userId: AuthManager.shared.userId, score: score)
-            self.recipeViewModel?.updateRating(myRating)
-            self.notificationCenter.post(name: NSNotification.Name(rawValue: "RefreshSavedList"), object: nil)
+            self?.recipeViewModel?.updateRating(myRating)
         }
         present(popupVC, animated: true)
     }
@@ -106,7 +116,7 @@ class RecipeDetailVC: UIViewController {
             recipeViewModel.addToSaveList()
             presentQuickAlert(title: "✅", message: "Added to Saved Recipes")
         }
-        notificationCenter.post(name: NSNotification.Name(rawValue: "RefreshSavedList"), object: nil)
+        notificationPost()
     }
     
     @IBAction func reportButtonTapped(_ sender: Any) {
@@ -115,7 +125,29 @@ class RecipeDetailVC: UIViewController {
         
     }
     
+}
+
+extension RecipeDetailVC: CustomAlertVCDelegate {
     
+    @IBAction func blockUserTapped(_ sender: Any) {
+        let alertVC = CustomAlertVC(message: "Do you want to block user?",
+                                    image: UIImage(systemName: "person.crop.circle.fill.badge.xmark"))
+        
+        alertVC.presentOverContext()
+        alertVC.delegate = self
+        alertVC.okCompletion = { [weak self] in
+            self?.notificationPost()
+            self?.dismiss(animated: true)
+        }
+        present(alertVC, animated: true)
+    }
+    
+    func OkTapped() {
+        guard let user = AuthManager.shared.user,
+              let recipeOwnerId = recipeViewModel.user?.userId else {return}
+        let userViewModel = UserViewModel(user: user)
+        userViewModel.blockUserHandler(userId: recipeOwnerId)
+    }
 }
 
 // MARK: - TableView Delegate

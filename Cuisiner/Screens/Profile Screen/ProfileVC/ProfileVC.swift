@@ -51,8 +51,7 @@ class ProfileVC: UIViewController {
                                           action: #selector(closeTapped))
         
         self.navigationItem.rightBarButtonItems = [closeButton, editButton]
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navigationController?.navigationBar.shadowImage = UIImage()
+
     }
     
     @objc func closeTapped() {

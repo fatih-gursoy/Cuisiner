@@ -52,6 +52,16 @@ class UserViewModel {
         fetchUser()
     }
     
+    func blockUserHandler(userId: String) {
+        guard let blockedUsers = user.blockedUsers else {return}
+        if let index = blockedUsers.firstIndex(where: { $0 == userId} ) {
+            user.blockedUsers?.remove(at: index)
+        } else {
+            user.blockedUsers?.append(userId)
+        }
+        updateUser()
+    }
+    
     func fetchRecipes() {
         service.fetchByField(from: .recipes,
                              queryField: "ownerId",

@@ -18,7 +18,6 @@ class RecipeViewModel {
     
     var recipe: Recipe
     var user: User?
-    
     weak var delegate: RecipeViewModelDelegate? 
     
     init(recipe: Recipe) {
@@ -135,7 +134,7 @@ class RecipeViewModel {
 // MARK: -CoreData Functions
     
     func addToSaveList() {
-        coredataManager.addNewRecipe(self.recipeID)
+        coredataManager.addNewRecipe(self.recipe)
     }
     
     func deleteFromSaveList() {

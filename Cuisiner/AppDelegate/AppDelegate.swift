@@ -13,11 +13,20 @@ import IQKeyboardManagerSwift
 class AppDelegate: UIResponder, UIApplicationDelegate {
         
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
         FirebaseApp.configure()
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = false
         
+        let attribute = [NSAttributedString.Key.foregroundColor: UIColor.clear]
+        let backImage = UIImage(systemName: "chevron.backward.circle.fill")
+        UINavigationBar.appearance().backIndicatorImage = backImage
+        UINavigationBar.appearance().backIndicatorTransitionMaskImage = backImage
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UIBarButtonItem.appearance().setTitleTextAttributes(attribute, for: .normal)
+        UIBarButtonItem.appearance().setTitleTextAttributes(attribute, for: .highlighted)
+                
         return true
     }
 

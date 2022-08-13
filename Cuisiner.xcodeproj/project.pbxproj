@@ -30,6 +30,9 @@
 		3D1B30542891DDDF00166FC9 /* ProfileVCBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1B30532891DDDF00166FC9 /* ProfileVCBuilder.swift */; };
 		3D1B305828927E1900166FC9 /* ProfileEditVCBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1B305728927E1900166FC9 /* ProfileEditVCBuilder.swift */; };
 		3D20E268283F5D06003DD793 /* done.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D20E267283F5D06003DD793 /* done.json */; };
+		3D397A3C28A6724400DF4863 /* UserTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D397A3A28A6724400DF4863 /* UserTableCell.swift */; };
+		3D397A3D28A6724400DF4863 /* UserTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D397A3B28A6724400DF4863 /* UserTableCell.xib */; };
+		3D397A4028A67AD000DF4863 /* BlockedUsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D397A3F28A67AD000DF4863 /* BlockedUsersViewModel.swift */; };
 		3D3D46312816BC4F007D2D5A /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3D462F2816BC4F007D2D5A /* CategoryCell.swift */; };
 		3D3D46322816BC4F007D2D5A /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D3D46302816BC4F007D2D5A /* CategoryCell.xib */; };
 		3D3D46372816BCB6007D2D5A /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3D46352816BCB6007D2D5A /* RecipeCell.swift */; };
@@ -50,6 +53,10 @@
 		3D5C32B927F449570048CAC0 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5C32B827F449570048CAC0 /* UserViewModel.swift */; };
 		3D5C32BB27F44A890048CAC0 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5C32BA27F44A890048CAC0 /* AuthManager.swift */; };
 		3D5C32BE27F4712E0048CAC0 /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5C32BD27F4712D0048CAC0 /* ViewController+Extension.swift */; };
+		3D68C5A028A2AD220052AB6D /* ResetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D68C59E28A2AD220052AB6D /* ResetPasswordVC.swift */; };
+		3D68C5A128A2AD220052AB6D /* ResetPasswordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D68C59F28A2AD220052AB6D /* ResetPasswordVC.xib */; };
+		3D68C5A728A51F980052AB6D /* CustomAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D68C5A528A51F980052AB6D /* CustomAlertVC.swift */; };
+		3D68C5A828A51F980052AB6D /* CustomAlertVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D68C5A628A51F980052AB6D /* CustomAlertVC.xib */; };
 		3D6CDC9E289E718F00EFC01C /* AccountDeleteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6CDC9C289E718F00EFC01C /* AccountDeleteVC.swift */; };
 		3D6CDC9F289E718F00EFC01C /* AccountDeleteVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D6CDC9D289E718F00EFC01C /* AccountDeleteVC.xib */; };
 		3D703820281991C2002A554E /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70381F281991C2002A554E /* Database.swift */; };
@@ -57,6 +64,7 @@
 		3D82E2CB283B9C910013032D /* CustomPopupVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D82E2C9283B9C900013032D /* CustomPopupVC.xib */; };
 		3D83FA67289A72B6003FAB3E /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D83FA66289A72B6003FAB3E /* Color.xcassets */; };
 		3D8D6A112840CF4800DDEED4 /* StarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8D6A102840CF4800DDEED4 /* StarView.swift */; };
+		3D8E242A28A66F6500D3B447 /* BlockedUsersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8E242928A66F6500D3B447 /* BlockedUsersVC.swift */; };
 		3D8F960027EC7F6C004DE7A2 /* RecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8F95FF27EC7F6C004DE7A2 /* RecipeViewModel.swift */; };
 		3D8F960327EC99A0004DE7A2 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8F960227EC99A0004DE7A2 /* FirebaseService.swift */; };
 		3D920C2F285D34C000A8272D /* ProfileEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D920C2E285D34C000A8272D /* ProfileEditVC.swift */; };
@@ -101,6 +109,9 @@
 		3D1B30532891DDDF00166FC9 /* ProfileVCBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVCBuilder.swift; sourceTree = "<group>"; };
 		3D1B305728927E1900166FC9 /* ProfileEditVCBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditVCBuilder.swift; sourceTree = "<group>"; };
 		3D20E267283F5D06003DD793 /* done.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = done.json; sourceTree = "<group>"; };
+		3D397A3A28A6724400DF4863 /* UserTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableCell.swift; sourceTree = "<group>"; };
+		3D397A3B28A6724400DF4863 /* UserTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableCell.xib; sourceTree = "<group>"; };
+		3D397A3F28A67AD000DF4863 /* BlockedUsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedUsersViewModel.swift; sourceTree = "<group>"; };
 		3D3D462F2816BC4F007D2D5A /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		3D3D46302816BC4F007D2D5A /* CategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
 		3D3D46352816BCB6007D2D5A /* RecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
@@ -121,6 +132,10 @@
 		3D5C32B827F449570048CAC0 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		3D5C32BA27F44A890048CAC0 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		3D5C32BD27F4712D0048CAC0 /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
+		3D68C59E28A2AD220052AB6D /* ResetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordVC.swift; sourceTree = "<group>"; };
+		3D68C59F28A2AD220052AB6D /* ResetPasswordVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResetPasswordVC.xib; sourceTree = "<group>"; };
+		3D68C5A528A51F980052AB6D /* CustomAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertVC.swift; sourceTree = "<group>"; };
+		3D68C5A628A51F980052AB6D /* CustomAlertVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomAlertVC.xib; sourceTree = "<group>"; };
 		3D6CDC9C289E718F00EFC01C /* AccountDeleteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDeleteVC.swift; sourceTree = "<group>"; };
 		3D6CDC9D289E718F00EFC01C /* AccountDeleteVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountDeleteVC.xib; sourceTree = "<group>"; };
 		3D70381F281991C2002A554E /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
@@ -128,6 +143,7 @@
 		3D82E2C9283B9C900013032D /* CustomPopupVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomPopupVC.xib; sourceTree = "<group>"; };
 		3D83FA66289A72B6003FAB3E /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		3D8D6A102840CF4800DDEED4 /* StarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarView.swift; sourceTree = "<group>"; };
+		3D8E242928A66F6500D3B447 /* BlockedUsersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedUsersVC.swift; sourceTree = "<group>"; };
 		3D8F95FF27EC7F6C004DE7A2 /* RecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewModel.swift; sourceTree = "<group>"; };
 		3D8F960227EC99A0004DE7A2 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		3D920C2E285D34C000A8272D /* ProfileEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditVC.swift; sourceTree = "<group>"; };
@@ -246,6 +262,7 @@
 			children = (
 				3D0A72CA27D79F6600F26608 /* SignInVC.swift */,
 				3D0A72CB27D79F6600F26608 /* SignInVC.xib */,
+				3D68C5A328A2ADA80052AB6D /* ResetPasswordVC */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -315,6 +332,25 @@
 			path = ProfileEditVC;
 			sourceTree = "<group>";
 		};
+		3D397A3728A671B800DF4863 /* BlockedUserVC */ = {
+			isa = PBXGroup;
+			children = (
+				3D397A3F28A67AD000DF4863 /* BlockedUsersViewModel.swift */,
+				3D8E242928A66F6500D3B447 /* BlockedUsersVC.swift */,
+				3D397A3E28A6790F00DF4863 /* UserTableCell */,
+			);
+			path = BlockedUserVC;
+			sourceTree = "<group>";
+		};
+		3D397A3E28A6790F00DF4863 /* UserTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				3D397A3A28A6724400DF4863 /* UserTableCell.swift */,
+				3D397A3B28A6724400DF4863 /* UserTableCell.xib */,
+			);
+			path = UserTableCell;
+			sourceTree = "<group>";
+		};
 		3D3D46332816BC55007D2D5A /* CategoryCollectionCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -359,6 +395,7 @@
 				3D5C32B827F449570048CAC0 /* UserViewModel.swift */,
 				3D1B305528927DDB00166FC9 /* ProfileVC */,
 				3D1B305628927DEE00166FC9 /* ProfileEditVC */,
+				3D397A3728A671B800DF4863 /* BlockedUserVC */,
 			);
 			path = "Profile Screen";
 			sourceTree = "<group>";
@@ -391,6 +428,24 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		3D68C5A328A2ADA80052AB6D /* ResetPasswordVC */ = {
+			isa = PBXGroup;
+			children = (
+				3D68C59E28A2AD220052AB6D /* ResetPasswordVC.swift */,
+				3D68C59F28A2AD220052AB6D /* ResetPasswordVC.xib */,
+			);
+			path = ResetPasswordVC;
+			sourceTree = "<group>";
+		};
+		3D68C5A428A51F7D0052AB6D /* CustomAlertVC */ = {
+			isa = PBXGroup;
+			children = (
+				3D68C5A528A51F980052AB6D /* CustomAlertVC.swift */,
+				3D68C5A628A51F980052AB6D /* CustomAlertVC.xib */,
+			);
+			path = CustomAlertVC;
+			sourceTree = "<group>";
+		};
 		3D6CDC9B289E715E00EFC01C /* AccountDeleteVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -412,6 +467,7 @@
 		3D8D6A0D2840C65E00DDEED4 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				3D68C5A428A51F7D0052AB6D /* CustomAlertVC */,
 				3D6CDC9B289E715E00EFC01C /* AccountDeleteVC */,
 				3DFCC8E52869ECA500297EEA /* ChangePasswordVC */,
 				3D8D6A0F2840CEC300DDEED4 /* StarView */,
@@ -599,6 +655,7 @@
 			files = (
 				3D174E8C27D7FF6100D5DCB3 /* SignUpVC.xib in Resources */,
 				3D0A72CD27D79F6600F26608 /* SignInVC.xib in Resources */,
+				3D68C5A828A51F980052AB6D /* CustomAlertVC.xib in Resources */,
 				3D5C32B327F26A820048CAC0 /* MyRecipeTableCell.xib in Resources */,
 				3D82E2CB283B9C910013032D /* CustomPopupVC.xib in Resources */,
 				3D3D46382816BCB6007D2D5A /* RecipeCell.xib in Resources */,
@@ -612,6 +669,8 @@
 				3D0A729D27D6A8C400F26608 /* LaunchScreen.storyboard in Resources */,
 				3D9F42262832FCA7003FA3E0 /* InstructionCollectionCell.xib in Resources */,
 				3D0A72C127D6AC2700F26608 /* GoogleService-Info.plist in Resources */,
+				3D397A3D28A6724400DF4863 /* UserTableCell.xib in Resources */,
+				3D68C5A128A2AD220052AB6D /* ResetPasswordVC.xib in Resources */,
 				3D0A729A27D6A8C400F26608 /* Assets.xcassets in Resources */,
 				3D0A729527D6A8C100F26608 /* Main.storyboard in Resources */,
 				3DFCC8E92869ED2800297EEA /* ChangePasswordVC.xib in Resources */,
@@ -684,6 +743,7 @@
 				3DE094052896ADE900003925 /* UserDefaults+Extension.swift in Sources */,
 				3D4AA452286B96D6008FA49D /* MyRecipesViewModel.swift in Sources */,
 				3DFCC8E72869ECF200297EEA /* ChangePasswordVC.swift in Sources */,
+				3D68C5A028A2AD220052AB6D /* ResetPasswordVC.swift in Sources */,
 				3D5C32AE27F262F40048CAC0 /* RecipesViewModel.swift in Sources */,
 				3D0A729227D6A8C100F26608 /* WelcomeVC.swift in Sources */,
 				3D0A728E27D6A8C100F26608 /* AppDelegate.swift in Sources */,
@@ -691,6 +751,7 @@
 				3D174E8B27D7FF6100D5DCB3 /* SignUpVC.swift in Sources */,
 				3D174E9827DE19C800D5DCB3 /* IngredientTableCell.swift in Sources */,
 				3D8D6A112840CF4800DDEED4 /* StarView.swift in Sources */,
+				3D397A4028A67AD000DF4863 /* BlockedUsersViewModel.swift in Sources */,
 				3D5C32B227F26A820048CAC0 /* MyRecipeTableCell.swift in Sources */,
 				3D4AA44C286ADF99008FA49D /* SegmentedControl.swift in Sources */,
 				3DE452B32815FA30003F9AC6 /* CustomImageView.swift in Sources */,
@@ -708,11 +769,14 @@
 				3D6CDC9E289E718F00EFC01C /* AccountDeleteVC.swift in Sources */,
 				3D1B305828927E1900166FC9 /* ProfileEditVCBuilder.swift in Sources */,
 				3D703820281991C2002A554E /* Database.swift in Sources */,
+				3D68C5A728A51F980052AB6D /* CustomAlertVC.swift in Sources */,
 				3D0A729827D6A8C100F26608 /* Cuisiner.xcdatamodeld in Sources */,
 				3D582E8427DFF110007ED621 /* PrepareVC.swift in Sources */,
 				3D3D46312816BC4F007D2D5A /* CategoryCell.swift in Sources */,
 				3D4AA450286AFB1E008FA49D /* CoreDataManager.swift in Sources */,
+				3D397A3C28A6724400DF4863 /* UserTableCell.swift in Sources */,
 				3D3D46372816BCB6007D2D5A /* RecipeCell.swift in Sources */,
+				3D8E242A28A66F6500D3B447 /* BlockedUsersVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

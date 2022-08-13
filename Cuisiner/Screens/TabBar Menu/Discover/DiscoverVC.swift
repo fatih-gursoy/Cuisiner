@@ -40,7 +40,9 @@ class DiscoverVC: UIViewController {
     
     func fetchRecipes() {
         recipesViewModel.delegate = self
-        recipesViewModel.fetchAllRecipes()
+        AuthManager.shared.fetchUser { success in
+            if success { self.recipesViewModel.fetchAllRecipes() }
+        }
     }
    
 }
@@ -167,7 +169,8 @@ extension DiscoverVC: UISearchBarDelegate {
 extension DiscoverVC: RecipesViewModelDelegate {
     
     func updateView() {
-        self.recipeCollectionView.reloadData()
+        DispatchQueue.main.async {
+            self.recipeCollectionView.reloadData()
+        }
     }
-    
 }

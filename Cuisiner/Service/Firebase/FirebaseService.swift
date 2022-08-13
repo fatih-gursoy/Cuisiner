@@ -11,7 +11,6 @@ import FirebaseFirestoreSwift
 
 protocol FirebaseServiceProtocol: AnyObject {
 
-//    func addNew<T: Encodable>(to collection: myCollection,_ model: T)
     func update<T: Encodable>(from collection: myCollection, id: String, _ model: T)
     func delete(from collection: myCollection, with id: String, completion: @escaping (Bool) -> Void)
     func fetchData<T: Decodable>(from collection: myCollection, completion: @escaping ([T]) -> Void)
@@ -25,8 +24,6 @@ protocol FirebaseServiceProtocol: AnyObject {
 class FirebaseService {
     static let shared: FirebaseService = FirebaseService()
     private let db = Firestore.firestore()
-    private let recipeCollection = "Recipes"
-    private let storageService = StorageService.shared
     private init() { }
 }
 
@@ -80,14 +77,6 @@ extension FirebaseService: FirebaseServiceProtocol {
             }
         }
     }
-    
-//    func addNew<T: Encodable>(to collection: myCollection,_ model: T) {
-//        do {
-//            try _ = db.collection(collection.name).addDocument(from: model.self)
-//        } catch {
-//            print("Add document failed: \(error)")
-//        }
-//    }
     
     func update<T: Encodable>(from collection: myCollection, id: String, _ model: T) {
         do {

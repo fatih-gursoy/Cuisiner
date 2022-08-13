@@ -23,7 +23,6 @@ class SignUpVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboard()
-        
     }
     
     @IBAction func signUpClicked(_ sender: Any) {
@@ -50,21 +49,18 @@ class SignUpVC: UIViewController {
     }
     
     func saveUser() {
-        
         let newUser = authManager
-        
         if let username = usernameText.text {
             newUser.changeUsername(with: username)
         }        
         guard let userImage = profileImage.image, let uid = newUser.userId else {return}
-        
         storage.imageUpload(to: .userImages,id: uid, image: userImage) { imageUrl in
-            
             let user = User(userId: newUser.userId,
                             userName: newUser.userName,
                             userNameLowercased: newUser.userName?.lowercased(),
                             email: newUser.userEmail,
-                            userImageUrl: imageUrl)
+                            userImageUrl: imageUrl,
+                            blockedUsers: [])
             
             let userViewModel = UserViewModel(user: user)
             userViewModel.createNew()
@@ -74,28 +70,21 @@ class SignUpVC: UIViewController {
 }
 
 protocol SignUpDelegate: AnyObject {
-    
     func didUserSignUp()
 }
 
 extension SignUpVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBAction func didTap(_ sender: UITapGestureRecognizer) {
-     
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = .photoLibrary
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
         present(imagePicker, animated: true, completion: nil)
-        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-
         profileImage.image = info[.originalImage] as? UIImage
         self.dismiss(animated: true, completion: nil)
-
     }
-    
-    
 }

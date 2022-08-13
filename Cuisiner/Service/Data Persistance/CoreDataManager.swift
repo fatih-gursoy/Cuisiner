@@ -10,6 +10,7 @@ import CoreData
 
 class CoreDataManager {
 
+    static let shared: CoreDataManager = CoreDataManager()
     init() {}
     
 //MARK: - Private properties
@@ -26,7 +27,7 @@ class CoreDataManager {
     private var mainContext: NSManagedObjectContext { return persistentContainer.viewContext }
     private var fetchRequest: NSFetchRequest<SavedRecipe> {
         let fetchRequest = SavedRecipe.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "userID == %@", userId)
+        fetchRequest.predicate = NSPredicate(format: "appUserID == %@", userId)
         return fetchRequest
     }
     
@@ -48,11 +49,12 @@ class CoreDataManager {
         return recipes.first
     }
     
-    func addNewRecipe(_ recipeID: String) {
-        if savedRecipes.filter({ $0.recipeID == recipeID }).count < 1 {
+    func addNewRecipe(_ recipe: Recipe) {
+        if savedRecipes.filter({ $0.recipeID == recipe.id }).count < 1 {
             let newRecipe = SavedRecipe(context: mainContext)
-            newRecipe.userID = self.userId
-            newRecipe.recipeID = recipeID
+            newRecipe.appUserID = self.userId
+            newRecipe.recipeID = recipe.id
+            newRecipe.ownerID = recipe.ownerId
             do {
                 try self.mainContext.save()
             } catch {

@@ -39,7 +39,6 @@ class MyRecipesVC: UIViewController {
     }
     
     func configureTableView() {
-        
         tableView.register(UINib(nibName: "MyRecipeTableCell", bundle: nil),
                            forCellReuseIdentifier: MyRecipeTableCell.identifier)
         
@@ -53,14 +52,12 @@ class MyRecipesVC: UIViewController {
 }
 
 extension MyRecipesVC: MyRecipesViewModelDelegate {
-    
     func updateView() {
         DispatchQueue.main.async { [weak self] in
             self?.tableView.reloadData()
         }
     }
 }
-
 
 //MARK: -Tableview Delegates
 
@@ -72,7 +69,7 @@ extension MyRecipesVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: MyRecipeTableCell.identifier) as! MyRecipeTableCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MyRecipeTableCell.identifier) as? MyRecipeTableCell else { fatalError("Could not load") }
         
         cell.configure(viewModel: myRecipesViewModel.recipeAtIndex(selectedTable: selectedTable,
                                                                    index: indexPath.row))
@@ -148,8 +145,8 @@ extension MyRecipesVC {
         }
         
         let menu = UIMenu(options: .displayInline, children: [myProfile, help, logoutUser])
-        let barButton = UIBarButtonItem(image: UIImage(systemName: "gearshape.fill"), menu: menu)
-        self.navigationItem.rightBarButtonItem = barButton
+        let menuButton = UIBarButtonItem(image: UIImage(systemName: "gearshape.fill"), menu: menu)
+        self.navigationItem.rightBarButtonItem = menuButton
     }
     
     func routeToProfileVC() {
@@ -167,7 +164,6 @@ extension MyRecipesVC {
     func signOut() {
         
         AuthManager.shared.signOut()
-        
         self.dismiss(animated: true)
         self.tabBarController?.hidesBottomBarWhenPushed = true
         

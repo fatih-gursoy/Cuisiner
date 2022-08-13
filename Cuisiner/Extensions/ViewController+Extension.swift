@@ -18,14 +18,17 @@ extension UIViewController {
     }
     
     func presentQuickAlert(title: String, message: String) {
-        
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         self.present(alert, animated: true, completion: nil)
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
             self.dismiss(animated: true)
         }
-        
+    }
+    
+    func presentOverContext() {
+        self.modalPresentationStyle = .overCurrentContext
+        self.modalTransitionStyle = .crossDissolve
     }
     
     func hideKeyboard() {
@@ -37,7 +40,6 @@ extension UIViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-    
         
 // MARK: - Keyboard manuel handling
 //    IQKeyboardManager library was used in project instead of..

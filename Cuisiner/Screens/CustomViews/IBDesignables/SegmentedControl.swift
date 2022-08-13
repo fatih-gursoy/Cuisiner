@@ -17,7 +17,6 @@ class CustomSegmented: UISegmentedControl {
          } set {
              let color = [NSAttributedString.Key.foregroundColor: newValue]
              self.setTitleTextAttributes(color, for: .selected)
-             
          }
     }
 }

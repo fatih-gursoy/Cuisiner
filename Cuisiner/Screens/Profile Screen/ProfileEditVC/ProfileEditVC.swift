@@ -39,6 +39,7 @@ class ProfileEditVC: UIViewController {
         super.viewDidLoad()
         configureImagePicker()
         configureUI()
+        configureNavBar()
         hideKeyboard()
     }
     
@@ -72,7 +73,6 @@ class ProfileEditVC: UIViewController {
     }
     
     func updateUserInfo() {
-        
         if self.usernameField.text != self.viewModel.userName ||
             self.bioField.text != self.viewModel.userBio
         {
@@ -93,10 +93,10 @@ class ProfileEditVC: UIViewController {
     
     @IBAction func deleteAccountTapped(_ sender: Any) {
         let deleteConfirmationVC = AccountDeleteVC()
-        deleteConfirmationVC.viewModel = self.viewModel
-        deleteConfirmationVC.delegate = self
         deleteConfirmationVC.modalPresentationStyle = .overCurrentContext
         deleteConfirmationVC.modalTransitionStyle = .crossDissolve
+        deleteConfirmationVC.viewModel = self.viewModel
+        deleteConfirmationVC.delegate = self
         present(deleteConfirmationVC, animated: true)
     }
     
@@ -114,6 +114,26 @@ extension ProfileEditVC: ProfileEditVCDelegate {
         welcomeVC.modalPresentationStyle = .fullScreen
         self.present(welcomeVC, animated: true)
     }  
+
+
+//MARK: - NAvbar Configure
+
+    func configureNavBar() {
+                       
+        let blockedUsers = UIAction(title: "Blocked Users",
+                                    image: UIImage(systemName: "person.crop.circle.fill.badge.xmark")) { [weak self] _ in
+            self?.routeToBlockedUsersVC()
+        }
+        
+        let menu = UIMenu(options: .displayInline, children: [blockedUsers])
+        let menuButton = UIBarButtonItem(image: UIImage(systemName: "gearshape.fill"), menu: menu)
+        self.navigationItem.rightBarButtonItem = menuButton
+    }
+
+    func routeToBlockedUsersVC() {
+        guard let blockedUsersVC = self.storyboard?.instantiateViewController(withIdentifier: "BlockedUsersVC") as? BlockedUsersVC else { fatalError("Error")}
+        self.navigationController?.pushViewController(blockedUsersVC, animated: true)
+    }
 }
 
 // MARK: - ImagePicker Delegate

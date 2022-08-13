@@ -41,7 +41,6 @@ class StarView: UIStackView {
             button.heightAnchor.constraint(equalToConstant:60.0).isActive = true
             button.widthAnchor.constraint(equalToConstant: 60.0).isActive = true
             button.addTarget(self, action: #selector(didTapped), for: .touchUpInside)
-            
             addArrangedSubview(button)
             buttons.append(button)
         }

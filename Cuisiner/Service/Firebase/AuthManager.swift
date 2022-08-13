@@ -15,8 +15,9 @@ class AuthManager {
     private var userAuth = Auth.auth()
     private var email = ""
     private var password = ""
-    private init() { }
+    private init() {}
 
+    var user: User?
     var errorMessage: String?
     var userId: String? { return userAuth.currentUser?.uid }
     var userName: String? { return userAuth.currentUser?.displayName }
@@ -41,6 +42,18 @@ extension AuthManager {
         }
     }
     
+    func fetchUser(completion: @escaping (Bool) -> Void) {
+        
+        guard let userId = self.userId else {return}
+        FirebaseService.shared.fetchByField(from: .users, queryField: "userId",
+                                            queryParam: userId) { [weak self] (users: [User]) in
+            
+            guard let user = users.first else {return}
+            self?.user = user
+            completion(true)
+        }
+    }
+    
     func signUp(completion: @escaping(_ success: Bool) -> Void) {
         userAuth.createUser(withEmail: email, password: password) { authData, error in
             if error != nil {
@@ -58,7 +71,8 @@ extension AuthManager {
         changeRequest?.commitChanges()
     }
     
-    func updatePassword(currentPassword: String, newPassword: String, completion: @escaping(_ success: Bool) -> Void) {
+    func updatePassword(currentPassword: String, newPassword: String,
+                        completion: @escaping(_ success: Bool) -> Void) {
         
         reAuthenticate(password: currentPassword) { success in
             if success {
@@ -76,8 +90,8 @@ extension AuthManager {
         }
     }
     
-    func passwordReset(completion: @escaping(_ success: Bool) -> Void) {
-        userAuth.sendPasswordReset(withEmail: self.email) { error in
+    func passwordReset(email: String, completion: @escaping(_ success: Bool) -> Void) {
+        userAuth.sendPasswordReset(withEmail: email) { error in
             if let error = error {
                 self.errorMessage = error.localizedDescription
                 completion(false)
