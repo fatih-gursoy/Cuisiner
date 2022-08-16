@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CustomAlertVCDelegate: AnyObject {
-    func OkTapped()
+    func OkTapped(action: String?)
 }
 
 class CustomAlertVC: UIViewController {
@@ -16,20 +16,24 @@ class CustomAlertVC: UIViewController {
     @IBOutlet private weak var messageLabel: UILabel!
     @IBOutlet private weak var imageView: UIImageView!
     
-    var message: String
-    var image: UIImage?
-    var okCompletion: (() -> Void)?
+    private var action: String?
+    private var message: String
+    private var image: UIImage?
+    
     weak var delegate: CustomAlertVCDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
     }
-    
-    init(message: String, image: UIImage?) {
+        
+    init(action: String?, message: String, image: UIImage?) {
+        self.action = action
         self.message = message
         self.image = image
         super.init(nibName: nil, bundle: nil)
+        self.modalPresentationStyle = .overCurrentContext
+        self.modalTransitionStyle = .crossDissolve
     }
     
     required init?(coder: NSCoder) {
@@ -42,13 +46,12 @@ class CustomAlertVC: UIViewController {
     }
     
     @IBAction func OkTapped(_ sender: Any) {
-        delegate?.OkTapped()
-        dismiss(animated: true, completion: okCompletion)
+        dismiss(animated: true, completion: nil)
+        delegate?.OkTapped(action: self.action)
     }
     
     @IBAction func cancelTapped(_ sender: Any) {
         self.dismiss(animated: true)
     }
-    
     
 }

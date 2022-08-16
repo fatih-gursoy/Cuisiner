@@ -18,6 +18,16 @@ class AccountDeleteVC: UIViewController {
         super.viewDidLoad()
     }
     
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        self.modalPresentationStyle = .overCurrentContext
+        self.modalTransitionStyle = .crossDissolve
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     @IBAction func confirmTapped(_ sender: Any) {
         
         guard let password = passwordField.text else { return }

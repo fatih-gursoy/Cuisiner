@@ -48,9 +48,9 @@ class PrepareVC: UIViewController {
         if foodImage.isSame(with: oldUrl) {
             self.recipeViewModel?.updateRecipe()
         } else {
-            storage.imageUpload(to: .foodImages, id: uid , image: foodImage.image!) { imageUrl in
-                self.recipeViewModel?.recipe.foodImageUrl = imageUrl
-                self.recipeViewModel?.updateRecipe()
+            storage.imageUpload(to: .foodImages, id: uid , image: foodImage.image!) { [weak self] imageUrl in
+                self?.recipeViewModel?.recipe.foodImageUrl = imageUrl
+                self?.recipeViewModel?.updateRecipe()
             }
         }
     }
@@ -66,10 +66,17 @@ class PrepareVC: UIViewController {
     }
     
     @IBAction func saveButtonClicked(_ sender: Any) {
-        presentAlert(title: "Saving your recipe", message: "Are you sure?") { _ in
-            self.saveRecipe()
-            self.dismiss(animated: true)
-        }
+        let alertVC = CustomAlertVC(action: nil, message: "Do you want to save your recipe?",
+                                    image: UIImage(systemName: "rectangle.and.pencil.and.ellipsis"))
+        alertVC.delegate = self
+        present(alertVC, animated: true)
+    }
+}
+
+extension PrepareVC: CustomAlertVCDelegate {
+    
+    func OkTapped(action: String?) {
+        saveRecipe()
     }
 }
 

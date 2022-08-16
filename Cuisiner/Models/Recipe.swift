@@ -18,6 +18,7 @@ struct Recipe: Codable {
     var instructions: [Instruction]
     var foodImageUrl: String?
     var ratingList: [Rating]?
+    var reporterList: [String]?
     
     enum CodingKeys: String, CodingKey {
         case ownerId
@@ -30,6 +31,7 @@ struct Recipe: Codable {
         case instructions
         case foodImageUrl
         case ratingList = "Rating List"
+        case reporterList
     }
         
     enum Category: String, Codable, CaseIterable {

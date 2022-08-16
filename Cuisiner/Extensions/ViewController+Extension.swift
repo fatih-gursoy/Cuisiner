@@ -18,17 +18,18 @@ extension UIViewController {
     }
     
     func presentQuickAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let font = [NSAttributedString.Key.font:  UIFont(name: "Gill Sans", size: 20)!]
+        let customTitle = NSAttributedString(string: title, attributes: font)
+        let customMessage = NSMutableAttributedString(string: message, attributes: font)
+        
+        let alert = UIAlertController(title: customTitle.string, message: customMessage.string,
+                                      preferredStyle: .alert)
         self.present(alert, animated: true, completion: nil)
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
             self.dismiss(animated: true)
         }
-    }
-    
-    func presentOverContext() {
-        self.modalPresentationStyle = .overCurrentContext
-        self.modalTransitionStyle = .crossDissolve
     }
     
     func hideKeyboard() {

@@ -62,6 +62,11 @@ class UserViewModel {
         updateUser()
     }
     
+    func addToRecipeBlackList(recipeId: String) {
+        user.recipeBlackList?.append(recipeId)
+        updateUser()
+    }
+    
     func fetchRecipes() {
         service.fetchByField(from: .recipes,
                              queryField: "ownerId",

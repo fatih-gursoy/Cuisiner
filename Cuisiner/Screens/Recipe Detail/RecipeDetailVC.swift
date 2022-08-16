@@ -94,7 +94,6 @@ class RecipeDetailVC: UIViewController {
     @IBAction func starButtonClicked(_ sender: Any) {
         guard let myScore = recipeViewModel?.myScore else {return}
         let popupVC = CustomPopupVC(type:.star(score: myScore))
-        popupVC.presentOverContext()
         
         popupVC.doneTappedCompletion = { [weak self] in
             let score = popupVC.starView?.score
@@ -119,34 +118,47 @@ class RecipeDetailVC: UIViewController {
         notificationPost()
     }
     
+    @IBAction func blockUserTapped(_ sender: Any) {
+        let alertVC = CustomAlertVC(action: "Block User",
+                                    message: "Do you want to block user?",
+                                    image: UIImage(systemName: "person.crop.circle.fill.badge.xmark"))
+        
+        alertVC.delegate = self
+        present(alertVC, animated: true)
+    }
+    
     @IBAction func reportButtonTapped(_ sender: Any) {
         
-        //TODO:  Report to Admin actions...
+        let alertVC = CustomAlertVC(action: "Report",
+                                    message: "Do you want to report this content as inappropriate?",
+                                    image: UIImage(systemName: "hand.thumbsdown.fill"))
         
+        alertVC.delegate = self
+        present(alertVC, animated: true)
     }
     
 }
 
 extension RecipeDetailVC: CustomAlertVCDelegate {
     
-    @IBAction func blockUserTapped(_ sender: Any) {
-        let alertVC = CustomAlertVC(message: "Do you want to block user?",
-                                    image: UIImage(systemName: "person.crop.circle.fill.badge.xmark"))
+    func OkTapped(action: String?) {
         
-        alertVC.presentOverContext()
-        alertVC.delegate = self
-        alertVC.okCompletion = { [weak self] in
-            self?.notificationPost()
-            self?.dismiss(animated: true)
+        switch action {
+            
+        case "Block User":
+            guard let user = AuthManager.shared.user,
+                  let recipeOwnerId = recipeViewModel.user?.userId else {return}
+            let userViewModel = UserViewModel(user: user)
+            userViewModel.blockUserHandler(userId: recipeOwnerId)
+            notificationPost()
+            dismiss(animated: true)
+            
+        case "Report":
+            guard let currentUserId = AuthManager.shared.userId else { return }
+            recipeViewModel.addtoReportedRecipes(currentUserId: currentUserId)
+        default:
+            break
         }
-        present(alertVC, animated: true)
-    }
-    
-    func OkTapped() {
-        guard let user = AuthManager.shared.user,
-              let recipeOwnerId = recipeViewModel.user?.userId else {return}
-        let userViewModel = UserViewModel(user: user)
-        userViewModel.blockUserHandler(userId: recipeOwnerId)
     }
 }
 
@@ -209,7 +221,7 @@ extension RecipeDetailVC {
         let userViewModel = UserViewModel(user: user)
         let vc = ProfileVCBuilder.build(viewModel: userViewModel)
         guard let presentationController = vc.presentationController as? UISheetPresentationController else {return}
-        presentationController.detents = [.medium()]
+        presentationController.detents = [.medium(), .large()]
         present(vc, animated: true)
     }
 }

@@ -16,6 +16,7 @@ struct User: Codable {
     var userImageUrl: String?
     var bio: String?
     var blockedUsers: [String]?
+    var recipeBlackList: [String]?
     
     enum CodingKeys: String, CodingKey {
         case userId
@@ -25,5 +26,6 @@ struct User: Codable {
         case userImageUrl
         case bio
         case blockedUsers
+        case recipeBlackList
     }
 }

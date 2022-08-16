@@ -49,8 +49,18 @@ extension BlockedUsersVC: UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete {
             guard let userId = viewModel.users?[indexPath.row].userId else { return }
             viewModel.removeBlock(userId: userId)
-//            viewModel.users?.remove(at: indexPath.row)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            
+        guard let users = viewModel.users else { return }
+        let userVM = UserViewModel(user: users[indexPath.row])
+        let vc = ProfileVCBuilder.build(viewModel: userVM)
+        guard let presentationController = vc.presentationController as?
+                UISheetPresentationController else {return}
+        presentationController.detents = [.medium()]
+        present(vc, animated: true)
     }
     
 }

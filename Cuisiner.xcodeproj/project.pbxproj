@@ -73,6 +73,7 @@
 		3D9F42262832FCA7003FA3E0 /* InstructionCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9F42242832FCA6003FA3E0 /* InstructionCollectionCell.xib */; };
 		3D9F92F5289D1DF400F02997 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9F92F4289D1DF400F02997 /* CustomButton.swift */; };
 		3DA92E612816066500DE0065 /* RecipeDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA92E602816066500DE0065 /* RecipeDetailVC.swift */; };
+		3DB1551628AB73E70072825B /* CustomActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB1551528AB73E70072825B /* CustomActionSheet.swift */; };
 		3DDC76C2283305B400DBCBB7 /* cooking.json in Resources */ = {isa = PBXBuildFile; fileRef = 3DDC76C1283305B400DBCBB7 /* cooking.json */; };
 		3DE094052896ADE900003925 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE094042896ADE900003925 /* UserDefaults+Extension.swift */; };
 		3DE452B32815FA30003F9AC6 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE452B22815FA30003F9AC6 /* CustomImageView.swift */; };
@@ -152,6 +153,7 @@
 		3D9F42242832FCA6003FA3E0 /* InstructionCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InstructionCollectionCell.xib; sourceTree = "<group>"; };
 		3D9F92F4289D1DF400F02997 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		3DA92E602816066500DE0065 /* RecipeDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailVC.swift; sourceTree = "<group>"; };
+		3DB1551528AB73E70072825B /* CustomActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActionSheet.swift; sourceTree = "<group>"; };
 		3DDC76C1283305B400DBCBB7 /* cooking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cooking.json; sourceTree = "<group>"; };
 		3DE094042896ADE900003925 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		3DE452B22815FA30003F9AC6 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
@@ -467,6 +469,7 @@
 		3D8D6A0D2840C65E00DDEED4 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				3DB1551728AB88140072825B /* CustomActionSheet */,
 				3D68C5A428A51F7D0052AB6D /* CustomAlertVC */,
 				3D6CDC9B289E715E00EFC01C /* AccountDeleteVC */,
 				3DFCC8E52869ECA500297EEA /* ChangePasswordVC */,
@@ -513,6 +516,14 @@
 				3D9F42242832FCA6003FA3E0 /* InstructionCollectionCell.xib */,
 			);
 			path = InstructionsCollectionCell;
+			sourceTree = "<group>";
+		};
+		3DB1551728AB88140072825B /* CustomActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				3DB1551528AB73E70072825B /* CustomActionSheet.swift */,
+			);
+			path = CustomActionSheet;
 			sourceTree = "<group>";
 		};
 		3DDC76C02833050200DBCBB7 /* Lottie */ = {
@@ -765,6 +776,7 @@
 				3D0A729027D6A8C100F26608 /* SceneDelegate.swift in Sources */,
 				3DEBA83F281751D100E9774B /* ImageView+Extension.swift in Sources */,
 				3D920C2F285D34C000A8272D /* ProfileEditVC.swift in Sources */,
+				3DB1551628AB73E70072825B /* CustomActionSheet.swift in Sources */,
 				3D174E8E27D8064600D5DCB3 /* DiscoverVC.swift in Sources */,
 				3D6CDC9E289E718F00EFC01C /* AccountDeleteVC.swift in Sources */,
 				3D1B305828927E1900166FC9 /* ProfileEditVCBuilder.swift in Sources */,

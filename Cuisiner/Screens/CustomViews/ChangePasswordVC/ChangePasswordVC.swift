@@ -17,6 +17,16 @@ class ChangePasswordVC: UIViewController {
         super.viewDidLoad()
     }
     
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        self.modalPresentationStyle = .overCurrentContext
+        self.modalTransitionStyle = .crossDissolve
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     @IBAction func OKTapped(_ sender: Any) {
         
         if oldPassword.text != "" && newPassword.text != "" {

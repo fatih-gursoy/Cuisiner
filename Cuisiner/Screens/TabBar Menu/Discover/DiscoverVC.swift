@@ -80,6 +80,8 @@ extension DiscoverVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecipeCell.identifier, for: indexPath) as? RecipeCell else { fatalError("Could not load") }
             
             cell.configure(viewModel: recipesViewModel.recipeAtIndex(indexPath.row))
+            cell.delegate = self
+            cell.tag = indexPath.row
             return cell
             
         default:
@@ -171,6 +173,43 @@ extension DiscoverVC: RecipesViewModelDelegate {
     func updateView() {
         DispatchQueue.main.async {
             self.recipeCollectionView.reloadData()
+        }
+    }
+}
+
+//MARK: ACtionSheet Delegates
+
+extension DiscoverVC: CellActionButtonDelegate {
+    
+    func actionButtonTapped(cell: UICollectionViewCell) {
+        let actionSheet = CustomActionSheet()
+        actionSheet.delegate = self
+        actionSheet.tag = cell.tag
+        present(actionSheet, animated: true)
+    }
+}
+
+extension DiscoverVC: ActionSheetDelegate {
+
+    func handler(index: Int, action: UIAlertAction) {
+        
+        guard let recipeViewModel = self.recipesViewModel.recipeAtIndex(index),
+              let currentUser = AuthManager.shared.user else {return}
+        
+        switch action.title {
+        
+        case actionType.report.title:
+            recipeViewModel.addtoReportedRecipes(currentUserId: currentUser.userId!)
+        
+        case actionType.hide.title:
+            recipeViewModel.addtoBlackList()
+            
+        case actionType.block.title:
+            let userVM = UserViewModel(user: currentUser)
+            userVM.blockUserHandler(userId: recipeViewModel.ownerID)
+        
+        default:
+            break
         }
     }
 }

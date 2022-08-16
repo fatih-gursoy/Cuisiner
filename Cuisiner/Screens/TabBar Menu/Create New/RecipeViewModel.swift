@@ -16,32 +16,41 @@ class RecipeViewModel {
     private var service: FirebaseServiceProtocol {return FirebaseService.shared}
     private var coredataManager = CoreDataManager()
     
-    var recipe: Recipe
+    var recipe: Recipe {
+        didSet {
+            updateRecipe()
+        }
+    }
+    
     var user: User?
     weak var delegate: RecipeViewModelDelegate? 
     
     init(recipe: Recipe) {
         self.recipe = recipe
     }
-        
+            
     // MARK: -Properties
 
-    var recipeName: String? {
-        return recipe.name
-    }
+    var recipeName: String? { return recipe.name }
+    var category: String { return self.recipe.category.rawValue }
+    var ingredients: [Ingredient] { return recipe.ingredients }
+    var instructions: [Instruction] { return recipe.instructions }
+    var reporterList: [String]? { return recipe.reporterList }
+    var isSaved: Bool { return (coredataManager.fetchRecipe(recipeID) != nil) }
     
     var recipeID: String {
         guard let recipeID = self.recipe.id else { return ""}
         return recipeID
     }
     
+    var ownerID: String {
+        guard let ownerId = self.recipe.ownerId else { return ""}
+        return ownerId
+    }
+    
     var recipeImageUrl: String {
         guard let url = self.recipe.foodImageUrl else { return ""}
         return url
-    }
-    
-    var category: String {
-        return self.recipe.category.rawValue
     }
     
     var cookTime: String {
@@ -53,7 +62,6 @@ class RecipeViewModel {
         var averageScore = 0.0
         guard let ratingList = recipe.ratingList else { return "0.0" }
         let sum = ratingList.map { $0.score! }.reduce(0, +)
-        
         if sum > 0 { averageScore = Double(sum) / Double(ratingList.count) }
         return String(format: "%.1f", averageScore)
     }
@@ -61,18 +69,6 @@ class RecipeViewModel {
     var reviewCount: String? {
         guard let starList = recipe.ratingList else { return "0" }
         return String(describing: starList.count)
-    }
-    
-    var ingredients: [Ingredient] {
-        return recipe.ingredients
-    }
-    
-    var instructions: [Instruction] {
-        return recipe.instructions
-    }
-    
-    var isSaved: Bool {        
-        return (coredataManager.fetchRecipe(recipeID) != nil)
     }
     
     var myScore: Int {
@@ -128,7 +124,19 @@ class RecipeViewModel {
             guard let index = self.ratingIndex else { return }
             self.recipe.ratingList?.remove(at: index)
         }
-        updateRecipe()
+    }
+    
+    func addtoBlackList() {
+        guard let currentUser = AuthManager.shared.user else { return }
+        let userViewModel = UserViewModel(user: currentUser)
+        userViewModel.addToRecipeBlackList(recipeId: self.recipeID)
+    }
+    
+    func addtoReportedRecipes(currentUserId: String) {
+        guard let reporterList = reporterList else { recipe.reporterList = [currentUserId]; return }
+        if !reporterList.contains(currentUserId) {
+            recipe.reporterList?.append(currentUserId)
+        }
     }
 
 // MARK: -CoreData Functions

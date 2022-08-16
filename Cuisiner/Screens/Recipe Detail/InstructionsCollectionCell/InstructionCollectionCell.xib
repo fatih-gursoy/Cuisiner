@@ -111,6 +111,14 @@
             <point key="canvasLocation" x="331.8840579710145" y="207.92410714285714"/>
         </collectionViewCell>
     </objects>
+    <designables>
+        <designable name="HQZ-ik-tjL">
+            <size key="intrinsicContentSize" width="44" height="36"/>
+        </designable>
+        <designable name="zQ2-Qv-3jb">
+            <size key="intrinsicContentSize" width="49" height="36"/>
+        </designable>
+    </designables>
     <resources>
         <namedColor name="Dark Red">
             <color red="0.62000000476837158" green="0.16899999976158142" blue="0.16899999976158142" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

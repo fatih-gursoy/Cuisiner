@@ -15,11 +15,11 @@ class RecipesViewModel {
        
     var recipes: [Recipe]?
     
-    private var allRecipes: [Recipe]?
+    private var filteredRecipes: [Recipe]?
     private var selectedCategories = [Recipe.Category]()
-    
-    weak var delegate: RecipesViewModelDelegate?
     private var service: FirebaseServiceProtocol
+
+    weak var delegate: RecipesViewModelDelegate?
       
     init(service: FirebaseServiceProtocol = FirebaseService.shared) {
         self.service = service
@@ -31,12 +31,17 @@ class RecipesViewModel {
     }
     
     func fetchAllRecipes() {
-        guard let blockedUsers = AuthManager.shared.user?.blockedUsers else { return }
+        guard let blockedUsers = AuthManager.shared.user?.blockedUsers,
+              let recipeBlackList = AuthManager.shared.user?.recipeBlackList
+        else { return }
         
         service.fetchData(from: .recipes) { [weak self] (recipes: [Recipe]) in
-            let recipes = recipes.filter( { !(blockedUsers.contains($0.ownerId!)) })
-            self?.recipes = recipes
-            self?.allRecipes = recipes
+            self?.filteredRecipes = recipes.filter { recipe in
+                guard let id = recipe.id,
+                      let ownerId = recipe.ownerId else { return false }
+                return (!blockedUsers.contains(ownerId) && !recipeBlackList.contains(id))
+            }
+            self?.recipes = self?.filteredRecipes
             self?.delegate?.updateView()
         }
     }
@@ -47,18 +52,13 @@ class RecipesViewModel {
         } else {
             selectedCategories = selectedCategories.filter { $0 != category }
         }
-        self.recipes = self.allRecipes?.filter({ selectedCategories.contains( $0.category) })
+        self.recipes = self.filteredRecipes?.filter({ selectedCategories.contains( $0.category) })
         delegate?.updateView()
     }
     
     func searchRecipes(_ searchText: String?) {
         guard let searchText = searchText?.lowercased() else {return}
-        switch searchText {
-        case "":
-            self.recipes = allRecipes
-        default:
-            self.recipes = self.allRecipes?.filter { $0.name?.lowercased().hasPrefix(searchText) == true }
-        }
+        self.recipes = self.filteredRecipes?.filter {$0.name?.lowercased().hasPrefix(searchText) == true}
         delegate?.updateView()
     }
 }

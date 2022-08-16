@@ -86,15 +86,11 @@ class ProfileEditVC: UIViewController {
     
     @IBAction func changePasswordTapped(_ sender: Any) {
         let updatePasswordVC = ChangePasswordVC()
-        updatePasswordVC.modalPresentationStyle = .overCurrentContext
-        updatePasswordVC.modalTransitionStyle = .crossDissolve
         present(updatePasswordVC, animated: true)
     }
     
     @IBAction func deleteAccountTapped(_ sender: Any) {
         let deleteConfirmationVC = AccountDeleteVC()
-        deleteConfirmationVC.modalPresentationStyle = .overCurrentContext
-        deleteConfirmationVC.modalTransitionStyle = .crossDissolve
         deleteConfirmationVC.viewModel = self.viewModel
         deleteConfirmationVC.delegate = self
         present(deleteConfirmationVC, animated: true)
@@ -113,7 +109,7 @@ extension ProfileEditVC: ProfileEditVCDelegate {
 
         welcomeVC.modalPresentationStyle = .fullScreen
         self.present(welcomeVC, animated: true)
-    }  
+    } 
 
 
 //MARK: - NAvbar Configure
@@ -126,7 +122,7 @@ extension ProfileEditVC: ProfileEditVCDelegate {
         }
         
         let menu = UIMenu(options: .displayInline, children: [blockedUsers])
-        let menuButton = UIBarButtonItem(image: UIImage(systemName: "gearshape.fill"), menu: menu)
+        let menuButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), menu: menu)
         self.navigationItem.rightBarButtonItem = menuButton
     }
 

@@ -148,7 +148,8 @@ extension CreateNewVC: UITableViewDelegate, UITableViewDataSource {
     func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UINib(nibName: "IngredientTableCell", bundle: nil), forCellReuseIdentifier: IngredientTableCell.identifier)
+        tableView.register(UINib(nibName: IngredientTableCell.identifier, bundle: nil),
+                           forCellReuseIdentifier: IngredientTableCell.identifier)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -272,8 +273,14 @@ extension CreateNewVC: UIPickerViewDelegate, UIPickerViewDataSource {
         toolBar = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 200, width: UIScreen.main.bounds.size.width, height: 50))
         
         toolBar.barStyle = .default
-        toolBar.items = [UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(doneButtonTapped))]
         
+        let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        
+        let barButton = UIBarButtonItem(image: UIImage(systemName: "checkmark.circle.fill"),
+                                        style: .done, target: self, action: #selector(doneButtonTapped))
+        
+        spacer.width = UIScreen.main.bounds.size.width - barButton.width
+        toolBar.items = [spacer, barButton]
         toolBar.sizeToFit()
         
         UIView.transition(with: self.view, duration: 0.5, options: [.transitionCrossDissolve] , animations: {

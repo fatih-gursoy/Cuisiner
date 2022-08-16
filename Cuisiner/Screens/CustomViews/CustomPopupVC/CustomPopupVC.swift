@@ -26,6 +26,8 @@ class CustomPopupVC: UIViewController {
     init(type: popUpType) {
         super.init(nibName: nil, bundle: nil)
         self.type = type
+        self.modalPresentationStyle = .overCurrentContext
+        self.modalTransitionStyle = .crossDissolve
     }
     
     required init?(coder: NSCoder) {

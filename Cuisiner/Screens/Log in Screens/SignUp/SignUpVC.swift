@@ -60,7 +60,8 @@ class SignUpVC: UIViewController {
                             userNameLowercased: newUser.userName?.lowercased(),
                             email: newUser.userEmail,
                             userImageUrl: imageUrl,
-                            blockedUsers: [])
+                            blockedUsers: [],
+                            recipeBlackList: [])
             
             let userViewModel = UserViewModel(user: user)
             userViewModel.createNew()

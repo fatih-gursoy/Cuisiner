@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,7 +22,7 @@
                         <rect key="frame" x="5" y="5" width="468" height="545"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="04F-lL-aG6" customClass="CustomImageView" customModule="Cuisiner" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="468" height="490.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="468" height="463.5"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -29,32 +30,68 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="aQP-HN-ApM">
-                                <rect key="frame" x="0.0" y="495.5" width="468" height="49.5"/>
-                                <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="18"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="i8S-hS-9Sa">
+                                <rect key="frame" x="0.0" y="468.5" width="468" height="76.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="aQP-HN-ApM">
+                                        <rect key="frame" x="0.0" y="0.0" width="413" height="76.5"/>
+                                        <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ynN-6H-W6o" userLabel="ActionButton">
+                                        <rect key="frame" x="418" y="0.0" width="50" height="76.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="jPZ-WL-ukI"/>
+                                        </constraints>
+                                        <color key="tintColor" name="Dark Red"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal">
+                                            <color key="titleColor" name="Dark Red"/>
+                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <imageReference key="image" image="ellipsis" catalog="system" symbolScale="large"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" name="Dark Red"/>
+                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <imageReference key="image" image="bookmark.fill" catalog="system" symbolScale="large"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="menuButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="ont-Gh-E1R"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="04F-lL-aG6" secondAttribute="trailing" id="8Sa-9h-yTm"/>
                             <constraint firstItem="04F-lL-aG6" firstAttribute="top" secondItem="wQG-Mc-Nap" secondAttribute="top" id="IlT-L8-uMv"/>
-                            <constraint firstAttribute="trailing" secondItem="aQP-HN-ApM" secondAttribute="trailing" id="X7F-3I-fu8"/>
-                            <constraint firstItem="04F-lL-aG6" firstAttribute="height" secondItem="wQG-Mc-Nap" secondAttribute="height" multiplier="0.9" id="ek7-Fy-Bsj"/>
+                            <constraint firstAttribute="trailing" secondItem="i8S-hS-9Sa" secondAttribute="trailing" id="Sk4-pP-maF"/>
+                            <constraint firstItem="04F-lL-aG6" firstAttribute="height" secondItem="wQG-Mc-Nap" secondAttribute="height" multiplier="0.85" id="ek7-Fy-Bsj"/>
                             <constraint firstItem="04F-lL-aG6" firstAttribute="leading" secondItem="wQG-Mc-Nap" secondAttribute="leading" id="fbB-3X-ijE"/>
-                            <constraint firstItem="aQP-HN-ApM" firstAttribute="leading" secondItem="wQG-Mc-Nap" secondAttribute="leading" id="zAu-Zb-WMQ"/>
+                            <constraint firstItem="i8S-hS-9Sa" firstAttribute="leading" secondItem="wQG-Mc-Nap" secondAttribute="leading" id="owT-aC-dUh"/>
                         </constraints>
                     </stackView>
-                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="tZg-7O-tHb">
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="tZg-7O-tHb" customClass="CustomButton" customModule="Cuisiner" customModuleProvider="target">
                         <rect key="frame" x="14" y="14" width="75" height="34"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="filled" imagePlacement="leading" title="Stars" imagePadding="5" cornerStyle="capsule">
-                            <imageReference key="image" image="star.fill" catalog="system" symbolScale="small"/>
-                            <fontDescription key="titleFontDescription" name="GillSans" family="Gill Sans" pointSize="12"/>
-                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <color key="baseBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </buttonConfiguration>
+                        <color key="backgroundColor" name="Opacity35"/>
+                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="16"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
+                        <state key="normal" title="Stars">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <imageReference key="image" image="star.fill" catalog="system" symbolScale="medium"/>
+                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="14"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </button>
                 </subviews>
             </view>
@@ -67,6 +104,7 @@
             </constraints>
             <size key="customSize" width="478" height="555"/>
             <connections>
+                <outlet property="actionButton" destination="ynN-6H-W6o" id="Eqn-V2-kXR"/>
                 <outlet property="foodImage" destination="04F-lL-aG6" id="eLR-e1-JdQ"/>
                 <outlet property="recipeName" destination="aQP-HN-ApM" id="IpN-yJ-Vsl"/>
                 <outlet property="starButton" destination="tZg-7O-tHb" id="3SD-0p-rn0"/>
@@ -74,7 +112,20 @@
             <point key="canvasLocation" x="669.56521739130437" y="191.18303571428569"/>
         </collectionViewCell>
     </objects>
+    <designables>
+        <designable name="tZg-7O-tHb">
+            <size key="intrinsicContentSize" width="50.5" height="19"/>
+        </designable>
+    </designables>
     <resources>
+        <image name="bookmark.fill" catalog="system" width="112" height="128"/>
+        <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
+        <namedColor name="Dark Red">
+            <color red="0.62000000476837158" green="0.16899999976158142" blue="0.16899999976158142" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="Opacity35">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.34999999403953552" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
     </resources>
 </document>
