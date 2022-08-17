@@ -120,7 +120,7 @@ class RecipeDetailVC: UIViewController {
     
     @IBAction func blockUserTapped(_ sender: Any) {
         let alertVC = CustomAlertVC(action: "Block User",
-                                    message: "Do you want to block user?",
+                                    message: AlertMessages.blockUser,
                                     image: UIImage(systemName: "person.crop.circle.fill.badge.xmark"))
         
         alertVC.delegate = self
@@ -130,7 +130,7 @@ class RecipeDetailVC: UIViewController {
     @IBAction func reportButtonTapped(_ sender: Any) {
         
         let alertVC = CustomAlertVC(action: "Report",
-                                    message: "Do you want to report this content as inappropriate?",
+                                    message: AlertMessages.report,
                                     image: UIImage(systemName: "hand.thumbsdown.fill"))
         
         alertVC.delegate = self

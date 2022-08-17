@@ -19,13 +19,13 @@ class RecipeCell: UICollectionViewCell {
     @IBOutlet private weak var recipeName: UILabel!
     @IBOutlet private weak var starButton: UIButton!
     @IBOutlet private weak var actionButton: UIButton!
-    
+
     weak var delegate: CellActionButtonDelegate?
     
     func configure(viewModel: RecipeViewModel?) {
         
         guard let viewModel = viewModel else { return }
-        if viewModel.ownerID == AuthManager.shared.userId {actionButton.isHidden = true}
+        actionButton.isHidden = viewModel.ownerID == AuthManager.shared.userId ? true : false        
         recipeName.text = viewModel.recipe.name
         foodImage.setImage(url: viewModel.recipe.foodImageUrl)
         

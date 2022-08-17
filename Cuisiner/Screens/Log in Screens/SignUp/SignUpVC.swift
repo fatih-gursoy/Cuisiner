@@ -6,7 +6,10 @@
 //
 
 import UIKit
-import Firebase
+
+protocol SignUpDelegate: AnyObject {
+    func didUserSignUp()
+}
 
 class SignUpVC: UIViewController {
 
@@ -68,10 +71,6 @@ class SignUpVC: UIViewController {
         }
     }
     
-}
-
-protocol SignUpDelegate: AnyObject {
-    func didUserSignUp()
 }
 
 extension SignUpVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

@@ -59,7 +59,7 @@
 		3D68C5A828A51F980052AB6D /* CustomAlertVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D68C5A628A51F980052AB6D /* CustomAlertVC.xib */; };
 		3D6CDC9E289E718F00EFC01C /* AccountDeleteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6CDC9C289E718F00EFC01C /* AccountDeleteVC.swift */; };
 		3D6CDC9F289E718F00EFC01C /* AccountDeleteVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D6CDC9D289E718F00EFC01C /* AccountDeleteVC.xib */; };
-		3D703820281991C2002A554E /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70381F281991C2002A554E /* Database.swift */; };
+		3D703820281991C2002A554E /* Database+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70381F281991C2002A554E /* Database+Constants.swift */; };
 		3D82E2CA283B9C900013032D /* CustomPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82E2C8283B9C900013032D /* CustomPopupVC.swift */; };
 		3D82E2CB283B9C910013032D /* CustomPopupVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D82E2C9283B9C900013032D /* CustomPopupVC.xib */; };
 		3D83FA67289A72B6003FAB3E /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D83FA66289A72B6003FAB3E /* Color.xcassets */; };
@@ -68,6 +68,7 @@
 		3D8F960027EC7F6C004DE7A2 /* RecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8F95FF27EC7F6C004DE7A2 /* RecipeViewModel.swift */; };
 		3D8F960327EC99A0004DE7A2 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8F960227EC99A0004DE7A2 /* FirebaseService.swift */; };
 		3D920C2F285D34C000A8272D /* ProfileEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D920C2E285D34C000A8272D /* ProfileEditVC.swift */; };
+		3D9409CD28AD88E0004BB6C1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9409CC28AD88E0004BB6C1 /* Constants.swift */; };
 		3D9F422228328055003FA3E0 /* StartCookVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9F422128328055003FA3E0 /* StartCookVC.swift */; };
 		3D9F42252832FCA7003FA3E0 /* InstructionCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9F42232832FCA6003FA3E0 /* InstructionCollectionCell.swift */; };
 		3D9F42262832FCA7003FA3E0 /* InstructionCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9F42242832FCA6003FA3E0 /* InstructionCollectionCell.xib */; };
@@ -139,7 +140,7 @@
 		3D68C5A628A51F980052AB6D /* CustomAlertVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomAlertVC.xib; sourceTree = "<group>"; };
 		3D6CDC9C289E718F00EFC01C /* AccountDeleteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDeleteVC.swift; sourceTree = "<group>"; };
 		3D6CDC9D289E718F00EFC01C /* AccountDeleteVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountDeleteVC.xib; sourceTree = "<group>"; };
-		3D70381F281991C2002A554E /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		3D70381F281991C2002A554E /* Database+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Database+Constants.swift"; sourceTree = "<group>"; };
 		3D82E2C8283B9C900013032D /* CustomPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopupVC.swift; sourceTree = "<group>"; };
 		3D82E2C9283B9C900013032D /* CustomPopupVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomPopupVC.xib; sourceTree = "<group>"; };
 		3D83FA66289A72B6003FAB3E /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
@@ -148,6 +149,7 @@
 		3D8F95FF27EC7F6C004DE7A2 /* RecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewModel.swift; sourceTree = "<group>"; };
 		3D8F960227EC99A0004DE7A2 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		3D920C2E285D34C000A8272D /* ProfileEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditVC.swift; sourceTree = "<group>"; };
+		3D9409CC28AD88E0004BB6C1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3D9F422128328055003FA3E0 /* StartCookVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartCookVC.swift; sourceTree = "<group>"; };
 		3D9F42232832FCA6003FA3E0 /* InstructionCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionCollectionCell.swift; sourceTree = "<group>"; };
 		3D9F42242832FCA6003FA3E0 /* InstructionCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InstructionCollectionCell.xib; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				3D0A72C727D79E8500F26608 /* Screens */,
 				3D0A72C427D79E2100F26608 /* Resources */,
 				3D5C32BC27F470EC0048CAC0 /* Extensions */,
+				3D9409CE28AD8AA8004BB6C1 /* Constants */,
 			);
 			path = Cuisiner;
 			sourceTree = "<group>";
@@ -377,7 +380,7 @@
 				3D5C32BA27F44A890048CAC0 /* AuthManager.swift */,
 				3D8F960227EC99A0004DE7A2 /* FirebaseService.swift */,
 				3D41D35027FC83780030763C /* StorageService.swift */,
-				3D70381F281991C2002A554E /* Database.swift */,
+				3D70381F281991C2002A554E /* Database+Constants.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -507,6 +510,14 @@
 				3D4AA44D286AF530008FA49D /* Firebase */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		3D9409CE28AD8AA8004BB6C1 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				3D9409CC28AD88E0004BB6C1 /* Constants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		3D9F42272832FCAD003FA3E0 /* InstructionsCollectionCell */ = {
@@ -780,13 +791,14 @@
 				3D174E8E27D8064600D5DCB3 /* DiscoverVC.swift in Sources */,
 				3D6CDC9E289E718F00EFC01C /* AccountDeleteVC.swift in Sources */,
 				3D1B305828927E1900166FC9 /* ProfileEditVCBuilder.swift in Sources */,
-				3D703820281991C2002A554E /* Database.swift in Sources */,
+				3D703820281991C2002A554E /* Database+Constants.swift in Sources */,
 				3D68C5A728A51F980052AB6D /* CustomAlertVC.swift in Sources */,
 				3D0A729827D6A8C100F26608 /* Cuisiner.xcdatamodeld in Sources */,
 				3D582E8427DFF110007ED621 /* PrepareVC.swift in Sources */,
 				3D3D46312816BC4F007D2D5A /* CategoryCell.swift in Sources */,
 				3D4AA450286AFB1E008FA49D /* CoreDataManager.swift in Sources */,
 				3D397A3C28A6724400DF4863 /* UserTableCell.swift in Sources */,
+				3D9409CD28AD88E0004BB6C1 /* Constants.swift in Sources */,
 				3D3D46372816BCB6007D2D5A /* RecipeCell.swift in Sources */,
 				3D8E242A28A66F6500D3B447 /* BlockedUsersVC.swift in Sources */,
 			);

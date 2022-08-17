@@ -38,6 +38,7 @@ class SignInVC: UIViewController {
             authManager.signIn { [weak self] success in
                 if (success) {
                     self?.delegate?.didUserSignIn()
+                    self?.rememberMe()
                 } else {
                     if let errorMessage = self?.authManager.errorMessage {
                         self?.presentAlert(title: "Error", message: errorMessage, completion: nil)
@@ -60,19 +61,19 @@ class SignInVC: UIViewController {
         }
     }
     
-    @IBAction func switchTapped(_ sender: Any) {
+    func configureUI() {
+        if defaults.isRemember {
+            rememberMeSwitch.isOn = true
+            emailText.text = defaults.email
+        }
+    }
+    
+    func rememberMe() {
         if rememberMeSwitch.isOn {
             defaults.setData(isRemember: true,
                              email: emailText.text!)
         } else {
             defaults.removeUserLoginData()
-        }
-    }
-    
-    func configureUI() {
-        if defaults.isRemember {
-            rememberMeSwitch.isOn = true
-            emailText.text = defaults.username
         }
     }
 }

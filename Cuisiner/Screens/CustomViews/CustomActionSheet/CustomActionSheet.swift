@@ -29,7 +29,7 @@ class CustomActionSheet: UIAlertController {
     var reportAction: UIAlertAction {
         let reportAction = UIAlertAction(title: actionType.report.title, style: .default) { [weak self] action in
             guard let index = self?.tag else {return}
-            self?.delegate?.handler(index: index, action: action)
+            self?.delegate?.handler(index: index, action: action)            
         }
         return reportAction
     }

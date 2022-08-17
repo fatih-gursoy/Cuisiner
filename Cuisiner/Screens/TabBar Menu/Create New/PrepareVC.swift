@@ -77,6 +77,7 @@ extension PrepareVC: CustomAlertVCDelegate {
     
     func OkTapped(action: String?) {
         saveRecipe()
+        dismiss(animated: true)
     }
 }
 

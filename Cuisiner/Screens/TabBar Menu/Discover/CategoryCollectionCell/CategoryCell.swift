@@ -11,7 +11,7 @@ class CategoryCell: UICollectionViewCell {
     
     static let identifier = "CategoryCell"
           
-    @IBOutlet weak var backView: CustomView!
+    @IBOutlet private weak var backView: CustomView!
     @IBOutlet private weak var categoryLabel: UILabel!
     
     func configureCell(title: String) {

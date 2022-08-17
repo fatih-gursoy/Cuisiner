@@ -27,7 +27,10 @@ class WelcomeVC: UIViewController {
     }
     
     func toHomeVC() {
-        performSegue(withIdentifier: "toHomeVC", sender: nil)
+        guard let tabBarVC = self.storyboard?.instantiateViewController(withIdentifier: "TabBarVC") as?
+                UITabBarController else { fatalError("Could not instantiate!") }
+        tabBarVC.modalPresentationStyle = .fullScreen
+        present(tabBarVC, animated: true)
     }
     
 }

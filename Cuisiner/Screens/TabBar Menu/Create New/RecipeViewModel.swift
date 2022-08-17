@@ -137,6 +137,7 @@ class RecipeViewModel {
         if !reporterList.contains(currentUserId) {
             recipe.reporterList?.append(currentUserId)
         }
+        self.addtoBlackList()
     }
 
 // MARK: -CoreData Functions

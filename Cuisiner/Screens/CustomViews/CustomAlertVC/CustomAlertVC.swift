@@ -19,6 +19,7 @@ class CustomAlertVC: UIViewController {
     private var action: String?
     private var message: String
     private var image: UIImage?
+    var doneCompletion: (() -> Void)?
     
     weak var delegate: CustomAlertVCDelegate?
     
@@ -27,7 +28,7 @@ class CustomAlertVC: UIViewController {
         configureUI()
     }
         
-    init(action: String?, message: String, image: UIImage?) {
+    init(action: String? = nil, message: String, image: UIImage?) {
         self.action = action
         self.message = message
         self.image = image
@@ -46,7 +47,7 @@ class CustomAlertVC: UIViewController {
     }
     
     @IBAction func OkTapped(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: doneCompletion)
         delegate?.OkTapped(action: self.action)
     }
     

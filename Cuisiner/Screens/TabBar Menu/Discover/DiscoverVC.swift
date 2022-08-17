@@ -82,6 +82,7 @@ extension DiscoverVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
             cell.configure(viewModel: recipesViewModel.recipeAtIndex(indexPath.row))
             cell.delegate = self
             cell.tag = indexPath.row
+            
             return cell
             
         default:
@@ -199,8 +200,13 @@ extension DiscoverVC: ActionSheetDelegate {
         switch action.title {
         
         case actionType.report.title:
-            recipeViewModel.addtoReportedRecipes(currentUserId: currentUser.userId!)
-        
+            let alertVC = CustomAlertVC(message: AlertMessages.report,
+                                        image: UIImage(systemName: "hand.thumbsdown.fill"))
+            present(alertVC, animated: true)
+            
+            alertVC.doneCompletion = {
+                recipeViewModel.addtoReportedRecipes(currentUserId: currentUser.userId!)
+            }
         case actionType.hide.title:
             recipeViewModel.addtoBlackList()
             
@@ -213,3 +219,4 @@ extension DiscoverVC: ActionSheetDelegate {
         }
     }
 }
+
