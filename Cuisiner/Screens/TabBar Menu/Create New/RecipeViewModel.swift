@@ -16,12 +16,7 @@ class RecipeViewModel {
     private var service: FirebaseServiceProtocol {return FirebaseService.shared}
     private var coredataManager = CoreDataManager()
     
-    var recipe: Recipe {
-        didSet {
-            updateRecipe()
-        }
-    }
-    
+    var recipe: Recipe
     var user: User?
     weak var delegate: RecipeViewModelDelegate? 
     
@@ -103,10 +98,7 @@ class RecipeViewModel {
             
             guard let user = users.first else {return}
             self?.user = user
-            
-            DispatchQueue.main.async {
-                self?.delegate?.updateView()
-            }
+            self?.delegate?.updateView()
         }
     }
     
@@ -124,12 +116,14 @@ class RecipeViewModel {
             guard let index = self.ratingIndex else { return }
             self.recipe.ratingList?.remove(at: index)
         }
+        updateRecipe()
     }
     
     func addtoBlackList() {
         guard let currentUser = AuthManager.shared.user else { return }
         let userViewModel = UserViewModel(user: currentUser)
         userViewModel.addToRecipeBlackList(recipeId: self.recipeID)
+        updateRecipe()
     }
     
     func addtoReportedRecipes(currentUserId: String) {

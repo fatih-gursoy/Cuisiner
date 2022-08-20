@@ -15,7 +15,7 @@ protocol ActionSheetDelegate: AnyObject {
 class CustomActionSheet: UIAlertController {
     
     weak var delegate: ActionSheetDelegate?
-    var tag: Int?
+    var actionIndex: Int?
     
     override func viewDidLoad() {
         self.title = nil
@@ -28,7 +28,7 @@ class CustomActionSheet: UIAlertController {
     
     var reportAction: UIAlertAction {
         let reportAction = UIAlertAction(title: actionType.report.title, style: .default) { [weak self] action in
-            guard let index = self?.tag else {return}
+            guard let index = self?.actionIndex else {return}
             self?.delegate?.handler(index: index, action: action)            
         }
         return reportAction
@@ -36,7 +36,7 @@ class CustomActionSheet: UIAlertController {
     
     var hideAction: UIAlertAction {
         let hideAction = UIAlertAction(title: actionType.hide.title, style: .default) { [weak self] action in
-            guard let index = self?.tag else {return}
+            guard let index = self?.actionIndex else {return}
             self?.delegate?.handler(index: index, action: action)
         }
         return hideAction
@@ -44,7 +44,7 @@ class CustomActionSheet: UIAlertController {
     
     var blockAction: UIAlertAction {
         let blockAction = UIAlertAction(title: actionType.block.title, style: .default) { [weak self] action in
-            guard let index = self?.tag else {return}
+            guard let index = self?.actionIndex else {return}
             self?.delegate?.handler(index: index, action: action)
         }
         return blockAction

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class MyRecipesVC: UIViewController {
     
@@ -132,19 +133,20 @@ extension MyRecipesVC {
     
     func configureNavBar() {
                        
-        let myProfile = UIAction(title: "Profile Settings", image: UIImage(systemName: "person.circle.fill")) { _ in
-            self.routeToProfileVC()
+        let myProfile = UIAction(title: "Profile Settings", image: UIImage(systemName: "person.circle.fill")) { [weak self] _ in
+            self?.routeToProfileVC()
         }
 
-        let help = UIAction(title: "Help", image: UIImage(systemName: "info.circle.fill")) { _ in
-            //
+        let contact = UIAction(title: "Contact Us", image: UIImage(systemName: "info.circle.fill")) { [weak self] _ in
+            self?.contactUs()
         }
         
-        let logoutUser = UIAction(title: "Log out", image: UIImage(systemName: "power.circle.fill")) { _ in
-            self.signOut()
+        let logoutUser = UIAction(title: "Log out", image: UIImage(systemName: "power.circle.fill")) { [weak self] _ in
+            self?.dismiss(animated: true)
+            self?.signOut()
         }
         
-        let menu = UIMenu(options: .displayInline, children: [myProfile, help, logoutUser])
+        let menu = UIMenu(options: .displayInline, children: [myProfile, contact, logoutUser])
         let menuButton = UIBarButtonItem(image: UIImage(systemName: "gearshape.fill"), menu: menu)
         self.navigationItem.rightBarButtonItem = menuButton
     }
@@ -161,15 +163,32 @@ extension MyRecipesVC {
         self.present(navController, animated: true)
     }
     
+    func contactUs() {
+        
+        if MFMailComposeViewController.canSendMail() {
+            let mailVC = MFMailComposeViewController()
+            mailVC.mailComposeDelegate = self
+            mailVC.setToRecipients(["fatihgursoy85@gmail.com"])
+            present(mailVC, animated: true)
+        } else {
+            presentAlert(title: "Mail Error!", message: "Please set your email account in your phone", completion: nil)
+        }
+    }
+    
     func signOut() {
-        
         AuthManager.shared.signOut()
-        self.dismiss(animated: true)
-        self.tabBarController?.hidesBottomBarWhenPushed = true
-        
+            
         guard let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC") as? WelcomeVC else { fatalError("Could't load") }
         
-        welcomeVC.modalPresentationStyle = .fullScreen
-        self.present(welcomeVC, animated: true)
+        guard let scene = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return}
+        scene.window?.rootViewController = welcomeVC
+
+    }
+}
+
+extension MyRecipesVC: MFMailComposeViewControllerDelegate {
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
     }
 }

@@ -110,10 +110,10 @@ class RecipeDetailVC: UIViewController {
         switch recipeViewModel.isSaved {
         case true:
             recipeViewModel.deleteFromSaveList()
-            presentQuickAlert(title: "❎", message: "Removed from Saved Recipes")
+            presentQuickAlert(title: "❎", message: "Removed from Favorites")
         case false:
             recipeViewModel.addToSaveList()
-            presentQuickAlert(title: "✅", message: "Added to Saved Recipes")
+            presentQuickAlert(title: "✅", message: "Added to Favorites")
         }
         notificationPost()
     }
@@ -198,11 +198,13 @@ extension RecipeDetailVC: UITableViewDelegate, UITableViewDataSource {
 
 extension RecipeDetailVC: RecipeViewModelDelegate {
     func updateView() {
-        userName.text = recipeViewModel.user?.userName
-        userImage.setImage(url: recipeViewModel.user?.userImageUrl)
-        starButton.setTitle(recipeViewModel.averageScore, for: .normal)
-        guard let reviewCount = recipeViewModel.reviewCount else { return }
-        reviewCountLabel.text = "(\(reviewCount) Reviews)"
+        DispatchQueue.main.async { [weak self] in
+            self?.userName.text = self?.recipeViewModel.user?.userName
+            self?.userImage.setImage(url: self?.recipeViewModel.user?.userImageUrl)
+            self?.starButton.setTitle(self?.recipeViewModel.averageScore, for: .normal)
+            guard let reviewCount = self?.recipeViewModel.reviewCount else { return }
+            self?.reviewCountLabel.text = "(\(reviewCount) Reviews)"
+        }
     }
 }
 

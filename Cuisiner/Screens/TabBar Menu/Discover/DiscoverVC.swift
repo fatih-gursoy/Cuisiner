@@ -185,7 +185,7 @@ extension DiscoverVC: CellActionButtonDelegate {
     func actionButtonTapped(cell: UICollectionViewCell) {
         let actionSheet = CustomActionSheet()
         actionSheet.delegate = self
-        actionSheet.tag = cell.tag
+        actionSheet.actionIndex = cell.tag
         present(actionSheet, animated: true)
     }
 }

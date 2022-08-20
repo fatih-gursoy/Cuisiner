@@ -101,7 +101,7 @@ class CustomImageView: UIImageView {
     func makeCircular() {
         
         if(isCircular) {
-            self.layer.cornerRadius = self.frame.size.width / 2
+            self.layer.cornerRadius = self.frame.height / 2
             self.layer.masksToBounds = true
         } else {
             self.layer.cornerRadius = cornerRadius

@@ -94,7 +94,6 @@
 		3D0A729727D6A8C100F26608 /* Cuisiner.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cuisiner.xcdatamodel; sourceTree = "<group>"; };
 		3D0A729927D6A8C400F26608 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3D0A729C27D6A8C400F26608 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		3D0A729E27D6A8C400F26608 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D0A72C027D6AC2700F26608 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3D0A72CA27D79F6600F26608 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		3D0A72CB27D79F6600F26608 /* SignInVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInVC.xib; sourceTree = "<group>"; };
@@ -111,6 +110,7 @@
 		3D1B30532891DDDF00166FC9 /* ProfileVCBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVCBuilder.swift; sourceTree = "<group>"; };
 		3D1B305728927E1900166FC9 /* ProfileEditVCBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditVCBuilder.swift; sourceTree = "<group>"; };
 		3D20E267283F5D06003DD793 /* done.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = done.json; sourceTree = "<group>"; };
+		3D337FB828AFBBAB004077AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D397A3A28A6724400DF4863 /* UserTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableCell.swift; sourceTree = "<group>"; };
 		3D397A3B28A6724400DF4863 /* UserTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableCell.xib; sourceTree = "<group>"; };
 		3D397A3F28A67AD000DF4863 /* BlockedUsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedUsersViewModel.swift; sourceTree = "<group>"; };
@@ -214,11 +214,11 @@
 		3D0A72C427D79E2100F26608 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3D337FB828AFBBAB004077AE /* Info.plist */,
+				3D0A72C027D6AC2700F26608 /* GoogleService-Info.plist */,
 				3D0A729927D6A8C400F26608 /* Assets.xcassets */,
 				3D83FA66289A72B6003FAB3E /* Color.xcassets */,
 				3DDC76C02833050200DBCBB7 /* Lottie */,
-				3D0A729E27D6A8C400F26608 /* Info.plist */,
-				3D0A72C027D6AC2700F26608 /* GoogleService-Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -956,8 +956,10 @@
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = AWRMXDZRF7;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Cuisiner/Resources/Info.plist;
+				INFOPLIST_FILE = /Users/fatih/Desktop/XCode/Cuisiner/Cuisiner/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Cuisiner;
+				INFOPLIST_KEY_LSApplicationCategoryType = "Used to select photo";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Used to select photo";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -992,8 +994,10 @@
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = AWRMXDZRF7;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Cuisiner/Resources/Info.plist;
+				INFOPLIST_FILE = /Users/fatih/Desktop/XCode/Cuisiner/Cuisiner/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Cuisiner;
+				INFOPLIST_KEY_LSApplicationCategoryType = "Used to select photo";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Used to select photo";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

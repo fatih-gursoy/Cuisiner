@@ -27,10 +27,15 @@ class WelcomeVC: UIViewController {
     }
     
     func toHomeVC() {
+
         guard let tabBarVC = self.storyboard?.instantiateViewController(withIdentifier: "TabBarVC") as?
-                UITabBarController else { fatalError("Could not instantiate!") }
-        tabBarVC.modalPresentationStyle = .fullScreen
-        present(tabBarVC, animated: true)
+                UITabBarController,
+              let scene = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+        
+        else { fatalError("Could not instantiate!") }
+        
+        scene.window?.rootViewController = tabBarVC
+        UIView.transition(with: scene.window!, duration: 1.0, options: .transitionCurlUp, animations: nil)
     }
     
 }
@@ -38,13 +43,15 @@ class WelcomeVC: UIViewController {
 extension WelcomeVC: SignInDelegate, SignUpDelegate {
 
     func didUserSignIn() {
-        dismiss(animated: true)
-        toHomeVC()
+        dismiss(animated: true) { [weak self] in
+            self?.toHomeVC()
+        }
     }
     
     func didUserSignUp() {
-        dismiss(animated: true)
-        toHomeVC()
+        dismiss(animated: true) { [weak self] in
+            self?.toHomeVC()
+        }
     }
 }
 
