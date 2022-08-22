@@ -107,7 +107,7 @@ extension DiscoverVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         case recipeCollectionView:
             
             let itemWidth = collectionView.bounds.width
-            let itemHeight = collectionView.bounds.height * 0.60
+            let itemHeight = collectionView.bounds.height * 0.50
             return CGSize(width: itemWidth, height: itemHeight)
 
         default:

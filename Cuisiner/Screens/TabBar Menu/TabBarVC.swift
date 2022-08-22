@@ -27,7 +27,6 @@ class TabBarVC: UITabBarController, Storyboardable {
         myRecipesVC.tabBarItem = UITabBarItem(title: "My Recipes",
                                               image: UIImage(named: "saved"), selectedImage: nil)
         
-        
         let viewControllers = [discoverVC, UIViewController(), myRecipesVC]
         self.setViewControllers(viewControllers, animated: false)
         guard let tabBar = self.tabBar as? CustomTabBar else { return }

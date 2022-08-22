@@ -54,13 +54,13 @@ class InstructionCollectionCell: UICollectionViewCell {
     }
     
     func runTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self,
+                                     selector: #selector(updateTime), userInfo: nil, repeats: true)
         
         isTimerRunning = true
     }
     
     @objc func updateTime() {
-                
         if runTime > 0 {
             runTime -= 1
             configureTimer(totalSec: runTime)
@@ -70,7 +70,6 @@ class InstructionCollectionCell: UICollectionViewCell {
     }
     
     @IBAction func startClicked(_ sender: Any) {
-                
         if isTimerRunning == false {
             self.runTimer()
             startButton.setTitle("Pause", for: .normal)
@@ -88,7 +87,6 @@ class InstructionCollectionCell: UICollectionViewCell {
     }
     
     func timerReset() {
-        
         timer.invalidate()
         isTimerRunning = false
         startButton.setTitle("Start", for: .normal)
@@ -97,3 +95,4 @@ class InstructionCollectionCell: UICollectionViewCell {
         configureTimer(totalSec: runTime)
     }
 }
+

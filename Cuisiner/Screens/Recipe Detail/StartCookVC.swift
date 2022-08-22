@@ -9,9 +9,9 @@ import UIKit
 
 class StartCookVC: UIViewController, Storyboardable {
 
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var pageControl: UIPageControl!
-    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var pageControl: UIPageControl!
+    @IBOutlet private weak var nextButton: UIButton!
     
     var recipeViewModel: RecipeViewModel?
     weak var coordinator: RecipeDetailCoordinator?
@@ -27,6 +27,8 @@ class StartCookVC: UIViewController, Storyboardable {
         configureUI()
     }
     
+//MARK: - Functions
+
     func configureUI() {
         
         guard let instructions = recipeViewModel?.instructions else { return }
@@ -49,7 +51,7 @@ class StartCookVC: UIViewController, Storyboardable {
             currentPage += 1
             let indexPath = IndexPath(item: currentPage, section: 0)
             collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-
+            
         } else if currentPage == instructions.count - 1 {
             doneAlert()
         }
@@ -64,6 +66,7 @@ class StartCookVC: UIViewController, Storyboardable {
     }
     
 }
+//MARK: - CollectionView Delegates
 
 extension StartCookVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -86,10 +89,18 @@ extension StartCookVC: UICollectionViewDelegate, UICollectionViewDataSource, UIC
         let itemHeight = collectionView.frame.height
         return CGSize(width: itemWidth, height: itemHeight)
     }
-
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let width = scrollView.frame.width
         currentPage = Int(scrollView.contentOffset.x / width)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        for index in 0..<collectionView.numberOfItems(inSection: 0) {
+            let indexPath = IndexPath(item: index, section: 0)
+            guard let cell = collectionView.cellForItem(at: indexPath) as? InstructionCollectionCell else {return}
+            cell.timerReset()
+        }
     }
     
 }
