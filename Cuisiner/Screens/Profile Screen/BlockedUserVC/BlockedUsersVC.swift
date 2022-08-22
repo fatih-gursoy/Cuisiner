@@ -7,10 +7,11 @@
 
 import UIKit
 
-class BlockedUsersVC: UIViewController {
+class BlockedUsersVC: UIViewController, Storyboardable {
 
     @IBOutlet private weak var tableView: UITableView!
     var viewModel = BlockedUsersViewModel()
+    weak var coordinator: ProfileCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,8 +56,10 @@ extension BlockedUsersVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             
         guard let users = viewModel.users else { return }
-        let userVM = UserViewModel(user: users[indexPath.row])
-        let vc = ProfileVCBuilder.build(viewModel: userVM)
+        let userViewModel = UserViewModel(user: users[indexPath.row])
+        let vc = ProfileVC.instantiateFromStoryboard()
+        vc.viewModel = userViewModel
+        
         guard let presentationController = vc.presentationController as?
                 UISheetPresentationController else {return}
         presentationController.detents = [.medium()]

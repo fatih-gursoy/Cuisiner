@@ -53,7 +53,7 @@ class AccountDeleteVC: UIViewController {
     
     func routeToWelcomeVC() {
         self.dismiss(animated: true) {
-            self.delegate?.routeToWelcome()
+            self.delegate?.gotoWelcome()
         }
     }
 }

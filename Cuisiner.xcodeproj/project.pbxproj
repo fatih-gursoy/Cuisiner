@@ -27,8 +27,6 @@
 		3D174E9827DE19C800D5DCB3 /* IngredientTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D174E9627DE19C700D5DCB3 /* IngredientTableCell.swift */; };
 		3D174E9927DE19C800D5DCB3 /* IngredientTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D174E9727DE19C700D5DCB3 /* IngredientTableCell.xib */; };
 		3D19A0E4285328DC00B570A2 /* CustomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D19A0E3285328DC00B570A2 /* CustomTableView.swift */; };
-		3D1B30542891DDDF00166FC9 /* ProfileVCBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1B30532891DDDF00166FC9 /* ProfileVCBuilder.swift */; };
-		3D1B305828927E1900166FC9 /* ProfileEditVCBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1B305728927E1900166FC9 /* ProfileEditVCBuilder.swift */; };
 		3D20E268283F5D06003DD793 /* done.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D20E267283F5D06003DD793 /* done.json */; };
 		3D397A3C28A6724400DF4863 /* UserTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D397A3A28A6724400DF4863 /* UserTableCell.swift */; };
 		3D397A3D28A6724400DF4863 /* UserTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D397A3B28A6724400DF4863 /* UserTableCell.xib */; };
@@ -66,6 +64,7 @@
 		3D6CDC9E289E718F00EFC01C /* AccountDeleteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6CDC9C289E718F00EFC01C /* AccountDeleteVC.swift */; };
 		3D6CDC9F289E718F00EFC01C /* AccountDeleteVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D6CDC9D289E718F00EFC01C /* AccountDeleteVC.xib */; };
 		3D703820281991C2002A554E /* Database+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70381F281991C2002A554E /* Database+Constants.swift */; };
+		3D7FAB2D28B3907E00F42EB8 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7FAB2C28B3907E00F42EB8 /* ProfileCoordinator.swift */; };
 		3D82E2CA283B9C900013032D /* CustomPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82E2C8283B9C900013032D /* CustomPopupVC.swift */; };
 		3D82E2CB283B9C910013032D /* CustomPopupVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D82E2C9283B9C900013032D /* CustomPopupVC.xib */; };
 		3D83FA67289A72B6003FAB3E /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D83FA66289A72B6003FAB3E /* Color.xcassets */; };
@@ -84,6 +83,7 @@
 		3DDB42EC28B2E261000A7311 /* DiscoverCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB42EB28B2E261000A7311 /* DiscoverCoordinator.swift */; };
 		3DDB42EE28B2E797000A7311 /* MyRecipesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB42ED28B2E797000A7311 /* MyRecipesCoordinator.swift */; };
 		3DDB42F028B2EB27000A7311 /* RecipeDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB42EF28B2EB27000A7311 /* RecipeDetailCoordinator.swift */; };
+		3DDB42F228B37FAF000A7311 /* SignInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB42F128B37FAF000A7311 /* SignInCoordinator.swift */; };
 		3DDC76C2283305B400DBCBB7 /* cooking.json in Resources */ = {isa = PBXBuildFile; fileRef = 3DDC76C1283305B400DBCBB7 /* cooking.json */; };
 		3DE094052896ADE900003925 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE094042896ADE900003925 /* UserDefaults+Extension.swift */; };
 		3DE452B32815FA30003F9AC6 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE452B22815FA30003F9AC6 /* CustomImageView.swift */; };
@@ -116,8 +116,6 @@
 		3D174E9627DE19C700D5DCB3 /* IngredientTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableCell.swift; sourceTree = "<group>"; };
 		3D174E9727DE19C700D5DCB3 /* IngredientTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IngredientTableCell.xib; sourceTree = "<group>"; };
 		3D19A0E3285328DC00B570A2 /* CustomTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableView.swift; sourceTree = "<group>"; };
-		3D1B30532891DDDF00166FC9 /* ProfileVCBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVCBuilder.swift; sourceTree = "<group>"; };
-		3D1B305728927E1900166FC9 /* ProfileEditVCBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditVCBuilder.swift; sourceTree = "<group>"; };
 		3D20E267283F5D06003DD793 /* done.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = done.json; sourceTree = "<group>"; };
 		3D337FB828AFBBAB004077AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D397A3A28A6724400DF4863 /* UserTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableCell.swift; sourceTree = "<group>"; };
@@ -156,6 +154,7 @@
 		3D6CDC9C289E718F00EFC01C /* AccountDeleteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDeleteVC.swift; sourceTree = "<group>"; };
 		3D6CDC9D289E718F00EFC01C /* AccountDeleteVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountDeleteVC.xib; sourceTree = "<group>"; };
 		3D70381F281991C2002A554E /* Database+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Database+Constants.swift"; sourceTree = "<group>"; };
+		3D7FAB2C28B3907E00F42EB8 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		3D82E2C8283B9C900013032D /* CustomPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopupVC.swift; sourceTree = "<group>"; };
 		3D82E2C9283B9C900013032D /* CustomPopupVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomPopupVC.xib; sourceTree = "<group>"; };
 		3D83FA66289A72B6003FAB3E /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
@@ -174,6 +173,7 @@
 		3DDB42EB28B2E261000A7311 /* DiscoverCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCoordinator.swift; sourceTree = "<group>"; };
 		3DDB42ED28B2E797000A7311 /* MyRecipesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRecipesCoordinator.swift; sourceTree = "<group>"; };
 		3DDB42EF28B2EB27000A7311 /* RecipeDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailCoordinator.swift; sourceTree = "<group>"; };
+		3DDB42F128B37FAF000A7311 /* SignInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInCoordinator.swift; sourceTree = "<group>"; };
 		3DDC76C1283305B400DBCBB7 /* cooking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cooking.json; sourceTree = "<group>"; };
 		3DE094042896ADE900003925 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		3DE452B22815FA30003F9AC6 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
@@ -284,6 +284,7 @@
 		3D174E8727D7FF2D00D5DCB3 /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
+				3DDB42F128B37FAF000A7311 /* SignInCoordinator.swift */,
 				3D0A72CA27D79F6600F26608 /* SignInVC.swift */,
 				3D0A72CB27D79F6600F26608 /* SignInVC.xib */,
 				3D68C5A328A2ADA80052AB6D /* ResetPasswordVC */,
@@ -344,7 +345,6 @@
 			isa = PBXGroup;
 			children = (
 				3D597884285B649800CD3A7C /* ProfileVC.swift */,
-				3D1B30532891DDDF00166FC9 /* ProfileVCBuilder.swift */,
 			);
 			path = ProfileVC;
 			sourceTree = "<group>";
@@ -353,7 +353,6 @@
 			isa = PBXGroup;
 			children = (
 				3D920C2E285D34C000A8272D /* ProfileEditVC.swift */,
-				3D1B305728927E1900166FC9 /* ProfileEditVCBuilder.swift */,
 			);
 			path = ProfileEditVC;
 			sourceTree = "<group>";
@@ -418,6 +417,7 @@
 		3D4E1F70285B63B700941045 /* Profile Screen */ = {
 			isa = PBXGroup;
 			children = (
+				3D7FAB2C28B3907E00F42EB8 /* ProfileCoordinator.swift */,
 				3D5C32B827F449570048CAC0 /* UserViewModel.swift */,
 				3D1B305528927DDB00166FC9 /* ProfileVC */,
 				3D1B305628927DEE00166FC9 /* ProfileEditVC */,
@@ -787,14 +787,15 @@
 				3DDB42EE28B2E797000A7311 /* MyRecipesCoordinator.swift in Sources */,
 				3D5C32BB27F44A890048CAC0 /* AuthManager.swift in Sources */,
 				3D174E9427DB730500D5DCB3 /* TabBarVC.swift in Sources */,
+				3DDB42F228B37FAF000A7311 /* SignInCoordinator.swift in Sources */,
 				3D9F422228328055003FA3E0 /* StartCookVC.swift in Sources */,
 				3D513E8A27E0DB7B00B17CB6 /* PrepareTableCell.swift in Sources */,
 				3D8F960027EC7F6C004DE7A2 /* RecipeViewModel.swift in Sources */,
+				3D7FAB2D28B3907E00F42EB8 /* ProfileCoordinator.swift in Sources */,
 				3D8F960327EC99A0004DE7A2 /* FirebaseService.swift in Sources */,
 				3D41D35127FC83780030763C /* StorageService.swift in Sources */,
 				3D82E2CA283B9C900013032D /* CustomPopupVC.swift in Sources */,
 				3D9F42252832FCA7003FA3E0 /* InstructionCollectionCell.swift in Sources */,
-				3D1B30542891DDDF00166FC9 /* ProfileVCBuilder.swift in Sources */,
 				3D174E9027DA451B00D5DCB3 /* CreateNewVC.swift in Sources */,
 				3DA92E612816066500DE0065 /* RecipeDetailVC.swift in Sources */,
 				3D609A8928B279B200AB2585 /* AuthCoordinator.swift in Sources */,
@@ -833,7 +834,6 @@
 				3DB1551628AB73E70072825B /* CustomActionSheet.swift in Sources */,
 				3D174E8E27D8064600D5DCB3 /* DiscoverVC.swift in Sources */,
 				3D6CDC9E289E718F00EFC01C /* AccountDeleteVC.swift in Sources */,
-				3D1B305828927E1900166FC9 /* ProfileEditVCBuilder.swift in Sources */,
 				3D703820281991C2002A554E /* Database+Constants.swift in Sources */,
 				3D609A8D28B2D87800AB2585 /* CreateNewCoordinator.swift in Sources */,
 				3D68C5A728A51F980052AB6D /* CustomAlertVC.swift in Sources */,

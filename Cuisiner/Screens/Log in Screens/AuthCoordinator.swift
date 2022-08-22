@@ -21,8 +21,14 @@ class AuthCoordinator: Coordinator {
     
     func start() {
         let welcomeVC = WelcomeVC.instantiateFromStoryboard()
-        navigationController.pushViewController(welcomeVC, animated: false)
+        navigationController.setViewControllers([welcomeVC], animated: true)
         welcomeVC.coordinator = self
+    }
+    
+    func childDidFinish(_ child: Coordinator) {
+        for (index, coordinator) in childCoordinators.enumerated() {
+            if coordinator === child { childCoordinators.remove(at: index) }
+        }
     }
     
     func gotoTabbar() {
@@ -31,9 +37,12 @@ class AuthCoordinator: Coordinator {
     }
     
     func gotoSignIn(delegate: SignInDelegate) {
-        let signInVC = SignInVC()
-        signInVC.delegate = delegate
-        navigationController.present(signInVC, animated: true)
+        let signInNavigation = UINavigationController()
+        let signInCoordinator = SignInCoordinator(navigationController: signInNavigation)
+        signInCoordinator.parentCoordinator = self
+        childCoordinators.append(signInCoordinator)
+        signInCoordinator.start(delegate: delegate)
+        navigationController.present(signInNavigation, animated: true)
     }
     
     func gotoSignUp(delegate: SignUpDelegate) {
@@ -41,6 +50,5 @@ class AuthCoordinator: Coordinator {
         signUpVC.delegate = delegate
         navigationController.present(signUpVC, animated: true)
     }
-    
     
 }

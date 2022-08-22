@@ -20,7 +20,7 @@ class TabBarCoordinator: Coordinator {
     func start() {
         let tabBarVC = TabBarVC.instantiateFromStoryboard()
         tabBarVC.coordinator = self
-        navigationController.pushViewController(tabBarVC, animated: true)
+        navigationController.setViewControllers([tabBarVC], animated: true)
         navigationController.setNavigationBarHidden(true, animated: true)
     }
     

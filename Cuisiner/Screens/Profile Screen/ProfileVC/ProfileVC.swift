@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileVC: UIViewController {
+class ProfileVC: UIViewController, Storyboardable {
     
     @IBOutlet private weak var userImage: CustomImageView!
     @IBOutlet private weak var usernameLabel: UILabel!
@@ -15,27 +15,17 @@ class ProfileVC: UIViewController {
     @IBOutlet private weak var averageRatingLabel: UILabel!
     @IBOutlet private weak var bioField: UITextView!
     
-    private var viewModel: UserViewModel
-    
-//MARK: - Custom init
-    
-    init?(coder: NSCoder, viewModel: UserViewModel) {
-        self.viewModel = viewModel
-        super.init(coder: coder)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    var viewModel: UserViewModel!
+    weak var coordinator: ProfileCoordinator?
 
-//MARK: - Functions
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
         configureNavBar()
         updateUI()
     }
+    
+//MARK: - Functions
     
     func updateUI() {
         viewModel.delegate = self
@@ -46,20 +36,19 @@ class ProfileVC: UIViewController {
         
         let editButton = UIBarButtonItem(image: #imageLiteral(resourceName: "editProfile"), style: .plain, target: self,
                                          action: #selector(editButtonTapped))
-        
+
         let closeButton = UIBarButtonItem(image: #imageLiteral(resourceName: "xmark"), style: .plain, target: self,
                                           action: #selector(closeTapped))
-        
-        self.navigationItem.rightBarButtonItems = [closeButton, editButton]
 
+        self.navigationItem.rightBarButtonItems = [closeButton, editButton]
     }
-    
+
     @objc func closeTapped() {
-        self.dismiss(animated: true, completion: nil)
+        coordinator?.didFinished()
     }
-    
+
     @objc func editButtonTapped() {
-        self.navigationController?.pushViewController(ProfileEditVCBuilder.build(viewModel: self.viewModel), animated: true)
+        coordinator?.gotoProfileEdit(viewModel: self.viewModel)
     }
 }
 

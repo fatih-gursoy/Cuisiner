@@ -17,15 +17,20 @@ class SignInVC: UIViewController {
     @IBOutlet private weak var passwordText: UITextField!
     @IBOutlet private weak var rememberMeSwitch: UISwitch!
     
-    private var defaults = UserDefaults.standard
-    weak var delegate: SignInDelegate?
-    
     private var authManager = AuthManager.shared
+    private var defaults = UserDefaults.standard
+    
+    weak var coordinator: SignInCoordinator?
+    weak var delegate: SignInDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         hideKeyboard()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        coordinator?.didFinish()
     }
     
     @IBAction func signInClicked(_ sender: Any) {
@@ -53,9 +58,7 @@ class SignInVC: UIViewController {
     @IBAction func forgotPasswordTapped(_ sender: Any) {
         
         if let email = emailText.text, email != "" {
-            let alertVC = ResetPasswordVC(message: "Email will be sent to \(email) \n \n Are you sure?")
-            alertVC.delegate = self
-            self.navigationController?.pushViewController(alertVC, animated: true)
+            coordinator?.gotoResetPassword(email: email, delegate: self)
         } else {
             presentAlert(title: "Please enter a valid email", message: "", completion: nil)
         }
@@ -70,8 +73,7 @@ class SignInVC: UIViewController {
     
     func rememberMe() {
         if rememberMeSwitch.isOn {
-            defaults.setData(isRemember: true,
-                             email: emailText.text!)
+            defaults.setData(isRemember: true, email: emailText.text!)
         } else {
             defaults.removeUserLoginData()
         }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileEditVC: UIViewController {
+class ProfileEditVC: UIViewController, Storyboardable {
 
     @IBOutlet private weak var profileImage: CustomImageView!
     @IBOutlet private weak var usernameField: UITextField!
@@ -16,33 +16,24 @@ class ProfileEditVC: UIViewController {
     @IBOutlet private weak var scrollView: UIScrollView!
     
     private var storage = StorageService.shared
-    private var viewModel: UserViewModel
     
-//MARK: - Custom init
-    
-    init?(coder: NSCoder, viewModel: UserViewModel) {
-        self.viewModel = viewModel
-        super.init(coder: coder)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    var viewModel: UserViewModel!
+    weak var coordinator: ProfileCoordinator?
     
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
     
-//MARK: - Functions
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureImagePicker()
         configureUI()
-        configureNavBar()
+        configureMenu()
         hideKeyboard()
     }
     
+//MARK: - Functions
+
     func configureUI() {
         self.title = "Edit Profile"
         profileImage.setImage(url: viewModel.userImageUrl)
@@ -99,36 +90,27 @@ class ProfileEditVC: UIViewController {
 }
 
 protocol ProfileEditVCDelegate: AnyObject {
-    func routeToWelcome()
+    func gotoWelcome()
 }
 
 extension ProfileEditVC: ProfileEditVCDelegate {
-    func routeToWelcome() {
-        self.tabBarController?.hidesBottomBarWhenPushed = true
-        guard let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC") as? WelcomeVC else { fatalError("Could't load") }
-
-        welcomeVC.modalPresentationStyle = .fullScreen
-        self.present(welcomeVC, animated: true)
+    
+    func gotoWelcome() {
+        coordinator?.logOut()
     } 
-
 
 //MARK: - NAvbar Configure
 
-    func configureNavBar() {
+    func configureMenu() {
                        
         let blockedUsers = UIAction(title: "Blocked Users",
                                     image: UIImage(systemName: "person.crop.circle.fill.badge.xmark")) { [weak self] _ in
-            self?.routeToBlockedUsersVC()
+            self?.coordinator?.gotoBlockedUsers()
         }
         
         let menu = UIMenu(options: .displayInline, children: [blockedUsers])
         let menuButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), menu: menu)
         self.navigationItem.rightBarButtonItem = menuButton
-    }
-
-    func routeToBlockedUsersVC() {
-        guard let blockedUsersVC = self.storyboard?.instantiateViewController(withIdentifier: "BlockedUsersVC") as? BlockedUsersVC else { fatalError("Error")}
-        self.navigationController?.pushViewController(blockedUsersVC, animated: true)
     }
 }
 

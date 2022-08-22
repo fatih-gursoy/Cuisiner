@@ -16,14 +16,16 @@ class ResetPasswordVC: UIViewController {
     @IBOutlet private weak var messageText: UILabel!
     private var message: String
     weak var delegate: ResetPasswordVCDelegate?
+    weak var coordinator: SignInCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Reset Password"
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.modalPresentationStyle = .overCurrentContext
-        self.modalTransitionStyle = .crossDissolve
         messageText.text = message
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        coordinator?.didFinish()
     }
     
     init(message: String) {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -115,7 +115,7 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="rh6-YA-ujn">
-                                                <rect key="frame" x="0.0" y="-7" width="70" height="80"/>
+                                                <rect key="frame" x="0.0" y="-9.5" width="70" height="80"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="nal-A9-vvO">
                                                     <rect key="frame" x="0.0" y="0.0" width="70" height="80"/>
@@ -1019,7 +1019,6 @@
         <!--Tab BarVC-->
         <scene sceneID="iZd-dN-5y4">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DAS-65-O9g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tabBarController storyboardIdentifier="TabBarVC" automaticallyAdjustsScrollViewInsets="NO" id="0q5-fb-zxi" customClass="TabBarVC" customModule="Cuisiner" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Etq-Pd-eFU" customClass="CustomTabBar" customModule="Cuisiner" customModuleProvider="target">
@@ -1045,6 +1044,7 @@
                         </tabBarAppearance>
                     </tabBar>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DAS-65-O9g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1528" y="394"/>
         </scene>
@@ -1841,7 +1841,6 @@
         <!--My Recipes-->
         <scene sceneID="FQj-kb-0ex">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="33M-dH-nCy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="MyRecipesNav" automaticallyAdjustsScrollViewInsets="NO" id="qnH-iw-D4f" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="My Recipes" image="tabBarItem:P9d-h4-ccW:image" id="P9d-h4-ccW"/>
                     <toolbarItems/>
@@ -1855,13 +1854,13 @@
                         <segue destination="eyO-lI-W1K" kind="relationship" relationship="rootViewController" id="gMx-QN-aUC"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="33M-dH-nCy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2695.6521739130435" y="985.71428571428567"/>
         </scene>
         <!--Discover-->
         <scene sceneID="IQ8-wk-PJi">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nA3-WC-hsd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="DiscoverNav" automaticallyAdjustsScrollViewInsets="NO" id="5tD-PH-5dK" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Discover" image="tabBarItem:KnE-dp-SaI:image" id="KnE-dp-SaI"/>
                     <toolbarItems/>
@@ -1874,6 +1873,7 @@
                         <segue destination="EuQ-Lz-ffe" kind="relationship" relationship="rootViewController" id="RnA-0E-5X1"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nA3-WC-hsd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2695.6521739130435" y="270.53571428571428"/>
         </scene>
@@ -1927,8 +1927,8 @@
         <image name="bookmark.fill" catalog="system" width="112" height="128"/>
         <image name="category" width="50" height="50"/>
         <image name="chef-hat" width="123" height="100"/>
-        <image name="chevron.backward.circle.fill" width="128" height="128"/>
         <image name="chevron.backward.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="chevron.backward.circle.fill" width="128" height="128"/>
         <image name="cook" width="50" height="50"/>
         <image name="edit" width="43" height="43"/>
         <image name="exclamationmark.circle.fill" catalog="system" width="128" height="121"/>

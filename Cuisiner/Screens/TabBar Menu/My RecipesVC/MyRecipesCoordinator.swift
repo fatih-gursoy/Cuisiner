@@ -41,6 +41,15 @@ class MyRecipesCoordinator: Coordinator {
         navigationController.present(recipeDetailNavigation, animated: true)
     }
     
+    func gotoProfile(viewModel: UserViewModel) {
+        let profileNavigation = UINavigationController()
+        let profileCoordinator = ProfileCoordinator(navigationController: profileNavigation)
+        profileCoordinator.parentCoordinator = parentCoordinator
+        parentCoordinator?.childCoordinators.append(profileCoordinator)
+        profileCoordinator.start(viewModel: viewModel)
+        navigationController.present(profileNavigation, animated: true)
+    }
+    
     func logout() {
         parentCoordinator?.childCoordinators.removeAll()
         parentCoordinator?.gotoAuth()

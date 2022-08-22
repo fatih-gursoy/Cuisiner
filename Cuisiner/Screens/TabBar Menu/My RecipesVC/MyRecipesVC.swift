@@ -27,7 +27,7 @@ class MyRecipesVC: UIViewController, Storyboardable {
         super.viewDidLoad()
         myRecipesViewModel.delegate = self
         configureTableView()
-        configureNavBar()
+        configureMenu()
         myRecipesViewModel.load()
         notificationCenter.addObserver(self, selector: #selector(refreshSavedList(_:)), name: NSNotification.Name(rawValue: "RefreshSavedList"), object: nil)
     }
@@ -121,10 +121,10 @@ extension MyRecipesVC: UITableViewDelegate, UITableViewDataSource {
 
 extension MyRecipesVC {
     
-    func configureNavBar() {
+    func configureMenu() {
                        
         let myProfile = UIAction(title: "Profile Settings", image: UIImage(systemName: "person.circle.fill")) { [weak self] _ in
-            self?.routeToProfileVC()
+            self?.gotoProfileVC()
         }
 
         let contact = UIAction(title: "Contact Us", image: UIImage(systemName: "info.circle.fill")) { [weak self] _ in
@@ -141,16 +141,10 @@ extension MyRecipesVC {
         self.navigationItem.rightBarButtonItem = menuButton
     }
     
-    func routeToProfileVC() {
-        
+    func gotoProfileVC() {
         guard let user = myRecipesViewModel.user else {return}
         let userViewModel = UserViewModel(user: user)
-        
-        let navController = UINavigationController(rootViewController: ProfileVCBuilder.build(viewModel: userViewModel))
-        
-        navController.modalPresentationCapturesStatusBarAppearance = true
-        navController.modalPresentationStyle = .fullScreen
-        self.present(navController, animated: true)
+        coordinator?.gotoProfile(viewModel: userViewModel)
     }
     
     func contactUs() {

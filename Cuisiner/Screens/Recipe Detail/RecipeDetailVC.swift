@@ -207,7 +207,8 @@ extension RecipeDetailVC {
     @objc func toProfileVC() {
         guard let user = recipeViewModel.user else {return}
         let userViewModel = UserViewModel(user: user)
-        let vc = ProfileVCBuilder.build(viewModel: userViewModel)
+        let vc = ProfileVC.instantiateFromStoryboard()
+        vc.viewModel = userViewModel
         guard let presentationController = vc.presentationController as? UISheetPresentationController else {return}
         presentationController.detents = [.medium(), .large()]
         present(vc, animated: true)
