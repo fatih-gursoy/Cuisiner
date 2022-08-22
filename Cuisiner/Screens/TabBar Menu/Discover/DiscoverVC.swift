@@ -7,13 +7,14 @@
 
 import UIKit
 
-class DiscoverVC: UIViewController {
+class DiscoverVC: UIViewController, Storyboardable {
 
     @IBOutlet private weak var categoryCollectionView: UICollectionView!
     @IBOutlet private weak var recipeCollectionView: UICollectionView!
     @IBOutlet private weak var searchBar: UISearchBar!
     
     private var recipesViewModel = RecipesViewModel()
+    weak var coordinator: DiscoverCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,7 +127,11 @@ extension DiscoverVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         }
         
         if collectionView == recipeCollectionView {
-            routeToDetailVC(indexPath.row)
+            
+            guard let recipeViewModel = recipesViewModel.recipeAtIndex(indexPath.row) else {return}
+            coordinator?.gotoRecipeDetailVC(viewModel: recipeViewModel)
+
+//            routeToDetailVC(indexPath.row)
         }
     }
     

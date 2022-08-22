@@ -7,13 +7,14 @@
 
 import UIKit
 
-class StartCookVC: UIViewController {
+class StartCookVC: UIViewController, Storyboardable {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var nextButton: UIButton!
     
     var recipeViewModel: RecipeViewModel?
+    weak var coordinator: RecipeDetailCoordinator?
     
     private var currentPage = 0 {
         didSet {

@@ -7,7 +7,9 @@
 
 import UIKit
 
-class TabBarVC: UITabBarController {
+class TabBarVC: UITabBarController, Storyboardable {
+    
+    weak var coordinator: TabBarCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,39 +19,26 @@ class TabBarVC: UITabBarController {
         tabBar.backgroundColor = #colorLiteral(red: 1, green: 0.8846692443, blue: 0.8606837988, alpha: 0.7)
         delegate = self
         
-        let DiscoverVC = self.storyboard?.instantiateViewController(withIdentifier: "DiscoverNav") as! UINavigationController
-        
-        let MyRecipesVC = self.storyboard?.instantiateViewController(withIdentifier: "MyRecipesNav") as! UINavigationController
-        
-        let CreateNewVC = self.storyboard?.instantiateViewController(withIdentifier: "CreateNewNav") as! UINavigationController
-        
+        guard let discoverVC = coordinator?.startDiscoverCoordinator() else { return }
+        guard let myRecipesVC = coordinator?.startMyRecipesCoordinator() else { return }
         
         // Create TabBar items
-        DiscoverVC.tabBarItem = UITabBarItem(title: "Discover", image: UIImage(named: "discover"), selectedImage: nil)
+        discoverVC.tabBarItem = UITabBarItem(title: "Discover",
+                                             image: UIImage(named: "discover"), selectedImage: nil)
         
-        MyRecipesVC.tabBarItem = UITabBarItem(title: "My Recipes", image: UIImage(named: "saved"), selectedImage: nil)
-        
-        CreateNewVC.tabBarItem = UITabBarItem(title: nil, image: nil, selectedImage: nil)
+        myRecipesVC.tabBarItem = UITabBarItem(title: "My Recipes",
+                                              image: UIImage(named: "saved"), selectedImage: nil)
         
         // Assign viewControllers to tabBarController
         
-        let viewControllers = [DiscoverVC, CreateNewVC, MyRecipesVC]
+        let viewControllers = [discoverVC, UIViewController(), myRecipesVC]
         self.setViewControllers(viewControllers, animated: false)
         
         guard let tabBar = self.tabBar as? CustomTabBar else { return }
         
         tabBar.didTapButton = { [unowned self] in
-            self.routeToCreateNew()
+            self.coordinator?.startCreateNewVC()
         }
-    }
-        
-    func routeToCreateNew() {
-        
-        guard let createNewVC = self.storyboard?.instantiateViewController(withIdentifier: "CreateNewNav") else {return}
-                
-        createNewVC.modalPresentationCapturesStatusBarAppearance = true
-        createNewVC.modalPresentationStyle = .fullScreen
-        self.present(createNewVC, animated: true)
     }
 }
 

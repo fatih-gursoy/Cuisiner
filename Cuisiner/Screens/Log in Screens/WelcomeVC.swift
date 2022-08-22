@@ -7,35 +7,24 @@
 
 import UIKit
 
-class WelcomeVC: UIViewController {
+class WelcomeVC: UIViewController, Storyboardable {
+    
+    weak var coordinator: AuthCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     @IBAction func signUpClicked(_ sender: Any) {
-        let signUpView = SignUpVC()
-        signUpView.delegate = self
-        present(signUpView, animated: true)
+        coordinator?.gotoSignUp(delegate: self)
     }
     
     @IBAction func logInClicked(_ sender: Any) {
-        let signInView = SignInVC()
-        signInView.delegate = self
-        let navController = UINavigationController(rootViewController: signInView)
-        present(navController, animated: true)
+        coordinator?.gotoSignIn(delegate: self)
     }
     
     func toHomeVC() {
-
-        guard let tabBarVC = self.storyboard?.instantiateViewController(withIdentifier: "TabBarVC") as?
-                UITabBarController,
-              let scene = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
-        
-        else { fatalError("Could not instantiate!") }
-        
-        scene.window?.rootViewController = tabBarVC
-        UIView.transition(with: scene.window!, duration: 1.0, options: .transitionCurlUp, animations: nil)
+        coordinator?.gotoTabbar()
     }
     
 }

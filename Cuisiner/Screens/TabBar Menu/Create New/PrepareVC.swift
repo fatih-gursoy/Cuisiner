@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PrepareVC: UIViewController {
+class PrepareVC: UIViewController, Storyboardable {
 
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var scrollView: UIScrollView!
@@ -23,6 +23,7 @@ class PrepareVC: UIViewController {
     
     var recipeViewModel: RecipeViewModel?
     weak var delegate: ImagePassDelegate?
+    weak var coordinator: CreateNewCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()

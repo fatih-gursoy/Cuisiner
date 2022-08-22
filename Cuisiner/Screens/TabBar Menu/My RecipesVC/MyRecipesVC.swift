@@ -8,13 +8,14 @@
 import UIKit
 import MessageUI
 
-class MyRecipesVC: UIViewController {
+class MyRecipesVC: UIViewController, Storyboardable {
     
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var segmentedControl: UISegmentedControl!
     
     private var myRecipesViewModel = MyRecipesViewModel()
     var notificationCenter = NotificationCenter.default
+    weak var coordinator: MyRecipesCoordinator?
     
     private var selectedTable: Int = 0 {
         didSet {
@@ -99,27 +100,16 @@ extension MyRecipesVC: UITableViewDelegate, UITableViewDataSource {
         
         switch selectedTable {
         case 0:
-            guard let createNewNav = self.storyboard?.instantiateViewController(withIdentifier:         "CreateNewNav") as? UINavigationController,
-                  let createNewVC = createNewNav.viewControllers.first as? CreateNewVC
-                    
-            else {fatalError("Could not Load")}
-            
-            createNewNav.modalPresentationStyle = .fullScreen
-            createNewNav.modalPresentationCapturesStatusBarAppearance = true
-            createNewVC.recipeViewModel = myRecipesViewModel.recipeAtIndex(selectedTable: selectedTable, index: indexPath.row)
-            self.present(createNewNav, animated: true)
+            guard let recipeViewModel = myRecipesViewModel.recipeAtIndex(selectedTable: selectedTable,
+                                                                         index: indexPath.row) else {return}
+            coordinator?.gotoUpdateRecipe(viewModel: recipeViewModel)
             
         case 1:
-            guard let recipeDetailNav = self.storyboard?.instantiateViewController(withIdentifier: "RecipeDetailNav") as? UINavigationController,
-                  let recipeDetailVC = recipeDetailNav.viewControllers.first as? RecipeDetailVC
-                    
-            else {fatalError("Could not Load")}
+
+            guard let recipeViewModel = myRecipesViewModel.recipeAtIndex(selectedTable: selectedTable,
+                                                                         index: indexPath.row) else {return}
+            coordinator?.gotoRecipeDetailVC(viewModel: recipeViewModel)
             
-            recipeDetailNav.modalPresentationStyle = .fullScreen
-            recipeDetailNav.modalPresentationCapturesStatusBarAppearance = true
-            recipeDetailVC.recipeViewModel = myRecipesViewModel.recipeAtIndex(selectedTable: selectedTable, index: indexPath.row)
-            self.present(recipeDetailNav, animated: true)
-                    
         default:
             break
         }
@@ -177,12 +167,7 @@ extension MyRecipesVC {
     
     func signOut() {
         AuthManager.shared.signOut()
-            
-        guard let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC") as? WelcomeVC else { fatalError("Could't load") }
-        
-        guard let scene = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return}
-        scene.window?.rootViewController = welcomeVC
-
+        coordinator?.logout()
     }
 }
 

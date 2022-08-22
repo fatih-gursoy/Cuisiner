@@ -53,6 +53,12 @@
 		3D5C32B927F449570048CAC0 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5C32B827F449570048CAC0 /* UserViewModel.swift */; };
 		3D5C32BB27F44A890048CAC0 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5C32BA27F44A890048CAC0 /* AuthManager.swift */; };
 		3D5C32BE27F4712E0048CAC0 /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5C32BD27F4712D0048CAC0 /* ViewController+Extension.swift */; };
+		3D609A8328B11B4C00AB2585 /* Storyboardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D609A8228B11B4C00AB2585 /* Storyboardable.swift */; };
+		3D609A8528B11B5600AB2585 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D609A8428B11B5600AB2585 /* Coordinator.swift */; };
+		3D609A8728B11B6600AB2585 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D609A8628B11B6600AB2585 /* AppCoordinator.swift */; };
+		3D609A8928B279B200AB2585 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D609A8828B279B200AB2585 /* AuthCoordinator.swift */; };
+		3D609A8B28B2D1CB00AB2585 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D609A8A28B2D1CB00AB2585 /* TabBarCoordinator.swift */; };
+		3D609A8D28B2D87800AB2585 /* CreateNewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D609A8C28B2D87800AB2585 /* CreateNewCoordinator.swift */; };
 		3D68C5A028A2AD220052AB6D /* ResetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D68C59E28A2AD220052AB6D /* ResetPasswordVC.swift */; };
 		3D68C5A128A2AD220052AB6D /* ResetPasswordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D68C59F28A2AD220052AB6D /* ResetPasswordVC.xib */; };
 		3D68C5A728A51F980052AB6D /* CustomAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D68C5A528A51F980052AB6D /* CustomAlertVC.swift */; };
@@ -75,6 +81,9 @@
 		3D9F92F5289D1DF400F02997 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9F92F4289D1DF400F02997 /* CustomButton.swift */; };
 		3DA92E612816066500DE0065 /* RecipeDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA92E602816066500DE0065 /* RecipeDetailVC.swift */; };
 		3DB1551628AB73E70072825B /* CustomActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB1551528AB73E70072825B /* CustomActionSheet.swift */; };
+		3DDB42EC28B2E261000A7311 /* DiscoverCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB42EB28B2E261000A7311 /* DiscoverCoordinator.swift */; };
+		3DDB42EE28B2E797000A7311 /* MyRecipesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB42ED28B2E797000A7311 /* MyRecipesCoordinator.swift */; };
+		3DDB42F028B2EB27000A7311 /* RecipeDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB42EF28B2EB27000A7311 /* RecipeDetailCoordinator.swift */; };
 		3DDC76C2283305B400DBCBB7 /* cooking.json in Resources */ = {isa = PBXBuildFile; fileRef = 3DDC76C1283305B400DBCBB7 /* cooking.json */; };
 		3DE094052896ADE900003925 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE094042896ADE900003925 /* UserDefaults+Extension.swift */; };
 		3DE452B32815FA30003F9AC6 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE452B22815FA30003F9AC6 /* CustomImageView.swift */; };
@@ -134,6 +143,12 @@
 		3D5C32B827F449570048CAC0 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		3D5C32BA27F44A890048CAC0 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		3D5C32BD27F4712D0048CAC0 /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
+		3D609A8228B11B4C00AB2585 /* Storyboardable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboardable.swift; sourceTree = "<group>"; };
+		3D609A8428B11B5600AB2585 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		3D609A8628B11B6600AB2585 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		3D609A8828B279B200AB2585 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
+		3D609A8A28B2D1CB00AB2585 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
+		3D609A8C28B2D87800AB2585 /* CreateNewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewCoordinator.swift; sourceTree = "<group>"; };
 		3D68C59E28A2AD220052AB6D /* ResetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordVC.swift; sourceTree = "<group>"; };
 		3D68C59F28A2AD220052AB6D /* ResetPasswordVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResetPasswordVC.xib; sourceTree = "<group>"; };
 		3D68C5A528A51F980052AB6D /* CustomAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertVC.swift; sourceTree = "<group>"; };
@@ -156,6 +171,9 @@
 		3D9F92F4289D1DF400F02997 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		3DA92E602816066500DE0065 /* RecipeDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailVC.swift; sourceTree = "<group>"; };
 		3DB1551528AB73E70072825B /* CustomActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActionSheet.swift; sourceTree = "<group>"; };
+		3DDB42EB28B2E261000A7311 /* DiscoverCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCoordinator.swift; sourceTree = "<group>"; };
+		3DDB42ED28B2E797000A7311 /* MyRecipesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRecipesCoordinator.swift; sourceTree = "<group>"; };
+		3DDB42EF28B2EB27000A7311 /* RecipeDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailCoordinator.swift; sourceTree = "<group>"; };
 		3DDC76C1283305B400DBCBB7 /* cooking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cooking.json; sourceTree = "<group>"; };
 		3DE094042896ADE900003925 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		3DE452B22815FA30003F9AC6 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
@@ -201,6 +219,7 @@
 			children = (
 				3D0A72C527D79E4800F26608 /* AppDelegate */,
 				3D0A72C627D79E7700F26608 /* Storyboard */,
+				3D609A8128B11B3800AB2585 /* Coordinator */,
 				3D0A72C927D79E9500F26608 /* Models */,
 				3D8F960127EC998B004DE7A2 /* Service */,
 				3D0A72C727D79E8500F26608 /* Screens */,
@@ -301,6 +320,7 @@
 		3D1B305128916CA100166FC9 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				3DDB42EB28B2E261000A7311 /* DiscoverCoordinator.swift */,
 				3D174E8D27D8064600D5DCB3 /* DiscoverVC.swift */,
 				3D5C32AD27F262F40048CAC0 /* RecipesViewModel.swift */,
 				3D3D46342816BC69007D2D5A /* RecipeCollectionCell */,
@@ -312,6 +332,7 @@
 		3D1B305228916CE800166FC9 /* My RecipesVC */ = {
 			isa = PBXGroup;
 			children = (
+				3DDB42ED28B2E797000A7311 /* MyRecipesCoordinator.swift */,
 				3D174E9127DA453B00D5DCB3 /* MyRecipesVC.swift */,
 				3D4AA451286B96D6008FA49D /* MyRecipesViewModel.swift */,
 				3D5C32AF27F26A540048CAC0 /* MyRecipeTableCell */,
@@ -433,6 +454,16 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		3D609A8128B11B3800AB2585 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				3D609A8228B11B4C00AB2585 /* Storyboardable.swift */,
+				3D609A8428B11B5600AB2585 /* Coordinator.swift */,
+				3D609A8628B11B6600AB2585 /* AppCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		3D68C5A328A2ADA80052AB6D /* ResetPasswordVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -549,6 +580,7 @@
 		3DDC76C328338BBC00DBCBB7 /* Recipe Detail */ = {
 			isa = PBXGroup;
 			children = (
+				3DDB42EF28B2EB27000A7311 /* RecipeDetailCoordinator.swift */,
 				3DA92E602816066500DE0065 /* RecipeDetailVC.swift */,
 				3D9F422128328055003FA3E0 /* StartCookVC.swift */,
 				3D9F42272832FCAD003FA3E0 /* InstructionsCollectionCell */,
@@ -559,6 +591,7 @@
 		3DDC76C428338BCA00DBCBB7 /* Create New */ = {
 			isa = PBXGroup;
 			children = (
+				3D609A8C28B2D87800AB2585 /* CreateNewCoordinator.swift */,
 				3D174E8F27DA451B00D5DCB3 /* CreateNewVC.swift */,
 				3D582E8327DFF10F007ED621 /* PrepareVC.swift */,
 				3D8F95FF27EC7F6C004DE7A2 /* RecipeViewModel.swift */,
@@ -571,6 +604,7 @@
 		3DDC76C628338BFF00DBCBB7 /* Log in Screens */ = {
 			isa = PBXGroup;
 			children = (
+				3D609A8828B279B200AB2585 /* AuthCoordinator.swift */,
 				3D0A729127D6A8C100F26608 /* WelcomeVC.swift */,
 				3D174E8827D7FF4300D5DCB3 /* SignUp */,
 				3D174E8727D7FF2D00D5DCB3 /* SignIn */,
@@ -581,6 +615,7 @@
 		3DDC76C728338D1600DBCBB7 /* TabBar Menu */ = {
 			isa = PBXGroup;
 			children = (
+				3D609A8A28B2D1CB00AB2585 /* TabBarCoordinator.swift */,
 				3D174E9327DB730500D5DCB3 /* TabBarVC.swift */,
 				3D1B305128916CA100166FC9 /* Discover */,
 				3DDC76C428338BCA00DBCBB7 /* Create New */,
@@ -749,6 +784,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D5C32B927F449570048CAC0 /* UserViewModel.swift in Sources */,
+				3DDB42EE28B2E797000A7311 /* MyRecipesCoordinator.swift in Sources */,
 				3D5C32BB27F44A890048CAC0 /* AuthManager.swift in Sources */,
 				3D174E9427DB730500D5DCB3 /* TabBarVC.swift in Sources */,
 				3D9F422228328055003FA3E0 /* StartCookVC.swift in Sources */,
@@ -761,23 +797,30 @@
 				3D1B30542891DDDF00166FC9 /* ProfileVCBuilder.swift in Sources */,
 				3D174E9027DA451B00D5DCB3 /* CreateNewVC.swift in Sources */,
 				3DA92E612816066500DE0065 /* RecipeDetailVC.swift in Sources */,
+				3D609A8928B279B200AB2585 /* AuthCoordinator.swift in Sources */,
 				3D597885285B649800CD3A7C /* ProfileVC.swift in Sources */,
 				3DE094052896ADE900003925 /* UserDefaults+Extension.swift in Sources */,
 				3D4AA452286B96D6008FA49D /* MyRecipesViewModel.swift in Sources */,
+				3D609A8328B11B4C00AB2585 /* Storyboardable.swift in Sources */,
+				3D609A8528B11B5600AB2585 /* Coordinator.swift in Sources */,
 				3DFCC8E72869ECF200297EEA /* ChangePasswordVC.swift in Sources */,
 				3D68C5A028A2AD220052AB6D /* ResetPasswordVC.swift in Sources */,
+				3D609A8728B11B6600AB2585 /* AppCoordinator.swift in Sources */,
 				3D5C32AE27F262F40048CAC0 /* RecipesViewModel.swift in Sources */,
 				3D0A729227D6A8C100F26608 /* WelcomeVC.swift in Sources */,
 				3D0A728E27D6A8C100F26608 /* AppDelegate.swift in Sources */,
 				3D174E9227DA453B00D5DCB3 /* MyRecipesVC.swift in Sources */,
 				3D174E8B27D7FF6100D5DCB3 /* SignUpVC.swift in Sources */,
+				3DDB42EC28B2E261000A7311 /* DiscoverCoordinator.swift in Sources */,
 				3D174E9827DE19C800D5DCB3 /* IngredientTableCell.swift in Sources */,
 				3D8D6A112840CF4800DDEED4 /* StarView.swift in Sources */,
 				3D397A4028A67AD000DF4863 /* BlockedUsersViewModel.swift in Sources */,
 				3D5C32B227F26A820048CAC0 /* MyRecipeTableCell.swift in Sources */,
+				3DDB42F028B2EB27000A7311 /* RecipeDetailCoordinator.swift in Sources */,
 				3D4AA44C286ADF99008FA49D /* SegmentedControl.swift in Sources */,
 				3DE452B32815FA30003F9AC6 /* CustomImageView.swift in Sources */,
 				3D5C32B727F449050048CAC0 /* User.swift in Sources */,
+				3D609A8B28B2D1CB00AB2585 /* TabBarCoordinator.swift in Sources */,
 				3D0A72CC27D79F6600F26608 /* SignInVC.swift in Sources */,
 				3D9F92F5289D1DF400F02997 /* CustomButton.swift in Sources */,
 				3D5C32BE27F4712E0048CAC0 /* ViewController+Extension.swift in Sources */,
@@ -792,6 +835,7 @@
 				3D6CDC9E289E718F00EFC01C /* AccountDeleteVC.swift in Sources */,
 				3D1B305828927E1900166FC9 /* ProfileEditVCBuilder.swift in Sources */,
 				3D703820281991C2002A554E /* Database+Constants.swift in Sources */,
+				3D609A8D28B2D87800AB2585 /* CreateNewCoordinator.swift in Sources */,
 				3D68C5A728A51F980052AB6D /* CustomAlertVC.swift in Sources */,
 				3D0A729827D6A8C100F26608 /* Cuisiner.xcdatamodeld in Sources */,
 				3D582E8427DFF110007ED621 /* PrepareVC.swift in Sources */,

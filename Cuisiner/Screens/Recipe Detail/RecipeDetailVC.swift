@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RecipeDetailVC: UIViewController {
+class RecipeDetailVC: UIViewController, Storyboardable {
     
     @IBOutlet private weak var recipeImage: CustomImageView!
     @IBOutlet private weak var userImage: CustomImageView!
@@ -27,13 +27,13 @@ class RecipeDetailVC: UIViewController {
     
     var recipeViewModel: RecipeViewModel!
     var notificationCenter = NotificationCenter.default
+    weak var coordinator: RecipeDetailCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         recipeViewModel.delegate = self
         configureTableView()
         configureUI()
-        configureNavBar()
         addTapGesture()
     }
     
@@ -69,26 +69,12 @@ class RecipeDetailVC: UIViewController {
         }
     }
     
-    func configureNavBar() {
-        let buttonImage =  #imageLiteral(resourceName: "xmark")
-        let barButton = UIBarButtonItem(image: buttonImage, style: .plain,
-                                        target: self, action: #selector(closeTapped))
-        self.navigationItem.rightBarButtonItem = barButton
-    }
-    
     func notificationPost() {
         notificationCenter.post(name: NSNotification.Name(rawValue: "RefreshSavedList"), object: nil)
     }
     
-    @objc func closeTapped() {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     @IBAction func startClicked(_ sender: Any) {
-        guard let startCookVC = self.storyboard?.instantiateViewController(withIdentifier: "StartCookVC") as? StartCookVC else {return}
-        
-        startCookVC.recipeViewModel = self.recipeViewModel
-        self.navigationController?.pushViewController(startCookVC, animated: true)
+        coordinator?.gotoStartCookVC(viewModel: self.recipeViewModel)
     }
     
     @IBAction func starButtonClicked(_ sender: Any) {

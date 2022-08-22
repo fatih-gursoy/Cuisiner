@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CreateNewVC: UIViewController {
+class CreateNewVC: UIViewController, Storyboardable {
     
 //MARK: - Properties
     
@@ -34,6 +34,7 @@ class CreateNewVC: UIViewController {
         }
     }
     
+    weak var coordinator: CreateNewCoordinator?
     var recipeViewModel: RecipeViewModel?
 
 //MARK: - Functions
@@ -123,11 +124,7 @@ class CreateNewVC: UIViewController {
     
     @IBAction func continueClicked(_ sender: Any) {
         configureViewModel()
-        guard let prepareVC = self.storyboard?.instantiateViewController(withIdentifier: "PrepareVC") as? PrepareVC else { fatalError("Error")}
-      
-        prepareVC.recipeViewModel = self.recipeViewModel
-        prepareVC.delegate = self
-        navigationController?.pushViewController(prepareVC, animated: true)
+        coordinator?.gotoPrepareVC(viewModel: self.recipeViewModel, delegate: self)
     }
 }
 
@@ -198,16 +195,16 @@ extension CreateNewVC {
     
     func configureNavBar() {
         
-        let barButton = UIBarButtonItem(image: #imageLiteral(resourceName: "xmark"), style: .plain, target: self, action: #selector(closeTapped))
-        
-        self.navigationItem.rightBarButtonItem = barButton
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navigationController?.navigationBar.shadowImage = UIImage()
+//        let barButton = UIBarButtonItem(image: #imageLiteral(resourceName: "xmark"), style: .plain, target: self, action: #selector(closeTapped))
+//
+//        self.navigationItem.rightBarButtonItem = barButton
+//        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+//        navigationController?.navigationBar.shadowImage = UIImage()
     }
     
-    @objc func closeTapped() {
-        self.dismiss(animated: true, completion: nil)
-    }
+//    @objc func closeTapped() {
+//        self.dismiss(animated: true, completion: nil)
+//    }
 }
 
 // MARK: - ImagePickerDelegate

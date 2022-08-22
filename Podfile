@@ -11,7 +11,6 @@ target 'Cuisiner' do
   pod 'Firebase/Firestore'
   pod 'Firebase/Analytics'
   pod 'Firebase/Storage'
-  pod "ESTabBarController-swift"
   pod 'FirebaseFirestoreSwift', '~> 9.4'
   pod 'Kingfisher', '~> 7.2'
   pod 'lottie-ios'
