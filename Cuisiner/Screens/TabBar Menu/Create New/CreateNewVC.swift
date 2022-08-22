@@ -117,7 +117,8 @@ class CreateNewVC: UIViewController, Storyboardable {
     @IBAction func addButtonClicked(_ sender: Any) {
         let newIngredient = Ingredient()
         ingredients.append(newIngredient)
-        let bottom = tableView.contentSize.height
+        scrollView.layoutIfNeeded()
+        let bottom = scrollView.contentSize.height - scrollView.bounds.height
         scrollView.setContentOffset(CGPoint(x: 0, y: bottom), animated: true)
     }
     
