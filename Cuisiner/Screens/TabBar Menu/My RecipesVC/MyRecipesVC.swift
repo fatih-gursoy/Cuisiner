@@ -14,8 +14,8 @@ class MyRecipesVC: UIViewController, Storyboardable {
     @IBOutlet private weak var segmentedControl: UISegmentedControl!
     
     private var myRecipesViewModel = MyRecipesViewModel()
-    var notificationCenter = NotificationCenter.default
     weak var coordinator: MyRecipesCoordinator?
+    var notificationCenter = NotificationCenter.default
     
     private var selectedTable: Int = 0 {
         didSet {
@@ -132,7 +132,6 @@ extension MyRecipesVC {
         }
         
         let logoutUser = UIAction(title: "Log out", image: UIImage(systemName: "power.circle.fill")) { [weak self] _ in
-            self?.dismiss(animated: true)
             self?.signOut()
         }
         
@@ -152,7 +151,7 @@ extension MyRecipesVC {
         if MFMailComposeViewController.canSendMail() {
             let mailVC = MFMailComposeViewController()
             mailVC.mailComposeDelegate = self
-            mailVC.setToRecipients(["fatihgursoy85@gmail.com"])
+            mailVC.setToRecipients(["cuisiner.contactus@gmail.com"])
             present(mailVC, animated: true)
         } else {
             presentAlert(title: "Mail Error!", message: "Please set your email account in your phone", completion: nil)

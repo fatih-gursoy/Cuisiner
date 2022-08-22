@@ -42,7 +42,6 @@ class CreateNewVC: UIViewController, Storyboardable {
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboard()
-        configureNavBar()
         updateUI()
         configureTableView()
         configureImagePicker()
@@ -187,24 +186,6 @@ extension CreateNewVC: IngredientCellDelegate {
         let row = cell.tag
         ingredients.remove(at: row)
     }
-}
-
-// MARK: - NavigationBar Configure
-
-extension CreateNewVC {
-    
-    func configureNavBar() {
-        
-//        let barButton = UIBarButtonItem(image: #imageLiteral(resourceName: "xmark"), style: .plain, target: self, action: #selector(closeTapped))
-//
-//        self.navigationItem.rightBarButtonItem = barButton
-//        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-//        navigationController?.navigationBar.shadowImage = UIImage()
-    }
-    
-//    @objc func closeTapped() {
-//        self.dismiss(animated: true, completion: nil)
-//    }
 }
 
 // MARK: - ImagePickerDelegate

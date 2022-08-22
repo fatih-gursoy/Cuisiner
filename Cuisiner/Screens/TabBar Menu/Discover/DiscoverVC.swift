@@ -107,7 +107,7 @@ extension DiscoverVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         case recipeCollectionView:
             
             let itemWidth = collectionView.bounds.width
-            let itemHeight = collectionView.bounds.height * 0.50
+            let itemHeight = collectionView.bounds.height * 0.60
             return CGSize(width: itemWidth, height: itemHeight)
 
         default:
@@ -127,11 +127,8 @@ extension DiscoverVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         }
         
         if collectionView == recipeCollectionView {
-            
             guard let recipeViewModel = recipesViewModel.recipeAtIndex(indexPath.row) else {return}
             coordinator?.gotoRecipeDetailVC(viewModel: recipeViewModel)
-
-//            routeToDetailVC(indexPath.row)
         }
     }
     
@@ -150,19 +147,6 @@ extension DiscoverVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
                 recipesViewModel.fetchAllRecipes()
             }
         }
-    }
-    
-    func routeToDetailVC(_ index: Int) {
-        
-        guard let recipeDetailNav = self.storyboard?.instantiateViewController(withIdentifier: "RecipeDetailNav") as? UINavigationController,
-              let recipeDetailVC = recipeDetailNav.viewControllers.first as? RecipeDetailVC
-                
-        else {fatalError("Could not Load")}
-        
-        recipeDetailNav.modalPresentationStyle = .fullScreen
-        recipeDetailNav.modalPresentationCapturesStatusBarAppearance = true
-        recipeDetailVC.recipeViewModel = recipesViewModel.recipeAtIndex(index)
-        self.present(recipeDetailNav, animated: true)
     }
     
 }

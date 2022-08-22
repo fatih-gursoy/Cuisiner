@@ -13,7 +13,6 @@ class TabBarVC: UITabBarController, Storyboardable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tabBar.isTranslucent = true
         tabBar.tintColor = #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1)
         tabBar.backgroundColor = #colorLiteral(red: 1, green: 0.8846692443, blue: 0.8606837988, alpha: 0.7)
@@ -22,22 +21,19 @@ class TabBarVC: UITabBarController, Storyboardable {
         guard let discoverVC = coordinator?.startDiscoverCoordinator() else { return }
         guard let myRecipesVC = coordinator?.startMyRecipesCoordinator() else { return }
         
-        // Create TabBar items
         discoverVC.tabBarItem = UITabBarItem(title: "Discover",
                                              image: UIImage(named: "discover"), selectedImage: nil)
         
         myRecipesVC.tabBarItem = UITabBarItem(title: "My Recipes",
                                               image: UIImage(named: "saved"), selectedImage: nil)
         
-        // Assign viewControllers to tabBarController
         
         let viewControllers = [discoverVC, UIViewController(), myRecipesVC]
         self.setViewControllers(viewControllers, animated: false)
-        
         guard let tabBar = self.tabBar as? CustomTabBar else { return }
         
-        tabBar.didTapButton = { [unowned self] in
-            self.coordinator?.startCreateNewVC()
+        tabBar.didTapButton = { [weak self] in
+            self?.coordinator?.startCreateNewVC()
         }
     }
 }
