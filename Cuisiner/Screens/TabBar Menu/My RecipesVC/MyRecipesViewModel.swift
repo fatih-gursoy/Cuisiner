@@ -39,7 +39,7 @@ class MyRecipesViewModel {
     }
     
     private func fetchSavedRecipes() {
-     
+        
         let dispatchGroup = DispatchGroup()
         guard let blockedUsers = user?.blockedUsers else { return }
         
@@ -66,6 +66,7 @@ class MyRecipesViewModel {
             self.delegate?.updateView()
         }
     }
+    
     
 //MARK: - Functions
     

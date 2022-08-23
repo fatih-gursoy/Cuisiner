@@ -14,7 +14,7 @@ protocol RecipesViewModelDelegate: AnyObject {
 class RecipesViewModel {
        
     var recipes: [Recipe]?
-    
+
     private var filteredRecipes: [Recipe]?
     private var selectedCategories = [Recipe.Category]()
     private var service: FirebaseServiceProtocol

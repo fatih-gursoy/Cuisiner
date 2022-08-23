@@ -52,7 +52,6 @@ struct Recipe: Codable {
         case drink = "Drink"
         case otherFastFood = "Other Food"
     }
-
 }
 
 struct Ingredient: Codable {

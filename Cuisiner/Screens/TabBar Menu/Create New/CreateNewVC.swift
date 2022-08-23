@@ -208,7 +208,6 @@ extension CreateNewVC: UIImagePickerControllerDelegate, UINavigationControllerDe
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-
         foodImage.image = info[.originalImage] as? UIImage
         self.dismiss(animated: true, completion: nil)
     }
@@ -246,15 +245,12 @@ extension CreateNewVC: UIPickerViewDelegate, UIPickerViewDataSource {
         pickerView.dataSource = self
         pickerView.contentMode = .top
         pickerView.frame = CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 200, width: UIScreen.main.bounds.size.width, height: 200)
-        
         pickerView.backgroundColor = UIColor.systemBackground
         
         toolBar = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 200, width: UIScreen.main.bounds.size.width, height: 50))
-        
         toolBar.barStyle = .default
         
         let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-        
         let barButton = UIBarButtonItem(image: UIImage(systemName: "checkmark.circle.fill"),
                                         style: .done, target: self, action: #selector(doneButtonTapped))
         

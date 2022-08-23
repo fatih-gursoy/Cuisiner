@@ -15,7 +15,8 @@ class DiscoverVC: UIViewController, Storyboardable {
     
     private var recipesViewModel = RecipesViewModel()
     weak var coordinator: DiscoverCoordinator?
-    
+    var notificationCenter = NotificationCenter.default
+
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
@@ -23,20 +24,18 @@ class DiscoverVC: UIViewController, Storyboardable {
         fetchRecipes()
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     func configureCollectionView() {
-        
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
-        
         recipeCollectionView.delegate = self
         recipeCollectionView.dataSource = self
-        
         categoryCollectionView.register(UINib(nibName: "CategoryCell", bundle: nil), forCellWithReuseIdentifier: CategoryCell.identifier)
-
         recipeCollectionView.register(UINib(nibName: "RecipeCell", bundle: nil), forCellWithReuseIdentifier: RecipeCell.identifier)
-        
         categoryCollectionView.allowsMultipleSelection = true
-        
     }
     
     func fetchRecipes() {
@@ -83,7 +82,6 @@ extension DiscoverVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
             cell.configure(viewModel: recipesViewModel.recipeAtIndex(indexPath.row))
             cell.delegate = self
             cell.tag = indexPath.row
-            
             return cell
             
         default:
@@ -98,9 +96,7 @@ extension DiscoverVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         case categoryCollectionView:
             
             let item = Recipe.Category.allCases[indexPath.row].rawValue
-
             let itemWidth = (item.size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 18)]).width) + 40
-            
             let itemHeight = collectionView.bounds.height * 0.80
             return CGSize(width: itemWidth, height: itemHeight)
             
@@ -120,7 +116,6 @@ extension DiscoverVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         if collectionView == categoryCollectionView {
             
             guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCell else { fatalError("Could not load") }
-                    
             cell.didSelect()
             let category = Recipe.Category.allCases[indexPath.row]
             recipesViewModel.filterRecipes(category)
@@ -137,7 +132,6 @@ extension DiscoverVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         if collectionView == categoryCollectionView {
             
             guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCell else { fatalError("Could not load") }
-            
             cell.didDeSelect()
             
             let category = Recipe.Category.allCases[indexPath.row]
@@ -161,13 +155,14 @@ extension DiscoverVC: UISearchBarDelegate {
 extension DiscoverVC: RecipesViewModelDelegate {
     
     func updateView() {
-        DispatchQueue.main.async {
-            self.recipeCollectionView.reloadData()
+        DispatchQueue.main.async { [weak self] in
+            self?.recipeCollectionView.reloadData()
+            self?.notificationCenter.post(name: NSNotification.Name(rawValue: "RefreshSavedList"), object: nil)
         }
     }
 }
 
-//MARK: ACtionSheet Delegates
+//MARK: - ActionSheet Delegates
 
 extension DiscoverVC: CellActionButtonDelegate {
     
