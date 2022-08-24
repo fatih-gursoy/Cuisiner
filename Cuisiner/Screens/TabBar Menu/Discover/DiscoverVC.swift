@@ -40,8 +40,8 @@ class DiscoverVC: UIViewController, Storyboardable {
     
     func fetchRecipes() {
         recipesViewModel.delegate = self
-        AuthManager.shared.fetchUser { success in
-            if success { self.recipesViewModel.fetchAllRecipes() }
+        AuthManager.shared.fetchUser { [weak self] success in
+            if success { self?.recipesViewModel.fetchAllRecipes() }
         }
     }
    
