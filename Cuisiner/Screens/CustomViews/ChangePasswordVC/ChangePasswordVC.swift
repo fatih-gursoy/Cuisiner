@@ -15,6 +15,7 @@ class ChangePasswordVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboard()
     }
     
     init() {

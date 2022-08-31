@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         FirebaseApp.configure()
         IQKeyboardManager.shared.enable = true
-        IQKeyboardManager.shared.enableAutoToolbar = false
+        IQKeyboardManager.shared.enableAutoToolbar = true
         
         let attribute = [NSAttributedString.Key.foregroundColor: UIColor.clear]
         let backImage = UIImage(systemName: "chevron.backward.circle.fill")

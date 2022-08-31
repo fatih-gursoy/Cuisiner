@@ -40,6 +40,10 @@ class MyRecipesVC: UIViewController, Storyboardable {
         myRecipesViewModel.load()
     }
     
+//    override func viewWillAppear(_ animated: Bool) {
+//        myRecipesViewModel.load()
+//    }
+    
     func configureTableView() {
         tableView.register(UINib(nibName: "MyRecipeTableCell", bundle: nil),
                            forCellReuseIdentifier: MyRecipeTableCell.identifier)

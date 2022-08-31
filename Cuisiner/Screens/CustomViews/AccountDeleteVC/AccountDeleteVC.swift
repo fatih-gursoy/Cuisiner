@@ -16,6 +16,7 @@ class AccountDeleteVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboard()
     }
     
     init() {
