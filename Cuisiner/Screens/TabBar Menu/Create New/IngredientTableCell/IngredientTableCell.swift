@@ -51,6 +51,14 @@ extension IngredientTableCell: UITextFieldDelegate {
         delegate?.updateCell(itemName: itemName.text, amount: itemQuantity.text,
                              cell: self)
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let stringLenght = textField.text?.count ?? 0
+        if range.length + range.location > stringLenght { return false }
+        let maxLenght = stringLenght + string.count - range.length
+        return maxLenght <= 10
+    }
 }
 
 

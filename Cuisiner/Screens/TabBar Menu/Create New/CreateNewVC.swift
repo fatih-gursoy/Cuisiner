@@ -67,49 +67,62 @@ class CreateNewVC: UIViewController, Storyboardable {
     }
     
     func configureViewModel() {
-                
-        guard let checkFieldValid = checkFieldValid,
-              let selectedCategory = selectedCategory else { return }
-                
-        if checkFieldValid {
-            if recipeViewModel != nil {
-                recipeViewModel?.recipe.name = self.recipeNameField.text
-                recipeViewModel?.recipe.serve = self.serveField.text
-                recipeViewModel?.recipe.cookTime = self.cookTimeField.text
-                recipeViewModel?.recipe.category = selectedCategory
-                recipeViewModel?.recipe.ingredients = self.ingredients
-            } else {
-                let recipe = Recipe(ownerId: AuthManager.shared.userId,
-                                    id: UUID().uuidString,
-                                    name: self.recipeNameField.text,
-                                    serve: self.serveField.text,
-                                    cookTime: self.cookTimeField.text,
-                                    category: selectedCategory,
-                                    ingredients: self.ingredients,
-                                    instructions: [],
-                                    ratingList: [])
-                self.recipeViewModel = RecipeViewModel(recipe: recipe)
-            }
+                                
+        guard let selectedCategory = selectedCategory else {return}
+
+        if recipeViewModel != nil {
+            recipeViewModel?.recipe.name = self.recipeNameField.text
+            recipeViewModel?.recipe.serve = self.serveField.text
+            recipeViewModel?.recipe.cookTime = self.cookTimeField.text
+            recipeViewModel?.recipe.category = selectedCategory
+            recipeViewModel?.recipe.ingredients = self.ingredients
+        } else {
+            let recipe = Recipe(ownerId: AuthManager.shared.userId,
+                                id: UUID().uuidString,
+                                name: self.recipeNameField.text,
+                                serve: self.serveField.text,
+                                cookTime: self.cookTimeField.text,
+                                category: selectedCategory,
+                                ingredients: self.ingredients,
+                                instructions: [],
+                                ratingList: [])
+            self.recipeViewModel = RecipeViewModel(recipe: recipe)
         }
     }
     
-    var checkFieldValid: Bool? {
+    var checkFieldValid: Bool {
+        
+        guard recipeNameField.hasText else {
+            presentAlert(title: "Can not continue", message: "Please enter a Recipe name", completion: nil);
+            return false
+        }
+        
+        guard serveField.hasText else {
+            presentAlert(title: "Can not continue", message: "Please fill serve field", completion: nil);
+            return false
+        }
+
+        guard cookTimeField.hasText else {
+            presentAlert(title: "Can not continue", message: "Please fill cook time field", completion: nil);
+            return false
+        }
         
         guard selectedCategory != nil else {
-            presentAlert(title: "Can not continue", message: "Please select a category!", completion: nil); return false }
-        
-        guard let recipeName = recipeNameField.text, !recipeName.isEmpty else {
-            presentAlert(title: "Can not continue", message: "Please enter a Recipe name", completion: nil); return false
+            presentAlert(title: "Can not continue", message: "Please select a category", completion: nil);
+            return false
         }
         
-        guard let serve = serveField.text, !serve.isEmpty else {
-            presentAlert(title: "Can not continue", message: "Please fill serve field", completion: nil); return false
+        guard !ingredients.isEmpty else {
+            presentAlert(title: "Can not continue", message: "Please enter an ingredient", completion: nil);
+            return false
         }
         
-        guard let cookTime = cookTimeField.text, !cookTime.isEmpty else {
-            presentAlert(title: "Can not continue", message: "Please fill cook time field", completion: nil); return false
+        guard !(ingredients.contains { ($0.name?.isEmpty ?? true) || ($0.amount?.isEmpty ?? true) }) else {
+            presentAlert(title: "Can not continue", message: "Please fill all ingredient fields", completion: nil);
+            return false
         }
         return true
+              
     }
     
 //MARK: - Button Taps
@@ -123,8 +136,10 @@ class CreateNewVC: UIViewController, Storyboardable {
     }
     
     @IBAction func continueClicked(_ sender: Any) {
-        configureViewModel()
-        coordinator?.gotoPrepareVC(viewModel: self.recipeViewModel, delegate: self)
+        if checkFieldValid {
+            configureViewModel()
+            coordinator?.gotoPrepareVC(viewModel: self.recipeViewModel, delegate: self)
+        }
     }
 }
 

@@ -79,11 +79,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="uEv-tu-M28" userLabel="TopStack View">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="uEv-tu-M28" userLabel="TopStack View">
                                 <rect key="frame" x="0.0" y="44" width="414" height="90"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Find delicious recipes for cooking" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfU-tG-wDE">
-                                        <rect key="frame" x="32.5" y="0.0" width="349" height="29"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="29"/>
                                         <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -100,15 +100,14 @@
                                     <constraint firstItem="Pvb-AZ-7mD" firstAttribute="leading" secondItem="uEv-tu-M28" secondAttribute="leading" id="qHG-j0-K3c"/>
                                 </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="gFp-Ub-goW" userLabel="BottomStack View">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="gFp-Ub-goW" userLabel="BottomStack View">
                                 <rect key="frame" x="10" y="154" width="394" height="708"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="y82-6C-Alm">
                                         <rect key="frame" x="0.0" y="0.0" width="394" height="66"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="10" id="DtR-zn-hRk">
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="DtR-zn-hRk">
                                             <size key="itemSize" width="70" height="80"/>
-                                            <size key="estimatedItemSize" width="70" height="120"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -184,11 +183,11 @@
             <objects>
                 <viewController storyboardIdentifier="RecipeDetailVC" id="l3C-Jn-cMf" customClass="RecipeDetailVC" customModule="Cuisiner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="191-UJ-S5c">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="942"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nzX-h4-T3P">
-                                <rect key="frame" x="0.0" y="44" width="414" height="864"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OIb-BQ-jqI" userLabel="ContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="819"/>
@@ -563,7 +562,7 @@
                     <navigationItem key="navigationItem" id="pHz-Bv-Oqa">
                         <barButtonItem key="backBarButtonItem" title=" " id="Fba-Wg-x8k"/>
                     </navigationItem>
-                    <size key="freeformSize" width="414" height="942"/>
+                    <size key="freeformSize" width="414" height="896"/>
                     <connections>
                         <outlet property="blockButton" destination="aQ5-CN-UEQ" id="hQb-uV-uO7"/>
                         <outlet property="bookmarkButton" destination="sOL-tM-LQa" id="Q8i-Hx-guj"/>
@@ -584,7 +583,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="giB-tI-DN8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4909" y="291"/>
+            <point key="canvasLocation" x="4908.695652173913" y="275.22321428571428"/>
         </scene>
         <!--Start CookVC-->
         <scene sceneID="f1d-X8-mdR">
@@ -666,11 +665,11 @@
             <objects>
                 <viewController storyboardIdentifier="CreateNewVC" modalPresentationStyle="fullScreen" id="FoV-FM-2Qv" customClass="CreateNewVC" customModule="Cuisiner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2ZH-cY-mm0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1106"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1063"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XaV-6W-2fi">
-                                <rect key="frame" x="0.0" y="44" width="414" height="1028"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="985"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jDl-zG-ZVK" userLabel="contentView">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="991.5"/>
@@ -939,7 +938,7 @@
                                                         </constraints>
                                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="+ Add new Ingredient" cornerStyle="large" titleAlignment="leading">
+                                                        <buttonConfiguration key="configuration" style="plain" image="plus.circle" catalog="system" title="Add ingredient" imagePadding="10" cornerStyle="large" titleAlignment="leading">
                                                             <fontDescription key="titleFontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="20"/>
                                                         </buttonConfiguration>
                                                         <connections>
@@ -961,6 +960,10 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="tK2-3X-VEb" secondAttribute="trailing" id="Pbj-jB-J7U"/>
+                                                    <constraint firstItem="tK2-3X-VEb" firstAttribute="leading" secondItem="Vso-vb-E0j" secondAttribute="leading" id="xRf-ZU-iEy"/>
+                                                </constraints>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -996,7 +999,7 @@
                     <navigationItem key="navigationItem" id="jia-gi-mVm">
                         <barButtonItem key="backBarButtonItem" title="   " id="NP8-nL-EWd"/>
                     </navigationItem>
-                    <size key="freeformSize" width="414" height="1106"/>
+                    <size key="freeformSize" width="414" height="1063"/>
                     <connections>
                         <outlet property="categoryButton" destination="tW4-Hk-Hg2" id="sJp-PW-PaS"/>
                         <outlet property="categoryImage" destination="xN2-Qz-U6y" id="bCF-B0-Erx"/>
@@ -1014,7 +1017,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UvE-Bs-MS2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3776.811594202899" y="-496.20535714285711"/>
+            <point key="canvasLocation" x="3776.811594202899" y="-510.60267857142856"/>
         </scene>
         <!--Tab BarVC-->
         <scene sceneID="iZd-dN-5y4">
@@ -1733,10 +1736,10 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="821"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e27-XC-twG" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="830.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="830"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="jEv-8e-rul">
-                                                <rect key="frame" x="10" y="10" width="394" height="790.5"/>
+                                                <rect key="frame" x="10" y="10" width="394" height="790"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="preparing" translatesAutoresizingMaskIntoConstraints="NO" id="zaW-s4-7Ye">
                                                         <rect key="frame" x="0.0" y="0.0" width="394" height="250"/>
@@ -1750,23 +1753,37 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="yOg-l9-CFD" userLabel="TableStackView">
-                                                        <rect key="frame" x="0.0" y="372.5" width="394" height="338"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="yOg-l9-CFD" userLabel="TableStackView">
+                                                        <rect key="frame" x="0.0" y="372.5" width="394" height="337.5"/>
                                                         <subviews>
                                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="250" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="LAg-Dd-3a7" customClass="CustomTableView" customModule="Cuisiner" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="394" height="272.5"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             </tableView>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="74M-2O-IUO">
-                                                                <rect key="frame" x="179.5" y="302.5" width="35.5" height="35.5"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="74M-2O-IUO" customClass="CustomButton" customModule="Cuisiner" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="302.5" width="394" height="35"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="74M-2O-IUO" secondAttribute="height" multiplier="1:1" id="lGy-gv-avS"/>
+                                                                    <constraint firstAttribute="height" constant="35" id="cbi-dj-PTY"/>
                                                                 </constraints>
-                                                                <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="filled" title="+" cornerStyle="capsule">
-                                                                    <fontDescription key="titleFontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="18"/>
-                                                                    <color key="baseBackgroundColor" name="Dark Red"/>
+                                                                <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="18"/>
+                                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                                                                <state key="normal" title="Add instruction" image="plus.circle" catalog="system">
+                                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
+                                                                </state>
+                                                                <buttonConfiguration key="configuration" style="plain" image="plus.circle" catalog="system" title="Add instruction" imagePadding="10">
+                                                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="semibold"/>
+                                                                    <fontDescription key="titleFontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="20"/>
+                                                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </buttonConfiguration>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="10"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="addButtonClicked:" destination="aHI-HX-fOr" eventType="touchUpInside" id="qrj-0Y-4xs"/>
                                                                 </connections>
@@ -1778,7 +1795,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJG-CZ-kKZ">
-                                                        <rect key="frame" x="0.0" y="740.5" width="394" height="50"/>
+                                                        <rect key="frame" x="0.0" y="740" width="394" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="SRV-iK-QrI"/>
                                                         </constraints>
@@ -1840,6 +1857,9 @@
         </scene>
     </scenes>
     <designables>
+        <designable name="74M-2O-IUO">
+            <size key="intrinsicContentSize" width="192" height="38"/>
+        </designable>
         <designable name="DUR-8K-R9w">
             <size key="intrinsicContentSize" width="181" height="31"/>
         </designable>
@@ -1875,6 +1895,7 @@
         <image name="person.crop.circle.fill.badge.xmark" catalog="system" width="128" height="113"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="placeholder" width="309" height="268"/>
+        <image name="plus.circle" catalog="system" width="128" height="121"/>
         <image name="preparing" width="3000" height="3000"/>
         <image name="recipeBook" width="117.5" height="150"/>
         <image name="recipeCount" width="100" height="100"/>

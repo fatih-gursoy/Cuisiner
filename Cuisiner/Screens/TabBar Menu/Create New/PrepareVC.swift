@@ -14,16 +14,16 @@ class PrepareVC: UIViewController, Storyboardable {
     @IBOutlet private weak var saveButton: UIButton!
     private var storage = StorageService.shared
     
+    var recipeViewModel: RecipeViewModel?
+    weak var delegate: ImagePassDelegate?
+    weak var coordinator: CreateNewCoordinator?
+    
     private var instructions = [Instruction]() {
         didSet {
             tableView.reloadData()
             recipeViewModel?.recipe.instructions = instructions
         }
     }
-    
-    var recipeViewModel: RecipeViewModel?
-    weak var delegate: ImagePassDelegate?
-    weak var coordinator: CreateNewCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,9 +46,8 @@ class PrepareVC: UIViewController, Storyboardable {
                 
         let oldUrl = self.recipeViewModel?.recipe.foodImageUrl ?? ""
         
-        if foodImage.isSame(with: oldUrl) {
-            self.recipeViewModel?.updateRecipe()
-        } else {
+        if foodImage.isSame(with: oldUrl) { self.recipeViewModel?.updateRecipe() }
+        else {
             storage.imageUpload(to: .foodImages, id: uid , image: foodImage.image!) { [weak self] imageUrl in
                 self?.recipeViewModel?.recipe.foodImageUrl = imageUrl
                 self?.recipeViewModel?.updateRecipe()
@@ -67,10 +66,28 @@ class PrepareVC: UIViewController, Storyboardable {
     }
     
     @IBAction func saveButtonClicked(_ sender: Any) {
-        let alertVC = CustomAlertVC(action: nil, message: "Do you want to save your recipe?",
-                                    image: UIImage(systemName: "rectangle.and.pencil.and.ellipsis"))
-        alertVC.delegate = self
-        present(alertVC, animated: true)
+        
+        if checkFieldValid {
+            let alertVC = CustomAlertVC(action: nil, message: "Do you want to save your recipe?",
+                                        image: UIImage(systemName: "rectangle.and.pencil.and.ellipsis"))
+            alertVC.delegate = self
+            present(alertVC, animated: true)
+        }
+        
+    }
+    
+    var checkFieldValid: Bool {
+
+        guard !instructions.isEmpty else {
+            presentAlert(title: "Can not continue", message: "Please enter an instruction", completion: nil);
+            return false
+        }
+        
+        guard !(instructions.contains { ($0.text?.isEmpty ?? true) || ($0.time == nil) }) else {
+            presentAlert(title: "Can not continue", message: "Please fill all instruction fields", completion: nil);
+            return false
+        }
+        return true   
     }
 }
 
@@ -96,9 +113,9 @@ extension PrepareVC: UITableViewDelegate, UITableViewDataSource {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PrepareTableCell.identifier, for: indexPath) as? PrepareTableCell else {fatalError("Could not Load")}
         
-        cell.delegate = self
         cell.tag = indexPath.row
         cell.configure(instruction: instructions[indexPath.row])
+        cell.delegate = self
         return cell
     }
     

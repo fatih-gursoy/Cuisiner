@@ -32,6 +32,11 @@ class PrepareTableCell: UITableViewCell {
         textView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
     }
     
+    override func prepareForReuse() {
+        textView.text = nil
+        timeTextField.text = nil
+    }
+    
     func configure(instruction: Instruction?) {
         guard let instruction = instruction else {return}
         rowLabel.text = "\(self.tag + 1)"
@@ -50,6 +55,14 @@ extension PrepareTableCell: UITextViewDelegate, UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.delegate?.updateCell(textView: textView.text,
                                   timeText: textField.text, cell: self)
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let stringLenght = textField.text?.count ?? 0
+        if range.length + range.location > stringLenght { return false }
+        let maxLenght = stringLenght + string.count - range.length
+        return maxLenght <= 3
     }
 }
 

@@ -31,7 +31,8 @@ class CategoryCell: UICollectionViewCell {
     }
     
     func didDeSelect() {
-        backView.backgroundColor = .clear
-        categoryLabel.textColor = .darkGray
+        backView.backgroundColor = #colorLiteral(red: 1, green: 0.8849676251, blue: 0.8622646928, alpha: 0.6999999881)
+        categoryLabel.textColor = .black
     }
+    
 }

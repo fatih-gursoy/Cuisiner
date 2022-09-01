@@ -32,13 +32,13 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Dkq-ko-W1e">
                                         <rect key="frame" x="60" y="14" width="328" height="22.5"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Item name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vs9-gs-Czw">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Item name" textAlignment="center" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Vs9-gs-Czw">
                                                 <rect key="frame" x="0.0" y="0.0" width="159" height="22.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Quantity" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xRk-Pk-aRc">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Quantity" textAlignment="center" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="xRk-Pk-aRc">
                                                 <rect key="frame" x="169" y="0.0" width="159" height="22.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
@@ -99,9 +99,7 @@
                     <constraint firstAttribute="trailing" secondItem="D57-U2-7NE" secondAttribute="trailing" constant="20" id="6Um-dx-pg3"/>
                     <constraint firstItem="D57-U2-7NE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="9u6-i7-Bne"/>
                     <constraint firstItem="D57-U2-7NE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="FhY-4m-CoJ"/>
-                    <constraint firstItem="D57-U2-7NE" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="HeV-9u-4bU"/>
                     <constraint firstAttribute="bottom" secondItem="D57-U2-7NE" secondAttribute="bottom" constant="10" id="MLG-TH-sll"/>
-                    <constraint firstItem="D57-U2-7NE" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="WZy-rn-26Q"/>
                 </constraints>
                 <userDefinedRuntimeAttributes>
                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -125,7 +123,7 @@
             <color red="0.79199999570846558" green="0.2199999988079071" blue="0.2199999988079071" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="veryLight Gray">
-            <color red="1" green="0.88999998569488525" blue="0.86599999666213989" alpha="0.69999998807907104" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="1" green="0.88999998569488525" blue="0.86699998378753662" alpha="0.69999998807907104" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
     </resources>
 </document>
