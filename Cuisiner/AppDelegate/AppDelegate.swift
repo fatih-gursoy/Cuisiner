@@ -17,7 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = true
-        
+        setAppearance()
+        return true
+    }
+    
+    func setAppearance() {
         let attribute = [NSAttributedString.Key.foregroundColor: UIColor.clear]
         let backImage = UIImage(systemName: "chevron.backward.circle.fill")
         UINavigationBar.appearance().backIndicatorImage = backImage
@@ -26,8 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().shadowImage = UIImage()
         UIBarButtonItem.appearance().setTitleTextAttributes(attribute, for: .normal)
         UIBarButtonItem.appearance().setTitleTextAttributes(attribute, for: .highlighted)
-                
-        return true
     }
 
     // MARK: UISceneSession Lifecycle

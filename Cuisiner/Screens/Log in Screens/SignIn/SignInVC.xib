@@ -29,7 +29,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="dR6-IY-Wt7"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="36"/>
+                            <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="32"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
