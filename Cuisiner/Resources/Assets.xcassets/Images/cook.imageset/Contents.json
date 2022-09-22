@@ -1,16 +1,17 @@
 {
   "images" : [
     {
+      "filename" : "Vector.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Icon - Cook Time@2x.png",
+      "filename" : "Vector@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Icon - Cook Time@3x.png",
+      "filename" : "Vector@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
@@ -18,5 +19,8 @@
   "info" : {
     "author" : "xcode",
     "version" : 1
+  },
+  "properties" : {
+    "template-rendering-intent" : "original"
   }
 }

@@ -83,7 +83,7 @@ class PrepareVC: UIViewController, Storyboardable {
             return false
         }
         
-        guard !(instructions.contains { ($0.text?.isEmpty ?? true) || ($0.time == nil) }) else {
+        guard !(instructions.contains { ($0.text?.isEmpty ?? true) }) else {
             presentAlert(title: "Can not continue", message: "Please fill all instruction fields", completion: nil);
             return false
         }
@@ -133,10 +133,8 @@ extension PrepareVC: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension PrepareVC: PrepareCellDelegate {
-    func updateCell(textView: String?, timeText: String?, cell: PrepareTableCell) {
+    func updateCell(textView: String?, cell: PrepareTableCell) {
         let row = cell.tag
         instructions[row].text = textView
-        guard let timeText = timeText else {return}
-        instructions[row].time = Int(timeText)
     }
 }

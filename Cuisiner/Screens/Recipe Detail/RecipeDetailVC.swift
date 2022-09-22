@@ -44,8 +44,8 @@ class RecipeDetailVC: UIViewController, Storyboardable {
     func configureTableView() {
         ingredientTable.delegate = self
         ingredientTable.dataSource = self
-        ingredientTable.register(UINib(nibName: "IngredientTableCell", bundle: nil),
-                                 forCellReuseIdentifier: IngredientTableCell.identifier)
+        ingredientTable.register(UINib(nibName: "IngredientPresentCell", bundle: nil),
+                                 forCellReuseIdentifier: IngredientPresentCell.identifier)
         ingredientTable.layoutIfNeeded()
         let tableHeight = ingredientTable.contentSize.height
         ingredientTable.heightAnchor.constraint(equalToConstant: tableHeight).isActive = true
@@ -56,7 +56,7 @@ class RecipeDetailVC: UIViewController, Storyboardable {
         recipeName.text = recipeViewModel?.recipeName
         categoryLabel.text = recipeViewModel.category
         serveLabel.text = recipeViewModel.recipe.serve
-        cookTimeLabel.text = recipeViewModel.cookTime
+        cookTimeLabel.text = "\(recipeViewModel.cookTime) min"
         recipeImage.setImage(url: recipeViewModel.recipe.foodImageUrl)
         starButton.setTitle(recipeViewModel?.averageScore, for: .normal)
         
@@ -159,7 +159,7 @@ extension RecipeDetailVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: IngredientTableCell.identifier, for: indexPath) as? IngredientTableCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: IngredientPresentCell.identifier, for: indexPath) as? IngredientPresentCell
         else { fatalError("Could not load") }
         
         cell.configureForPresent(ingredient:
@@ -175,6 +175,8 @@ extension RecipeDetailVC: UITableViewDelegate, UITableViewDataSource {
             title.font = UIFont(name: "Gill Sans SemiBold", size: 20.0)
             return title
         }()
+        
+        headerTitle.translatesAutoresizingMaskIntoConstraints = false
         return headerTitle
     }
     

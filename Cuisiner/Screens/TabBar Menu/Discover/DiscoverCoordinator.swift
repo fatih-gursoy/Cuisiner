@@ -21,6 +21,7 @@ class DiscoverCoordinator: Coordinator {
         let discoverVC = DiscoverVC.instantiateFromStoryboard()
         discoverVC.coordinator = self
         navigationController.pushViewController(discoverVC, animated: false)
+        navigationController.setNavigationBarHidden(true, animated: true)
     }
     
     func gotoRecipeDetailVC(viewModel: RecipeViewModel) {

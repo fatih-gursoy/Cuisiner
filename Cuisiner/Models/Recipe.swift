@@ -60,12 +60,10 @@ struct Recipe: Codable {
 
 struct Ingredient: Codable {
     var name: String?
-    var amount: String?
 }
 
 struct Instruction: Codable {
     var text: String?
-    var time: Int?
 }
 
 struct Rating: Codable {
