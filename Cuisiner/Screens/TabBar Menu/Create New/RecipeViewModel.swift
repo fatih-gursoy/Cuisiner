@@ -127,11 +127,13 @@ class RecipeViewModel {
     }
     
     func addtoReportedRecipes(currentUserId: String) {
+        
+        defer { addtoBlackList() }
+
         guard let reporterList = reporterList else { recipe.reporterList = [currentUserId]; return }
         if !reporterList.contains(currentUserId) {
             recipe.reporterList?.append(currentUserId)
         }
-        self.addtoBlackList()
     }
 
 // MARK: -CoreData Functions

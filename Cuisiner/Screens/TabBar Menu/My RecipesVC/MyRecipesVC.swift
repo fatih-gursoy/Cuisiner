@@ -29,7 +29,8 @@ class MyRecipesVC: UIViewController, Storyboardable {
         configureTableView()
         configureMenu()
         myRecipesViewModel.load()
-        notificationCenter.addObserver(self, selector: #selector(refreshSavedList(_:)), name: NSNotification.Name(rawValue: "RefreshSavedList"), object: nil)
+        notificationCenter.addObserver(self, selector: #selector(refreshSavedList(_:)),
+                                       name: NSNotification.Name(rawValue: "RefreshSavedList"), object: nil)
     }
     
     deinit {
@@ -39,10 +40,6 @@ class MyRecipesVC: UIViewController, Storyboardable {
     @objc func refreshSavedList(_ notification: Notification) {
         myRecipesViewModel.load()
     }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        myRecipesViewModel.load()
-//    }
     
     func configureTableView() {
         tableView.register(UINib(nibName: "MyRecipeTableCell", bundle: nil),

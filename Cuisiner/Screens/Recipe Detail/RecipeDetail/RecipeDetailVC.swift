@@ -41,14 +41,20 @@ class RecipeDetailVC: UIViewController, Storyboardable {
         notificationCenter.removeObserver(self)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    
     func configureTableView() {
         ingredientTable.delegate = self
         ingredientTable.dataSource = self
         ingredientTable.register(UINib(nibName: "IngredientPresentCell", bundle: nil),
                                  forCellReuseIdentifier: IngredientPresentCell.identifier)
         ingredientTable.layoutIfNeeded()
+        
         let tableHeight = ingredientTable.contentSize.height
         ingredientTable.heightAnchor.constraint(equalToConstant: tableHeight).isActive = true
+        
     }
     
     func configureUI() {
