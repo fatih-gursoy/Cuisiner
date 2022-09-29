@@ -1,3 +1,6 @@
+
+This app is available in the [AppStore](https://apps.apple.com/app/id1641238583)
+
 ## Overview
 Cuisiner is a user generated recipe/cooking collection app
 
