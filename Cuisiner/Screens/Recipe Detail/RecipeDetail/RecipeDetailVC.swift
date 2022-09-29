@@ -217,9 +217,6 @@ extension RecipeDetailVC {
         let userViewModel = UserViewModel(user: user)
         let vc = ProfileVC.instantiateFromStoryboard()
         vc.viewModel = userViewModel
-        if let presentationController = vc.presentationController as? UISheetPresentationController {
-            presentationController.detents = [.medium(), .large()]
-            present(vc, animated: true)
-        }
+        present(vc, animated: true)
     }
 }

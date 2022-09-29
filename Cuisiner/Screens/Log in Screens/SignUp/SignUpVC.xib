@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,7 +25,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Gp-fU-Xwe">
-                    <rect key="frame" x="0.0" y="44" width="414" height="762"/>
+                    <rect key="frame" x="0.0" y="48" width="414" height="758"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z49-Df-rTY" userLabel="Content View">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="764"/>
@@ -40,7 +41,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="rzA-oH-SSW"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="32"/>
+                                                    <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="30"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -92,7 +93,7 @@
                                                 </view>
                                             </subviews>
                                         </stackView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="cO2-J5-gZD" userLabel="FieldStack">
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="cO2-J5-gZD" userLabel="FieldStack">
                                             <rect key="frame" x="0.0" y="280" width="374" height="334"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Y0S-qa-4D7">
@@ -144,7 +145,7 @@
                                                                 <constraint firstAttribute="height" constant="40" id="2vS-oL-YTN"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="22"/>
-                                                            <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                                            <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="one-time-code"/>
                                                         </textField>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WoT-BW-H9n">
                                                             <rect key="frame" x="0.0" y="45" width="374" height="1"/>
@@ -164,7 +165,7 @@
                                                                 <constraint firstAttribute="height" constant="40" id="dkd-5f-Wco"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="22"/>
-                                                            <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                                            <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="one-time-code"/>
                                                         </textField>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tz0-u8-zfz">
                                                             <rect key="frame" x="0.0" y="45" width="374" height="1"/>

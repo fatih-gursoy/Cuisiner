@@ -26,6 +26,7 @@ class SignUpVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboard()
+        usernameText.delegate = self
     }
     
     @IBAction func signUpClicked(_ sender: Any) {
@@ -86,5 +87,16 @@ extension SignUpVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         profileImage.image = info[.originalImage] as? UIImage
         self.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension SignUpVC: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let stringLenght = textField.text?.count ?? 0
+        if range.length + range.location > stringLenght { return false }
+        let maxLenght = stringLenght + string.count - range.length
+        return maxLenght <= 20
     }
 }

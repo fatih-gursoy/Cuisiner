@@ -13,6 +13,7 @@ class StartCookVC: UIViewController, Storyboardable {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var finishButton: UIButton!
     @IBOutlet private weak var headerLabel: UILabel!
+    @IBOutlet private weak var listHeaderLabel: UILabel!
     
     var recipeViewModel: RecipeViewModel?
     weak var coordinator: RecipeDetailCoordinator?
@@ -24,14 +25,9 @@ class StartCookVC: UIViewController, Storyboardable {
         configureUI()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-    }
-    
 //MARK: - Functions
 
     func configureNavBar() {
-                
         let clockButton = UIBarButtonItem(image: UIImage(named: "clock"), style: .plain,
                                           target: self, action: #selector(showTimerView))
         
@@ -48,11 +44,10 @@ class StartCookVC: UIViewController, Storyboardable {
     }
     
     func configureUI() {
+        headerLabel.text = recipeViewModel?.recipeName
+        listHeaderLabel.text = " Preperation Steps 🥣 "
         guard let instructions = recipeViewModel?.instructions else { return }
-        self.title = instructions.count > 0
-        ? recipeViewModel?.recipeName
-        : "There is no instruction"
-        headerLabel.text = " Preperation Steps 🥣 "
+        self.title = instructions.count > 0 ? "" : "There is no instruction"
     }
     
     func configureTableView() {

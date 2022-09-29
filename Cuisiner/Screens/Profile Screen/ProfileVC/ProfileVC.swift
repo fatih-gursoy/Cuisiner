@@ -29,7 +29,7 @@ class ProfileVC: UIViewController, Storyboardable {
     
     func updateUI() {
         viewModel.delegate = self
-        viewModel.fetchRecipes()
+        viewModel.fetchRecipes()        
     }
     
     func configureNavBar() {

@@ -15,6 +15,7 @@ class TimeViewModel: ObservableObject {
     
     @Published var timeRemaining: Int = 0
     @Published var isTimerRunning: Bool = false
+    @Published var isStartTapped: Bool = false
     @Published var pickerHour: Int = 0 { didSet { updateTimer() } }
     @Published var pickerMinute: Int = 0 { didSet { updateTimer() } }
     
@@ -44,13 +45,17 @@ class TimeViewModel: ObservableObject {
     
     func runTimer() {
         if timeRemaining > 0 && isTimerRunning {
+            isStartTapped = true
             timeRemaining -= 1
+        } else if timeRemaining == 0 {
+            resetTimer()
         } else {
             isTimerRunning = false
         }
     }
     
     func resetTimer() {
+        isStartTapped = false
         isTimerRunning = false
         timeRemaining = initialTimeMin * 60
     }

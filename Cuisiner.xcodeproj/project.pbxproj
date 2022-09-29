@@ -28,6 +28,7 @@
 		3D174E9927DE19C800D5DCB3 /* IngredientTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D174E9727DE19C700D5DCB3 /* IngredientTableCell.xib */; };
 		3D19A0E4285328DC00B570A2 /* CustomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D19A0E3285328DC00B570A2 /* CustomTableView.swift */; };
 		3D20E268283F5D06003DD793 /* done.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D20E267283F5D06003DD793 /* done.json */; };
+		3D32060928E48E390069AFED /* TimerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D32060828E48E390069AFED /* TimerButton.swift */; };
 		3D397A3C28A6724400DF4863 /* UserTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D397A3A28A6724400DF4863 /* UserTableCell.swift */; };
 		3D397A3D28A6724400DF4863 /* UserTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D397A3B28A6724400DF4863 /* UserTableCell.xib */; };
 		3D397A4028A67AD000DF4863 /* BlockedUsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D397A3F28A67AD000DF4863 /* BlockedUsersViewModel.swift */; };
@@ -123,6 +124,7 @@
 		3D174E9727DE19C700D5DCB3 /* IngredientTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IngredientTableCell.xib; sourceTree = "<group>"; };
 		3D19A0E3285328DC00B570A2 /* CustomTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableView.swift; sourceTree = "<group>"; };
 		3D20E267283F5D06003DD793 /* done.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = done.json; sourceTree = "<group>"; };
+		3D32060828E48E390069AFED /* TimerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerButton.swift; sourceTree = "<group>"; };
 		3D337FB828AFBBAB004077AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D397A3A28A6724400DF4863 /* UserTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableCell.swift; sourceTree = "<group>"; };
 		3D397A3B28A6724400DF4863 /* UserTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableCell.xib; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 			children = (
 				3D5DD13028E071AB0088BCA5 /* TimeViewModel.swift */,
 				3DF5FFB428DCAE5000965465 /* TimerMainView.swift */,
+				3D32060828E48E390069AFED /* TimerButton.swift */,
 				3D5DD13428E1D44A0088BCA5 /* PickerView.swift */,
 				3D5DD13228E1CD950088BCA5 /* ClockView.swift */,
 			);
@@ -533,8 +536,8 @@
 				3D8D6A0F2840CEC300DDEED4 /* StarView */,
 				3D82E2C7283B9C6D0013032D /* CustomPopupVC */,
 				3D19A0E528532A7700B570A2 /* CustomTableView */,
-				3D8D6A0E2840CB9600DDEED4 /* IBDesignables */,
 				3D07F2A328DBC6260008E8B6 /* TimerView */,
+				3D8D6A0E2840CB9600DDEED4 /* IBDesignables */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -898,6 +901,7 @@
 				3D3D46312816BC4F007D2D5A /* CategoryCell.swift in Sources */,
 				3D4AA450286AFB1E008FA49D /* CoreDataManager.swift in Sources */,
 				3D397A3C28A6724400DF4863 /* UserTableCell.swift in Sources */,
+				3D32060928E48E390069AFED /* TimerButton.swift in Sources */,
 				3D9409CD28AD88E0004BB6C1 /* Constants.swift in Sources */,
 				3D3D46372816BCB6007D2D5A /* RecipeCell.swift in Sources */,
 				3D8E242A28A66F6500D3B447 /* BlockedUsersVC.swift in Sources */,
