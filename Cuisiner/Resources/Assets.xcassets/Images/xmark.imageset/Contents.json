@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "xmark.png",
       "idiom" : "universal",
       "scale" : "1x"
     },

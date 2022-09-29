@@ -38,7 +38,9 @@ extension StorageService {
     }
     
     func deleteImage(imageUrl: String, completion: @escaping ((Bool) -> Void)) {
+
         let ref = storage.reference(forURL: imageUrl)
+                
         ref.delete { error in
             if error != nil {
                 completion(false)

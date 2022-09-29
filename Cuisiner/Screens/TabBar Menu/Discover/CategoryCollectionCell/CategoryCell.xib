@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,10 +19,10 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BbB-cS-pdj" customClass="CustomView" customModule="Cuisiner" customModuleProvider="target">
-                        <rect key="frame" x="5" y="0.0" width="175" height="47"/>
+                        <rect key="frame" x="0.0" y="0.0" width="185" height="47"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uhi-Ts-zaf">
-                                <rect key="frame" x="51" y="13" width="73" height="21.5"/>
+                                <rect key="frame" x="56" y="13" width="73" height="21.5"/>
                                 <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="18"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -43,9 +44,9 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="BbB-cS-pdj" secondAttribute="bottom" id="7oi-ha-T5w"/>
-                <constraint firstAttribute="trailing" secondItem="BbB-cS-pdj" secondAttribute="trailing" constant="5" id="R3X-WS-ckE" userLabel="trailing = Back View.trailing + 5"/>
+                <constraint firstAttribute="trailing" secondItem="BbB-cS-pdj" secondAttribute="trailing" id="R3X-WS-ckE"/>
                 <constraint firstItem="BbB-cS-pdj" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="So6-zg-QQO"/>
-                <constraint firstItem="BbB-cS-pdj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="cmm-w2-7zJ"/>
+                <constraint firstItem="BbB-cS-pdj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="cmm-w2-7zJ"/>
             </constraints>
             <size key="customSize" width="185" height="47"/>
             <connections>

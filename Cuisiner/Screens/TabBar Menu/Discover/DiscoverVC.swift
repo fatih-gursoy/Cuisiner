@@ -12,6 +12,8 @@ class DiscoverVC: UIViewController, Storyboardable {
     @IBOutlet private weak var categoryCollectionView: UICollectionView!
     @IBOutlet private weak var recipeCollectionView: UICollectionView!
     @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet private weak var welcomeLabel: UILabel!
+    @IBOutlet private weak var profileImage: CustomImageView!
     
     private var recipesViewModel = RecipesViewModel()
     weak var coordinator: DiscoverCoordinator?
@@ -21,7 +23,7 @@ class DiscoverVC: UIViewController, Storyboardable {
         super.viewDidLoad()
         searchBar.delegate = self
         configureCollectionView()
-        fetchRecipes()
+        configureUI()
     }
     
     deinit {
@@ -38,10 +40,15 @@ class DiscoverVC: UIViewController, Storyboardable {
         categoryCollectionView.allowsMultipleSelection = true
     }
     
-    func fetchRecipes() {
+    func configureUI() {
         recipesViewModel.delegate = self
         AuthManager.shared.fetchUser { [weak self] success in
-            if success { self?.recipesViewModel.fetchAllRecipes() }
+            if success {
+                if let user = AuthManager.shared.user {
+                    self?.welcomeLabel.text = "Welcome, \(user.userName ?? "")  👋"
+                    self?.profileImage.setImage(url: user.userImageUrl)
+                }
+                self?.recipesViewModel.fetchAllRecipes() }
         }
     }
    

@@ -35,6 +35,9 @@ struct Recipe: Codable {
     }
         
     enum Category: String, Codable, CaseIterable {
+        case mainCourse = "Main Course"
+        case sideDish = "Side Dish"
+        case bread = "Bread"
         case homeMeal = "Home Meal"
         case steak = "Steak"
         case chicken = "Chicken"
@@ -53,19 +56,21 @@ struct Recipe: Codable {
         case snack = "Snack"
         case dessert = "Dessert"
         case babyFood = "Baby Food"
+        case otherFood = "Other Food"
+        case beverage = "Beverage"
+        case sauce = "Sauce"
+        case marinade = "Marinade"
+        case fingerfood = "Finger Food"
         case drink = "Drink"
-        case otherFastFood = "Other Food"
     }
 }
 
 struct Ingredient: Codable {
     var name: String?
-    var amount: String?
 }
 
 struct Instruction: Codable {
     var text: String?
-    var time: Int?
 }
 
 struct Rating: Codable {

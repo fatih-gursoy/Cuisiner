@@ -117,7 +117,7 @@ class CreateNewVC: UIViewController, Storyboardable {
             return false
         }
         
-        guard !(ingredients.contains { ($0.name?.isEmpty ?? true) || ($0.amount?.isEmpty ?? true) }) else {
+        guard !(ingredients.contains { ($0.name?.isEmpty ?? true) }) else {
             presentAlert(title: "Can not continue", message: "Please fill all ingredient fields", completion: nil);
             return false
         }
@@ -174,7 +174,7 @@ extension CreateNewVC: UITableViewDelegate, UITableViewDataSource {
         
         cell.tag = indexPath.row
         cell.delegate = self
-        cell.configureForEdit(ingredient: ingredients[indexPath.row])
+        cell.configure(ingredient: ingredients[indexPath.row])
         return cell
     }
     
@@ -192,10 +192,9 @@ extension CreateNewVC: UITableViewDelegate, UITableViewDataSource {
 // MARK: - TableCell Delegate
 
 extension CreateNewVC: IngredientCellDelegate {
-    func updateCell(itemName: String?, amount: String?, cell: IngredientTableCell) {
+    func updateCell(itemName: String?, cell: IngredientTableCell) {
         let row = cell.tag
         ingredients[row].name = itemName
-        ingredients[row].amount = amount
     }
     
     func deleteCell(cell: IngredientTableCell) {

@@ -8,32 +8,21 @@
 import UIKit
 
 protocol IngredientCellDelegate: AnyObject {
-    func updateCell(itemName: String?, amount: String?, cell: IngredientTableCell)
+    func updateCell(itemName: String?, cell: IngredientTableCell)
     func deleteCell(cell: IngredientTableCell)
 }
 
 class IngredientTableCell: UITableViewCell {
 
     @IBOutlet private weak var deleteButton: UIButton!
-    @IBOutlet private weak var itemName: UITextField!
-    @IBOutlet private weak var itemQuantity: UITextField!
+    @IBOutlet private weak var item: UITextField!
     
     static let identifier = "IngredientTableCell"
     weak var delegate: IngredientCellDelegate?
     
-    func configureForPresent(ingredient: Ingredient?) {
+    func configure(ingredient: Ingredient?) {
         guard let ingredient = ingredient else {return}
-        itemName.text = ingredient.name
-        itemQuantity.text = ingredient.amount
-        itemName.isUserInteractionEnabled = false
-        itemQuantity.isUserInteractionEnabled  = false
-        deleteButton.isHidden = true
-    }
-    
-    func configureForEdit(ingredient: Ingredient?) {
-        guard let ingredient = ingredient else {return}
-        itemName.text = ingredient.name
-        itemQuantity.text = ingredient.amount
+        item.text = ingredient.name
     }
     
     @IBAction func deleteButtonTapped(_ sender: Any) {
@@ -41,14 +30,13 @@ class IngredientTableCell: UITableViewCell {
     }
     
     override func layoutSubviews() {
-        itemName.delegate = self
-        itemQuantity.delegate = self
+        item.delegate = self
     }
 }
 
 extension IngredientTableCell: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
-        delegate?.updateCell(itemName: itemName.text, amount: itemQuantity.text,
+        delegate?.updateCell(itemName: item.text,
                              cell: self)
     }
     
@@ -57,7 +45,7 @@ extension IngredientTableCell: UITextFieldDelegate {
         let stringLenght = textField.text?.count ?? 0
         if range.length + range.location > stringLenght { return false }
         let maxLenght = stringLenght + string.count - range.length
-        return maxLenght <= 10
+        return maxLenght <= 25
     }
 }
 

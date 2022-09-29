@@ -28,6 +28,7 @@
 		3D174E9927DE19C800D5DCB3 /* IngredientTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D174E9727DE19C700D5DCB3 /* IngredientTableCell.xib */; };
 		3D19A0E4285328DC00B570A2 /* CustomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D19A0E3285328DC00B570A2 /* CustomTableView.swift */; };
 		3D20E268283F5D06003DD793 /* done.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D20E267283F5D06003DD793 /* done.json */; };
+		3D32060928E48E390069AFED /* TimerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D32060828E48E390069AFED /* TimerButton.swift */; };
 		3D397A3C28A6724400DF4863 /* UserTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D397A3A28A6724400DF4863 /* UserTableCell.swift */; };
 		3D397A3D28A6724400DF4863 /* UserTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D397A3B28A6724400DF4863 /* UserTableCell.xib */; };
 		3D397A4028A67AD000DF4863 /* BlockedUsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D397A3F28A67AD000DF4863 /* BlockedUsersViewModel.swift */; };
@@ -51,6 +52,9 @@
 		3D5C32B927F449570048CAC0 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5C32B827F449570048CAC0 /* UserViewModel.swift */; };
 		3D5C32BB27F44A890048CAC0 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5C32BA27F44A890048CAC0 /* AuthManager.swift */; };
 		3D5C32BE27F4712E0048CAC0 /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5C32BD27F4712D0048CAC0 /* ViewController+Extension.swift */; };
+		3D5DD13128E071AB0088BCA5 /* TimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5DD13028E071AB0088BCA5 /* TimeViewModel.swift */; };
+		3D5DD13328E1CD950088BCA5 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5DD13228E1CD950088BCA5 /* ClockView.swift */; };
+		3D5DD13528E1D44A0088BCA5 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5DD13428E1D44A0088BCA5 /* PickerView.swift */; };
 		3D609A8328B11B4C00AB2585 /* Storyboardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D609A8228B11B4C00AB2585 /* Storyboardable.swift */; };
 		3D609A8528B11B5600AB2585 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D609A8428B11B5600AB2585 /* Coordinator.swift */; };
 		3D609A8728B11B6600AB2585 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D609A8628B11B6600AB2585 /* AppCoordinator.swift */; };
@@ -75,8 +79,6 @@
 		3D920C2F285D34C000A8272D /* ProfileEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D920C2E285D34C000A8272D /* ProfileEditVC.swift */; };
 		3D9409CD28AD88E0004BB6C1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9409CC28AD88E0004BB6C1 /* Constants.swift */; };
 		3D9F422228328055003FA3E0 /* StartCookVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9F422128328055003FA3E0 /* StartCookVC.swift */; };
-		3D9F42252832FCA7003FA3E0 /* InstructionCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9F42232832FCA6003FA3E0 /* InstructionCollectionCell.swift */; };
-		3D9F42262832FCA7003FA3E0 /* InstructionCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9F42242832FCA6003FA3E0 /* InstructionCollectionCell.xib */; };
 		3D9F92F5289D1DF400F02997 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9F92F4289D1DF400F02997 /* CustomButton.swift */; };
 		3DA92E612816066500DE0065 /* RecipeDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA92E602816066500DE0065 /* RecipeDetailVC.swift */; };
 		3DB1551628AB73E70072825B /* CustomActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB1551528AB73E70072825B /* CustomActionSheet.swift */; };
@@ -88,6 +90,11 @@
 		3DE094052896ADE900003925 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE094042896ADE900003925 /* UserDefaults+Extension.swift */; };
 		3DE452B32815FA30003F9AC6 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE452B22815FA30003F9AC6 /* CustomImageView.swift */; };
 		3DEBA83F281751D100E9774B /* ImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEBA83E281751D100E9774B /* ImageView+Extension.swift */; };
+		3DEE87AC28D9AF2C0032A96E /* IngredientPresentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEE87AA28D9AF2C0032A96E /* IngredientPresentCell.swift */; };
+		3DEE87AD28D9AF2C0032A96E /* IngredientPresentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DEE87AB28D9AF2C0032A96E /* IngredientPresentCell.xib */; };
+		3DF5FFB528DCAE5000965465 /* TimerMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5FFB428DCAE5000965465 /* TimerMainView.swift */; };
+		3DF5FFC028DDF63400965465 /* InstructionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5FFBE28DDF63400965465 /* InstructionCell.swift */; };
+		3DF5FFC128DDF63400965465 /* InstructionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DF5FFBF28DDF63400965465 /* InstructionCell.xib */; };
 		3DFCC8E72869ECF200297EEA /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFCC8E62869ECF200297EEA /* ChangePasswordVC.swift */; };
 		3DFCC8E92869ED2800297EEA /* ChangePasswordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DFCC8E82869ED2800297EEA /* ChangePasswordVC.xib */; };
 		4FEE0B4A326BF3EB126E1AF8 /* Pods_Cuisiner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F79FDA8AE708E87CA5F41101 /* Pods_Cuisiner.framework */; };
@@ -117,6 +124,7 @@
 		3D174E9727DE19C700D5DCB3 /* IngredientTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IngredientTableCell.xib; sourceTree = "<group>"; };
 		3D19A0E3285328DC00B570A2 /* CustomTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableView.swift; sourceTree = "<group>"; };
 		3D20E267283F5D06003DD793 /* done.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = done.json; sourceTree = "<group>"; };
+		3D32060828E48E390069AFED /* TimerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerButton.swift; sourceTree = "<group>"; };
 		3D337FB828AFBBAB004077AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D397A3A28A6724400DF4863 /* UserTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableCell.swift; sourceTree = "<group>"; };
 		3D397A3B28A6724400DF4863 /* UserTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableCell.xib; sourceTree = "<group>"; };
@@ -141,6 +149,9 @@
 		3D5C32B827F449570048CAC0 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		3D5C32BA27F44A890048CAC0 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		3D5C32BD27F4712D0048CAC0 /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
+		3D5DD13028E071AB0088BCA5 /* TimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeViewModel.swift; sourceTree = "<group>"; };
+		3D5DD13228E1CD950088BCA5 /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
+		3D5DD13428E1D44A0088BCA5 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		3D609A8228B11B4C00AB2585 /* Storyboardable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboardable.swift; sourceTree = "<group>"; };
 		3D609A8428B11B5600AB2585 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		3D609A8628B11B6600AB2585 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -165,8 +176,6 @@
 		3D920C2E285D34C000A8272D /* ProfileEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditVC.swift; sourceTree = "<group>"; };
 		3D9409CC28AD88E0004BB6C1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3D9F422128328055003FA3E0 /* StartCookVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartCookVC.swift; sourceTree = "<group>"; };
-		3D9F42232832FCA6003FA3E0 /* InstructionCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionCollectionCell.swift; sourceTree = "<group>"; };
-		3D9F42242832FCA6003FA3E0 /* InstructionCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InstructionCollectionCell.xib; sourceTree = "<group>"; };
 		3D9F92F4289D1DF400F02997 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		3DA92E602816066500DE0065 /* RecipeDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailVC.swift; sourceTree = "<group>"; };
 		3DB1551528AB73E70072825B /* CustomActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActionSheet.swift; sourceTree = "<group>"; };
@@ -178,6 +187,11 @@
 		3DE094042896ADE900003925 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		3DE452B22815FA30003F9AC6 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		3DEBA83E281751D100E9774B /* ImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+Extension.swift"; sourceTree = "<group>"; };
+		3DEE87AA28D9AF2C0032A96E /* IngredientPresentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientPresentCell.swift; sourceTree = "<group>"; };
+		3DEE87AB28D9AF2C0032A96E /* IngredientPresentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IngredientPresentCell.xib; sourceTree = "<group>"; };
+		3DF5FFB428DCAE5000965465 /* TimerMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerMainView.swift; sourceTree = "<group>"; };
+		3DF5FFBE28DDF63400965465 /* InstructionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionCell.swift; sourceTree = "<group>"; };
+		3DF5FFBF28DDF63400965465 /* InstructionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InstructionCell.xib; sourceTree = "<group>"; };
 		3DFCC8E62869ECF200297EEA /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
 		3DFCC8E82869ED2800297EEA /* ChangePasswordVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangePasswordVC.xib; sourceTree = "<group>"; };
 		5985132E584E3DF6B1C7D178 /* Pods-Cuisiner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cuisiner.release.xcconfig"; path = "Target Support Files/Pods-Cuisiner/Pods-Cuisiner.release.xcconfig"; sourceTree = "<group>"; };
@@ -196,6 +210,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D07F2A328DBC6260008E8B6 /* TimerView */ = {
+			isa = PBXGroup;
+			children = (
+				3D5DD13028E071AB0088BCA5 /* TimeViewModel.swift */,
+				3DF5FFB428DCAE5000965465 /* TimerMainView.swift */,
+				3D32060828E48E390069AFED /* TimerButton.swift */,
+				3D5DD13428E1D44A0088BCA5 /* PickerView.swift */,
+				3D5DD13228E1CD950088BCA5 /* ClockView.swift */,
+			);
+			path = TimerView;
+			sourceTree = "<group>";
+		};
 		3D0A728127D6A8C100F26608 = {
 			isa = PBXGroup;
 			children = (
@@ -510,6 +536,7 @@
 				3D8D6A0F2840CEC300DDEED4 /* StarView */,
 				3D82E2C7283B9C6D0013032D /* CustomPopupVC */,
 				3D19A0E528532A7700B570A2 /* CustomTableView */,
+				3D07F2A328DBC6260008E8B6 /* TimerView */,
 				3D8D6A0E2840CB9600DDEED4 /* IBDesignables */,
 			);
 			path = CustomViews;
@@ -551,15 +578,6 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
-		3D9F42272832FCAD003FA3E0 /* InstructionsCollectionCell */ = {
-			isa = PBXGroup;
-			children = (
-				3D9F42232832FCA6003FA3E0 /* InstructionCollectionCell.swift */,
-				3D9F42242832FCA6003FA3E0 /* InstructionCollectionCell.xib */,
-			);
-			path = InstructionsCollectionCell;
-			sourceTree = "<group>";
-		};
 		3DB1551728AB88140072825B /* CustomActionSheet */ = {
 			isa = PBXGroup;
 			children = (
@@ -581,9 +599,8 @@
 			isa = PBXGroup;
 			children = (
 				3DDB42EF28B2EB27000A7311 /* RecipeDetailCoordinator.swift */,
-				3DA92E602816066500DE0065 /* RecipeDetailVC.swift */,
-				3D9F422128328055003FA3E0 /* StartCookVC.swift */,
-				3D9F42272832FCAD003FA3E0 /* InstructionsCollectionCell */,
+				3DF5FFBB28DDF5E100965465 /* RecipeDetail */,
+				3DF5FFBC28DDF5F800965465 /* StartCook */,
 			);
 			path = "Recipe Detail";
 			sourceTree = "<group>";
@@ -622,6 +639,42 @@
 				3D1B305228916CE800166FC9 /* My RecipesVC */,
 			);
 			path = "TabBar Menu";
+			sourceTree = "<group>";
+		};
+		3DEE87A928D9AE8F0032A96E /* IngredientPresentCell */ = {
+			isa = PBXGroup;
+			children = (
+				3DEE87AA28D9AF2C0032A96E /* IngredientPresentCell.swift */,
+				3DEE87AB28D9AF2C0032A96E /* IngredientPresentCell.xib */,
+			);
+			path = IngredientPresentCell;
+			sourceTree = "<group>";
+		};
+		3DF5FFBB28DDF5E100965465 /* RecipeDetail */ = {
+			isa = PBXGroup;
+			children = (
+				3DA92E602816066500DE0065 /* RecipeDetailVC.swift */,
+				3DEE87A928D9AE8F0032A96E /* IngredientPresentCell */,
+			);
+			path = RecipeDetail;
+			sourceTree = "<group>";
+		};
+		3DF5FFBC28DDF5F800965465 /* StartCook */ = {
+			isa = PBXGroup;
+			children = (
+				3D9F422128328055003FA3E0 /* StartCookVC.swift */,
+				3DF5FFBD28DDF60D00965465 /* InstructionCell */,
+			);
+			path = StartCook;
+			sourceTree = "<group>";
+		};
+		3DF5FFBD28DDF60D00965465 /* InstructionCell */ = {
+			isa = PBXGroup;
+			children = (
+				3DF5FFBE28DDF63400965465 /* InstructionCell.swift */,
+				3DF5FFBF28DDF63400965465 /* InstructionCell.xib */,
+			);
+			path = InstructionCell;
 			sourceTree = "<group>";
 		};
 		3DFCC8E52869ECA500297EEA /* ChangePasswordVC */ = {
@@ -710,6 +763,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DEE87AD28D9AF2C0032A96E /* IngredientPresentCell.xib in Resources */,
 				3D174E8C27D7FF6100D5DCB3 /* SignUpVC.xib in Resources */,
 				3D0A72CD27D79F6600F26608 /* SignInVC.xib in Resources */,
 				3D68C5A828A51F980052AB6D /* CustomAlertVC.xib in Resources */,
@@ -722,9 +776,9 @@
 				3D83FA67289A72B6003FAB3E /* Color.xcassets in Resources */,
 				3D20E268283F5D06003DD793 /* done.json in Resources */,
 				3D3D46322816BC4F007D2D5A /* CategoryCell.xib in Resources */,
+				3DF5FFC128DDF63400965465 /* InstructionCell.xib in Resources */,
 				3DDC76C2283305B400DBCBB7 /* cooking.json in Resources */,
 				3D0A729D27D6A8C400F26608 /* LaunchScreen.storyboard in Resources */,
-				3D9F42262832FCA7003FA3E0 /* InstructionCollectionCell.xib in Resources */,
 				3D0A72C127D6AC2700F26608 /* GoogleService-Info.plist in Resources */,
 				3D397A3D28A6724400DF4863 /* UserTableCell.xib in Resources */,
 				3D68C5A128A2AD220052AB6D /* ResetPasswordVC.xib in Resources */,
@@ -795,7 +849,6 @@
 				3D8F960327EC99A0004DE7A2 /* FirebaseService.swift in Sources */,
 				3D41D35127FC83780030763C /* StorageService.swift in Sources */,
 				3D82E2CA283B9C900013032D /* CustomPopupVC.swift in Sources */,
-				3D9F42252832FCA7003FA3E0 /* InstructionCollectionCell.swift in Sources */,
 				3D174E9027DA451B00D5DCB3 /* CreateNewVC.swift in Sources */,
 				3DA92E612816066500DE0065 /* RecipeDetailVC.swift in Sources */,
 				3D609A8928B279B200AB2585 /* AuthCoordinator.swift in Sources */,
@@ -808,6 +861,8 @@
 				3D68C5A028A2AD220052AB6D /* ResetPasswordVC.swift in Sources */,
 				3D609A8728B11B6600AB2585 /* AppCoordinator.swift in Sources */,
 				3D5C32AE27F262F40048CAC0 /* RecipesViewModel.swift in Sources */,
+				3DF5FFC028DDF63400965465 /* InstructionCell.swift in Sources */,
+				3D5DD13328E1CD950088BCA5 /* ClockView.swift in Sources */,
 				3D0A729227D6A8C100F26608 /* WelcomeVC.swift in Sources */,
 				3D0A728E27D6A8C100F26608 /* AppDelegate.swift in Sources */,
 				3D174E9227DA453B00D5DCB3 /* MyRecipesVC.swift in Sources */,
@@ -817,9 +872,11 @@
 				3D8D6A112840CF4800DDEED4 /* StarView.swift in Sources */,
 				3D397A4028A67AD000DF4863 /* BlockedUsersViewModel.swift in Sources */,
 				3D5C32B227F26A820048CAC0 /* MyRecipeTableCell.swift in Sources */,
+				3DEE87AC28D9AF2C0032A96E /* IngredientPresentCell.swift in Sources */,
 				3DDB42F028B2EB27000A7311 /* RecipeDetailCoordinator.swift in Sources */,
 				3D4AA44C286ADF99008FA49D /* SegmentedControl.swift in Sources */,
 				3DE452B32815FA30003F9AC6 /* CustomImageView.swift in Sources */,
+				3DF5FFB528DCAE5000965465 /* TimerMainView.swift in Sources */,
 				3D5C32B727F449050048CAC0 /* User.swift in Sources */,
 				3D609A8B28B2D1CB00AB2585 /* TabBarCoordinator.swift in Sources */,
 				3D0A72CC27D79F6600F26608 /* SignInVC.swift in Sources */,
@@ -834,14 +891,17 @@
 				3DB1551628AB73E70072825B /* CustomActionSheet.swift in Sources */,
 				3D174E8E27D8064600D5DCB3 /* DiscoverVC.swift in Sources */,
 				3D6CDC9E289E718F00EFC01C /* AccountDeleteVC.swift in Sources */,
+				3D5DD13528E1D44A0088BCA5 /* PickerView.swift in Sources */,
 				3D703820281991C2002A554E /* Database+Constants.swift in Sources */,
 				3D609A8D28B2D87800AB2585 /* CreateNewCoordinator.swift in Sources */,
 				3D68C5A728A51F980052AB6D /* CustomAlertVC.swift in Sources */,
+				3D5DD13128E071AB0088BCA5 /* TimeViewModel.swift in Sources */,
 				3D0A729827D6A8C100F26608 /* Cuisiner.xcdatamodeld in Sources */,
 				3D582E8427DFF110007ED621 /* PrepareVC.swift in Sources */,
 				3D3D46312816BC4F007D2D5A /* CategoryCell.swift in Sources */,
 				3D4AA450286AFB1E008FA49D /* CoreDataManager.swift in Sources */,
 				3D397A3C28A6724400DF4863 /* UserTableCell.swift in Sources */,
+				3D32060928E48E390069AFED /* TimerButton.swift in Sources */,
 				3D9409CD28AD88E0004BB6C1 /* Constants.swift in Sources */,
 				3D3D46372816BCB6007D2D5A /* RecipeCell.swift in Sources */,
 				3D8E242A28A66F6500D3B447 /* BlockedUsersVC.swift in Sources */,
@@ -1004,7 +1064,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = /Users/fatih/Desktop/XCode/Cuisiner/Cuisiner/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Cuisiner;
-				INFOPLIST_KEY_LSApplicationCategoryType = "Used to select photo";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Used to select photo";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1042,7 +1102,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = /Users/fatih/Desktop/XCode/Cuisiner/Cuisiner/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Cuisiner;
-				INFOPLIST_KEY_LSApplicationCategoryType = "Used to select photo";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Used to select photo";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

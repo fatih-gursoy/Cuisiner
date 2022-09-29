@@ -15,7 +15,7 @@ class TabBarVC: UITabBarController, Storyboardable {
         super.viewDidLoad()
         tabBar.isTranslucent = true
         tabBar.tintColor = #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1)
-        tabBar.backgroundColor = #colorLiteral(red: 1, green: 0.8846692443, blue: 0.8606837988, alpha: 0.7)
+        tabBar.backgroundColor = #colorLiteral(red: 1, green: 0.8849676251, blue: 0.8622646928, alpha: 1)
         delegate = self
         
         guard let discoverVC = coordinator?.startDiscoverCoordinator() else { return }
@@ -71,8 +71,8 @@ class CustomTabBar: UITabBar {
         super.awakeFromNib()
         self.layer.shadowColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
         self.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
-        self.layer.shadowRadius = 7
-        self.layer.shadowOpacity = 1
+        self.layer.shadowRadius = 5
+        self.layer.shadowOpacity = 5
         self.layer.masksToBounds = false
     }
     
