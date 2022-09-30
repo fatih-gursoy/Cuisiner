@@ -215,9 +215,9 @@
 			children = (
 				3D5DD13028E071AB0088BCA5 /* TimeViewModel.swift */,
 				3DF5FFB428DCAE5000965465 /* TimerMainView.swift */,
-				3D32060828E48E390069AFED /* TimerButton.swift */,
 				3D5DD13428E1D44A0088BCA5 /* PickerView.swift */,
 				3D5DD13228E1CD950088BCA5 /* ClockView.swift */,
+				3D32060828E48E390069AFED /* TimerButton.swift */,
 			);
 			path = TimerView;
 			sourceTree = "<group>";

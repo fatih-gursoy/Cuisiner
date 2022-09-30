@@ -21,7 +21,7 @@ struct ClockView: View {
                 .padding()
             
             Circle()
-                .stroke(Color(.gray).opacity(0.2),
+                .stroke(Color(.gray).opacity(0.1),
                         style: StrokeStyle(lineWidth: 30, lineCap: .round))
             
             Circle()
@@ -33,6 +33,9 @@ struct ClockView: View {
                 .animation(.easeInOut, value: true)
         }
         .frame(minWidth: 250, maxWidth: 350)
+        .onReceive(viewModel.timer) { _ in
+            viewModel.runTimer()
+        }
     }
 }
 

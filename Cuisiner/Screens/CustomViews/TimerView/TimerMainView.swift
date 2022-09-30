@@ -25,10 +25,9 @@ struct TimerMainView: View {
                     .fontWeight(.semibold)
                     .padding()
                 
-                PickerView(selectedHour: $viewModel.pickerHour,
-                           selectedMin: $viewModel.pickerMinute)
-                .padding()
+                PickerView(vm: viewModel)
                 
+                Divider()
                 Spacer()
                 
                 ClockView(viewModel: viewModel)
@@ -55,12 +54,8 @@ struct TimerMainView: View {
                             : TimerButton(buttonType: .start)
                         }
                     }
-                    
                 }
             }
-            .onReceive(viewModel.timer, perform: { _ in
-                viewModel.runTimer()
-            })
         }
     }
     

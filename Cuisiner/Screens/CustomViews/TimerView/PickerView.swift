@@ -9,17 +9,17 @@ import SwiftUI
 
 struct PickerView: View {
     
-    @Binding var selectedHour: Int
-    @Binding var selectedMin: Int
+    @StateObject var vm: TimeViewModel
     
     var body: some View {
 
         HStack(spacing: 50) {
 
             HStack {
-                Picker("", selection: $selectedHour) {
-                    ForEach(0...23, id: \.self) { index in
-                        CustomText(title: "\(index)")
+                
+                Picker("", selection: $vm.pickerHour) {
+                    ForEach(0..<24) {
+                        CustomText(title: "\($0)").tag($0)
                     }
                 }
                 .pickerStyle(.wheel)
@@ -30,9 +30,9 @@ struct PickerView: View {
             }
             
             HStack {
-                Picker("",selection: $selectedMin) {
-                    ForEach(0...59, id: \.self) { index in
-                        CustomText(title: "\(index)")
+                Picker("",selection: $vm.pickerMinute) {
+                    ForEach(0..<60) {
+                        CustomText(title: "\($0)").tag($0)
                     }
                 }
                 .pickerStyle(.wheel)
@@ -47,7 +47,8 @@ struct PickerView: View {
 
 extension UIPickerView {
    open override var intrinsicContentSize: CGSize {
-      return CGSize(width: UIView.noIntrinsicMetric, height: super.intrinsicContentSize.height)}
+      return CGSize(width: UIView.noIntrinsicMetric,
+                    height: super.intrinsicContentSize.height)}
 }
 
 struct CustomText: View {
