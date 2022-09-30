@@ -24,15 +24,24 @@ struct TimerMainView: View {
                     .font(Font.custom("Gill Sans", size: 30))
                     .fontWeight(.semibold)
                     .padding()
-                
-                PickerView(vm: viewModel)
-                
-                Divider()
                 Spacer()
-                
-                ClockView(viewModel: viewModel)
-                    .padding()
-                
+                if viewModel.isStartTapped {
+                    ClockView(viewModel: viewModel)
+                        .padding(20)
+                } else {
+                    VStack() {
+                        CustomText(title: "Please set a Cooking Time")
+                            .padding()
+                        
+                        Divider()
+                        
+                        PickerView(viewModel: viewModel).padding()
+                            .onAppear {
+                                viewModel.resetTimer()
+                            }
+                    }
+                }
+                          
                 Spacer()
                 
                 HStack {
@@ -45,6 +54,7 @@ struct TimerMainView: View {
                     
                     Button {
                         viewModel.isTimerRunning.toggle()
+                        if viewModel.isTimerRunning { viewModel.startTimer() }
                     } label: {
                         if viewModel.isTimerRunning {
                             TimerButton(buttonType: .pause)
@@ -56,6 +66,9 @@ struct TimerMainView: View {
                     }
                 }
             }
+        }
+        .onReceive(viewModel.timer) { _ in
+            viewModel.runTimer()
         }
     }
     

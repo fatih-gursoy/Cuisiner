@@ -59,10 +59,6 @@ extension BlockedUsersVC: UITableViewDelegate, UITableViewDataSource {
         let userViewModel = UserViewModel(user: users[indexPath.row])
         let vc = ProfileVC.instantiateFromStoryboard()
         vc.viewModel = userViewModel
-        
-        guard let presentationController = vc.presentationController as?
-                UISheetPresentationController else {return}
-        presentationController.detents = [.medium()]
         present(vc, animated: true)
     }
     

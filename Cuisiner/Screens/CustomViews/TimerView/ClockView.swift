@@ -32,10 +32,8 @@ struct ClockView: View {
                 .rotationEffect(.degrees(-90))
                 .animation(.easeInOut, value: true)
         }
-        .frame(minWidth: 250, maxWidth: 350)
-        .onReceive(viewModel.timer) { _ in
-            viewModel.runTimer()
-        }
+        .frame(maxWidth: .infinity)
+        .padding(40)
     }
 }
 

@@ -16,9 +16,8 @@ class TimeViewModel: ObservableObject {
     @Published var timeRemaining: Int = 0
     @Published var isTimerRunning: Bool = false
     @Published var isStartTapped: Bool = false
-    @Published var pickerHour: Int = 0 { didSet { updateTimer() } }
-    @Published var pickerMinute: Int = 0 { didSet { updateTimer() } }
-    
+    @Published var pickerHour: Int = 0 { didSet { updateTime() } }
+    @Published var pickerMinute: Int = 0 { didSet { updateTime() } }
     var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var circleProgress: CGFloat {
@@ -31,7 +30,7 @@ class TimeViewModel: ObservableObject {
         pickerMinute = initialTimeMin % 60
     }
     
-    func updateTimer() {
+    func updateTime() {
         initialTimeMin = (pickerHour * 60) + pickerMinute
         resetTimer()
     }
@@ -54,11 +53,14 @@ class TimeViewModel: ObservableObject {
         }
     }
     
+    func startTimer() {
+        timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    }
+    
     func resetTimer() {
         isStartTapped = false
         isTimerRunning = false
-        timeRemaining = initialTimeMin * 60
+        timer.upstream.connect().cancel()
     }
-    
     
 }

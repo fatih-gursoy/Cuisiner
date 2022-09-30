@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PickerView: View {
     
-    @StateObject var vm: TimeViewModel
+    @StateObject var viewModel: TimeViewModel
     
     var body: some View {
 
@@ -17,7 +17,7 @@ struct PickerView: View {
 
             HStack {
                 
-                Picker("", selection: $vm.pickerHour) {
+                Picker("", selection: $viewModel.pickerHour) {
                     ForEach(0..<24) {
                         CustomText(title: "\($0)").tag($0)
                     }
@@ -30,7 +30,7 @@ struct PickerView: View {
             }
             
             HStack {
-                Picker("",selection: $vm.pickerMinute) {
+                Picker("",selection: $viewModel.pickerMinute) {
                     ForEach(0..<60) {
                         CustomText(title: "\($0)").tag($0)
                     }

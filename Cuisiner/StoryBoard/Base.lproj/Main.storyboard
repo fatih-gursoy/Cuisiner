@@ -26,30 +26,42 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="BPe-Bo-b4h">
                                 <rect key="frame" x="15" y="618" width="363" height="170"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L9j-Y8-YTx">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L9j-Y8-YTx" customClass="CustomButton" customModule="Cuisiner" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="363" height="75"/>
+                                        <color key="backgroundColor" name="AccentColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="75" id="Ecn-Kp-3by"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Log In" cornerStyle="large">
-                                            <fontDescription key="titleFontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="22"/>
-                                            <color key="baseBackgroundColor" name="Dark Red"/>
-                                        </buttonConfiguration>
+                                        <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="22"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Log In">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="logInClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uPZ-vf-eiH"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="heT-0O-JnG">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="heT-0O-JnG" customClass="CustomButton" customModule="Cuisiner" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="95" width="363" height="75"/>
+                                        <color key="backgroundColor" name="AccentColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="75" id="X28-Rr-ueC"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Sign Up" cornerStyle="large">
-                                            <fontDescription key="titleFontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="22"/>
-                                            <color key="baseBackgroundColor" name="Dark Red"/>
-                                        </buttonConfiguration>
+                                        <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="22"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Sign Up">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="signUpClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PWj-6h-yky"/>
                                         </connections>
@@ -602,16 +614,22 @@
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i7y-gx-DTH">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i7y-gx-DTH" customClass="CustomButton" customModule="Cuisiner" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="768.66666666666663" width="384" height="50"/>
+                                                        <color key="backgroundColor" name="AccentColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="v0q-pF-JKX"/>
                                                         </constraints>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="filled" title="Start Cooking" cornerStyle="large">
-                                                            <fontDescription key="titleFontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="22"/>
-                                                            <color key="baseBackgroundColor" name="Dark Red"/>
-                                                        </buttonConfiguration>
+                                                        <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="22"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Start Cooking">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="startClicked:" destination="l3C-Jn-cMf" eventType="touchUpInside" id="w5c-Ch-d9F"/>
                                                         </connections>
@@ -706,16 +724,22 @@
                                         <rect key="frame" x="0.0" y="102.33333333333334" width="363" height="506.66666666666663"/>
                                         <color key="backgroundColor" name="recipeBackground"/>
                                     </tableView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qXb-OU-MwW">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qXb-OU-MwW" customClass="CustomButton" customModule="Cuisiner" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="629" width="363" height="50"/>
+                                        <color key="backgroundColor" name="AccentColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="stF-dg-vG1"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Finish" cornerStyle="large">
-                                            <fontDescription key="titleFontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="20"/>
-                                            <color key="baseBackgroundColor" name="Dark Red"/>
-                                        </buttonConfiguration>
+                                        <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="20"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Finish">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="finishButtonClicked:" destination="asW-4v-Cth" eventType="touchUpInside" id="OUc-JQ-DPY"/>
                                         </connections>
@@ -1032,30 +1056,38 @@
                                                         <rect key="frame" x="0.0" y="598.66666666666663" width="394" height="252.66666666666663"/>
                                                         <color key="sectionIndexColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xyj-cs-6N4">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xyj-cs-6N4" customClass="CustomButton" customModule="Cuisiner" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="861.33333333333337" width="394" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="G5v-qQ-oOI"/>
                                                         </constraints>
+                                                        <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="20"/>
                                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" image="plus.circle" catalog="system" title="Add ingredient" imagePadding="10" cornerStyle="large" titleAlignment="leading">
-                                                            <fontDescription key="titleFontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="20"/>
-                                                        </buttonConfiguration>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="30" maxY="0.0"/>
+                                                        <state key="normal" title="Add ingredient" image="plus.circle" catalog="system">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
                                                         <connections>
                                                             <action selector="addButtonClicked:" destination="FoV-FM-2Qv" eventType="touchUpInside" id="nqX-Ro-Q38"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hz-RA-ZAh">
+                                                    <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hz-RA-ZAh" customClass="CustomButton" customModule="Cuisiner" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="921.33333333333337" width="394" height="50"/>
+                                                        <color key="backgroundColor" name="AccentColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="xmI-5L-qyI"/>
                                                         </constraints>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="filled" image="arrow.right.circle.fill" catalog="system" imagePlacement="trailing" title="Continue" imagePadding="20" cornerStyle="large">
-                                                            <fontDescription key="titleFontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="22"/>
-                                                            <color key="baseBackgroundColor" name="Dark Red"/>
-                                                        </buttonConfiguration>
+                                                        <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="22"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <inset key="imageEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <state key="normal" title="Continue" image="arrow.right.circle.fill" catalog="system">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="continueClicked:" destination="FoV-FM-2Qv" eventType="touchUpInside" id="Hhd-fo-GfL"/>
                                                         </connections>
@@ -1256,13 +1288,13 @@
                                         <rect key="frame" x="20" y="0.0" width="353" height="133.66666666666666"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vl8-pC-MN7">
-                                                <rect key="frame" x="-2" y="34.333333333333314" width="62" height="65.666666666666657"/>
+                                                <rect key="frame" x="0.0" y="33.666666666666671" width="60" height="66.333333333333329"/>
                                                 <color key="tintColor" name="Dark Red"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="WD1-8f-4eJ"/>
                                                     <constraint firstAttribute="width" constant="60" id="oxg-OA-O00"/>
                                                 </constraints>
-                                                <imageReference key="image" image="person.crop.circle.badge.xmark.fill" catalog="system"/>
+                                                <imageReference key="image" image="hand.raised.fill" catalog="system"/>
                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blocked Users" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6CM-Uh-nam">
@@ -1745,40 +1777,48 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2i3-yH-LTA" userLabel="ButtonStack">
                                                         <rect key="frame" x="0.0" y="624" width="374" height="200"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1vB-UD-L0g">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1vB-UD-L0g" customClass="CustomButton" customModule="Cuisiner" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="60"/>
+                                                                <color key="backgroundColor" name="AccentColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="60" id="qwi-1c-YEI"/>
                                                                 </constraints>
-                                                                <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="filled" title="Update" cornerStyle="large">
-                                                                    <fontDescription key="titleFontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="22"/>
-                                                                    <color key="baseBackgroundColor" name="Dark Red"/>
-                                                                </buttonConfiguration>
+                                                                <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="22"/>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <state key="normal" title="Update">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="10"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="updateTapped:" destination="rEu-Yd-mnl" eventType="touchUpInside" id="Zfo-jc-l2a"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VTs-sG-u20">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VTs-sG-u20" customClass="CustomButton" customModule="Cuisiner" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="70" width="374" height="60"/>
-                                                                <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="plain" image="person.badge.key.fill" catalog="system" title="Change Password" imagePadding="10">
-                                                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="20"/>
-                                                                    <fontDescription key="titleFontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
-                                                                    <color key="baseForegroundColor" name="Dark Red"/>
-                                                                </buttonConfiguration>
+                                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
+                                                                <color key="tintColor" name="AccentColor"/>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="30" maxY="0.0"/>
+                                                                <state key="normal" title="Change Password" image="lock.circle.fill" catalog="system">
+                                                                    <color key="titleColor" name="Dark Red"/>
+                                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20"/>
+                                                                </state>
                                                                 <connections>
                                                                     <action selector="changePasswordTapped:" destination="rEu-Yd-mnl" eventType="touchUpInside" id="0LS-sP-s1R"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vNC-QL-BaD">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vNC-QL-BaD" customClass="CustomButton" customModule="Cuisiner" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="140" width="374" height="60"/>
-                                                                <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="plain" image="person.crop.circle.fill.badge.xmark" catalog="system" title="Delete account" imagePadding="10">
-                                                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="18"/>
-                                                                    <fontDescription key="titleFontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
-                                                                    <color key="baseForegroundColor" name="Dark Red"/>
-                                                                </buttonConfiguration>
+                                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
+                                                                <color key="tintColor" name="AccentColor"/>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="30" maxY="0.0"/>
+                                                                <state key="normal" title="Delete account" image="person.crop.circle.fill.badge.xmark" catalog="system">
+                                                                    <color key="titleColor" name="Dark Red"/>
+                                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="18"/>
+                                                                </state>
                                                                 <connections>
                                                                     <action selector="deleteAccountTapped:" destination="rEu-Yd-mnl" eventType="touchUpInside" id="1eR-WU-JuG"/>
                                                                 </connections>
@@ -1902,16 +1942,23 @@
                                                             <constraint firstAttribute="trailing" secondItem="LAg-Dd-3a7" secondAttribute="trailing" id="sDU-fJ-eaT"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJG-CZ-kKZ">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJG-CZ-kKZ" customClass="CustomButton" customModule="Cuisiner" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="740" width="394" height="50"/>
+                                                        <color key="backgroundColor" name="AccentColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="SRV-iK-QrI"/>
                                                         </constraints>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="filled" title="Save Recipe" cornerStyle="large">
-                                                            <fontDescription key="titleFontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="22"/>
-                                                            <color key="baseBackgroundColor" name="Dark Red"/>
-                                                        </buttonConfiguration>
+                                                        <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="22"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Save Recipe">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="saveButtonClicked:" destination="aHI-HX-fOr" eventType="touchUpInside" id="OmF-Lv-iNF"/>
                                                         </connections>
@@ -1965,6 +2012,12 @@
         </scene>
     </scenes>
     <designables>
+        <designable name="0hz-RA-ZAh">
+            <size key="intrinsicContentSize" width="109.66666666666667" height="27"/>
+        </designable>
+        <designable name="1vB-UD-L0g">
+            <size key="intrinsicContentSize" width="71" height="39"/>
+        </designable>
         <designable name="6Tf-Yv-sCx">
             <size key="intrinsicContentSize" width="309" height="268"/>
         </designable>
@@ -1974,14 +2027,38 @@
         <designable name="DUR-8K-R9w">
             <size key="intrinsicContentSize" width="181" height="31"/>
         </designable>
+        <designable name="L9j-Y8-YTx">
+            <size key="intrinsicContentSize" width="60" height="39"/>
+        </designable>
+        <designable name="RJG-CZ-kKZ">
+            <size key="intrinsicContentSize" width="115" height="39"/>
+        </designable>
+        <designable name="VTs-sG-u20">
+            <size key="intrinsicContentSize" width="152.33333333333334" height="22.666666666666668"/>
+        </designable>
         <designable name="W19-OJ-O7a">
             <size key="intrinsicContentSize" width="135" height="34"/>
+        </designable>
+        <designable name="Xyj-cs-6N4">
+            <size key="intrinsicContentSize" width="156.66666666666666" height="26"/>
+        </designable>
+        <designable name="heT-0O-JnG">
+            <size key="intrinsicContentSize" width="75" height="39"/>
+        </designable>
+        <designable name="i7y-gx-DTH">
+            <size key="intrinsicContentSize" width="135" height="39"/>
         </designable>
         <designable name="klb-ey-zAA">
             <size key="intrinsicContentSize" width="694" height="390"/>
         </designable>
+        <designable name="qXb-OU-MwW">
+            <size key="intrinsicContentSize" width="51" height="36"/>
+        </designable>
         <designable name="tW4-Hk-Hg2">
             <size key="intrinsicContentSize" width="49" height="35"/>
+        </designable>
+        <designable name="vNC-QL-BaD">
+            <size key="intrinsicContentSize" width="135" height="21.333333333333332"/>
         </designable>
         <designable name="vp6-FR-2bR">
             <size key="intrinsicContentSize" width="309" height="268"/>
@@ -1997,11 +2074,11 @@
         <image name="edit" width="43" height="43"/>
         <image name="exclamationmark.circle.fill" catalog="system" width="128" height="123"/>
         <image name="foodPlaceholder" width="694" height="390"/>
+        <image name="hand.raised.fill" catalog="system" width="128" height="128"/>
         <image name="info.circle.fill" catalog="system" width="128" height="123"/>
         <image name="launch" width="1920" height="2880"/>
+        <image name="lock.circle.fill" catalog="system" width="128" height="123"/>
         <image name="mail.fill" catalog="system" width="128" height="93"/>
-        <image name="person.badge.key.fill" catalog="system" width="128" height="116"/>
-        <image name="person.crop.circle.badge.xmark.fill" catalog="system" width="128" height="114"/>
         <image name="person.crop.circle.fill.badge.xmark" catalog="system" width="128" height="114"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="placeholder" width="309" height="268"/>
@@ -2012,6 +2089,9 @@
         <image name="recipeCount" width="100" height="100"/>
         <image name="serve" width="30" height="30"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
+        <namedColor name="AccentColor">
+            <color red="0.62000000476837158" green="0.16899999976158142" blue="0.16899999976158142" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <namedColor name="Dark Red">
             <color red="0.6589999794960022" green="0.18400000035762787" blue="0.18799999356269836" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

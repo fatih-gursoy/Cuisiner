@@ -38,15 +38,14 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="acO-4s-fB7">
-                                        <rect key="frame" x="438" y="13" width="45" height="34"/>
+                                        <rect key="frame" x="438" y="17" width="45" height="26"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="45" id="hLY-co-vOq"/>
                                         </constraints>
                                         <color key="tintColor" name="Red"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="minus.circle.fill" catalog="system" imagePadding="10">
-                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
-                                        </buttonConfiguration>
+                                        <state key="normal" image="minus.circle.fill" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration"/>
+                                        </state>
                                         <connections>
                                             <action selector="deleteButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="sJv-w0-bfx"/>
                                         </connections>

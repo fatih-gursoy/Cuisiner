@@ -24,10 +24,6 @@ class ResetPasswordVC: UIViewController {
         messageText.text = message
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        coordinator?.didFinish()
-    }
-    
     init(message: String) {
         self.message = message
         super.init(nibName: nil, bundle: nil)

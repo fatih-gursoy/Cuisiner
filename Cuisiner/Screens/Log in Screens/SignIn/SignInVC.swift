@@ -29,10 +29,6 @@ class SignInVC: UIViewController {
         hideKeyboard()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        coordinator?.didFinish()
-    }
-    
     @IBAction func signInClicked(_ sender: Any) {
         
         if emailText.text != nil && passwordText.text != nil {
