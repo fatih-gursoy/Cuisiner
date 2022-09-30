@@ -70,6 +70,8 @@ Cuisiner is a user generated recipe/cooking collection app
 <img src="Screenshots/ss5.png" width=20% height=20%>
 <img src="Screenshots/ss6.png" width=20% height=20%>
 <img src="Screenshots/ss7.png" width=20% height=20%>
+<img src="Screenshots/ss8.png" width=20% height=20%>
+
 
 
 
