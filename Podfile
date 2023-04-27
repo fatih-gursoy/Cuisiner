@@ -12,8 +12,18 @@ target 'Cuisiner' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Storage'
   pod 'FirebaseFirestoreSwift', '~> 9.4'
-  pod 'Kingfisher', '~> 7.2'
+  pod 'Kingfisher', '~> 7.6.2'
   pod 'lottie-ios'
   pod 'IQKeyboardManagerSwift', '6.3.0'
   
+end
+
+post_install do |installer|
+    installer.generated_projects.each do |project|
+          project.targets.each do |target|
+              target.build_configurations.each do |config|
+                  config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+               end
+          end
+   end
 end
