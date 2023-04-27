@@ -13,7 +13,7 @@ class CustomPopupVC: UIViewController {
     @IBOutlet private weak var subView: UIView!
     @IBOutlet private weak var actionButton: UIButton!
     
-    var animationView: AnimationView?
+    var animationView: LottieAnimationView?
     var starView: StarView?
     var type: popUpType?
     var doneTappedCompletion: (() -> Void)?
